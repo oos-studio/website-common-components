@@ -13,8 +13,8 @@ class CardGrid extends Component {
 
     const cardGrid = cards.map(card => {
       return(
-        <Col>
-        <Card style={styles.card}>
+        <Col xl={4} lg={4} md={6} sm={12} xs={12} style={styles.card}>
+        <Card>
           <CardImg src={card.image.icon} style={styles.image}/>
           <p style={styles.topic}>
             {card.topic}
@@ -42,11 +42,11 @@ class CardGrid extends Component {
     })
 
     return(
-      <Container style={styles.cardGrid}>
+     <Container style={styles.cardGrid}>
         <Row>
           {cardGrid}
         </Row>
-    </Container>
+      </Container>
     )
   }
 }
@@ -75,7 +75,7 @@ const defaultStyles = {
   },
   action: {
 
-  }
+  },
 }
 
 CardGrid.defaultProps = {
