@@ -1,32 +1,29 @@
 import React, { Component} from 'react'
-import { Col, Container, Row, } from 'reactstrap'
+import { Media, Col, Container, Row, } from 'reactstrap'
 
 class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
-    const { title, description, logo, contact, social, legal, styles } = this.props
+    const { title, description, logo, contacts, socials, legals, styles } = this.props
 
-    const contacts = contact.map(contact =>  {
+    const contactInfo = contacts.map(contact =>  {
       return (
         <Row style={styles.contacts}>
-          <Col style={styles.contact}>{contact.name}</Col>
           <Col style={styles.contact}>{contact.text}</Col>
         </Row>
       )
     })
 
-    const socials = social.map(social => {
+    const socialInfo = socials.map(social => {
       return (
         <Col style={styles.social}>
-          <a href={social.url}><img src={social.icon}/></a>
+          <a href={social.url}><img src={social.icon} alt={social.name}/></a>
         </Col>
       )
     })
 
-    const legals = legal.map(legal => {
+    const legalInfo = legals.map(legal => {
       return (
         <Col styles={styles.legal}>
           {legal.text}
@@ -35,9 +32,9 @@ class Footer extends Component {
     })
 
     return (
-          <Container style={styles.footer}>
-            <Row style={styles.logo}>
-              {logo.icon}
+          <div style={styles.footer}>
+            <Row>
+              <img src={logo.icon} alt="Logo" style={styles.logo}/>
             </Row>
             <Row style={styles.title}>
               {title}
@@ -45,14 +42,14 @@ class Footer extends Component {
             <Row style={styles.description}>
               {description}
             </Row>
-            {contacts}
+            {contactInfo}
             <Row style={styles.socials}>
-              {socials}
+              {socialInfo}
             </Row>
             <Row style={styles.legals}>
-              {legals}
+              {legalInfo}
             </Row>
-          </Container>
+          </div>
 
     )
   }
