@@ -1,32 +1,28 @@
 import React, { Component} from 'react'
-import { Col, Container, Row, } from 'reactstrap'
+import { Col, Row, } from 'reactstrap'
+import mergeStyle from '../utils/StyleMerge'
 
 class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { title, description, logo, contact, social, legal, styles } = this.props
+    const { styles } = this.props
 
-    const contacts = contact.map(contact =>  {
+    const contacts = this.props.contacts.map(contact =>  {
       return (
         <Row style={styles.contacts}>
-          <Col style={styles.contact}>{contact.name}</Col>
           <Col style={styles.contact}>{contact.text}</Col>
         </Row>
       )
     })
 
-    const socials = social.map(social => {
+    const socials = this.props.socials.map(social => {
       return (
         <Col style={styles.social}>
-          <a href={social.url}><img src={social.icon}/></a>
+          <a href={social.url}><img src={social.icon} alt={social.name}/></a>
         </Col>
       )
     })
 
-    const legals = legal.map(legal => {
+    const legals = this.props.legals.map(legal => {
       return (
         <Col styles={styles.legal}>
           {legal.text}
@@ -35,24 +31,24 @@ class Footer extends Component {
     })
 
     return (
-          <Container style={styles.footer}>
-            <Row style={styles.logo}>
-              {logo.icon}
-            </Row>
-            <Row style={styles.title}>
-              {title}
-            </Row>
-            <Row style={styles.description}>
-              {description}
-            </Row>
-            {contacts}
-            <Row style={styles.socials}>
-              {socials}
-            </Row>
-            <Row style={styles.legals}>
-              {legals}
-            </Row>
-          </Container>
+      <div style={styles.footer}>
+        <Row>
+          <img src={this.props.logo.icon} alt="Logo" style={styles.logo}/>
+        </Row>
+        <Row style={styles.title}>
+          {this.props.title}
+        </Row>
+        <Row style={styles.description}>
+          {this.props.description}
+        </Row>
+        {contacts}
+        <Row style={styles.socials}>
+          {socials}
+        </Row>
+        <Row style={styles.legals}>
+          {legals}
+        </Row>
+      </div>
 
     )
   }
@@ -66,6 +62,7 @@ const defaultStyles = {
 
   },
   title: {
+    backgroundColor: 'green',
 
   },
   description: {
@@ -103,4 +100,4 @@ Footer.defaultProps = {
 
 
 
-export default Footer
+export default mergeStyle(defaultStyles)(Footer)
