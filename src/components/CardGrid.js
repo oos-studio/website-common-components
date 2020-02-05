@@ -1,43 +1,32 @@
 import React, { Component } from 'react'
 import { Col, Row, Button, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
-import deepmerge from 'deepmerge'
+import mergeStyle from '../utils/StyleMerge'
 
 class CardGrid extends Component {
-  constructor(props) {
-    super(props);
-
-    this.mergedStyles = {}
-
-  }
-
   render() {
-    const { ...styles } = this.props
-    const { cards } = this.props
-
-    this.mergedStyles = deepmerge(defaultStyles, styles)
-    console.log(this.mergedStyles)
+    const { styles, cards } = this.props
 
     const cardGrid = cards.map(card => {
       return(
         <Col xl={4} lg={4} md={6} sm={12} xs={12}>
-          <Card style={this.mergedStyles.card}>
-            <CardImg src={card.image.image} style={this.mergedStyles.image}/>
-            <p style={this.mergedStyles.topic}>
+          <Card style={styles.card}>
+            <CardImg src={card.image.image} style={styles.image}/>
+            <p style={styles.topic}>
               {card.topic}
             </p>
             <hr />
-            <CardBody style={this.mergedStyles.body}>
-              <CardTitle style={this.mergedStyles.title}>
+            <CardBody style={styles.body}>
+              <CardTitle style={styles.title}>
                 {card.title}
               </CardTitle>
-              <CardSubtitle style={this.mergedStyles.subtitle}>
+              <CardSubtitle style={styles.subtitle}>
                 {card.subtitle}
               </CardSubtitle>
-              <CardText style={this.mergedStyles.text}>
+              <CardText style={styles.text}>
                 {card.text}
               </CardText>
               <a href={card.action.url}>
-                <Button style={this.mergedStyles.action}>
+                <Button style={styles.action}>
                   {card.action.text}
                 </Button>
               </a>
@@ -48,7 +37,7 @@ class CardGrid extends Component {
     })
 
     return(
-      <div style={this.mergedStyles.cardGrid}>
+      <div style={styles.cardGrid}>
         <Row>
           {cardGrid}
         </Row>
@@ -67,7 +56,6 @@ const defaultStyles = {
 
   },
   image: {
-
   },
   topic: {
 
@@ -91,4 +79,4 @@ CardGrid.defaultProps = {
   styles: defaultStyles,
 }
 
-export default CardGrid
+export default mergeStyle(defaultStyles)(CardGrid)
