@@ -11,7 +11,7 @@ const mergeStyle = defaultStyle => Component => {
     }
     render() {
       const { styles, ...rest } = this.props
-      return <Component styles= {this.state.mergedStyles} {...rest}/>
+      return <Component styles={this.state.mergedStyles} {...rest}/>
     }
   }
 }
