@@ -19,7 +19,7 @@ class Header extends Component {
 
     return (
       <Container style={styles.container}>
-        <Row style={styles.text}>
+        <div style={styles.text}>
           { titleImageUrl && titleImageUrl !== '' ?
             <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
             : <span style={styles.title}>{title}</span>
@@ -27,7 +27,7 @@ class Header extends Component {
           <div style={styles.subTitle}>
             <span>{subTitle}</span>
           </div>
-        </Row>
+        </div>
         { backgroundAsset && backgroundAsset !== {} ?
           backgroundAsset.mimeType && backgroundAsset.mimeType.split('/')[0] === 'video' ?
             <video style={styles.backgroundAsset} {...video}>
