@@ -5,8 +5,14 @@ const mergeStyle = defaultStyle => Component => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-        mergedStyles: deepmerge(defaultStyle, this.props.styles)
+      if (props.styles) {
+        this.state = {
+          mergedStyles: deepmerge(defaultStyle, props.styles)
+        }
+      } else {
+        this.state = {
+          mergedStyles: defaultStyle
+        }
       }
     }
     render() {

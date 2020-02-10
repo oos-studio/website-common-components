@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
-import { Row } from 'reactstrap'
+import mergeStyle from '../utils/StyleMerge'
+import { Container, Navbar, NavbarToggler } from 'reactstrap'
 
 class ListPage extends Component {
   render() {
     const {
       styles,
+      header,
     } = this.props
 
     return (
-      <Row style={styles.listPage}>
-
-      </Row>
+      <Container style={styles.container}>
+        {header()}
+      </Container>
     )
   }
 }
 
-export default ListPage
+const defaultStyles = {
+  container: {
+
+  }
+}
+
+export default mergeStyle(defaultStyles)(ListPage)

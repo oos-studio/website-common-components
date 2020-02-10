@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Container, Row  } from 'reactstrap'
+import mergeStyle from '../utils/StyleMerge'
 
 class Header extends Component {
   render() {
@@ -11,51 +13,64 @@ class Header extends Component {
       video
     } = this.props
 
+    if (!styles.backgroundAsset.height) {
+      styles.backgroundAsset.height = styles.container.height
+    }
+
     return (
-      <div style={styles.wrapper}>
-        { backgroundAsset ?
-          backgroundAsset.mimeType.split('/')[0] === 'video' ?
+      <Container style={styles.container}>
+        <Row style={styles.text}>
+          { titleImageUrl && titleImageUrl !== '' ?
+            <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
+            : <span style={styles.title}>{title}</span>
+          }
+          <div style={styles.subTitle}>
+            <span>{subTitle}</span>
+          </div>
+        </Row>
+        { backgroundAsset && backgroundAsset !== {} ?
+          backgroundAsset.mimeType && backgroundAsset.mimeType.split('/')[0] === 'video' ?
             <video style={styles.backgroundAsset} {...video}>
               <source src={backgroundAsset.url} type={backgroundAsset.mimeType}/>
             </video>
-            : backgroundAsset.mimeType.split('/')[0] === 'image' ?
+          : backgroundAsset.mimeType && backgroundAsset.mimeType.split('/')[0] === 'image' ?
             <img style={styles.backgroundAsset} src={backgroundAsset.url} alt={''}/>
-            : null
+          : null
         : null}
-          <div style={styles.text}>
-            { titleImageUrl && titleImageUrl !== '' ?
-              <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
-              : <span>{title}</span>
-            }
-            <span style={styles.title}>{title}</span>
-            <div style={styles.subTitle}>
-              <span>{subTitle}</span>
-            </div>
-          </div>
-      </div>
+      </Container>
     )
   }
 }
 
 const defaultStyles = {
-  wrapper: {
+  container: {
     width: '100%',
-    height: 500,
+    height: 315,
+    textAlign: 'center',
+    fontSize: 32,
+    fontWeight: 500,
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   backgroundAsset: {
-    objectFit: 'cover',
-    zIndex: -5,
     position: 'fixed',
+    width: '100%',
+    zIndex: -5,
+    objectFit: 'cover',
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+  },
+  text: {
   },
   title: {
 
   },
   subTitle: {
-
+    marginTop: 5,
+    fontSize: 11,
   },
   titleImage: {
 
@@ -76,4 +91,4 @@ Header.defaultProps = {
   }
 }
 
-export default Header
+export default mergeStyle(defaultStyles)(Header)
