@@ -1,33 +1,46 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import ListPage from '../components/ListPage'
 import ImageRowItem from "../components/ImageRowItem"
 import { Button } from 'reactstrap'
 
+function ListItemBody(props) {
+  const {
+    date,
+    title,
+    align,
+    xs,
+  } = props
+
+  const _align = xs ? 'left' : align
+
+  const [buttonHover, setButtonHover] = useState(false);
+
+  const style = styles.listItemBody
+  return (
+    <div align={_align}>
+      <span style={style.date}>{date}</span>
+      <div style={style.divider}/>
+      <div style={style.title}>
+        <a style={style.title} href={'#'}>{title.toUpperCase()}</a>
+      </div>
+      <div>
+        <Button
+          onMouseEnter={() => setButtonHover(true)}
+          onMouseLeave={() => setButtonHover(false)}
+          style={
+            buttonHover ? style.buttonHover : style.button
+          }
+        >
+          READ
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 class BlogListPage extends Component {
 
-  listItemBody = props => {
-    const {
-      date,
-      title
-    } = props
-    const style = styles.listItemBody
-    return (
-      <div>
-        <span style={style.date}>{date}</span>
-        <div style={style.divider}/>
-        <span style={style.title}>{title.toUpperCase()}</span>
-        <div>
-          <Button style={style.button}>READ</Button>
-        </div>
-      </div>
-    )
-  }
-
   render() {
-    const {
-      listItemBody
-    } = this
-
     return (
       <div>
         <ListPage
@@ -39,6 +52,7 @@ class BlogListPage extends Component {
               url: 'https://s3.us-east-2.amazonaws.com/cdn.www.oos-studio.com/prod/Homepage_720.m4v'
             }
           }}
+          styles={styles}
           list={{
             items: [
               {
@@ -53,8 +67,8 @@ class BlogListPage extends Component {
               }
             ],
             renderItems: [
-              props => <ImageRowItem styles={styles.imageRowItem} alignImage={'left'} {...props} renderBody={() => listItemBody(props)}/>,
-              props => <ImageRowItem styles={styles.imageRowItem} alignImage={'right'} {...props} renderBody={() => listItemBody(props)}/>
+              props => <ImageRowItem styles={styles.imageRowItem} alignImage={'left'} {...props} renderBody={xs => <ListItemBody {...props} align={'left'} xs={xs}/>}/>,
+              props => <ImageRowItem styles={styles.imageRowItem} alignImage={'right'} {...props} renderBody={xs => <ListItemBody {...props} align={'right'} xs={xs}/>}/>
             ]
           }}
         />
@@ -66,7 +80,7 @@ class BlogListPage extends Component {
 const styles = {
   listItemBody: {
     date: {
-
+      color: '#777'
     },
     divider: {
       height: 1,
@@ -77,15 +91,30 @@ const styles = {
     },
     title: {
       fontSize: 24,
+      color: '#336f81',
+      marginBottom: 10,
     },
     button: {
-
-    }
+      border: '1px solid #74e5d1',
+      backgroundColor: 'transparent',
+      color: '#777'
+    },
+    buttonHover: {
+      border: '1px solid #74e5d1',
+      backgroundColor: '#74e5d1',
+      color: 'white',
+    },
   },
   imageRowItem: {
     imageColumn: {
       height: 250,
     },
+    image: {
+      borderRadius: 4,
+    }
+  },
+  contentContainer: {
+    padding: 25,
   }
 }
 

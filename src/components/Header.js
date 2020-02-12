@@ -57,7 +57,7 @@ const defaultStyles = {
   backgroundAsset: {
     position: 'fixed',
     width: '100%',
-    zIndex: -5,
+    zIndex: -10000,
     objectFit: 'cover',
     top: 0,
     left: 0,
