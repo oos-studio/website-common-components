@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 
-class FullScreenImageText extends Component {
+class ImageCenteredText extends Component {
   render() {
     const { styles, image, text } = this.props
 
@@ -11,7 +11,7 @@ class FullScreenImageText extends Component {
         <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
         <div style={styles.overlay}>
           <div style={styles.text}>
-          {text}
+            {text}
           </div>
         </div>
       </Container>
@@ -21,21 +21,15 @@ class FullScreenImageText extends Component {
 
 const defaultStyles = {
   container: {
-    height: '100vh',
-    width: '100vw',
-    margin: 0,
-    padding: 0,
     position: 'relative',
-    display: 'block',
-    bottom: 0,
-    marginLeft: -8,
+    height: '50%',
+    width: '50%',
   },
   image: {
     objectFit: 'cover',
     height: '100%',
     width: '100%',
-    padding: 0,
-    margin: 0,
+    display: 'block',
   },
   overlay: {
     position: 'absolute',
@@ -44,13 +38,17 @@ const defaultStyles = {
     opacity: 1,
     width: '100%',
     height: '100%',
+    textAlign: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
 
   },
 }
 
-FullScreenImageText.defaultProps = {
+ImageCenteredText.defaultProps = {
   styles: defaultStyles,
   text: '',
   image: {
@@ -59,4 +57,4 @@ FullScreenImageText.defaultProps = {
   }
 }
 
-export default mergeStyles(defaultStyles)(FullScreenImageText)
+export default mergeStyles(defaultStyles)(ImageCenteredText)
