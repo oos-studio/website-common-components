@@ -1,37 +1,16 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownMenu, DropdownToggle } from 'reactstrap'
+import mergeStyles from '../utils/StyleMerge'
 
 class Navigation extends Component {
     constructor(props) {
         super(props)
         this.state = {
             open: false,
-            slide: 0,
-            lastScrollY: 0,
-            styles: {...this.props.defaultStyles, ...this.props.style.navigation}
+            isDropdownOpen: [],
         }
         this.toggle = this.toggle.bind(this)
         this.renderNavigationItems = this.renderNavigationItems.bind(this)
-        console.log(this)
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    handleScroll = () => {
-        const { lastScrollY } = this.state; 
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY) {
-            this.setState({ slide: '-80px' })
-        } else {
-            this.setState({ slide: '0px' });
-        }
-        this.setState({ lastScrollY: currentScrollY });
     }
 
     toggle() {
@@ -40,13 +19,37 @@ class Navigation extends Component {
     }
 
     renderNavigationItems(item, index) {
-        const { styles } = this.state
+        const { styles } = this.props
         let navItem = null
+
         switch(item.type) {
             case 'link':
                 navItem = (<NavItem key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
+                const subNav = item.items.map(i => {
+                    switch(i.type) {
+                        case 'link':
+                            return (
+                              i.content.map(c => {
+                                  return (<NavLink style={styles.dropdownLink} href={c.url}>{c.title}</NavLink>)
+                              }))
+                        case 'image':
+                            return (<Media object style={styles.dropdownImage} alt={i.content.title} src={i.content.image} />)
+                        default:
+                            return (<div style={styles.dropdownText}>{i.content}</div>)
+                    }
+                })
+                navItem = (<UncontrolledDropdown style={styles.dropdownContainer} nav inNavbar>
+                    <DropdownToggle nav caret>
+                        {item.text}
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                        <div style={styles.dropdownMenu}>
+                            {subNav}
+                        </div>
+                    </DropdownMenu>
+                </UncontrolledDropdown>)
                 break
             default:
                 break
@@ -55,11 +58,12 @@ class Navigation extends Component {
     }
 
     render() {
-        const { open, slide, styles } = this.state
-        const { items, brand } = this.props
+        const { open } = this.state
+        const { items, brand, styles } = this.props
         const { toggle, renderNavigationItems } = this
+
         return(
-            <Navbar expand="md" fixed='top' color='light' light style={Object.assign({}, {transform: `translate(0, ${slide})`, transition: 'transform 0.5s linear'}, styles.navbar)}>
+            <Navbar expand="md" fixed='top' color='light' light style={styles.navbar}>
                 <NavbarBrand href="#" style={styles.brand}>
                     <Media object src={brand.image} alt={brand.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
@@ -79,14 +83,17 @@ const defaultStyles = {
     navbar: {},
     brand: {},
     brandImage: {},
-    brandTitle: {
-        marginLeft: '0.5em'
-    },
+    brandTitle: {},
     toggler: {},
     nav: {},
     navItem: {},
+    dropdownLink: {},
     navLink: {},
-    dropdown: {}
+    dropdown: {},
+    dropdownImage: {},
+    dropdownText: {},
+    dropdownContainer: {},
+    dropdownMenu: {},
 }
 
 Navigation.defaultProps = {
@@ -99,4 +106,4 @@ Navigation.defaultProps = {
     defaultStyles: defaultStyles
 }
 
-export default Navigation
+export default mergeStyles(defaultStyles)(Navigation)

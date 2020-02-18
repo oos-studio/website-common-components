@@ -5,24 +5,24 @@ export const data = {
             "image": "https://via.placeholder.com/50/EEEEEE/333333?Text=Brand"
         },
         "items": [
-            { 
-                "text": "Link", 
-                "url": "#/1", 
-                "type": "link" 
+            {
+                "text": "Link",
+                "url": "#/1",
+                "type": "link"
             },
-            { 
-                "text": "Link", 
-                "url": "#/2", 
-                "type": "link" 
+            {
+                "text": "Link",
+                "url": "#/2",
+                "type": "link"
             },
-            { 
-                "text": "Link", 
-                "url": "#/3", 
-                "type": "link" 
+            {
+                "text": "Link",
+                "url": "#/3",
+                "type": "link"
             },
-            { 
-                "text": "Dropdown", 
-                "url": "#", 
+            {
+                "text": "Dropdown",
+                "url": "#",
                 "type": "dropdown",
                 "items": [
                     {
@@ -94,9 +94,9 @@ export const data = {
                     }
                 ]
             },
-            { 
-                "text": "Dropdown", 
-                "url": "#", 
+            {
+                "text": "Dropdown",
+                "url": "#",
                 "type": "dropdown",
                 "items": [
                     {
@@ -138,22 +138,7 @@ export const data = {
                 ]
             }
         ],
-        "styles": {
-            "navigation": {
-                "brandImage": {
-                    "borderRadius": "50%",
-                },
-                "brandTitle": {
-                    "marginLeft": "0.5em"
-                }
-            },
-            "navigationDropdown": {
-                "menuContainerText": {
-                    "textTransform": "uppercase",
-                    "color": "#333333",
-                    "fontWeight": "200"
-                }
-            }
+        styles: {
         }
     }
 }
