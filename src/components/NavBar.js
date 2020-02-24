@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownMenu, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 
-class Navigation extends Component {
+class NavBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -106,7 +106,7 @@ const defaultStyles = {
     }
 }
 
-Navigation.defaultProps = {
+NavBar.defaultProps = {
     items: [],
     brand: {},
     style: {
@@ -116,4 +116,4 @@ Navigation.defaultProps = {
     defaultStyles: defaultStyles
 }
 
-export default mergeStyles(defaultStyles)(Navigation)
+export default mergeStyles(defaultStyles)(NavBar)

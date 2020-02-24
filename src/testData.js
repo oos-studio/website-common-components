@@ -1,5 +1,5 @@
 import React from 'react'
-import MegaMenu from "./components/MegaMenu"
+import { MegaMenu } from './components'
 
 export const data = {
     "navigation": {

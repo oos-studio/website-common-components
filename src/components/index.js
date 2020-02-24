@@ -1,3 +1,4 @@
-import Navigation from './Navigation'
+import NavBar from './NavBar'
+import MegaMenu from "./MegaMenu"
 
-export { Navigation }
+export { NavBar, MegaMenu }
