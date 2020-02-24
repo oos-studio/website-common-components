@@ -7,7 +7,7 @@ function App() {
     description: `Pete is a loser and doesn't want to talk to us`
   }
   return (
-    <Footer reactQL={footerProps} />
+    <div>Placeholder div</div>
   )
 }
 
