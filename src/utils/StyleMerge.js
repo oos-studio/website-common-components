@@ -1,7 +1,7 @@
 import React from 'react'
 import deepmerge from 'deepmerge'
 
-const mergeStyle = defaultStyle => Component => {
+const mergeStyles = defaultStyle => Component => {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -16,4 +16,4 @@ const mergeStyle = defaultStyle => Component => {
   }
 }
 
-export default mergeStyle
+export default mergeStyles

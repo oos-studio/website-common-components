@@ -1,17 +1,14 @@
 import React from 'react'
-import FullScreenIntro from './components/FullScreenIntro'
+import { Footer } from './components'
 
 function App() {
-  const styles = {
-
-  }
-  const props = {
-
+  const footerProps = {
+    title: 'oos',
+    description: `Pete is a loser and doesn't want to talk to us`
   }
   return (
-    <FullScreenIntro />
+    <div>Placeholder div</div>
   )
 }
-
 
 export default App

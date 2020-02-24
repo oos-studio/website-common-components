@@ -1,3 +1,6 @@
+import CardGrid from './CardGrid'
+import Header from './Header'
+import Footer from './Footer'
 import FullScreenIntro  from './FullScreenIntro'
 
-export{ FullScreenIntro }
+export { CardGrid, Header, Footer, FullScreenIntro }
