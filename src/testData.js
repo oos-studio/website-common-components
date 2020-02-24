@@ -1,8 +1,14 @@
+import React from 'react'
+import MegaMenu from "./components/MegaMenu"
+
 export const data = {
     "navigation": {
         "brand": {
-            "title": "Brand Title",
-            "image": "https://via.placeholder.com/50/EEEEEE/333333?Text=Brand"
+            url: '#/',
+            image: {
+                title: 'image title',
+                src: "https://via.placeholder.com/50/EEEEEE/333333?Text=Brand"
+            }
         },
         "items": [
             {
@@ -24,100 +30,98 @@ export const data = {
                 "text": "Dropdown",
                 "url": "#",
                 "type": "dropdown",
-                "items": [
+                aside: {
+                    header: "I'm New",
+                    text: 'If you are searching for a home church or just...',
+                    brand: {
+                        url: '#/',
+                        image: {
+                            title: 'image title',
+                            src: "https://via.placeholder.com/50/EEEEEE/333333?Text=Brand"
+                        }
+                    }
+                },
+                render: () => <MegaMenu columns={[
                     {
-                        "header": "Heading 1",
-                        "content": [
+                        heading: 'Heading 1',
+                        type: 'links',
+                        links: [
                             {
-                                "type": "link",
-                                "title": "Link A",
-                                "url": "#/A"
+                                title: 'Link A',
+                                url: '#/A'
                             },
                             {
-                                "type": "link",
-                                "title": "Link B",
-                                "url": "#/B"
+                                title: "Link B",
+                                url: "#/B"
                             },
                             {
-                                "type": "link",
-                                "title": "Link C",
-                                "url": "#/C"
+                                title: "Link C",
+                                url: "#/C"
                             },
                             {
-                                "type": "link",
-                                "title": "Link D",
-                                "url": "#/D"
+                                title: "Link D",
+                                url: "#/D"
                             }
                         ]
                     },
                     {
-                        "header": "Heading 2",
-                        "content": [
+                        heading: 'Heading 2',
+                        type: 'links',
+                        links: [
                             {
-                                "type": "link",
-                                "title": "Link E",
-                                "url": "#/E"
+                                title: 'Link A',
+                                url: '#/A'
                             },
                             {
-                                "type": "link",
-                                "title": "Link F",
-                                "url": "#/F"
+                                title: "Link B",
+                                url: "#/B"
                             },
                             {
-                                "type": "link",
-                                "title": "Link G",
-                                "url": "#/G"
+                                title: "Link C",
+                                url: "#/C"
                             },
                             {
-                                "type": "link",
-                                "title": "Link H",
-                                "url": "#/H"
+                                title: "Link D",
+                                url: "#/D"
                             }
                         ]
-                    },
-                ]
+                    }
+                ]}/>
             },
             {
                 "text": "Dropdown",
                 "url": "#",
                 "type": "dropdown",
-                "items": [
+                render: () => <MegaMenu columns={[
                     {
-                        "header": "Link Heading",
-                        "content": [
+                        heading: 'Heading 1',
+                        type: 'links',
+                        links: [
                             {
-                                "type": "link",
-                                "title": "Link A",
-                                "url": "#/A"
+                                title: 'Link A',
+                                url: '#/A'
                             },
                             {
-                                "type": "link",
-                                "title": "Link B",
-                                "url": "#/B"
+                                title: "Link B",
+                                url: "#/B"
                             },
                             {
-                                "type": "link",
-                                "title": "Link C",
-                                "url": "#/C"
+                                title: "Link C",
+                                url: "#/C"
                             },
                             {
-                                "type": "link",
-                                "title": "Link D",
-                                "url": "#/D"
+                                title: "Link D",
+                                url: "#/D"
                             }
                         ]
                     },
                     {
-                        "header": "Image Heading",
-                        "content": [
-                          {
-                            "type": "image",
-                            "title": "Image",
-                            "image": "https://via.placeholder.com/150/EEEEEE/333333?Text=Brand"
-                          }
-                          ]
+                        heading: 'Image Heading',
+                        type: 'image',
+                        src: 'https://via.placeholder.com/150/EEEEEE/333333?Text=Brand',
+                        title: 'Image',
                     }
-                ]
+                ]}/>
             }
         ],
         styles: {

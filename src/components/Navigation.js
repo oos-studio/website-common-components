@@ -26,24 +26,7 @@ class Navigation extends Component {
                 navItem = (<NavItem key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
-                const subNav =
-                  item.items.map(i => {
-                    return (
-                    <div style={styles.dropdownSection}>
-                        <div style={styles.dropdownHeader}>{i.header}</div>
-                        {i.content.map(c => {
-                            switch(c.type) {
-                                case "link":
-                                    return (<NavLink href={c.url}  style={styles.dropdownLink}>{c.title}</NavLink>)
-                                case "image":
-                                    return (<Media object src={c.image} alt={c.title} style={styles.dropdownImage} />)
-                                default:
-                                    return null
-                            }
-                        })}
-                    </div>
-                    )
-                })
+                const subNav = item.render()
                 navItem = (<UncontrolledDropdown style={styles.dropdownContainer} nav inNavbar>
                     <DropdownToggle nav caret>
                         {item.text}
@@ -72,7 +55,7 @@ class Navigation extends Component {
         return(
             <Navbar expand="md" fixed='top' color='light' light style={styles.navbar}>
                 <NavbarBrand href="#" style={styles.brand}>
-                    <Media object src={brand.image} alt={brand.title} style={styles.brandImage} />
+                    <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} style={styles.toggler} />
