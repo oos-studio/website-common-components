@@ -1,11 +1,17 @@
 import React from 'react'
+import FullScreenIntro from './components/FullScreenIntro'
 
 function App() {
+  const styles = {
+
+  }
+  const props = {
+
+  }
   return (
-    <div className="App">
-      Hi
-    </div>
+    <FullScreenIntro />
   )
 }
+
 
 export default App

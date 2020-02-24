@@ -6,7 +6,7 @@ const mergeStyle = defaultStyle => Component => {
     constructor(props) {
       super(props);
       this.state = {
-        mergedStyles: deepmerge(defaultStyle, this.props.styles)
+        mergedStyles: this.props.styles ? deepmerge(defaultStyle, this.props.styles) : defaultStyle
       }
     }
     render() {
