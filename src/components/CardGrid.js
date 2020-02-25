@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row, Button, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
+import { Col, Row, Button, Container, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 
 class CardGrid extends Component {
@@ -8,9 +8,8 @@ class CardGrid extends Component {
 
     const cardGrid = cards.map(card => {
       return(
-        <Col xl={4} lg={4} md={6} sm={12} xs={12}>
           <Card style={styles.card}>
-            <CardImg src={card.image.image} style={styles.image}/>
+            <CardImg src={card.image.src} style={styles.image}/>
             <p style={styles.topic}>
               {card.topic}
             </p>
@@ -32,50 +31,103 @@ class CardGrid extends Component {
               </a>
             </CardBody>
           </Card>
-        </Col>
       )
     })
 
     return(
-      <div style={styles.cardGrid}>
-        <Row>
+      <Container fluid style={styles.cardGrid}>
           {cardGrid}
-        </Row>
-      </div>
+      </Container>
     )
   }
 }
 
 const defaultStyles = {
   cardGrid: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '90%',
+    margin: '5%',
+    justifyContent: 'space-between',
   },
   card: {
-
+    backgroundColor: 'tan',
+    color: 'white',
+    padding: 20,
+    display: 'flex',
   },
   body: {
-
+    paddingTop: 0,
   },
   image: {
   },
   topic: {
-
+    textAlign: 'left',
+    marginTop: '10%',
+    fontSize: 33,
   },
   title: {
-
+    fontSize: 25,
   },
   subtitle: {
-
+    fontSize: 20,
   },
   text: {
-
+    fontSize: 15,
+    paddingTop: 10,
   },
   action: {
-
+    backgroundColor: 'tan',
+    borderColor: 'white',
+    borderWidth: 2,
   },
 }
 
 CardGrid.defaultProps = {
-  cards: [],
+  cards: [
+    {
+      image: {
+        title: 'img1',
+        src: 'https://picsum.photos/400/400',
+      },
+      topic: 'Topic 1',
+      title: 'Title 1',
+      subtitle: 'Subtitle 1',
+      text: 'This is the text for the card...',
+      action: {
+        text: 'Learn More',
+        url: 'https://www.oos-studio.com',
+      }
+    },
+    {
+      image: {
+        title: 'img2',
+        src: 'https://picsum.photos/400/400',
+      },
+      topic: 'Topic 2',
+      title: 'Title 2',
+      subtitle: 'Subtitle 2',
+      text: 'This is the text for the card...',
+      action: {
+        text: 'Learn More',
+        url: 'https://www.oos-studio.com',
+      }
+    },
+    {
+      image: {
+        title: 'img3',
+        src: 'https://picsum.photos/400/400',
+      },
+      topic: 'Topic 3',
+      title: 'Title 3',
+      subtitle: 'Subtitle 3',
+      text: 'This is the text for the card...',
+      action: {
+        text: 'Learn More',
+        url: 'https://www.oos-studio.com',
+      }
+    },
+  ],
   styles: defaultStyles,
 }
 
