@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Col, Row, Button, Container, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
-import mergeStyle from '../utils/StyleMerge'
+import { Col, Row, Container, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
+import mergeStyles from '../utils/StyleMerge'
+import Button from './Button'
 
 class CardGrid extends Component {
   render() {
@@ -8,6 +9,7 @@ class CardGrid extends Component {
 
     const cardGrid = cards.map(card => {
       return(
+        <Col md={3}>
           <Card style={styles.card}>
             <CardImg src={card.image.src} style={styles.image}/>
             <p style={styles.topic}>
@@ -25,46 +27,49 @@ class CardGrid extends Component {
                 {card.text}
               </CardText>
               <a href={card.action.url}>
-                <Button style={styles.action}>
+                <Button styles={styles.action}>
                   {card.action.text}
                 </Button>
               </a>
             </CardBody>
           </Card>
+        </Col>
       )
     })
 
     return(
-      <Container fluid style={styles.cardGrid}>
+        <Row style={styles.cardGrid}>
           {cardGrid}
-      </Container>
+      </Row>
     )
   }
 }
 
 const defaultStyles = {
   cardGrid: {
+    //width: '100%',
+   // margin: '5%',
     display: 'flex',
-    flexDirection: 'row',
-    width: '90%',
-    margin: '5%',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   card: {
     backgroundColor: 'tan',
     color: 'white',
     padding: 20,
     display: 'flex',
+    margin: '5%',
   },
   body: {
-    paddingTop: 0,
+    padding: 0,
+    textAlign: 'center',
   },
   image: {
   },
   topic: {
-    textAlign: 'left',
     marginTop: '10%',
     fontSize: 33,
+    textAlign: 'center',
+
   },
   title: {
     fontSize: 25,
@@ -77,58 +82,12 @@ const defaultStyles = {
     paddingTop: 10,
   },
   action: {
-    backgroundColor: 'tan',
-    borderColor: 'white',
-    borderWidth: 2,
+  //  width: '100%',
   },
 }
 
 CardGrid.defaultProps = {
-  cards: [
-    {
-      image: {
-        title: 'img1',
-        src: 'https://picsum.photos/400/400',
-      },
-      topic: 'Topic 1',
-      title: 'Title 1',
-      subtitle: 'Subtitle 1',
-      text: 'This is the text for the card...',
-      action: {
-        text: 'Learn More',
-        url: 'https://www.oos-studio.com',
-      }
-    },
-    {
-      image: {
-        title: 'img2',
-        src: 'https://picsum.photos/400/400',
-      },
-      topic: 'Topic 2',
-      title: 'Title 2',
-      subtitle: 'Subtitle 2',
-      text: 'This is the text for the card...',
-      action: {
-        text: 'Learn More',
-        url: 'https://www.oos-studio.com',
-      }
-    },
-    {
-      image: {
-        title: 'img3',
-        src: 'https://picsum.photos/400/400',
-      },
-      topic: 'Topic 3',
-      title: 'Title 3',
-      subtitle: 'Subtitle 3',
-      text: 'This is the text for the card...',
-      action: {
-        text: 'Learn More',
-        url: 'https://www.oos-studio.com',
-      }
-    },
-  ],
-  styles: defaultStyles,
+  cards: [],
 }
 
-export default mergeStyle(defaultStyles)(CardGrid)
+export default mergeStyles(defaultStyles)(CardGrid)
