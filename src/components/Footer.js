@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import { Container, Col, Row, Media} from 'reactstrap'
-import mergeStyle from '../utils/StyleMerge'
+import mergeStyles from '../utils/StyleMerge'
 
 class Footer extends Component {
 
@@ -9,7 +9,7 @@ class Footer extends Component {
     let columnStyle = styles.defaultColumn
     if (styles.columns[index]) {
       if ('column' in styles.columns[index]) {
-        //columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+        columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
       }
     }
     return columnStyle
@@ -20,7 +20,7 @@ class Footer extends Component {
     let headerStyle = styles.defaultHeader
     if (styles.columns[index]) {
       if ('header' in styles.columns[index]) {
-        //headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
+        headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
       }
     }
     return headerStyle
@@ -31,7 +31,7 @@ class Footer extends Component {
     let linkStyle = styles.defaultLink
     if (styles.columns[index]) {
       if ('link' in styles.columns[index]) {
-        //linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
+        linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
       }
     }
     return linkStyle
@@ -42,7 +42,7 @@ class Footer extends Component {
     let imageStyle = styles.defaultImage
     if (styles.columns[index]) {
       if ('image' in styles.columns[index]) {
-        //imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
+        imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
       }
     }
     return imageStyle
@@ -53,7 +53,7 @@ class Footer extends Component {
     let textStyle = styles.defaultText
     if(styles.columns[index]) {
       if('text' in styles.columns[index]) {
-        //textStyle = mergeStyles(styles.defaultText, styles.columns[index].text)
+        textStyle = mergeStyles(styles.defaultText, styles.columns[index].text)
       }
     }
 
@@ -167,4 +167,4 @@ Footer.defaultProps = {
 
 
 
-export default mergeStyle(defaultStyles)(Footer)
+export default mergeStyles(defaultStyles)(Footer)
