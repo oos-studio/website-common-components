@@ -1,103 +1,170 @@
 import React, { Component} from 'react'
-import { Col, Row, } from 'reactstrap'
-import mergeStyle from '../utils/StyleMerge'
+import { Container, Col, Row, Media} from 'reactstrap'
+import mergeStyles from '../utils/StyleMerge'
 
 class Footer extends Component {
-  render() {
+
+  getColumnStyle = index => {
     const { styles } = this.props
+    let columnStyle = styles.defaultColumn
+    if (styles.columns[index]) {
+      if ('column' in styles.columns[index]) {
+        columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+      }
+    }
+    return columnStyle
+  }
 
-    const contacts = this.props.contacts.map(contact =>  {
-      return (
-        <Row style={styles.contacts}>
-          <Col style={styles.contact}>{contact.text}</Col>
-        </Row>
-      )
-    })
+  getHeaderStyle = index => {
+    const { styles } = this.props
+    let headerStyle = styles.defaultHeader
+    if (styles.columns[index]) {
+      if ('header' in styles.columns[index]) {
+        headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
+      }
+    }
+    return headerStyle
+  }
 
-    const socials = this.props.socials.map(social => {
-      return (
-        <Col style={styles.social}>
-          <a href={social.url}><img src={social.icon} alt={social.name}/></a>
-        </Col>
-      )
-    })
+  getLinkStyle = index => {
+    const { styles } = this.props
+    let linkStyle = styles.defaultLink
+    if (styles.columns[index]) {
+      if ('link' in styles.columns[index]) {
+        linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
+      }
+    }
+    return linkStyle
+  }
 
-    const legals = this.props.legals.map(legal => {
-      return (
-        <Col styles={styles.legal}>
-          {legal.text}
-        </Col>
-      )
-    })
+  getImageStyle = index => {
+    const { styles } = this.props
+    let imageStyle = styles.defaultImage
+    if (styles.columns[index]) {
+      if ('image' in styles.columns[index]) {
+        imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
+      }
+    }
+    return imageStyle
+  }
 
+  getTextStyle = index => {
+    const { styles } = this.props
+    let textStyle = styles.defaultText
+    if(styles.columns[index]) {
+      if('text' in styles.columns[index]) {
+        textStyle = mergeStyles(styles.defaultText, styles.columns[index].text)
+      }
+    }
+
+    return textStyle
+  }
+
+  renderHeader = (column, index) => {
+    const headerStyle = this.getHeaderStyle(index)
+    if(column.heading.length) {
+      return <div style={headerStyle}>{column.heading}</div>
+    } else {
+      return null
+    }
+  }
+
+  renderColumn = (column, index) => {
+    const linkStyle = this.getLinkStyle(index)
+    const imageStyle = this.getImageStyle(index)
+    const textStyle = this.getTextStyle(index)
+
+    switch(column.type) {
+      case 'text':
+        return (
+          <React.Fragment>
+            {this.renderHeader(column, index)}
+            {column.text.map(txt => <div style={textStyle}>{txt}</div>)}
+          </React.Fragment>
+        )
+      case 'links':
+        return (
+          <React.Fragment>
+            {this.renderHeader(column, index)}
+            {column.links.map(link => <a href={link.url}  style={linkStyle}>{link.title}</a>)}
+          </React.Fragment>
+        )
+      case 'image':
+        return (
+          <React.Fragment>
+            {this.renderHeader(column, index)}
+            <Media object src={column.src} alt={column.title} style={imageStyle}/>
+          </React.Fragment>
+        )
+      default:
+        return (
+          <React.Fragment>
+            {this.renderHeader(column, index)}
+            {column.render()}
+          </React.Fragment>
+        )
+    }
+  }
+
+  render() {
+    const { styles, columns } = this.props
     return (
-      <div style={styles.footer}>
-        <Row>
-          <img src={this.props.logo.icon} alt="Logo" style={styles.logo}/>
-        </Row>
-        <Row style={styles.title}>
-          {this.props.title}
-        </Row>
-        <Row style={styles.description}>
-          {this.props.description}
-        </Row>
-        {contacts}
-        <Row style={styles.socials}>
-          {socials}
-        </Row>
-        <Row style={styles.legals}>
-          {legals}
-        </Row>
-      </div>
-
+      <Container style={styles.container}>
+        {columns.map((column, index) => {
+          const columnStyle = this.getColumnStyle(index)
+          return (
+            <Col key={index} style={columnStyle}>
+              {this.renderColumn(column, index)}
+            </Col>
+          )
+        })}
+      </Container>
     )
   }
 }
 
 const defaultStyles = {
-  footer: {
+  container: {
+    backgroundColor: 'tan',
+    width: '100vw',
+    display: 'flex',
+  },
+  defaultColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    width: '20%',
+    margin: '2%',
+    marginRight: '5%',
+    marginLeft: '5%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  defaultHeader: {
+    position: 'absolute',
+    top: 0,
+    fontSize: 25,
+    marginBottom: '20%',
+    color: 'white',
+  },
+  defaultLink: {
+    fontSize: 18,
+    color: 'grey',
+  },
+  defaultText: {
+    fontSize: 18,
+    color: 'grey',
+  },
+  defaultImage: {
 
   },
-  logo: {
-
-  },
-  title: {
-    backgroundColor: 'green',
-
-  },
-  description: {
-
-  },
-  contacts: {
-
-  },
-  contact: {
-
-  },
-  socials: {
-
-  },
-  social: {
-
-  },
-  legals: {
-
-  },
-  legal: {
-
-  }
+  columns: [],
 }
 
 Footer.defaultProps = {
-  title: '',
-  description: '',
-  logo: {},
-  contact: [],
-  social: [],
-  legal: [],
-  styles: defaultStyles,
+  columns: [],
 }
 
 
 
-export default mergeStyle(defaultStyles)(Footer)
+export default mergeStyles(defaultStyles)(Footer)
