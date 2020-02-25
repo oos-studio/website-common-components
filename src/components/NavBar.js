@@ -10,11 +10,18 @@ class NavBar extends Component {
         }
         this.toggle = this.toggle.bind(this)
         this.renderNavigationItems = this.renderNavigationItems.bind(this)
+        this.showMegaMenu = this.showMegaMenu.bind(this)
+
+        this.menus = []
     }
 
     toggle() {
         const { open } = this.state
         this.setState({ open: !open })
+    }
+
+    showMegaMenu(index) {
+        this.menus[index].render()
     }
 
     renderNavigationItems(item, index) {
@@ -26,19 +33,17 @@ class NavBar extends Component {
                 navItem = (<NavItem key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
-                const subNav = item.render()
+                this.menus.push(item)
                 navItem = (<UncontrolledDropdown style={styles.dropdownContainer} nav inNavbar>
-                    <DropdownToggle nav>
+                    <DropdownToggle onClick={index => this.showMegaMenu(index)} nav>
                         {item.text}
                     </DropdownToggle>
-                    <DropdownMenu right style={styles.dropdownMenuContainer}>
-                            {subNav}
-                    </DropdownMenu>
                 </UncontrolledDropdown>)
                 break
             default:
                 break
         }
+
         return navItem
     }
 
@@ -48,6 +53,7 @@ class NavBar extends Component {
         const { toggle, renderNavigationItems } = this
 
         return(
+          <React.Fragment>
             <Navbar expand="md" fixed='top' color='light' light style={styles.navbar}>
                 <NavbarBrand href="#" style={styles.brand}>
                     <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
@@ -60,6 +66,7 @@ class NavBar extends Component {
                     </Nav>
                 </Collapse>
             </Navbar>
+          </React.Fragment>
         )
     }
 }
@@ -74,11 +81,9 @@ const defaultStyles = {
     navItem: {},
     navLink: {},
     dropdownMenuContainer: {
-        //padding: 10,
-        width: '100vw',
-        height: '30vh',
     },
-
+    dropdownContainer: {
+    },
 }
 
 NavBar.defaultProps = {
@@ -88,7 +93,6 @@ NavBar.defaultProps = {
         navigation: {},
         navigationDropdown: {}
     },
-    defaultStyles: defaultStyles
 }
 
 export default mergeStyles(defaultStyles)(NavBar)

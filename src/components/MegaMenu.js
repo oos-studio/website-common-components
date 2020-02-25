@@ -100,86 +100,37 @@ class MegaMenu extends Component {
 
 const defaultStyles = {
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'space-evenly',
-    padding: 10,
     backgroundColor: 'tan',
-    width: '100%',
-    height: '100%',
+    width: '100vw',
+    display: 'flex',
+    alignItems: 'center',
+    height: '40vh',
   },
-  columns: [],
   defaultColumn: {
-  //  margin: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    marginRight: '5%',
+    marginLeft: '5%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  defaultHeader: {
+    fontSize: 25,
+    color: 'white',
   },
   defaultLink: {
     fontSize: 18,
     color: 'grey',
-    textAlign: 'center',
   },
   defaultImage: {
-    paddingBottom: 10,
-    display: 'flex',
-    marginLeft: '10%',
-
+    objectFit: 'cover',
   },
-  defaultHeader: {
-    fontSize: 25,
-    textAlign: 'center',
-  }
+  columns: [],
 }
 
 MegaMenu.defaultProps = {
-  columns: [{
-    heading: 'Important Links',
-    type: 'links',
-    links: [
-      {
-        title: 'Link A',
-        url: '#/A'
-      },
-      {
-        title: "Link B",
-        url: "#/B"
-      },
-      {
-        title: "Link C",
-        url: "#/C"
-      },
-      {
-        title: "Link D",
-        url: "#/D"
-      }
-    ]
-  },
-    {
-      heading: 'Other Important Links',
-      type: 'links',
-      links: [
-        {
-          title: 'Link A',
-          url: '#/A'
-        },
-        {
-          title: "Link B",
-          url: "#/B"
-        },
-        {
-          title: "Link C",
-          url: "#/C"
-        },
-        {
-          title: "Link D",
-          url: "#/D"
-        }
-      ]
-    },
-    {
-      heading: 'Important Picture',
-      type: 'image',
-      src: 'https://picsum.photos/400/200',
-      title: 'Image',
-    }],
+  columns: [],
 }
 
 export default mergeStyles(defaultStyles)(MegaMenu)
