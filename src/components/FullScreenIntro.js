@@ -27,6 +27,8 @@ const defaultStyles = {
     position: 'relative',
     display: 'flex',
     backgroundColor: 'rgb(255, 248, 230)',
+    paddingLeft: '5%',
+    paddingRight: '5%',
   },
   textWrapper: {
     fontSize: 55,
@@ -53,12 +55,7 @@ const defaultStyles = {
 }
 
 FullScreenIntro.defaultProps = {
-  heightOffset: 20,
-  text: 'Welcome to the full screen intro page. This style is just a placeholder. Make it whatever you want!',
-  image: {
-    title: 'img',
-    url: 'https://picsum.photos/1000/700'
-  },
+
 }
 
 export default mergeStyle(defaultStyles)(FullScreenIntro)

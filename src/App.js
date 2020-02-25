@@ -1,13 +1,16 @@
 import React from 'react'
-import { Footer } from './components'
+import { FullScreenIntro } from './components'
 
 function App() {
-  const footerProps = {
-    title: 'oos',
-    description: `Pete is a loser and doesn't want to talk to us`
+  const fsIntroProps = { heightOffset: 20,
+    text: 'Welcome to the full screen intro page. This style is just a placeholder. Make it whatever you want!',
+    image: {
+      title: 'img',
+      url: 'https://picsum.photos/1000/700'
+    },
   }
   return (
-    <div>Placeholder div</div>
+    <FullScreenIntro {...fsIntroProps} />
   )
 }
 
