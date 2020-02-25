@@ -1,5 +1,7 @@
 import React from 'react'
 import ImageCenteredText from './components/ImageCenteredText'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
 
 
 function App() {
@@ -29,13 +31,7 @@ function App() {
   return (
 
     <div style={divStyles.container}>
-
-      <div style={divStyles.thirds}>
-        <ImageCenteredText styles={thirdStyles} {...props} />
-        <ImageCenteredText styles={thirdStyles} {...props} />
-        <ImageCenteredText styles={thirdStyles} {...props} />
-      </div>
-
+      <ProvidenceHomepage/>
     </div>
 
   )
