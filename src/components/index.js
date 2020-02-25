@@ -1,3 +1,5 @@
+import CardGrid from './CardGrid'
+import Header from './Header'
 import Footer from './Footer'
 
-export { Footer }
+export { CardGrid, Header, Footer }
