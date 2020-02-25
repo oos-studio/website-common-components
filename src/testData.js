@@ -41,58 +41,60 @@ export const data = {
                         }
                     }
                 },
-                render: () => <MegaMenu columns={[
-                    {
-                        heading: 'Heading 1',
-                        type: 'links',
-                        links: [
-                            {
-                                title: 'Link A',
-                                url: '#/A'
-                            },
-                            {
-                                title: "Link B",
-                                url: "#/B"
-                            },
-                            {
-                                title: "Link C",
-                                url: "#/C"
-                            },
-                            {
-                                title: "Link D",
-                                url: "#/D"
-                            }
-                        ]
-                    },
-                    {
-                        heading: 'Heading 2',
-                        type: 'links',
-                        links: [
-                            {
-                                title: 'Link A',
-                                url: '#/A'
-                            },
-                            {
-                                title: "Link B",
-                                url: "#/B"
-                            },
-                            {
-                                title: "Link C",
-                                url: "#/C"
-                            },
-                            {
-                                title: "Link D",
-                                url: "#/D"
-                            }
-                        ]
-                    }
-                ]}/>
+                render: () => <MegaMenu />
+                /* render: () => <MegaMenu columns={[
+                     {
+                         heading: 'Heading 1',
+                         type: 'links',
+                         links: [
+                             {
+                                 title: 'Link A',
+                                 url: '#/A'
+                             },
+                             {
+                                 title: "Link B",
+                                 url: "#/B"
+                             },
+                             {
+                                 title: "Link C",
+                                 url: "#/C"
+                             },
+                             {
+                                 title: "Link D",
+                                 url: "#/D"
+                             }
+                         ]
+                     },
+                     {
+                         heading: 'Heading 2',
+                         type: 'links',
+                         links: [
+                             {
+                                 title: 'Link A',
+                                 url: '#/A'
+                             },
+                             {
+                                 title: "Link B",
+                                 url: "#/B"
+                             },
+                             {
+                                 title: "Link C",
+                                 url: "#/C"
+                             },
+                             {
+                                 title: "Link D",
+                                 url: "#/D"
+                             }
+                         ]
+                     }
+                 ]}/>*/
             },
             {
                 "text": "Dropdown",
                 "url": "#",
                 "type": "dropdown",
-                render: () => <MegaMenu columns={[
+                render: () => <MegaMenu />
+/*                render: () => <MegaMenu columns={[
                     {
                         heading: 'Heading 1',
                         type: 'links',
@@ -121,7 +123,7 @@ export const data = {
                         src: 'https://via.placeholder.com/150/EEEEEE/333333?Text=Brand',
                         title: 'Image',
                     }
-                ]}/>
+                ]}/>*/
             }
         ],
         styles: {

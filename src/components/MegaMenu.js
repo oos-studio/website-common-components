@@ -84,7 +84,7 @@ class MegaMenu extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <Container style={styles.container}>
+      <Container fluid style={styles.container}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -100,25 +100,86 @@ class MegaMenu extends Component {
 
 const defaultStyles = {
   container: {
-
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'space-evenly',
+    padding: 10,
+    backgroundColor: 'tan',
+    width: '100%',
+    height: '100%',
   },
   columns: [],
   defaultColumn: {
-
+  //  margin: 10,
   },
   defaultLink: {
-
+    fontSize: 18,
+    color: 'grey',
+    textAlign: 'center',
   },
   defaultImage: {
+    paddingBottom: 10,
+    display: 'flex',
+    marginLeft: '10%',
 
   },
   defaultHeader: {
-
+    fontSize: 25,
+    textAlign: 'center',
   }
 }
 
 MegaMenu.defaultProps = {
-  columns: [],
+  columns: [{
+    heading: 'Important Links',
+    type: 'links',
+    links: [
+      {
+        title: 'Link A',
+        url: '#/A'
+      },
+      {
+        title: "Link B",
+        url: "#/B"
+      },
+      {
+        title: "Link C",
+        url: "#/C"
+      },
+      {
+        title: "Link D",
+        url: "#/D"
+      }
+    ]
+  },
+    {
+      heading: 'Other Important Links',
+      type: 'links',
+      links: [
+        {
+          title: 'Link A',
+          url: '#/A'
+        },
+        {
+          title: "Link B",
+          url: "#/B"
+        },
+        {
+          title: "Link C",
+          url: "#/C"
+        },
+        {
+          title: "Link D",
+          url: "#/D"
+        }
+      ]
+    },
+    {
+      heading: 'Important Picture',
+      type: 'image',
+      src: 'https://picsum.photos/400/200',
+      title: 'Image',
+    }],
 }
 
 export default mergeStyles(defaultStyles)(MegaMenu)

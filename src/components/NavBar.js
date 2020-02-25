@@ -28,16 +28,11 @@ class NavBar extends Component {
             case 'dropdown':
                 const subNav = item.render()
                 navItem = (<UncontrolledDropdown style={styles.dropdownContainer} nav inNavbar>
-                    <DropdownToggle nav caret>
+                    <DropdownToggle nav>
                         {item.text}
                     </DropdownToggle>
-                    <DropdownMenu right style={{
-                        //width: this.state.open ? '100%' : '50vw',
-                       // height: this.state.open ? '100%' : '30vh',
-                        ...styles.dropdownMenuContainer}}>
-                        <div style={styles.dropdownMenu}>
+                    <DropdownMenu right style={styles.dropdownMenuContainer}>
                             {subNav}
-                        </div>
                     </DropdownMenu>
                 </UncontrolledDropdown>)
                 break
@@ -77,33 +72,13 @@ const defaultStyles = {
     toggler: {},
     nav: {},
     navItem: {},
-    dropdownLink: {},
     navLink: {},
-    dropdown: {},
-    dropdownImage: {},
-    dropdownHeader: {},
-    dropdownContainer: {},
     dropdownMenuContainer: {
-        padding: 10,
-        width: '50vw',
+        //padding: 10,
+        width: '100vw',
         height: '30vh',
     },
-    dropdownMenu: {
-        backgroundColor: 'red',
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%',
-        height: '100%',
-        justifyContent: 'space-evenly',
 
-    },
-    dropdownSection: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'blue',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-    }
 }
 
 NavBar.defaultProps = {
