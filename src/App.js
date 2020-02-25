@@ -13,19 +13,22 @@ function App() {
     },
     text: {
       color: 'white',
-      fontSize: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
+      fontSize: 50,
+
     }
   }
 
 
   const props = {
-    text: 'Welcome',
+    text: 'One sentence about small groups',
     image: {
       image: 'https://picsum.photos/1920/1080',
       title: 'Picture'
     },
+    logo: {
+      image: 'https://picsum.photos/500/500',
+      title: 'Picture'
+    }
   }
 
   return (
@@ -41,6 +44,7 @@ function App() {
 
 const divStyles = {
   container: {
+    height: '80vh',
   },
 }
 
