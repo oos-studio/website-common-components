@@ -82,9 +82,12 @@ class MegaMenu extends Component {
   }
 
   render() {
-    const { styles, columns } = this.props
+    const { styles, columns, hasAside } = this.props
     return (
-      <Container fluid style={styles.container}>
+      <Container fluid style={{
+        width: hasAside ? '80%' : '100%',
+        marginLeft: hasAside ? '20%' : '0',
+       ...styles.container}}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -100,11 +103,10 @@ class MegaMenu extends Component {
 
 const defaultStyles = {
   container: {
-    backgroundColor: 'tan',
-    width: '100vw',
+    height: '50vh',
     display: 'flex',
     alignItems: 'center',
-    height: '40vh',
+    marginTop: '10vh',
   },
   defaultColumn: {
     display: 'flex',
@@ -114,17 +116,20 @@ const defaultStyles = {
     marginLeft: '5%',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    height: '90%',
   },
   defaultHeader: {
     fontSize: 25,
-    color: 'white',
+    position: 'absolute',
+    top: 10,
   },
   defaultLink: {
     fontSize: 18,
-    color: 'grey',
+    color: 'tan',
   },
   defaultImage: {
     objectFit: 'cover',
+    marginTop: '5%',
   },
   columns: [],
 }

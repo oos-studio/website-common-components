@@ -37,11 +37,11 @@ export const data = {
                         url: '#/',
                         image: {
                             title: 'image title',
-                            src: "https://via.placeholder.com/50/EEEEEE/333333?Text=Brand"
+                            src: "https://picsum.photos/100/200"
                         }
                     }
                 },
-                 render: () => <MegaMenu columns={[
+                 render: () => <MegaMenu hasAside={true} columns={[
                    {
                      heading: 'Important Links',
                      type: 'links',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownMenu, DropdownToggle } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownMenu, DropdownToggle, Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 
 class NavBar extends Component {
@@ -7,12 +7,17 @@ class NavBar extends Component {
         super(props)
         this.state = {
             open: false,
+            megaMenu: null,
+            aside: null,
+            megaMenuOpen: false,
         }
         this.toggle = this.toggle.bind(this)
         this.renderNavigationItems = this.renderNavigationItems.bind(this)
         this.showMegaMenu = this.showMegaMenu.bind(this)
+        this.hideMegaMenu = this.hideMegaMenu.bind(this)
 
         this.menus = []
+        this.dropdownCounter = 0
     }
 
     toggle() {
@@ -20,22 +25,41 @@ class NavBar extends Component {
         this.setState({ open: !open })
     }
 
-    showMegaMenu(index) {
-        this.menus[index].render()
+    showMegaMenu(key) {
+        if(this.state.megaMenuOpen) {
+            this.hideMegaMenu(key)
+        }
+        const item = this.menus.filter(obj => {
+            return obj.index === key
+        })
+        this.setState({
+            aside: item[0].item.aside,
+            megaMenu: item[0].item.render(),
+        })
+    }
+
+    hideMegaMenu(){
+        this.setState({
+            megaMenu: null,
+            aside: null,
+        })
     }
 
     renderNavigationItems(item, index) {
         const { styles } = this.props
         let navItem = null
+        let key = 0
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
+                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
-                this.menus.push(item)
-                navItem = (<UncontrolledDropdown style={styles.dropdownContainer} nav inNavbar>
-                    <DropdownToggle onClick={index => this.showMegaMenu(index)} nav>
+                this.dropdownCounter++
+                key = this.dropdownCounter
+                this.menus.push({index: key, item: item})
+                navItem = (<UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
                     </DropdownToggle>
                 </UncontrolledDropdown>)
@@ -48,9 +72,9 @@ class NavBar extends Component {
     }
 
     render() {
-        const { open } = this.state
+        const { open, aside, megaMenu } = this.state
         const { items, brand, styles } = this.props
-        const { toggle, renderNavigationItems } = this
+        const { toggle, renderNavigationItems, hideMegaMenu } = this
 
         return(
           <React.Fragment>
@@ -66,23 +90,66 @@ class NavBar extends Component {
                     </Nav>
                 </Collapse>
             </Navbar>
+              <Container fluid style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
+                  {aside !== null && aside !== undefined &&
+                  <div style={styles.asideWrapper}>
+                    <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
+                    <div style={styles.asideHeader}>{aside.header}</div>
+                    <div style={styles.asideBody}>{aside.text}</div>
+                  </div>
+                   }
+                  {megaMenu}
+              </Container>
           </React.Fragment>
         )
     }
 }
 
 const defaultStyles = {
-    navbar: {},
+    navbar: {
+        height: '10vh',
+        fontSize: 25,
+    },
     brand: {},
     brandImage: {},
     brandTitle: {},
     toggler: {},
-    nav: {},
+    nav: {
+    },
     navItem: {},
     navLink: {},
     dropdownMenuContainer: {
     },
     dropdownContainer: {
+    },
+    megaMenu: {
+        padding: 0,
+    },
+    asideWrapper: {
+        width: '20%',
+        textAlign: 'center',
+        position: 'absolute',
+        zIndex: 9999,
+        height: '60vh',
+        top: 0,
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
+    asideImage: {
+        float: 'left',
+        display: 'inline',
+    },
+    asideHeader: {
+        fontSize: 25,
+        height: '10vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    asideBody: {
+        fontSize: 18,
+        color: 'tan',
+        padding: 10,
     },
 }
 
