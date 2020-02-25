@@ -1,101 +1,49 @@
 import React, { Component} from 'react'
-import { Col, Row, } from 'reactstrap'
+import { Container, Col, Row} from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 
 class Footer extends Component {
-  render() {
+
+  getColumnStyle = index => {
     const { styles } = this.props
+    let columnStyle = styles.defaultColumn
+    if (styles.columns[index]) {
+      if ('column' in styles.columns[index]) {
+        //columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+      }
+    }
+    return columnStyle
+  }
 
-    const contacts = this.props.contacts.map(contact =>  {
-      return (
-        <Row style={styles.contacts}>
-          <Col style={styles.contact}>{contact.text}</Col>
-        </Row>
-      )
-    })
+  renderColumn = (column, index) => {
 
-    const socials = this.props.socials.map(social => {
-      return (
-        <Col style={styles.social}>
-          <a href={social.url}><img src={social.icon} alt={social.name}/></a>
-        </Col>
-      )
-    })
+  }
 
-    const legals = this.props.legals.map(legal => {
-      return (
-        <Col styles={styles.legal}>
-          {legal.text}
-        </Col>
-      )
-    })
-
+  render() {
+    const { styles, columns } = this.props
     return (
-      <div style={styles.footer}>
-        <Row>
-          <img src={this.props.logo.icon} alt="Logo" style={styles.logo}/>
-        </Row>
-        <Row style={styles.title}>
-          {this.props.title}
-        </Row>
-        <Row style={styles.description}>
-          {this.props.description}
-        </Row>
-        {contacts}
-        <Row style={styles.socials}>
-          {socials}
-        </Row>
-        <Row style={styles.legals}>
-          {legals}
-        </Row>
-      </div>
-
+      <Container style={styles.container}>
+        {columns.map((column, index) => {
+          const columnStyle = this.getColumnStyle(index)
+          return (
+            <Col key={index} style={columnStyle}>
+              {this.renderColumn(column, index)}
+            </Col>
+          )
+        })}
+      </Container>
     )
   }
 }
 
 const defaultStyles = {
-  footer: {
+  defaultColumn: {
 
   },
-  logo: {
-
-  },
-  title: {
-    backgroundColor: 'green',
-
-  },
-  description: {
-
-  },
-  contacts: {
-
-  },
-  contact: {
-
-  },
-  socials: {
-
-  },
-  social: {
-
-  },
-  legals: {
-
-  },
-  legal: {
-
-  }
 }
 
 Footer.defaultProps = {
-  title: '',
-  description: '',
-  logo: {},
-  contact: [],
-  social: [],
-  legal: [],
-  styles: defaultStyles,
+
 }
 
 
