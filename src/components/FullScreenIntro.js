@@ -29,6 +29,7 @@ const defaultStyles = {
     backgroundColor: 'rgb(255, 248, 230)',
     paddingLeft: '5%',
     paddingRight: '5%',
+    margin: 0,
   },
   textWrapper: {
     fontSize: 55,
@@ -55,7 +56,9 @@ const defaultStyles = {
 }
 
 FullScreenIntro.defaultProps = {
-
+  text: '',
+  image: {},
+  heightOffset: 0,
 }
 
 export default mergeStyle(defaultStyles)(FullScreenIntro)
