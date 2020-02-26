@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Media, Row, Col } from 'reactstrap'
+import { Container, Media, Col } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 
 class FullScreenIntro extends Component {
@@ -9,14 +9,14 @@ class FullScreenIntro extends Component {
     styles.container.height = `${100 - heightOffset}vh`
 
     return(
-      <Row style={styles.container}>
+      <Container fluid style={styles.container}>
         <Col style={styles.textWrapper}>
           {text}
         </Col>
         <Col style={styles.imageWrapper}>
           <Media object src={image.url} alt={image.title} style={styles.image} />
         </Col>
-      </Row>
+      </Container>
     )
   }
 }
@@ -25,25 +25,24 @@ const defaultStyles = {
   container: {
     width: '100vw',
     position: 'relative',
-    display: 'flex',
     backgroundColor: 'rgb(255, 248, 230)',
     paddingLeft: '5%',
     paddingRight: '5%',
-    margin: 0,
   },
   textWrapper: {
     fontSize: 55,
-    height: '50%',
-    width: '50%',
-    zIndex: 999,
-    marginTop: 25,
+    height: '100%',
+    width: '60%',
+    marginTop: '2%',
     color: 'rgb(112, 86, 77)',
-    position: 'absolute'
+    position: 'absolute',
+    zIndex: 999,
+    overflow: 'hidden',
   },
   imageWrapper: {
     width: '50%',
     height: '100%',
-    right: 100,
+    right: '5%',
     position: 'absolute',
   },
   image: {
