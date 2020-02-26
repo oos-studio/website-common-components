@@ -3,13 +3,13 @@ import { Container, Media } from 'reactstrap'
 import Button from './Button'
 import mergeStyles from '../utils/StyleMerge'
 
-class SideAlignedImageText extends Component {
+class ImageAlignedText extends Component {
   render() {
     const { styles, image, text, button, textAlign } = this.props
     const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
     return (
-      <Container style={styles.container}>
+      <div style={styles.container}>
         <Media object alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
         <div style={{
           justifyContent: contentSide,
@@ -37,7 +37,7 @@ class SideAlignedImageText extends Component {
             }
           </div>
         </div>
-      </Container>
+      </div>
     )
   }
 }
@@ -46,7 +46,6 @@ const defaultStyles = {
   container: {
     position: 'relative',
     height: 650,
-    width: '100%',
   },
   image: {
     objectFit: 'cover',
@@ -56,7 +55,6 @@ const defaultStyles = {
   overlay: {
     position: 'absolute',
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -89,7 +87,7 @@ const defaultStyles = {
   },
 }
 
-SideAlignedImageText.defaultProps = {
+ImageAlignedText.defaultProps = {
   text: '',
   image: {
     image: '',
@@ -102,4 +100,4 @@ SideAlignedImageText.defaultProps = {
   textAlign: 'left',
 }
 
-export default mergeStyles(defaultStyles)(SideAlignedImageText)
+export default mergeStyles(defaultStyles)(ImageAlignedText)
