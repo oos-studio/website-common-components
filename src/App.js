@@ -23,6 +23,14 @@ function App() {
           title: "Phone | 919-600-4862",
           url: "#/B"
         },
+        {
+          title: 'Email | jordan@oos-studio.com',
+          url: '#/A'
+        },
+        {
+          title: "Phone | 919-600-4862",
+          url: "#/B"
+        },
       ]
     },
       {

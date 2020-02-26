@@ -109,7 +109,7 @@ class Footer extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <Container style={styles.container}>
+      <Container fluid style={styles.container}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -132,20 +132,15 @@ const defaultStyles = {
   defaultColumn: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'relative',
-    width: '20%',
-    margin: '2%',
-    marginRight: '5%',
-    marginLeft: '5%',
-    justifyContent: 'space-evenly',
+    marginTop: '2%',
+    marginBottom: '2%',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   defaultHeader: {
-    position: 'absolute',
-    top: 0,
     fontSize: 25,
-    marginBottom: '20%',
     color: 'white',
+    marginBottom: '5%',
   },
   defaultLink: {
     fontSize: 18,
