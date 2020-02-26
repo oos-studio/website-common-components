@@ -45,7 +45,7 @@ class SideAlignedImageText extends Component {
 const defaultStyles = {
   container: {
     position: 'relative',
-    height: '100%',
+    height: 650,
     width: '100%',
   },
   image: {
@@ -90,7 +90,6 @@ const defaultStyles = {
 }
 
 SideAlignedImageText.defaultProps = {
-  styles: defaultStyles,
   text: '',
   image: {
     image: '',
