@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
-import { Container, Button } from 'reactstrap'
+import { Container, Media } from 'reactstrap'
+import Button from './Button'
 import mergeStyles from '../utils/StyleMerge'
 
 class SideAlignedImageText extends Component {
   render() {
     const { styles, image, text, button, textAlign } = this.props
-    const justify = textAlign === 'right' ? 'flex-end' : 'flex-start'
+    const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
     return (
       <Container style={styles.container}>
-        <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
+        <Media object alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
         <div style={{
-          justifyContent: justify,
+          justifyContent: contentSide,
           ...styles.overlay,
         }}>
           <div style={{
             float: textAlign,
+            alignItems: contentSide,
             ...styles.subContainer,
           }}>
             <div style={{
@@ -26,8 +28,7 @@ class SideAlignedImageText extends Component {
             </div>
             {button.text.length > 0 &&
               <div style={styles.buttonWrapper}>
-                <Button onClick={button.onClick} style={{
-                  float: textAlign,
+                <Button onClick={button.onClick} styles={{
                   ...styles.button
                 }}>
                   {button.text}
@@ -56,11 +57,9 @@ const defaultStyles = {
     position: 'absolute',
     bottom: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    opacity: 1,
     width: '100%',
     height: '100%',
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
   },
   subContainer: {
@@ -69,22 +68,24 @@ const defaultStyles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    margin: '2%',
-    padding: '1%',
+    padding: '2%',
   },
   textWrapper: {
     color: 'white',
     fontSize: 33,
-    overflow: 'hidden scroll',
+    overflow: 'hidden',
   },
   buttonWrapper: {
     height: '10%',
     marginTop: '5%',
   },
   button: {
-    height: '100%',
-    fontSize: 25,
-    backgroundColor: 'white',
+    color: 'white',
+    hovered: {
+      backgroundColor: 'white',
+      color: 'grey',
+      borderColor: 'grey',
+    }
   },
 }
 

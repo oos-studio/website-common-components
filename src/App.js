@@ -21,13 +21,13 @@ function App() {
       text: 'Learn More',
       onClick: onClick,
     },
-    textAlign: 'left',
+    textAlign: 'right',
   }
   return (
 
     <div style={divStyles.container}>
       <div style={divStyles.side}>
-      <SideAlignedImageText styles={styles} {...props} />
+      <SideAlignedImageText {...props} />
       </div>
     </div>
 
