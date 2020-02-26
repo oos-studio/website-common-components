@@ -1,46 +1,26 @@
 import React from 'react'
-import SideAlignedImageText from './components/SideAlignedImageText'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
 
-const onClick = () => {
-  console.log('button clicked')
+const styles = {
+
+}
+
+const props = {
+  text: 'Welcome to our church! Press the button below to sign up for our newsletter.',
+  image: {
+    image: 'https://picsum.photos/1920/1080',
+    title: 'Picture'
+  },
+  button: {
+    text: 'Learn More',
+    onClick: onClick,
+  },
+  textAlign: 'right',
 }
 
 function App() {
-
-  const styles = {
-
-  }
-
-  const props = {
-    text: 'Welcome to our church! Press the button below to sign up for our newsletter.',
-    image: {
-      image: 'https://picsum.photos/1920/1080',
-      title: 'Picture'
-    },
-    button: {
-      text: 'Learn More',
-      onClick: onClick,
-    },
-    textAlign: 'right',
-  }
-  return (
-
-    <div style={divStyles.container}>
-      <div style={divStyles.side}>
-      <SideAlignedImageText {...props} />
-      </div>
-    </div>
-
-  )
-}
-
-const divStyles = {
-  container: {
-  },
-  side: {
-    width: '100%',
-    height: '50vh',
-  },
+  return <ProvidenceHomepage/>
 }
 
 export default App
