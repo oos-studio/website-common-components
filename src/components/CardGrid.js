@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row, Container, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
+import { Col, Row, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import Button from './Button'
 
@@ -41,7 +41,7 @@ class CardGrid extends Component {
     })
 
     return(
-        <Row style={styles.cardGrid}>
+        <Row style={styles.container}>
           {cardGrid}
       </Row>
     )
@@ -49,22 +49,24 @@ class CardGrid extends Component {
 }
 
 const defaultStyles = {
-  cardGrid: {
-    //width: '100%',
-   // margin: '5%',
+  container: {
     display: 'flex',
     justifyContent: 'space-evenly',
   },
   card: {
     backgroundColor: 'tan',
     color: 'white',
-    padding: 20,
+    height: '95%',
+    padding: '5%',
+    paddingBottom: '2%',
     display: 'flex',
     margin: '5%',
   },
   body: {
-    padding: 0,
     textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   image: {
   },
@@ -82,10 +84,9 @@ const defaultStyles = {
   },
   text: {
     fontSize: 15,
-    paddingTop: 10,
+    paddingTop: '5%',
   },
   button: {
-  //  width: '100%',
   },
 }
 
