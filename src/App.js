@@ -1,5 +1,6 @@
 import React from 'react'
-import FullScreenImageText from './components/FullScreenImageText'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
 
 
 function App() {
@@ -31,21 +32,7 @@ function App() {
     }
   }
 
-  return (
-
-    <div style={divStyles.container}>
-
-      <FullScreenImageText styles={fullStyles} {...props} />
-
-    </div>
-
-  )
-}
-
-const divStyles = {
-  container: {
-    height: '90vh',
-  },
+  return <ProvidenceHomepage/>
 }
 
 export default App
