@@ -6,7 +6,7 @@ class FullScreenIntro extends Component {
   render() {
     const { styles, heightOffset, text, image } = this.props
 
-    styles.container.height = `${100 - heightOffset}vh`
+    styles.container.height = `calc(100vh - ${heightOffset}px)`
 
     return(
       <Container fluid style={styles.container}>
