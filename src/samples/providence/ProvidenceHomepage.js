@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   FloatingParallax,
   Footer,
+  ImageCaptionBlock,
 } from "./components"
 
 class ProvidenceHomepage extends Component {
@@ -10,6 +11,7 @@ class ProvidenceHomepage extends Component {
       <div>
         <div style={{height: 750}}/>
         <FloatingParallax/>
+        <ImageCaptionBlock/>
         <div style={{height: 750}}/>
         <Footer/>
       </div>

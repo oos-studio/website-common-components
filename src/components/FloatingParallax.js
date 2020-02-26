@@ -125,6 +125,7 @@ const defaultStyles = {
     position: 'relative',
     width: '100%',
     overflow: 'show',
+    zIndex: 1000,
   },
   floatingContainer: {
     position: 'relative',

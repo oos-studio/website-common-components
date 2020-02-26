@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 
-class FullScreenImageText extends Component {
+class ImageCaptionBlock extends Component {
   render() {
     const { styles, image, text, logo } = this.props
 
@@ -73,7 +72,7 @@ const defaultStyles = {
   },
 }
 
-FullScreenImageText.defaultProps = {
+ImageCaptionBlock.defaultProps = {
   text: '',
   image: {
     image: '',
@@ -81,4 +80,4 @@ FullScreenImageText.defaultProps = {
   }
 }
 
-export default mergeStyles(defaultStyles)(FullScreenImageText)
+export default mergeStyles(defaultStyles)(ImageCaptionBlock)
