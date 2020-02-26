@@ -45,7 +45,7 @@ class ImageAlignedText extends Component {
 const defaultStyles = {
   container: {
     position: 'relative',
-    height: 650,
+    height: 700,
   },
   image: {
     objectFit: 'cover',
