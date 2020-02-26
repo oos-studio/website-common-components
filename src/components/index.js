@@ -1,6 +1,6 @@
 import CardGrid from './CardGrid'
-import Header from './Header'
+import NavBar from './NavBar'
 import Footer from './Footer'
 import ImageCaptionBlock from "./ImageCaptionBlock"
 
-export { CardGrid, Header, Footer, ImageCaptionBlock }
+export { CardGrid, NavBar, Footer, ImageCaptionBlock }

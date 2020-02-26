@@ -3,12 +3,14 @@ import {
   FloatingParallax,
   Footer,
   ImageCaptionBlock,
+  NavBar,
 } from "./components"
 
 class ProvidenceHomepage extends Component {
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: 'tan'}}>
+        <NavBar />
         <div style={{height: 750}}/>
         <FloatingParallax/>
         <ImageCaptionBlock/>

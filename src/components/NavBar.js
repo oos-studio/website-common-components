@@ -19,6 +19,9 @@ class NavBar extends Component {
         this.menus = []
         this.dropdownCounter = 0
     }
+    componentDidMount() {
+       // this.showMegaMenu(1)
+    }
 
     toggle() {
         const { open } = this.state
@@ -93,9 +96,13 @@ class NavBar extends Component {
               <Container fluid style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
                   {aside !== null && aside !== undefined &&
                   <div style={styles.asideWrapper}>
+                      <div style={styles.asideImageWrapper}>
                     <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
+                      </div>
+                      <div style={styles.asideTextWrapper}>
                     <div style={styles.asideHeader}>{aside.header}</div>
                     <div style={styles.asideBody}>{aside.text}</div>
+                      </div>
                   </div>
                    }
                   {megaMenu}
@@ -107,49 +114,54 @@ class NavBar extends Component {
 
 const defaultStyles = {
     navbar: {
-        height: '10vh',
         fontSize: 25,
+        height: '50px',
     },
     brand: {},
     brandImage: {},
     brandTitle: {},
     toggler: {},
-    nav: {
-    },
+    nav: {},
     navItem: {},
     navLink: {},
-    dropdownMenuContainer: {
-    },
-    dropdownContainer: {
-    },
+    dropdownMenuContainer: {},
+    dropdownContainer: {},
     megaMenu: {
         padding: 0,
     },
     asideWrapper: {
-        width: '20%',
-        textAlign: 'center',
+        height: '400px',
+        width: '40%',
         position: 'absolute',
-        zIndex: 9999,
-        height: '60vh',
+        paddingLeft: '20px',
         top: 0,
-        paddingLeft: 10,
-        paddingRight: 10,
+        zIndex: 10000,
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
     },
     asideImage: {
-        float: 'left',
-        display: 'inline',
+
+    },
+    asideImageWrapper: {
+
+    },
+    asideTextWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        marginLeft: '20px',
     },
     asideHeader: {
         fontSize: 25,
-        height: '10vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        margin: '20px',
+        marginTop: '10px',
+        color: 'grey',
     },
     asideBody: {
-        fontSize: 18,
+        fontSize: 22,
         color: 'tan',
-        padding: 10,
     },
 }
 
