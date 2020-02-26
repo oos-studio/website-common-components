@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import FloatingParallax from "./components/FloatingParallax"
+import {
+  FloatingParallax,
+  Footer,
+} from "./components"
 
 class ProvidenceHomepage extends Component {
   render() {
@@ -8,6 +11,7 @@ class ProvidenceHomepage extends Component {
         <div style={{height: 750}}/>
         <FloatingParallax/>
         <div style={{height: 750}}/>
+        <Footer/>
       </div>
     )
   }
