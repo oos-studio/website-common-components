@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
-import { Container, Media } from 'reactstrap'
+import { Media } from 'reactstrap'
 import Button from './Button'
 import mergeStyles from '../utils/StyleMerge'
+import { Parallax } from 'react-scroll-parallax'
 
 class ImageAlignedText extends Component {
   render() {
-    const { styles, image, text, button, textAlign } = this.props
+    const { styles, image, text, button, textAlign, parallaxImage } = this.props
     const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
+    console.log(styles)
     return (
       <div style={styles.container}>
-        <Media object alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
+        <Media object alt={image.title ? image.title : 'img'} src={image.src} style={styles.image}/>
+        <div style={styles.parallaxContainer}>
+          <Parallax x={parallaxImage.x}>
+            <img alt={parallaxImage.title ? parallaxImage.title : 'img'} src={parallaxImage.src} style={styles.parallaxImage}/>
+          </Parallax>
+        </div>
+        <div style={styles.content}>
         <div style={{
           justifyContent: contentSide,
           ...styles.overlay,
@@ -28,14 +36,13 @@ class ImageAlignedText extends Component {
             </div>
             {button.text.length > 0 &&
               <div style={styles.buttonWrapper}>
-                <Button onClick={button.onClick} styles={{
-                  ...styles.button
-                }}>
+                <Button onClick={button.onClick} styles={styles.button}>
                   {button.text}
                 </Button>
               </div>
             }
           </div>
+        </div>
         </div>
       </div>
     )
@@ -45,37 +52,49 @@ class ImageAlignedText extends Component {
 const defaultStyles = {
   container: {
     position: 'relative',
-    height: 700,
+    height: 675,
+  },
+  content: {
+    marginLeft: 75,
+    marginRight: 75,
+    paddingTop: 125,
   },
   image: {
+    position: 'absolute',
     objectFit: 'cover',
     height: '100%',
     width: '100%',
   },
-  overlay: {
+  parallaxContainer: {
     position: 'absolute',
     bottom: 0,
-    width: '100%',
+    right: 0,
+    width: '90%',
+  },
+  parallaxImage: {
+    position: 'relative',
     height: '100%',
-    display: 'flex',
-    alignItems: 'center',
+    width: '100%'
+  },
+  overlay: {
+    position: 'relative',
+    maxWidth: 1200,
+    margin: 'auto',
   },
   subContainer: {
-    height: '75%',
-    width: '50%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '2%',
   },
   textWrapper: {
+    width: '66%',
     color: 'white',
-    fontSize: 33,
+    fontSize: 52,
     overflow: 'hidden',
   },
   buttonWrapper: {
-    height: '10%',
-    marginTop: '5%',
+    marginTop: 30,
   },
   button: {
     color: 'white',
@@ -90,8 +109,13 @@ const defaultStyles = {
 ImageAlignedText.defaultProps = {
   text: '',
   image: {
-    image: '',
+    src: '',
     title: '',
+  },
+  parallaxImage: {
+    src: '',
+    title: '',
+    x: [-10, 10],
   },
   button: {
     text: '',

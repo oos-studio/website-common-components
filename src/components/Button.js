@@ -12,10 +12,11 @@ class Button extends Component {
     }
   }
 
-  handleHover() {
+  handleHover(e) {
     this.setState({
       hovered: !this.state.hovered,
     })
+    e.preventDefault()
   }
 
   render() {
@@ -33,15 +34,13 @@ class Button extends Component {
 const defaultStyles = {
   borderColor: 'white',
   borderWidth: 2,
-  backgroundColor: 'rgba(0,0,0,0)',
-  height: 40,
+  backgroundColor: 'transparent',
   fontSize: 20,
   hovered: {
     backgroundColor: 'white',
     color: 'tan',
     borderWidth: 2,
     borderColor: 'tan',
-    height: 40,
     fontSize: 20,
   }
 }

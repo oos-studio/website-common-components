@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ChurchIllustrationSky from './assets/ChurchIllustration_Sky.jpg'
+import ChurchIllustration from './assets/ChurchIllustration.png'
 import {
   FloatingParallax,
   Footer,
@@ -9,10 +10,15 @@ import {
 } from "./components"
 
 const churchIllustrationProps = {
-  text: 'Welcome to our church! Press the button below to sign up for our newsletter.',
+  text: 'One sentence describing worship at Providence and the aim of what we do being to God\'s glory.',
   image: {
-    image: ChurchIllustrationSky,
-    title: 'Picture'
+    src: ChurchIllustrationSky,
+    title: 'Church Illustration Sky'
+  },
+  parallaxImage: {
+    src: ChurchIllustration,
+    title: 'Church Illustration',
+    x: [10, 0],
   },
   button: {
     text: 'Learn More',
