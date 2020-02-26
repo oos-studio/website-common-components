@@ -13,7 +13,7 @@ function App() {
         title: 'Title 1',
         subtitle: 'Subtitle 1',
         text: 'This is the text for the card...',
-        action: {
+        button: {
           text: 'Learn More',
           url: 'https://www.oos-studio.com',
         }
@@ -27,7 +27,7 @@ function App() {
         title: 'Title 2',
         subtitle: 'Subtitle 2',
         text: 'This is the text for the card...',
-        action: {
+        button: {
           text: 'Learn More',
           url: 'https://www.oos-studio.com',
         }
@@ -41,9 +41,12 @@ function App() {
         title: 'Title 3',
         subtitle: 'Subtitle 3',
         text: 'This is the text for the card...',
-        action: {
-          text: 'Learn More',
+        button: {
+          text: '',
           url: 'https://www.oos-studio.com',
+          render: () => {
+            return (<div>Learn More</div>)
+          }
         }
       },
     ],

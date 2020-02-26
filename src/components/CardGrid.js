@@ -26,10 +26,13 @@ class CardGrid extends Component {
               <CardText style={styles.text}>
                 {card.text}
               </CardText>
-              <a href={card.action.url}>
-                <Button styles={styles.action}>
-                  {card.action.text}
-                </Button>
+              <a href={card.button.url}>
+                {card.button.render ?
+                  card.button.render() :
+                  <Button styles={styles.button}>
+                    {card.button.text}
+                  </Button>
+                }
               </a>
             </CardBody>
           </Card>
@@ -81,7 +84,7 @@ const defaultStyles = {
     fontSize: 15,
     paddingTop: 10,
   },
-  action: {
+  button: {
   //  width: '100%',
   },
 }
