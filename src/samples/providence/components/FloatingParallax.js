@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import FloatingParallaxComponent from "../../../components/FloatingParallax"
-import Text from "../assets/text.png"
+import WhoIsJesus from '../assets/WhoIsJesus.jpg'
+import WhoIsJesusType from '../assets/WhoIsJesus_Type.png'
 
 const layers = [
   {
-    image: 'https://picsum.photos/1920/1080',
-    strength: 150,
+    image: WhoIsJesus,
+    y: [-10, 10],
+    smallY: [-7, 7],
   },
   {
-    image: Text,
-    strength: 100,
+    image: WhoIsJesusType,
+    y: [4, -4],
+    smallY: [3, -3],
   }
 ]
 
 const styles = {
   container: {
-    backgroundColor: 'grey'
+    backgroundColor: '#6A5B5D'
   }
 }
 

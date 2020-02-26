@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import FloatingParallax from "./components/FloatingParallax"
-import Text from "./assets/text.png"
 
 class ProvidenceHomepage extends Component {
   render() {
