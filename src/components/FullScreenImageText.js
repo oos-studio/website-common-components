@@ -28,25 +28,18 @@ const defaultStyles = {
   container: {
     height: '100%',
     width: '100vw',
-    margin: 0,
-    padding: 0,
     position: 'relative',
-    display: 'block',
-    bottom: 0,
     marginLeft: -8,
   },
   image: {
     objectFit: 'cover',
     height: '100%',
     width: '100%',
-    padding: 0,
-    margin: 0,
   },
   overlay: {
     position: 'absolute',
     bottom: 0,
     backgroundColor: 'rgba(96, 151, 181, 0.75)',
-    opacity: 1,
     width: '100%',
     height: '100%',
   },
@@ -65,12 +58,9 @@ const defaultStyles = {
   text: {
     width: '40%',
     overflow: 'hidden',
-    whiteSpace: 'nowrap',
     marginRight: '10%',
-    objectFit: 'cover',
   },
   logoWrapper: {
-    zIndex: 9999,
     position: 'absolute',
     width: '30%',
     height: '50%',
@@ -82,7 +72,6 @@ const defaultStyles = {
     objectFit: 'cover',
     height: '100%',
     width: '100%',
-    zIndex: 9999,
   },
 }
 

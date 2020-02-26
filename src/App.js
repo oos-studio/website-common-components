@@ -44,7 +44,7 @@ function App() {
 
 const divStyles = {
   container: {
-    height: '80vh',
+    height: '90vh',
   },
 }
 
