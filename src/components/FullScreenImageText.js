@@ -7,7 +7,7 @@ class FullScreenImageText extends Component {
     const { styles, image, text, logo } = this.props
 
     return (
-      <Container style={styles.container}>
+      <div style={styles.container}>
         <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
         <div style={styles.overlay}>
           <div style={styles.bottom}>
@@ -19,17 +19,15 @@ class FullScreenImageText extends Component {
             <img alt={logo.title} src={logo.image} style={styles.logo} />
           </div>
         </div>
-      </Container>
+      </div>
     )
   }
 }
 
 const defaultStyles = {
   container: {
-    height: '100%',
-    width: '100vw',
+    height: 500,
     position: 'relative',
-    marginLeft: -8,
   },
   image: {
     objectFit: 'cover',
