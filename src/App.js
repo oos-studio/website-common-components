@@ -1,13 +1,10 @@
 import React from 'react'
-import { NavBar } from './components'
-import { data } from './testData'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
+
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar items={data.navigation.items} brand={data.navigation.brand} styles={data.navigation.styles} />
-    </div>
-  )
+  return <ProvidenceHomepage/>
 }
 
 export default App

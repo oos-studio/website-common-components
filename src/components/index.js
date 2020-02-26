@@ -1,4 +1,6 @@
-import NavBar from './NavBar'
-import MegaMenu from "./MegaMenu"
+import CardGrid from './CardGrid'
+import Header from './Header'
+import Footer from './Footer'
+import ImageCaptionBlock from "./ImageCaptionBlock"
 
-export { NavBar, MegaMenu }
+export { CardGrid, Header, Footer, ImageCaptionBlock }
