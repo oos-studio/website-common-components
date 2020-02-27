@@ -1,39 +1,53 @@
 import React, { Component } from 'react'
-import { Col, Row, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap'
+import { Col, Row, Card, CardImg, CardBody } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import Button from './Button'
+import renderHTML from 'react-render-html'
 
 class CardGrid extends Component {
+  renderSubtitles = subtitle => {
+    const { styles } = this.props
+
+    return (
+      <div style={styles.subtitle}>
+        {subtitle}
+      </div>
+    )
+  }
+
   render() {
     const { styles, cards } = this.props
 
     const cardGrid = cards.map(card => {
       return(
-        <Col md={3}>
+        <Col xs={12} sm={6} md={4} style={styles.column}>
           <Card style={styles.card}>
+            <div style={styles.header}>
+              {card.header}
+            </div>
             <CardImg src={card.image.src} style={styles.image}/>
-            <p style={styles.topic}>
-              {card.topic}
-            </p>
-            <hr />
             <CardBody style={styles.body}>
-              <CardTitle style={styles.title}>
+              <div style={styles.title}>
                 {card.title}
-              </CardTitle>
-              <CardSubtitle style={styles.subtitle}>
-                {card.subtitle}
-              </CardSubtitle>
-              <CardText style={styles.text}>
-                {card.text}
-              </CardText>
-              <a href={card.button.url}>
+              </div>
+              <hr style={styles.separator} />
+              {card.subtitles ?
+                <div style={styles.subtitles}>
+                  {card.subtitles.map(subtitle => this.renderSubtitles(subtitle))}
+                </div>
+                : null
+              }
+              <div style={styles.text}>
+                {renderHTML(card.text)}
+              </div>
+              <div style={styles.footer}>
                 {card.button.render ?
                   card.button.render() :
                   <Button styles={styles.button}>
                     {card.button.text}
                   </Button>
                 }
-              </a>
+              </div>
             </CardBody>
           </Card>
         </Col>
@@ -41,53 +55,89 @@ class CardGrid extends Component {
     })
 
     return(
-        <Row style={styles.container}>
-          {cardGrid}
-      </Row>
+      <div style={styles.container}>
+        <div style={styles.wrapper}>
+          <Row style={styles.row}>
+              {cardGrid}
+          </Row>
+        </div>
+      </div>
     )
   }
 }
 
 const defaultStyles = {
   container: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
+  },
+  wrapper: {
+    maxWidth: 1200,
+    margin: 'auto',
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  row: {
+    marginLeft: 40,
+    marginRight: 40,
+    justifyContent: 'center'
   },
   card: {
     backgroundColor: 'tan',
     color: 'white',
-    height: '95%',
-    padding: '5%',
-    paddingBottom: '2%',
-    display: 'flex',
-    margin: '5%',
+    height: '100%',
+    marginLeft: 3,
+    marginRight: 3,
+    borderRadius: 0,
+    border: 'none',
+  },
+  column: {
+    padding: 10,
+  },
+  header: {
+    textAlign: 'center',
+    padding: 20
   },
   body: {
     textAlign: 'center',
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
+    padding: 40,
+    paddingTop: 0,
+    display: 'flex'
   },
   image: {
-  },
-  topic: {
-    marginTop: '10%',
-    fontSize: 33,
-    textAlign: 'center',
-
+    borderRadius: 0,
   },
   title: {
-    fontSize: 25,
+    padding: 20,
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  separator: {
+    margin: 0,
+    border: '0.5px solid',
+    borderColor: 'white',
+    marginBottom: 20,
+  },
+  subtitleRow: {
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 14,
+    textAlign: 'center',
+    paddingBottom: 10,
+  },
+  subtitles: {
+    paddingBottom: 10,
   },
   text: {
-    fontSize: 15,
-    paddingTop: '5%',
+    fontSize: 14,
+    textAlign: 'left',
+    flexGrow: 1,
   },
   button: {
   },
+  footer: {
+    paddingTop: 20,
+  }
 }
 
 CardGrid.defaultProps = {
