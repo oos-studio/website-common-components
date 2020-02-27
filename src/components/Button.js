@@ -33,12 +33,14 @@ class Button extends Component {
 const defaultStyles = {
   borderColor: 'white',
   borderWidth: 2,
-  backgroundColor: 'rgba(0,0,0,0)',
+  backgroundColor: 'transparent',
+  fontSize: 20,
   hovered: {
     backgroundColor: 'white',
     color: 'tan',
     borderWidth: 2,
     borderColor: 'tan',
+    fontSize: 20,
   }
 }
 

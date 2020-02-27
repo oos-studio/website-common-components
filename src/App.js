@@ -1,6 +1,7 @@
 import React from 'react'
-import { CardGrid } from './components/index'
-import { Button } from 'reactstrap'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
+
 function App() {
   const cardProps = {
     cards: [
@@ -50,9 +51,7 @@ function App() {
       },
     ],
   }
-  return (
-    <CardGrid cards={cardProps.cards} />
-  )
+  return <ProvidenceHomepage/>
 }
 
 export default App
