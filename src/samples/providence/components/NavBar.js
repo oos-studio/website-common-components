@@ -144,20 +144,30 @@ const data = {
 }
 
 const styles = {
+  asideWrapper: {
+    marginTop: '47px',
+  },
   asideHeader: {
     color: 'black',
   },
   asideBody: {
     color: 'black',
     float: 'left',
-    height: '75%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    width: '50%',
   },
   navbar: {
     backgroundColor: 'tan',
+    paddingTop: '50px',
+    paddingBottom: '0px',
+  },
+  nav: {
+  },
+  navItem: {
+  },
+  navbarMMOpen: {
+    backgroundColor: 'white',
   }
 }
 
@@ -165,6 +175,9 @@ const megaMenuStyles = {
   defaultLink: {
     color: 'black',
   },
+  container: {
+    marginTop: '110px',
+},
 }
 
 export default NavBar

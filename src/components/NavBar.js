@@ -20,7 +20,7 @@ class NavBar extends Component {
         this.dropdownCounter = 0
     }
     componentDidMount() {
-       // this.showMegaMenu(1)
+      // this.showMegaMenu(1)
     }
 
     toggle() {
@@ -38,6 +38,7 @@ class NavBar extends Component {
         this.setState({
             aside: item[0].item.aside,
             megaMenu: item[0].item.render(),
+            megaMenuOpen: true,
         })
     }
 
@@ -45,6 +46,7 @@ class NavBar extends Component {
         this.setState({
             megaMenu: null,
             aside: null,
+            megaMenuOpen: false,
         })
     }
 
@@ -75,13 +77,13 @@ class NavBar extends Component {
     }
 
     render() {
-        const { open, aside, megaMenu } = this.state
+        const { open, aside, megaMenu, megaMenuOpen} = this.state
         const { items, brand, styles } = this.props
         const { toggle, renderNavigationItems, hideMegaMenu } = this
 
         return(
           <React.Fragment>
-            <Navbar expand="md" fixed='top' color='light' light style={styles.navbar}>
+            <Navbar expand="md" fixed='top' color={megaMenuOpen ? styles.navbarMMOpen.backgroundColor : styles.navbar.backgroundColor} light style={styles.navbar}>
                 <NavbarBrand href="#" style={styles.brand}>
                     <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
@@ -115,7 +117,7 @@ class NavBar extends Component {
 const defaultStyles = {
     navbar: {
         fontSize: 25,
-        height: '50px',
+        height: '110px',
     },
     brand: {},
     brandImage: {},
@@ -130,7 +132,7 @@ const defaultStyles = {
         padding: 0,
     },
     asideWrapper: {
-        height: '400px',
+        height: '413px',
         width: '40%',
         position: 'absolute',
         paddingLeft: '20px',
@@ -156,7 +158,7 @@ const defaultStyles = {
     asideHeader: {
         fontSize: 25,
         margin: '20px',
-        marginTop: '10px',
+        marginTop: '15px',
         color: 'grey',
     },
     asideBody: {
