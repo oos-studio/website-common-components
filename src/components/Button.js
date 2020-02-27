@@ -12,19 +12,18 @@ class Button extends Component {
     }
   }
 
-  handleHover(e) {
+  handleHover() {
     this.setState({
       hovered: !this.state.hovered,
     })
-    e.preventDefault()
   }
 
   render() {
-    const { styles, onClick } = this.props
+    const { styles } = this.props
     const activeStyles = this.state.hovered ? styles.hovered : styles
 
     return (
-      <BasicButton onClick={onClick} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
+      <BasicButton onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
         {this.props.children}
       </BasicButton>
     )

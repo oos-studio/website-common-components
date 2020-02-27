@@ -8,8 +8,10 @@ import {
   Footer,
   ImageCaptionBlock,
   FullScreenIntro,
-  ImageAlignedText
+  ImageAlignedText,
+  HomeFeed,
 } from "./components"
+import './fonts/fonts.css'
 
 const churchIllustrationProps = {
   text: 'One sentence describing worship at Providence and the aim of what we do being to God\'s glory.',
@@ -35,23 +37,30 @@ const churchIllustrationProps = {
     }
   ],
   button: {
-    text: 'Learn More',
+    text: 'LEARN MORE',
   },
 }
 
 class ProvidenceHomepage extends Component {
   render() {
     return (
-      <div>
+      <div style={styles.container}>
         <div style={{height: 150}}/>
         <FullScreenIntro/>
         <FloatingParallax/>
         <ImageAlignedText {...churchIllustrationProps}/>
         <ImageCaptionBlock/>
         <ImageAlignedText/>
+        <HomeFeed/>
         <Footer/>
       </div>
     )
+  }
+}
+
+const styles = {
+  container: {
+    fontFamily: 'Neutraface 2 Text',
   }
 }
 
