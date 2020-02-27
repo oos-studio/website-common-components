@@ -84,17 +84,16 @@ const defaultStyles = {
     backgroundColor: 'tan',
     color: 'white',
     height: '100%',
-    marginLeft: 3,
-    marginRight: 3,
     borderRadius: 0,
     border: 'none',
   },
   column: {
-    padding: 10,
+    padding: 20,
   },
   header: {
     textAlign: 'center',
-    padding: 20
+    padding: 20,
+    fontSize: 21,
   },
   body: {
     textAlign: 'center',
@@ -108,14 +107,15 @@ const defaultStyles = {
     borderRadius: 0,
   },
   title: {
-    padding: 20,
-    fontSize: 26,
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 24,
     textAlign: 'center',
   },
   separator: {
     margin: 0,
-    border: '0.5px solid',
     borderColor: 'white',
+    borderWidth: 0.5,
     marginBottom: 20,
   },
   subtitleRow: {
