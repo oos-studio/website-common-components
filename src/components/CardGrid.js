@@ -123,10 +123,10 @@ const defaultStyles = {
   subtitle: {
     fontSize: 14,
     textAlign: 'center',
-    paddingBottom: 5,
+    paddingBottom: 3,
   },
   subtitles: {
-    paddingBottom: 15,
+    paddingBottom: 17,
   },
   text: {
     fontSize: 14,
