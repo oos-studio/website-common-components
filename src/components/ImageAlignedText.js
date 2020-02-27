@@ -5,19 +5,48 @@ import mergeStyles from '../utils/StyleMerge'
 import { Parallax } from 'react-scroll-parallax'
 
 class ImageAlignedText extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      windowWidth: window.innerWidth,
+    }
+  }
+
+  renderLayer = layer => {
+    const { styles } = this.props
+    return (
+      <div style={styles.parallaxContainer}>
+        <Parallax x={this.getX(layer)}>
+          <img
+            alt={layer.title ? layer.title : 'img'}
+            src={layer.src}
+            style={styles.parallaxImage}
+          />
+        </Parallax>
+      </div>
+    )
+  }
+
+  getX = layer => {
+    const { smallMax } = this.props
+    const { x, smallX } = layer
+    const { windowWidth } = this.state
+    if (windowWidth <= smallMax) {
+      return smallX ? smallX : x
+    }
+    return x
+  }
+
   render() {
-    const { styles, image, text, button, textAlign, parallaxImage } = this.props
+    const { styles, image, text, button, textAlign, parallaxLayers } = this.props
     const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
     console.log(styles)
     return (
       <div style={styles.container}>
         <Media object alt={image.title ? image.title : 'img'} src={image.src} style={styles.image}/>
-        <div style={styles.parallaxContainer}>
-          <Parallax x={parallaxImage.x}>
-            <img alt={parallaxImage.title ? parallaxImage.title : 'img'} src={parallaxImage.src} style={styles.parallaxImage}/>
-          </Parallax>
-        </div>
+        {parallaxLayers.map(layer => this.renderLayer(layer))}
         <div style={styles.content}>
         <div style={{
           justifyContent: contentSide,
@@ -70,6 +99,7 @@ const defaultStyles = {
     bottom: 0,
     right: 0,
     width: '90%',
+    overflow: 'hidden'
   },
   parallaxImage: {
     position: 'relative',
@@ -112,11 +142,7 @@ ImageAlignedText.defaultProps = {
     src: '',
     title: '',
   },
-  parallaxImage: {
-    src: '',
-    title: '',
-    x: [-10, 10],
-  },
+  parallaxLayers: [],
   button: {
     text: '',
     onClick: null,
