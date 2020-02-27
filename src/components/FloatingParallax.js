@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import { Parallax, withController } from 'react-scroll-parallax'
-import { Parallax as ParallaxImage } from 'react-parallax'
 
 class FloatingParallax extends Component {
   constructor(props) {
@@ -49,11 +48,6 @@ class FloatingParallax extends Component {
     this.setState({
       windowWidth: window.innerWidth,
     })
-    if (window.innerWidth <= this.props.smallMax) {
-      setTimeout(() => {
-        console.log('mount')
-      }, 500)
-    }
   }
 
   getFloatingContainerStyle = () => {
