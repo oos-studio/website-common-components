@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import deepmerge from 'deepmerge'
 
 class NavBar extends Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class NavBar extends Component {
 
         this.menus = []
         this.dropdownCounter = 0
+    }
+
+    componentDidMount() {
+        this.showMegaMenu(1)
     }
 
     toggle() {
@@ -43,11 +48,11 @@ class NavBar extends Component {
     }
 
     hideMegaMenu(){
-        this.setState({
+/*        this.setState({
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
-        })
+        })*/
     }
 
     renderNavigationItems(item, index) {
@@ -66,7 +71,7 @@ class NavBar extends Component {
                 this.menus.push({index: key, item: item})
 
                 navItem = (<UncontrolledDropdown nav inNavbar >
-                    <DropdownToggle caret style={megaMenuOpen && megaMenuIndex === key ? styles.mmOpen.dropdownItem : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
+                    <DropdownToggle caret style={megaMenuOpen && megaMenuIndex === key ? deepmerge(styles.dropdownItem, styles.mmOpen.dropdownItem) : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
                     </DropdownToggle>
                 </UncontrolledDropdown>)
@@ -85,77 +90,77 @@ class NavBar extends Component {
 
         return(
           <React.Fragment>
-            <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? styles.mmOpen.navbar : styles.navbar}>
-                <NavbarBrand href="#" style={megaMenuOpen ? styles.mmOpen.brand : styles.brand}>
+              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
+            <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
+                <NavbarBrand href="#" style={megaMenuOpen ? deepmerge(styles.brand, styles.mmOpen.brand) : styles.brand}>
                     <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} style={styles.toggler} />
                 <Collapse isOpen={open} navbar style={styles.collapse}>
-                    <Nav navbar className={'mx-auto'} style={styles.nav}>
+                    <Nav navbar style={styles.nav}>
                         {items.map((item, index) => renderNavigationItems(item, index))}
                     </Nav>
                 </Collapse>
             </Navbar>
-              <Container fluid style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
+              <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
                   {aside !== null && aside !== undefined &&
-                  <div style={styles.asideWrapper}>
-                    <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
-                    <div style={styles.asideHeader}>{aside.header}</div>
-                    <div style={styles.asideBody}>{aside.text}</div>
-                  </div>
+                    <React.Fragment>
+                        <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
+                        <div style={styles.asideWrapper}>
+                            <div style={styles.asideHeader}>{aside.header}</div>
+                            <div style={styles.asideBody}>{aside.text}</div>
+                        </div>
+                    </React.Fragment>
                   }
                   {megaMenu}
-              </Container>
+              </div>
           </React.Fragment>
         )
     }
 }
 
 const defaultStyles = {
+    mmBackground: {},
     navbar: {
-        fontSize: 25,
     },
     brand: {},
     brandImage: {},
     brandTitle: {},
-    brandMMOpen: {},
-    navbarMMOpen: {},
     toggler: {},
-    nav: {},
+    nav: {
+    },
     navItem: {},
     navLink: {},
-    dropdownItem: {},
-    collapse: {},
+    dropdownMenuContainer: {
+    },
+    dropdownContainer: {
+    },
     megaMenu: {
         padding: 0,
     },
     asideWrapper: {
-        zIndex: 2,
-        backgroundColor: 'white',
+        width: '20%',
+        textAlign: 'center',
+        position: 'absolute',
+        zIndex: 9999,
+        height: '60vh',
+        top: 0,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     asideImage: {
-
-    },
-    asideImageWrapper: {
-
-    },
-    asideTextWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        marginLeft: '20px',
+        float: 'left',
+        display: 'inline',
     },
     asideHeader: {
         fontSize: 25,
-        margin: '20px',
-        marginTop: '15px',
-        color: 'grey',
+        display: 'flex',
     },
     asideBody: {
-        fontSize: 22,
+        fontSize: 18,
         color: 'tan',
+        padding: 10,
     },
 }
 

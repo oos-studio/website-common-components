@@ -83,17 +83,14 @@ class MegaMenu extends Component {
   }
 
   render() {
-    const { styles, columns, hasAside } = this.props
+    const { styles, columns } = this.props
     return (
       <Container fluid style={{
-        width: hasAside ? '60%' : '100%',
-        float: hasAside ? 'right' : 'none',
         ...styles.container}}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
             <Col key={index} style={{
-              alignItems: hasAside ? 'flex-start' : 'center',
               ...columnStyle}}>
               {this.renderColumn(column, index)}
             </Col>
@@ -106,29 +103,32 @@ class MegaMenu extends Component {
 
 const defaultStyles = {
   container: {
-    height: '350px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '50px',
-    zIndex: 1,
-    backgroundColor: 'white',
+    justifyContent: 'space-between',
   },
   defaultColumn: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    height: '100%',
+    position: 'relative',
+   // marginRight: '5%',
+   // marginLeft: '5%',
+   // justifyContent: 'space-evenly',
+   // alignItems: 'center',
+   // height: '90%',
   },
   defaultHeader: {
-    fontSize: '18px',
+    fontSize: 25,
+  //  position: 'absolute',
+   // top: 10,
   },
   defaultLink: {
-    fontSize: '18px',
+   // fontSize: 18,
     color: 'tan',
   },
   defaultImage: {
     objectFit: 'cover',
+    //marginTop: '5%',
   },
   columns: [],
 }
