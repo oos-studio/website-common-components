@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Container, Col, NavLink, Media} from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import deepmerge from 'deepmerge'
 
 class MegaMenu extends Component {
 
@@ -9,7 +10,7 @@ class MegaMenu extends Component {
     let columnStyle = styles.defaultColumn
     if (styles.columns[index]) {
       if ('column' in styles.columns[index]) {
-        columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+        columnStyle = deepmerge(styles.defaultColumn, styles.columns[index].column)
       }
     }
     return columnStyle
@@ -20,7 +21,7 @@ class MegaMenu extends Component {
     let linkStyle = styles.defaultLink
     if (styles.columns[index]) {
       if ('link' in styles.columns[index]) {
-        linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
+        linkStyle = deepmerge(styles.defaultLink, styles.columns[index].link)
       }
     }
     return linkStyle
@@ -31,7 +32,7 @@ class MegaMenu extends Component {
     let imageStyle = styles.defaultImage
     if (styles.columns[index]) {
       if ('image' in styles.columns[index]) {
-        imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
+        imageStyle = deepmerge(styles.defaultImage, styles.columns[index].image)
       }
     }
     return imageStyle
@@ -42,7 +43,7 @@ class MegaMenu extends Component {
     let headerStyle = styles.defaultHeader
     if (styles.columns[index]) {
       if ('header' in styles.columns[index]) {
-        headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
+        headerStyle = deepmerge(styles.defaultHeader, styles.columns[index].header)
       }
     }
     return headerStyle
@@ -108,21 +109,22 @@ const defaultStyles = {
     height: '350px',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: '50px',
-    zIndex: 10000,
+    zIndex: 1,
     backgroundColor: 'white',
   },
   defaultColumn: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'flex-start',
     height: '100%',
   },
   defaultHeader: {
-    fontSize: 18,
+    fontSize: '18px',
   },
   defaultLink: {
-    fontSize: 18,
+    fontSize: '18px',
     color: 'tan',
   },
   defaultImage: {
