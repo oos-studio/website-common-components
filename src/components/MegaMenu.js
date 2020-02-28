@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Container, Col, NavLink, Media} from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import deepmerge from 'deepmerge'
 
 class MegaMenu extends Component {
 
@@ -9,7 +10,7 @@ class MegaMenu extends Component {
     let columnStyle = styles.defaultColumn
     if (styles.columns[index]) {
       if ('column' in styles.columns[index]) {
-        //columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+        columnStyle = deepmerge(styles.defaultColumn, styles.columns[index].column)
       }
     }
     return columnStyle
@@ -20,7 +21,7 @@ class MegaMenu extends Component {
     let linkStyle = styles.defaultLink
     if (styles.columns[index]) {
       if ('link' in styles.columns[index]) {
-        //linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
+        linkStyle = deepmerge(styles.defaultLink, styles.columns[index].link)
       }
     }
     return linkStyle
@@ -31,7 +32,7 @@ class MegaMenu extends Component {
     let imageStyle = styles.defaultImage
     if (styles.columns[index]) {
       if ('image' in styles.columns[index]) {
-        //imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
+        imageStyle = deepmerge(styles.defaultImage, styles.columns[index].image)
       }
     }
     return imageStyle
@@ -42,7 +43,7 @@ class MegaMenu extends Component {
     let headerStyle = styles.defaultHeader
     if (styles.columns[index]) {
       if ('header' in styles.columns[index]) {
-        //headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
+        headerStyle = deepmerge(styles.defaultHeader, styles.columns[index].header)
       }
     }
     return headerStyle
@@ -50,7 +51,7 @@ class MegaMenu extends Component {
 
   renderHeader = (column, index) => {
     const headerStyle = this.getHeaderStyle(index)
-    return <div style={headerStyle}>{column.heading}</div>
+    return column.heading.length > 0 ? <div style={headerStyle}>{column.heading}</div> : null
   }
 
   renderColumn = (column, index) => {
@@ -85,13 +86,15 @@ class MegaMenu extends Component {
     const { styles, columns, hasAside } = this.props
     return (
       <Container fluid style={{
-        width: hasAside ? '80%' : '100%',
-        marginLeft: hasAside ? '20%' : '0',
-       ...styles.container}}>
+        width: hasAside ? '60%' : '100%',
+        float: hasAside ? 'right' : 'none',
+        ...styles.container}}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
-            <Col key={index} style={columnStyle}>
+            <Col key={index} style={{
+              alignItems: hasAside ? 'flex-start' : 'center',
+              ...columnStyle}}>
               {this.renderColumn(column, index)}
             </Col>
           )
@@ -103,33 +106,29 @@ class MegaMenu extends Component {
 
 const defaultStyles = {
   container: {
-    height: '50vh',
+    height: '350px',
     display: 'flex',
     alignItems: 'center',
-    marginTop: '10vh',
+    justifyContent: 'center',
+    marginTop: '50px',
+    zIndex: 1,
+    backgroundColor: 'white',
   },
   defaultColumn: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'relative',
-    marginRight: '5%',
-    marginLeft: '5%',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    height: '90%',
+    justifyContent: 'flex-start',
+    height: '100%',
   },
   defaultHeader: {
-    fontSize: 25,
-    position: 'absolute',
-    top: 10,
+    fontSize: '18px',
   },
   defaultLink: {
-    fontSize: 18,
+    fontSize: '18px',
     color: 'tan',
   },
   defaultImage: {
     objectFit: 'cover',
-    marginTop: '5%',
   },
   columns: [],
 }

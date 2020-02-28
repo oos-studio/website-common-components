@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownMenu, DropdownToggle, Container } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 
 class NavBar extends Component {
@@ -10,6 +10,7 @@ class NavBar extends Component {
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
+            megaMenuIndex: null,
         }
         this.toggle = this.toggle.bind(this)
         this.renderNavigationItems = this.renderNavigationItems.bind(this)
@@ -25,16 +26,19 @@ class NavBar extends Component {
         this.setState({ open: !open })
     }
 
-    showMegaMenu(key) {
+    async showMegaMenu(key) {
         if(this.state.megaMenuOpen) {
-            this.hideMegaMenu(key)
+           await this.hideMegaMenu(key)
         }
         const item = this.menus.filter(obj => {
             return obj.index === key
         })
+        this.dropdownCounter = 0
         this.setState({
             aside: item[0].item.aside,
             megaMenu: item[0].item.render(),
+            megaMenuOpen: true,
+            megaMenuIndex: key,
         })
     }
 
@@ -42,11 +46,13 @@ class NavBar extends Component {
         this.setState({
             megaMenu: null,
             aside: null,
+            megaMenuOpen: false,
         })
     }
 
     renderNavigationItems(item, index) {
         const { styles } = this.props
+        const { megaMenuOpen, megaMenuIndex } = this.state
         let navItem = null
         let key = 0
 
@@ -58,8 +64,9 @@ class NavBar extends Component {
                 this.dropdownCounter++
                 key = this.dropdownCounter
                 this.menus.push({index: key, item: item})
-                navItem = (<UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle onMouseEnter={() => this.showMegaMenu(key)} nav>
+
+                navItem = (<UncontrolledDropdown nav inNavbar >
+                    <DropdownToggle caret style={megaMenuOpen && megaMenuIndex === key ? styles.mmOpen.dropdownItem : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
                     </DropdownToggle>
                 </UncontrolledDropdown>)
@@ -72,20 +79,20 @@ class NavBar extends Component {
     }
 
     render() {
-        const { open, aside, megaMenu } = this.state
+        const { open, aside, megaMenu, megaMenuOpen} = this.state
         const { items, brand, styles } = this.props
         const { toggle, renderNavigationItems, hideMegaMenu } = this
 
         return(
           <React.Fragment>
-            <Navbar expand="md" fixed='top' color='light' light style={styles.navbar}>
-                <NavbarBrand href="#" style={styles.brand}>
+            <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? styles.mmOpen.navbar : styles.navbar}>
+                <NavbarBrand href="#" style={megaMenuOpen ? styles.mmOpen.brand : styles.brand}>
                     <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} style={styles.toggler} />
-                <Collapse isOpen={open} navbar>
-                    <Nav navbar className={'ml-auto'} style={styles.nav}>
+                <Collapse isOpen={open} navbar style={styles.collapse}>
+                    <Nav navbar className={'mx-auto'} style={styles.nav}>
                         {items.map((item, index) => renderNavigationItems(item, index))}
                     </Nav>
                 </Collapse>
@@ -97,7 +104,7 @@ class NavBar extends Component {
                     <div style={styles.asideHeader}>{aside.header}</div>
                     <div style={styles.asideBody}>{aside.text}</div>
                   </div>
-                   }
+                  }
                   {megaMenu}
               </Container>
           </React.Fragment>
@@ -107,49 +114,48 @@ class NavBar extends Component {
 
 const defaultStyles = {
     navbar: {
-        height: '10vh',
         fontSize: 25,
     },
     brand: {},
     brandImage: {},
     brandTitle: {},
+    brandMMOpen: {},
+    navbarMMOpen: {},
     toggler: {},
-    nav: {
-    },
+    nav: {},
     navItem: {},
     navLink: {},
-    dropdownMenuContainer: {
-    },
-    dropdownContainer: {
-    },
+    dropdownItem: {},
+    collapse: {},
     megaMenu: {
         padding: 0,
     },
     asideWrapper: {
-        width: '20%',
-        textAlign: 'center',
-        position: 'absolute',
-        zIndex: 9999,
-        height: '60vh',
-        top: 0,
-        paddingLeft: 10,
-        paddingRight: 10,
+        zIndex: 2,
+        backgroundColor: 'white',
     },
     asideImage: {
-        float: 'left',
-        display: 'inline',
+
+    },
+    asideImageWrapper: {
+
+    },
+    asideTextWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        marginLeft: '20px',
     },
     asideHeader: {
         fontSize: 25,
-        height: '10vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        margin: '20px',
+        marginTop: '15px',
+        color: 'grey',
     },
     asideBody: {
-        fontSize: 18,
+        fontSize: 22,
         color: 'tan',
-        padding: 10,
     },
 }
 
