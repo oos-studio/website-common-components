@@ -211,6 +211,7 @@ const styles = {
     brand: {
       opacity: 0,
       marginLeft: '81px',
+      position: 'absolute',
     },
     dropdownItem: {
       height: '39px',
@@ -221,6 +222,7 @@ const styles = {
       borderBottomColor: '#CD7D43',
       borderBottomWidth: '2px',
       borderBottomStyle: 'solid',
+
     },
   },
   navbar: {
@@ -232,10 +234,12 @@ const styles = {
 
   brand: {
     marginLeft: '81px',
+    position: 'absolute',
+
   },
   brandImage: {
     objectFit: 'cover',
-    width: '467px',
+    //width: '467px',
     height: '165px',
     top: '56px',
     left: '81px',
@@ -247,10 +251,11 @@ const styles = {
     margin: 0,
     padding: 0,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   collapse: {
-    marginLeft: '100px',
+
+    marginLeft: '525px',
     marginRight: '50px',
   },
   navItem: {
@@ -261,6 +266,7 @@ const styles = {
     margin: '0px',
     fontSize: '25px',
     color: '#6A5B5D',
+
   },
   dropdownItem: {
     height: '39px',
@@ -270,9 +276,9 @@ const styles = {
     color: '#6A5B5D',
   },
   asideWrapper: {
-    flex: 3,
+    flex: 1,
     alignItems: 'flex-start',
-    paddingTop: '105px',
+    paddingTop: '90px',
     paddingLeft: '215px',
   },
   asideTextWrapper: {
@@ -283,18 +289,21 @@ const styles = {
     fontSize: '28px',
     margin: 0,
     padding: 0,
-    marginRight: '100px',
+   // marginRight: '80px',
     paddingBottom: '10px',
     borderBottomWidth: '2px',
     borderBottomColor: '#6A5B5D',
     borderBottomStyle: 'solid',
+    width: '200px',
   },
   asideBody: {
     color: '#6A5B5D',
     fontSize: '15px',
-    marginRight: '150px',
+    //marginRight: '150px',
     marginTop: '25px',
     lineHeight: 2,
+    width: '200px',
+
   },
   asideImage: {
     position: 'absolute',
@@ -318,18 +327,20 @@ const newStyles = {
   container: {
     height: '600px',
     margin: 0,
-    flex: 10,
+    flex: 4,
     overflowX: 'hidden',
     paddingBottom: '50px',
     paddingTop: '225px',
-    paddingLeft: '100px',
+    paddingLeft: '110px',
+    justifyContent: 'space-evenly',
   },
   defaultHeader: {
     fontSize: '30px',
     color: '#6A5B5D',
   },
   defaultColumn: {
-    padding: '10px',
+    flex: 1,
+   // padding: '10px',
     justifyContent: 'space-between',
   },
   timeColumn: {
@@ -379,25 +390,21 @@ const ministriesStyles = {
   container: {
     height: '600px',
     margin: 0,
-    flex: 10,
+    flex: 4,
     overflowX: 'hidden',
     paddingBottom: '50px',
     paddingTop: '225px',
-    paddingLeft: '100px',
+    justifyContent: 'space-evenly',
+    paddingLeft: '110px',
   },
   defaultHeader: {
     fontSize: '30px',
     color: '#6A5B5D',
   },
   defaultColumn: {
-    padding: '10px',
+    flex: 1,
+    // padding: '10px',
     justifyContent: 'space-between',
-  },
-  timeColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: '25px',
-    color: '#6A5B5D',
   },
   columns: [
     {
@@ -428,26 +435,21 @@ const resourcesStyles = {
   container: {
     height: '600px',
     margin: 0,
-    flex: 10,
+    flex: 4,
     overflowX: 'hidden',
     paddingBottom: '50px',
     paddingTop: '225px',
-    paddingLeft: '100px',
+    justifyContent: 'space-evenly',
+    paddingLeft: '110px',
   },
   defaultHeader: {
     fontSize: '30px',
     color: '#6A5B5D',
   },
   defaultColumn: {
-    padding: '10px',
+    flex: 1,
+    // padding: '10px',
     justifyContent: 'space-between',
-    paddingTop: '50px',
-  },
-  timeColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: '25px',
-    color: '#6A5B5D',
   },
   columns: [
     {

@@ -21,10 +21,6 @@ class NavBar extends Component {
         this.dropdownCounter = 0
     }
 
-    componentDidMount() {
-        this.showMegaMenu(1)
-    }
-
     toggle() {
         const { open } = this.state
         this.setState({ open: !open })
@@ -135,13 +131,7 @@ const defaultStyles = {
         padding: 0,
     },
     asideWrapper: {
-       // height: '413px',
-       // position: 'absolute',
-      //  paddingLeft: '20px',
-       // top: 0,
         zIndex: 2,
-       // display: 'flex',
-       /// justifyContent: 'space-between',
         backgroundColor: 'white',
     },
     asideImage: {
