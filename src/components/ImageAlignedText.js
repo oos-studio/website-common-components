@@ -148,6 +148,7 @@ ImageAlignedText.defaultProps = {
     onClick: null,
   },
   textAlign: 'left',
+  smallMax: 730,
 }
 
 export default mergeStyles(defaultStyles)(ImageAlignedText)
