@@ -111,24 +111,15 @@ const defaultStyles = {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-   // marginRight: '5%',
-   // marginLeft: '5%',
-   // justifyContent: 'space-evenly',
-   // alignItems: 'center',
-   // height: '90%',
   },
   defaultHeader: {
     fontSize: 25,
-  //  position: 'absolute',
-   // top: 10,
   },
   defaultLink: {
-   // fontSize: 18,
     color: 'tan',
   },
   defaultImage: {
     objectFit: 'cover',
-    //marginTop: '5%',
   },
   columns: [],
 }

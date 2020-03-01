@@ -23,7 +23,7 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-        this.showMegaMenu(1)
+       // this.showMegaMenu(1)
     }
 
     toggle() {
@@ -32,9 +32,7 @@ class NavBar extends Component {
     }
 
     async showMegaMenu(key) {
-        if(this.state.megaMenuOpen) {
-           await this.hideMegaMenu(key)
-        }
+        await this.hideMegaMenu()
         const item = this.menus.filter(obj => {
             return obj.index === key
         })
@@ -48,13 +46,12 @@ class NavBar extends Component {
     }
 
     hideMegaMenu(){
-/*        this.setState({
+        this.setState({
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
-        })*/
+        })
     }
-
     renderNavigationItems(item, index) {
         const { styles } = this.props
         const { megaMenuOpen, megaMenuIndex } = this.state
