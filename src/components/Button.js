@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button as BasicButton } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import deepmerge from 'deepmerge'
 
 class Button extends Component {
   constructor(props) {
@@ -19,11 +20,11 @@ class Button extends Component {
   }
 
   render() {
-    const { styles } = this.props
-    const activeStyles = this.state.hovered ? styles.hovered : styles
+    const { styles, onClick } = this.props
+    const activeStyles = this.state.hovered ? deepmerge(styles, styles.hovered) : styles
 
     return (
-      <BasicButton onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
+      <BasicButton onClick={onClick} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
         {this.props.children}
       </BasicButton>
     )
@@ -40,7 +41,6 @@ const defaultStyles = {
     color: 'tan',
     borderWidth: 2,
     borderColor: 'tan',
-    fontSize: 20,
   }
 }
 
