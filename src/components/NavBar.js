@@ -68,7 +68,7 @@ class NavBar extends Component {
                 this.menus.push({index: key, item: item})
 
                 navItem = (<UncontrolledDropdown nav inNavbar >
-                    <DropdownToggle caret style={megaMenuOpen && megaMenuIndex === key ? deepmerge(styles.dropdownItem, styles.mmOpen.dropdownItem) : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
+                    <DropdownToggle style={megaMenuOpen && megaMenuIndex === key ? deepmerge(styles.dropdownItem, styles.mmOpen.dropdownItem) : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
                     </DropdownToggle>
                 </UncontrolledDropdown>)
@@ -95,7 +95,7 @@ class NavBar extends Component {
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} style={styles.toggler} />
                 <Collapse isOpen={open} navbar style={styles.collapse}>
-                    <Nav navbar style={styles.nav}>
+                    <Nav navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
                         {items.map((item, index) => renderNavigationItems(item, index))}
                     </Nav>
                 </Collapse>

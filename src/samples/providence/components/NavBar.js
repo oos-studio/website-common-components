@@ -209,6 +209,9 @@ const styles = {
     brand: {
       opacity: 0,
     },
+    nav: {
+      borderBottomWidth: 0,
+    },
     dropdownItem: {
       paddingBottom: 10,
       borderBottomStyle: 'solid',
@@ -248,8 +251,13 @@ const styles = {
     margin: 0,
   },
   nav: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     flex: 1,
+    borderBottomStyle: 'solid',
+    borderBottomWidth: 2,
+    borderBottomColor: '#6A5B5D',
+    marginLeft: 75,
+    marginRight: 75,
   },
   navLink: {
     padding: 0,
