@@ -46,7 +46,7 @@ class ProvidenceHomepage extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <NavBar/>
+        <NavBar />
         <FullScreenIntro/>
         <FloatingParallax/>
         <ImageAlignedText {...churchIllustrationProps}/>

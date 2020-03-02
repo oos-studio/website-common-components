@@ -36,7 +36,6 @@ const defaultStyles = {
     marginTop: '2%',
     color: 'rgb(112, 86, 77)',
     position: 'absolute',
-    zIndex: 999,
     overflow: 'hidden',
   },
   imageWrapper: {

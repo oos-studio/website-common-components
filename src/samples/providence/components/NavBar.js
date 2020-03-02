@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavBar as NavBarComponent } from '../../../components/'
 import MegaMenu from '../../../components/MegaMenu'
+import deepmerge from 'deepmerge'
 
 class NavBar extends Component {
 
@@ -37,7 +38,7 @@ const data = {
             }
           }
         },
-        render: () => <MegaMenu hasAside={true} styles={newStyles} columns={[
+        render: () => <MegaMenu hasAside={true} styles={deepmerge(megaMenuStyles, newColumns)} columns={[
           {
             heading: '',
             type: 'links',
@@ -69,7 +70,7 @@ const data = {
             type: 'text',
             render: () => {
               return (
-                <div style={newStyles.timeColumn}>
+                <div style={newColumns.timeColumn}>
                   <div>
                     9 a.m. Workshops (Fall - Spring)
                   </div>
@@ -103,7 +104,7 @@ const data = {
             }
           }
         },
-        render: () => <MegaMenu styles={ministriesStyles} hasAside={true} columns={[
+        render: () => <MegaMenu styles={deepmerge(megaMenuStyles, ministriesColumns)} hasAside={true} columns={[
           {
             heading: '',
             type: 'links',
@@ -171,7 +172,7 @@ const data = {
             }
           }
         },
-        render: () => <MegaMenu styles={resourcesStyles} hasAside={true} columns={[
+        render: () => <MegaMenu styles={deepmerge(megaMenuStyles, resourcesColumns)} hasAside={true} columns={[
           {
             heading: '',
             type: 'image',
@@ -203,263 +204,222 @@ const data = {
 const styles = {
   mmOpen: {
     navbar: {
-      height: '221px',
-      paddingTop: '56px',
-      zIndex: 2,
       backgroundColor: 'white',
     },
     brand: {
       opacity: 0,
-      marginLeft: '81px',
-      position: 'absolute',
     },
     dropdownItem: {
-      height: '39px',
-      padding: '0px',
-      margin: '0px',
-      fontSize: '25px',
-      color: '#6A5B5D',
-      borderBottomColor: '#CD7D43',
-      borderBottomWidth: '2px',
+      paddingBottom: 10,
       borderBottomStyle: 'solid',
-
+      borderBottomWidth: 2,
+      borderBottomColor: '#CD7D43',
+    },
+    mmBackground: {
+      opacity: 1,
+      backgroundColor: 'white',
+      height: 450,
     },
   },
-  navbar: {
-    height: '221px',
-    paddingTop: '56px',
-    zIndex: 2,
+  mmBackground: {
+    opacity: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100vw',
+    zIndex: 3,
     backgroundColor: 'rgba(0,0,0,0)',
   },
-
+  navbar: {
+    backgroundColor: 'rgb(254,248,232)',
+    padding: 0,
+    paddingTop: 56,
+    paddingLeft: 81,
+    height: 221,
+    zIndex: 4,
+  },
   brand: {
-    marginLeft: '81px',
-    position: 'absolute',
-
+    padding: 0,
+    margin: 0,
   },
   brandImage: {
-    objectFit: 'cover',
-    //width: '467px',
-    height: '165px',
-    top: '56px',
-    left: '81px',
-  },
-  nav: {
-    top: '120px',
-    height: '39px',
-    flex: 1,
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    justifyContent: 'space-evenly',
   },
   collapse: {
-
-    marginLeft: '525px',
-    marginRight: '50px',
+    fontSize: 25,
+    margin: 0,
   },
-  navItem: {
+  nav: {
+    justifyContent: 'space-evenly',
+    flex: 1,
   },
   navLink: {
-    height: '39px',
-    padding: '0px',
-    margin: '0px',
-    fontSize: '25px',
+    padding: 0,
     color: '#6A5B5D',
-
   },
   dropdownItem: {
-    height: '39px',
-    padding: '0px',
-    margin: '0px',
-    fontSize: '25px',
+    padding: 0,
     color: '#6A5B5D',
   },
   asideWrapper: {
-    flex: 1,
-    alignItems: 'flex-start',
-    paddingTop: '90px',
-    paddingLeft: '215px',
-  },
-  asideTextWrapper: {
-
+    fontSize: 25,
+    position: 'absolute',
+    left: 214,
+    width: 230,
+    height: 500,
+    overflowY: 'hidden',
+    padding: 0,
+    paddingTop: 120,
+    zIndex: 5,
   },
   asideHeader: {
-    color: '#6A5B5D',
-    fontSize: '28px',
-    margin: 0,
     padding: 0,
-   // marginRight: '80px',
-    paddingBottom: '10px',
-    borderBottomWidth: '2px',
-    borderBottomColor: '#6A5B5D',
+    marginLeft: 30,
+    width: 125,
+    color: '#6A5B5D',
+    paddingBottom: 10,
     borderBottomStyle: 'solid',
-    width: '200px',
+    borderBottomWidth: 2,
+    borderBottomColor: '#6A5B5D',
   },
   asideBody: {
-    color: '#6A5B5D',
-    fontSize: '15px',
-    //marginRight: '150px',
-    marginTop: '25px',
+    marginTop: 15,
+    paddingLeft: 35,
     lineHeight: 2,
-    width: '200px',
-
+    color: '#6A5B5D',
+    fontStyle: 'italic',
+    textAlign: 'left',
   },
   asideImage: {
     position: 'absolute',
-    top: '57px',
-    left: '99px',
-    height: '157px',
-    width: '115px',
+    top: 57,
+    left: 99,
+    height: 157,
+    width: 115,
+    zIndex: 5,
   },
   megaMenu: {
     display: 'flex',
-    position: 'absolute',
-    top: 0,
   }
 }
 
-const newStyles = {
+const megaMenuStyles = {
+  container: {
+    padding: 0,
+    margin: 0,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    height: 350,
+    zIndex: 4,
+    overflowX: 'scroll',
+    marginLeft: 435,
+  },
+  defaultColumn:{
+    width: 'auto',
+    padding: 0,
+    margin: 0,
+    fontSize: 15,
+    wordWrap: 'break-word',
+    color: '#6A5B5D',
+    marginRight: 10,
+    flexWrap: 'wrap',
+  },
   defaultLink: {
     color: '#6A5B5D',
+    height: 50,
   },
+}
 
-  container: {
-    height: '600px',
-    margin: 0,
-    flex: 4,
-    overflowX: 'hidden',
-    paddingBottom: '50px',
-    paddingTop: '225px',
-    paddingLeft: '110px',
-    justifyContent: 'space-evenly',
-  },
-  defaultHeader: {
-    fontSize: '30px',
-    color: '#6A5B5D',
-  },
-  defaultColumn: {
-    flex: 1,
-   // padding: '10px',
-    justifyContent: 'space-between',
-  },
+const newColumns = {
   timeColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    fontSize: '25px',
-    color: '#6A5B5D',
-    marginRight: '25px',
-    marginTop: '25px',
+    fontSize: 22,
+    textAlign: 'center',
   },
   columns: [
     {
       column: {
-        flex: 1,
-      }
+        alignItems: 'flex-end',
+      },
+      link: {
+        width: 150,
+        fontSize: 22,
+      },
     },
     {
       column: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-end',
-        textAlign: 'right',
+        alignItems: 'center',
       },
       header: {
-        borderBottomWidth: '2px',
-        borderBottomColor: '#6A5B5D',
+        fontSize: 25,
         borderBottomStyle: 'solid',
-        marginLeft: '100px',
-        marginRight: '25px',
-        paddingBottom: '20px',
+        borderBottomWidth: 2,
+        borderBottomColor: '#6A5B5D',
+        marginBottom: 25,
       },
     },
     {
       column: {
-        flex: 2,
-        justifyContent: 'center',
-      },
-    }
-  ]
-}
-
-const ministriesStyles = {
-  defaultLink: {
-    color: '#6A5B5D',
-  },
-
-  container: {
-    height: '600px',
-    margin: 0,
-    flex: 4,
-    overflowX: 'hidden',
-    paddingBottom: '50px',
-    paddingTop: '225px',
-    justifyContent: 'space-evenly',
-    paddingLeft: '110px',
-  },
-  defaultHeader: {
-    fontSize: '30px',
-    color: '#6A5B5D',
-  },
-  defaultColumn: {
-    flex: 1,
-    // padding: '10px',
-    justifyContent: 'space-between',
-  },
-  columns: [
-    {
-      column: {
-        flex: 1,
-      }
-    },
-    {
-      column: {
-        flex: 1,
-      },
-    },
-    {
-      column: {
-        flex: 2,
         alignItems: 'center',
-        justifyContent: 'center',
       },
+      image: {
+        width: 400,
+        height: 200,
+      }
     }
   ]
 }
-
-const resourcesStyles = {
-  defaultLink: {
-    color: '#6A5B5D',
-  },
-
-  container: {
-    height: '600px',
-    margin: 0,
-    flex: 4,
-    overflowX: 'hidden',
-    paddingBottom: '50px',
-    paddingTop: '225px',
-    justifyContent: 'space-evenly',
-    paddingLeft: '110px',
-  },
-  defaultHeader: {
-    fontSize: '30px',
-    color: '#6A5B5D',
-  },
-  defaultColumn: {
-    flex: 1,
-    // padding: '10px',
-    justifyContent: 'space-between',
-  },
+const ministriesColumns = {
   columns: [
     {
       column: {
-        alignItems: 'flex-start',
-      }
+        alignItems: 'flex-end',
+        marginRight: 0,
+      },
+      link: {
+        width: 155,
+        fontSize: 22,
+      },
     },
     {
       column: {
-        alignItems: 'flex-start',
+        alignItems: 'center',
+        marginRight: 0,
+      },
+      link: {
+        width: 130,
+        fontSize: 22,
+      },
+    },
+    {
+      column: {
+        alignItems: 'center',
+        marginRight: 0,
+      },
+      image: {
+        width: 400,
+        height: 200,
+      }
+    }
+  ]
+}
+const resourcesColumns = {
+  columns: [
+    {
+      column: {
+        alignItems: 'flex-end',
+        marginRight: 0,
+      },
+      image: {
+        width: 400,
+        height: 200,
+      },
+    },
+    {
+      column: {
+        alignItems: 'center',
+        marginRight: 0,
+      },
+      image: {
+        width: 400,
+        height: 200,
       },
     },
   ]
