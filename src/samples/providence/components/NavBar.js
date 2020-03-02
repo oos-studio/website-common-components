@@ -218,7 +218,7 @@ const styles = {
     mmBackground: {
       opacity: 1,
       backgroundColor: 'white',
-      height: 450,
+      height: 500,
     },
   },
   mmBackground: {
