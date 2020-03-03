@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { FullScreenIntro as FullScreenIntroComponent } from '../../../components'
 
 const props = {
-  heightOffset: 150,
   text: 'Welcome to the full screen intro page. This style is just a placeholder. Make it whatever you want!',
   image: {
     title: 'img',
@@ -10,9 +9,15 @@ const props = {
   },
 }
 
+const styles = {
+  container: {
+    paddingTop: 221,
+  }
+}
+
 class FullScreenIntro extends Component {
   render() {
-    return <FullScreenIntroComponent {...props}/>
+    return <FullScreenIntroComponent styles={styles} {...props}/>
   }
 }
 

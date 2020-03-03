@@ -10,6 +10,7 @@ import {
   FullScreenIntro,
   ImageAlignedText,
   HomeFeed,
+  NavBar
 } from "./components"
 import './fonts/fonts.css'
 
@@ -45,7 +46,7 @@ class ProvidenceHomepage extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <div style={{height: 150}}/>
+        <NavBar />
         <FullScreenIntro/>
         <FloatingParallax/>
         <ImageAlignedText {...churchIllustrationProps}/>
