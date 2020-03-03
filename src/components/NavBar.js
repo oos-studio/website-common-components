@@ -86,7 +86,7 @@ class NavBar extends Component {
                         ...styles.dropdownItem,
                     }} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
-                        <Media style={{height: 10, width: 15, marginLeft: 5}} object src={icon} />
+                        <Media style={{height: 7.5, width: 11.25, marginLeft: 5}} object src={icon} />
                     </DropdownToggle>
                 </UncontrolledDropdown>)
                 break
