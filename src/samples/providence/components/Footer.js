@@ -47,7 +47,6 @@ const styles = {
     height: 600,
     backgroundColor: '#6A5B5D',
     paddingTop: 50,
-    paddingRight: 50,
   },
   columns: [
     {

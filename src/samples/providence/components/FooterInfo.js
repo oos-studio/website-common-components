@@ -47,25 +47,23 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     height: '100%',
-    fontSize: 30,
+    fontSize: 16,
     paddingRight: 50,
-    paddingLeft: 50,
     color: '#F8F5EE',
   },
   topSection: {
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     display: 'flex',
-    justifyContent: 'space-between',
     paddingBottom: 50,
   },
   logoWrapper: {
   },
   logo: {
-    width: 300,
-    height: 200,
+    width: 250,
   },
   contact: {
+    paddingLeft: 50,
   },
   login: {
     marginTop: 25,

@@ -111,6 +111,7 @@ class Footer extends Component {
     const { styles, columns } = this.props
     return (
       <div style={styles.container}>
+        <div style={styles.content}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -119,6 +120,7 @@ class Footer extends Component {
             </Col>
           )
         })}
+        </div>
       </div>
     )
   }
@@ -127,6 +129,12 @@ class Footer extends Component {
 const defaultStyles = {
   container: {
     backgroundColor: 'tan',
+    padding: 0,
+  },
+  content: {
+    margin: 'auto',
+    width: '100%',
+    maxWidth: 1200,
     display: 'flex',
   },
   defaultColumn: {
