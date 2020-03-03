@@ -206,22 +206,13 @@ const styles = {
     navbar: {
       backgroundColor: 'white',
     },
-    brand: {
-      opacity: 0,
-    },
     nav: {
       borderBottomWidth: 0,
-    },
-    dropdownItem: {
-      paddingBottom: 10,
-      borderBottomStyle: 'solid',
-      borderBottomWidth: 2,
-      borderBottomColor: '#CD7D43',
     },
     mmBackground: {
       opacity: 1,
       backgroundColor: 'white',
-      height: 450,
+      height: 500,
     },
   },
   mmBackground: {
@@ -235,20 +226,26 @@ const styles = {
   navbar: {
     backgroundColor: 'rgb(254,248,232)',
     padding: 0,
-    paddingTop: 56,
-    paddingLeft: 81,
+    paddingTop: 50,
+    paddingLeft: 100,
+    paddingRight: 75,
     height: 221,
     zIndex: 4,
   },
   brand: {
     padding: 0,
     margin: 0,
+    height: 120,
+    width: 339,
   },
   brandImage: {
+    height: 120,
+    width: 339,
   },
   collapse: {
     fontSize: 25,
     margin: 0,
+    marginLeft: 75,
   },
   nav: {
     justifyContent: 'space-between',
@@ -256,37 +253,39 @@ const styles = {
     borderBottomStyle: 'solid',
     borderBottomWidth: 2,
     borderBottomColor: '#6A5B5D',
-    marginLeft: 75,
-    marginRight: 75,
   },
   navLink: {
     padding: 0,
     color: '#6A5B5D',
+    paddingBottom: 10,
   },
   dropdownItem: {
     padding: 0,
     color: '#6A5B5D',
+    borderBottomColor: '#CD7D43',
+    paddingBottom: 10,
   },
   asideWrapper: {
     fontSize: 25,
     position: 'absolute',
-    left: 214,
-    width: 230,
-    height: 500,
-    overflowY: 'hidden',
+    top: 76,
+    left: 185,
+    width: 255,
+    height: 400,
     padding: 0,
-    paddingTop: 120,
+    paddingTop: 40,
     zIndex: 5,
+    backgroundColor: 'white',
   },
   asideHeader: {
     padding: 0,
     marginLeft: 30,
     width: 125,
     color: '#6A5B5D',
-    paddingBottom: 10,
     borderBottomStyle: 'solid',
     borderBottomWidth: 2,
     borderBottomColor: '#6A5B5D',
+    paddingBottom: 10,
   },
   asideBody: {
     marginTop: 15,
@@ -297,12 +296,7 @@ const styles = {
     textAlign: 'left',
   },
   asideImage: {
-    position: 'absolute',
-    top: 57,
-    left: 99,
-    height: 157,
-    width: 115,
-    zIndex: 5,
+    display: 'none',
   },
   megaMenu: {
     display: 'flex',
@@ -315,19 +309,19 @@ const megaMenuStyles = {
     margin: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    height: 350,
     zIndex: 4,
     overflowX: 'scroll',
-    marginLeft: 435,
+    position: 'absolute',
+    width: 'auto',
+    left: 500,
+    right: 0,
   },
   defaultColumn:{
-    width: 'auto',
     padding: 0,
     margin: 0,
     fontSize: 15,
     wordWrap: 'break-word',
     color: '#6A5B5D',
-    marginRight: 10,
     flexWrap: 'wrap',
   },
   defaultLink: {
@@ -344,7 +338,8 @@ const newColumns = {
   columns: [
     {
       column: {
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
+        flex: 0.65,
       },
       link: {
         width: 150,
@@ -353,22 +348,26 @@ const newColumns = {
     },
     {
       column: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
       },
       header: {
+        textAlign: 'center',
         fontSize: 25,
         borderBottomStyle: 'solid',
         borderBottomWidth: 2,
         borderBottomColor: '#6A5B5D',
         marginBottom: 25,
+        marginLeft: 10,
+        marginRight: 5,
       },
     },
     {
       column: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
       },
       image: {
-        width: 400,
+        width: '100%',
+        maxWidth: 400,
         height: 200,
       }
     }
@@ -378,7 +377,7 @@ const ministriesColumns = {
   columns: [
     {
       column: {
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
         marginRight: 0,
       },
       link: {
@@ -388,7 +387,7 @@ const ministriesColumns = {
     },
     {
       column: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginRight: 0,
       },
       link: {
@@ -398,11 +397,12 @@ const ministriesColumns = {
     },
     {
       column: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginRight: 0,
       },
       image: {
-        width: 400,
+        width: '100%',
+        maxWidth: 400,
         height: 200,
       }
     }
@@ -412,23 +412,25 @@ const resourcesColumns = {
   columns: [
     {
       column: {
-        alignItems: 'flex-end',
+        alignItems: 'flex-start',
         marginRight: 0,
       },
       image: {
-        width: 400,
+        width: '100%',
+        maxWidth: 400,
         height: 200,
-      },
+      }
     },
     {
       column: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         marginRight: 0,
       },
       image: {
-        width: 400,
+        width: '100%',
+        maxWidth: 400,
         height: 200,
-      },
+      }
     },
   ]
 }

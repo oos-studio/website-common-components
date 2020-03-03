@@ -11,8 +11,10 @@ class NavBar extends Component {
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
-            megaMenuIndex: null,
+            navBorderWidth: [0,0,0],
+            navBorderStyle: ['','',''],
         }
+
         this.toggle = this.toggle.bind(this)
         this.renderNavigationItems = this.renderNavigationItems.bind(this)
         this.showMegaMenu = this.showMegaMenu.bind(this)
@@ -22,8 +24,8 @@ class NavBar extends Component {
         this.dropdownCounter = 0
     }
 
-    componentDidMount() {
-       // this.showMegaMenu(1)
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.dropdownCounter = 0
     }
 
     toggle() {
@@ -36,12 +38,21 @@ class NavBar extends Component {
         const item = this.menus.filter(obj => {
             return obj.index === key
         })
+
+        let borderWidth = [0,0,0]
+        borderWidth[key] = 2
+
+        let borderStyle = ['','','']
+        borderStyle[key] = 'solid'
+
         this.dropdownCounter = 0
+
         this.setState({
             aside: item[0].item.aside,
             megaMenu: item[0].item.render(),
             megaMenuOpen: true,
-            megaMenuIndex: key,
+            navBorderWidth: borderWidth,
+            navBorderStyle: borderStyle,
         })
     }
 
@@ -50,11 +61,13 @@ class NavBar extends Component {
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
+            navBorderWidth: [0,0,0],
+            navBorderStyle: ['','',''],
         })
     }
+
     renderNavigationItems(item, index) {
         const { styles } = this.props
-        const { megaMenuOpen, megaMenuIndex } = this.state
         let navItem = null
         let key = 0
 
@@ -66,9 +79,12 @@ class NavBar extends Component {
                 this.dropdownCounter++
                 key = this.dropdownCounter
                 this.menus.push({index: key, item: item})
-
                 navItem = (<UncontrolledDropdown nav inNavbar >
-                    <DropdownToggle style={megaMenuOpen && megaMenuIndex === key ? deepmerge(styles.dropdownItem, styles.mmOpen.dropdownItem) : styles.dropdownItem} onMouseEnter={() => this.showMegaMenu(key)} nav>
+                    <DropdownToggle caret style={{
+                        borderBottomWidth: this.state.navBorderWidth[key],
+                        borderBottomStyle: this.state.navBorderStyle[key],
+                        ...styles.dropdownItem,
+                    }} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
                     </DropdownToggle>
                 </UncontrolledDropdown>)
@@ -89,7 +105,7 @@ class NavBar extends Component {
           <React.Fragment>
               <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
             <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
-                <NavbarBrand href="#" style={megaMenuOpen ? deepmerge(styles.brand, styles.mmOpen.brand) : styles.brand}>
+                <NavbarBrand href="#" style={styles.brand}>
                     <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                     <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
                 </NavbarBrand>
