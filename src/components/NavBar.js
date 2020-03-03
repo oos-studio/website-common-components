@@ -67,7 +67,7 @@ class NavBar extends Component {
     }
 
     renderNavigationItems(item, index) {
-        const { styles } = this.props
+        const { styles, icon } = this.props
         let navItem = null
         let key = 0
 
@@ -80,12 +80,13 @@ class NavBar extends Component {
                 key = this.dropdownCounter
                 this.menus.push({index: key, item: item})
                 navItem = (<UncontrolledDropdown nav inNavbar >
-                    <DropdownToggle caret style={{
+                    <DropdownToggle style={{
                         borderBottomWidth: this.state.navBorderWidth[key],
                         borderBottomStyle: this.state.navBorderStyle[key],
                         ...styles.dropdownItem,
                     }} onMouseEnter={() => this.showMegaMenu(key)} nav>
                         {item.text}
+                        <Media style={{height: 10, width: 15, marginLeft: 5}} object src={icon} />
                     </DropdownToggle>
                 </UncontrolledDropdown>)
                 break

@@ -7,7 +7,7 @@ class NavBar extends Component {
 
   render() {
     return(
-      <NavBarComponent items={data.navigation.items} brand={data.navigation.brand} styles={styles}/>
+      <NavBarComponent items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon}/>
     )
   }
 }
@@ -19,10 +19,10 @@ const data = {
       image: {
         title: 'Providence Logo',
         src: require("../assets/ProvidenceLogo.png"),
-      }
+      },
     },
+    dropdownIcon: require("../assets/DropdownCaret.png"),
     "items": [
-
       {
         "text": "I'm New",
         "url": "#",
