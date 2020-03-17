@@ -33,7 +33,7 @@ class FooterInfo extends Component {
           })}
         </div>
         <div style={styles.legal}>
-          COPYRIGHT 2020 PROVIDENCE CHRUCH
+          COPYRIGHT 2020 PROVIDENCE CHURCH
         </div>
       </div>
       </div>

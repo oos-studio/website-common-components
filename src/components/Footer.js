@@ -134,7 +134,6 @@ const defaultStyles = {
   content: {
     margin: 'auto',
     width: '100%',
-    maxWidth: 1200,
     display: 'flex',
   },
   defaultColumn: {
