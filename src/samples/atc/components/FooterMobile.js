@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Footer as FooterComponent } from '../../../components'
+import {Button, Footer as FooterComponent} from '../../../components'
+import {Media} from 'reactstrap'
 
 const socials = [
   {
@@ -59,25 +60,28 @@ const columns = [
 ]
 
 const styles = {
-  wrapper: {
+  container: {
     backgroundColor: '#562A31',
-    height: 600,
+    height: 900,
+    padding: 30,
+  },
+  widthRestrict: {
+    maxWidth: 800,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems:  'flex-start',
   },
   footerComp: {
     container: {
-      maxWidth: 1200,
       backgroundColor: '#562A31',
-      height: '100%',
-      paddingTop: 75,
-      paddingBottom: 75,
-      paddingLeft: 100,
-      paddingRight: 100,
     },
     content: {
       display: 'block',
     },
     defaultColumn: {
-      margin: 10,
+      margin: 0,
+      marginBottom: 30,
+      padding: 0,
     },
     defaultHeader: {
       color: '#E86956',
@@ -98,22 +102,96 @@ const styles = {
       {},
       {},
       {},
+      {},
     ]
   },
-  copyright: {
-
+  iconWrapper: {
+    width: '100%',
+    maxWidth: 450,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomStyle: 'solid',
+    borderBottomColor: '#EDE8E4',
+    marginTop: 30,
+    marginBottom: 30,
+    padding: 0,
+    paddingBottom: 30,
   },
-  social: {
-
+  socials: {
+    width: 50,
+    height: 50,
+  },
+  button: {
+    borderWidth: 0,
+    backgroundColor: 'rgba(255,255,255,0)',
+    hovered: {
+      backgroundColor: 'rgba(255,255,255,0)',
+      borderWidth: 0,
+      color: 'white',
+    },
+  },
+  buttonImg: {
+    width: 50,
+    height: 50,
+  },
+  copyright: {
+    color: '#EDE8E4',
+    fontSize: 25,
   },
 }
 
 class FooterMobile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      intervalId: 0
+    }
+
+    this.handleScroll = this.handleScroll.bind(this)
+    this.scrollStep = this.scrollStep.bind(this)
+  }
+
+  scrollStep() {
+    const { intervalId } = this.state
+    if (window.pageYOffset === 0) {
+      clearInterval(intervalId);
+    }
+    window.scroll(0, window.pageYOffset - 35);
+  }
+
+  handleScroll() {
+    const { scrollStep } = this
+    let intervalId = setInterval(scrollStep, 0);
+    this.setState({
+      intervalId: intervalId ,
+    })
+  }
 
   render() {
+    const { handleScroll } = this
     return (
-      <div style={styles.wrapper}>
-        <FooterComponent columns={columns} styles={styles.footerComp}/>
+      <div style={styles.container}>
+        <div style={styles.widthRestrict}>
+          <FooterComponent columns={columns} styles={styles.footerComp}/>
+          <div style={styles.iconWrapper}>
+              {socials.map(s => {
+                return(
+                  <React.Fragment>
+                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
+                  </React.Fragment>
+                )
+              })}
+              <Button onClick={handleScroll} styles={styles.button}>
+                <Media style={styles.buttonImg} object src={require('../assets/Scroll_Button.png')} alt={'scroll'}/>
+              </Button>
+          </div>
+          <div style={styles.copyright}>
+              Copyright 2020 American Technology Components, Inc.
+          </div>
+        </div>
       </div>
     )
   }

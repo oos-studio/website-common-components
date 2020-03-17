@@ -143,12 +143,16 @@ const styles = {
     color: '#EDE8E4',
     fontSize: 25,
   },
-  social: {
+  socialWrapper: {
     width: 200,
     height: 50,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  socials: {
+    height: 50,
+    width: 50,
   },
 }
 
@@ -196,11 +200,11 @@ class FooterDesktop extends Component {
           <div style={styles.copyright}>
             Copyright 2020 American Technology Components, Inc.
           </div>
-          <div style={styles.social}>
+          <div style={styles.socialWrapper}>
             {socials.map(s => {
               return(
                 <React.Fragment>
-                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={{width: 30, height: 30}} /></a>
+                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
                 </React.Fragment>
               )
             })}
