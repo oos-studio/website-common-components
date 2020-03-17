@@ -12,7 +12,7 @@ class Footer extends Component {
   }
 
   updateDimensions() {
-    if(window.innerWidth < 875) {
+    if(window.innerWidth < 800) {
       this.setState({
         isMobile: true
       })

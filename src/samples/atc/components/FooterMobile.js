@@ -5,19 +5,18 @@ import {Media} from 'reactstrap'
 const socials = [
   {
     name: 'facebook',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Facebook.png'),
     url: 'https://www.facebook.com'
   },
   {
     name: 'twitter',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Twitter.png'),
     url: 'https://www.twitter.com'
   },
   {
     name: 'instagram',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Instagram.png'),
     url: 'https://www.instagram.com'
-
   },
 ]
 
@@ -63,13 +62,15 @@ const styles = {
   container: {
     backgroundColor: '#562A31',
     height: 900,
-    padding: 30,
   },
   widthRestrict: {
     maxWidth: 800,
+    minWidth: 275,
+    height: 900,
     display: 'flex',
     flexDirection: 'column',
     alignItems:  'flex-start',
+    padding: 25,
   },
   footerComp: {
     container: {
@@ -114,18 +115,21 @@ const styles = {
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
-    marginTop: 30,
-    marginBottom: 30,
+    marginTop: 35,
     padding: 0,
-    paddingBottom: 30,
+    paddingBottom: 50,
   },
   socials: {
     width: 50,
     height: 50,
   },
   button: {
+    height: 50,
+    width: 50,
+    position: 'relative',
     borderWidth: 0,
-    backgroundColor: 'rgba(255,255,255,0)',
+    borderStyle: 'solid',
+    borderRadius: '50%',
     hovered: {
       backgroundColor: 'rgba(255,255,255,0)',
       borderWidth: 0,
@@ -135,10 +139,15 @@ const styles = {
   buttonImg: {
     width: 50,
     height: 50,
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
   copyright: {
+    maxWidth: 450,
     color: '#EDE8E4',
     fontSize: 25,
+    marginTop: 50,
   },
 }
 
@@ -185,7 +194,7 @@ class FooterMobile extends Component {
                 )
               })}
               <Button onClick={handleScroll} styles={styles.button}>
-                <Media style={styles.buttonImg} object src={require('../assets/Scroll_Button.png')} alt={'scroll'}/>
+                <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
               </Button>
           </div>
           <div style={styles.copyright}>

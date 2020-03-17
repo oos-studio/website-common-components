@@ -5,19 +5,18 @@ import {Button, Footer as FooterComponent} from '../../../components'
 const socials = [
   {
     name: 'facebook',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Facebook.png'),
     url: 'https://www.facebook.com'
   },
   {
     name: 'twitter',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Twitter.png'),
     url: 'https://www.twitter.com'
   },
   {
     name: 'instagram',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Instagram.png'),
     url: 'https://www.instagram.com'
-
   },
 ]
 
@@ -68,7 +67,7 @@ const styles = {
     justifyContent: 'flex-start',
     alignItems:  'center',
     padding: 30,
-    paddingTop: 100,
+    paddingTop: 75,
   },
   topWrapper: {
     display: 'flex',
@@ -84,6 +83,7 @@ const styles = {
     container: {
       flex: 3,
       backgroundColor: '#562A31',
+      minWidth: 650,
     },
     defaultColumn: {
       margin: 0,
@@ -112,15 +112,17 @@ const styles = {
     ]
   },
   buttonWrapper: {
-    height: 100,
-    width: 100,
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
   },
   button: {
+    height: 90,
+    width: 90,
+    position: 'relative',
     borderWidth: 0,
-    backgroundColor: '#562A31',
+    borderStyle: 'solid',
+    borderRadius: '50%',
     hovered: {
       backgroundColor: 'rgba(255,255,255,0)',
       borderWidth: 0,
@@ -128,8 +130,11 @@ const styles = {
     },
   },
   buttonImg: {
-    width: 85,
-    height: 85,
+    height: 90,
+    width: 90,
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
   bottomWrapper: {
     width: '100%',
@@ -138,10 +143,12 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     flex: 1,
+    paddingTop: 15,
   },
   copyright: {
     color: '#EDE8E4',
     fontSize: 25,
+    marginRight: 25,
   },
   socialWrapper: {
     width: 200,
@@ -151,8 +158,8 @@ const styles = {
     alignItems: 'center',
   },
   socials: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
   },
 }
 
@@ -192,7 +199,7 @@ class FooterDesktop extends Component {
           <FooterComponent columns={columns} styles={styles.footerComp}/>
           <div style={styles.buttonWrapper}>
             <Button onClick={handleScroll} styles={styles.button}>
-              <Media object src={require('../assets/Scroll_Button.png')} alt={'scroll'}/>
+              <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
             </Button>
           </div>
         </div>
