@@ -69,24 +69,32 @@ const styles = {
     height: 900,
     display: 'flex',
     flexDirection: 'column',
-    alignItems:  'flex-start',
+    alignItems:  'center',
+    justifyContent: 'space-evenly',
     padding: 55,
+    paddingTop: 0,
   },
   footerComp: {
     container: {
+      display: 'flex',
       backgroundColor: '#562A31',
     },
     content: {
       flex: 1,
       display: 'flex',
       width: 'auto',
-      backgroundColor: 'blue',
       flexWrap: 'wrap',
+      alignItems: 'flex-start',
     },
     defaultColumn: {
-      margin: 0,
+      whiteSpace: 'nowrap',
+      margin: 10,
       marginBottom: 30,
       padding: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     defaultHeader: {
       color: '#E86956',
@@ -118,7 +126,6 @@ const styles = {
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
-    marginTop: 35,
     padding: 0,
     paddingBottom: 50,
   },
@@ -147,9 +154,9 @@ const styles = {
     left: 0,
   },
   copyright: {
+    textAlign: 'center',
     color: '#EDE8E4',
     fontSize: 20,
-    marginTop: 50,
   },
 }
 
