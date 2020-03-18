@@ -1,17 +1,10 @@
 import React from 'react'
-import BlogListPage from "./samples/BlogListPage"
-import { Footer } from './components'
+import ProvidenceHomepage from "./samples/providence/ProvidenceHomepage"
+import './App.css'
 
 function App() {
-  const footerProps = {
-    title: 'oos',
-    description: `Pete is a loser and doesn't want to talk to us`
-  }
-  return (
-    <div className="App">
-      <BlogListPage/>
-    </div>
-  )
+
+  return <ProvidenceHomepage/>
 }
 
 export default App
