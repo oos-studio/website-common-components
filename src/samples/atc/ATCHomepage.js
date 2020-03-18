@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Footer } from './components/index'
-import { Blurb } from '../../components/index'
+import { Blurb, Section } from '../../components/index'
 import withResize from '../../utils/ResizeHandler'
 
 class ATCHomepage extends Component {
@@ -9,8 +9,12 @@ class ATCHomepage extends Component {
     const { isMobile } = this.props
     return (
       <div style={styles.container}>
-        <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
-        <Blurb content={blurbContent.design} styles={styles.designBlurb} isMobile={isMobile}/>
+        <Section styles={styles.collabSection} isMobile={isMobile}>
+          <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
+        </Section>
+        <Section styles={styles.designSection} isMobile={isMobile}>
+          <Blurb content={blurbContent.design} styles={styles.designBlurb} isMobile={isMobile}/>
+        </Section>
         <Footer isMobile={isMobile}/>
       </div>
     )
@@ -31,6 +35,14 @@ const blurbContent = {
 const styles = {
   container: {
 
+  },
+  collabSection: {
+
+  },
+  designSection: {
+    container: {
+      backgroundColor: '#EDE8E4',
+    },
   },
   collabBlurb: {
     container: {
