@@ -31,7 +31,7 @@ const defaultStyles = {
 		maxWidth: 1200,
 	},
 	title: {
-		fontSize: 60,
+		fontSize: 45,
 		fontWeight: 'bold',
 		textAlign: 'center',
 		marginBottom: 10,
