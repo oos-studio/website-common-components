@@ -23,8 +23,6 @@ class Blurb extends Component {
 
 const defaultStyles = {
 	container: {
-		backgroundColor: '#FFFFFF',
-		width: '100%',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
@@ -39,7 +37,7 @@ const defaultStyles = {
 		marginBottom: 10,
 	},
 	text: {
-		fontSize: 16,
+		fontSize: 25,
 		textAlign: 'center',
 	},
 	mobile: {
@@ -47,7 +45,7 @@ const defaultStyles = {
 			padding: 15,
 		},
 		title: {
-			fontSize: 40,
+			fontSize: 35,
 		},
 	},
 }
@@ -57,6 +55,7 @@ Blurb.defaultProps = {
 		title: 'Sample Blurb Title',
 		text: 'This is some sample blurb text.',
 	},
+	isMobile: false,
 }
 
 export default mergeStyles(defaultStyles)(Blurb)
