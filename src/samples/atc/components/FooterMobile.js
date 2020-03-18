@@ -70,14 +70,18 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems:  'flex-start',
-    padding: 25,
+    padding: 55,
   },
   footerComp: {
     container: {
       backgroundColor: '#562A31',
     },
     content: {
-      display: 'block',
+      flex: 1,
+      display: 'flex',
+      width: 'auto',
+      backgroundColor: 'blue',
+      flexWrap: 'wrap',
     },
     defaultColumn: {
       margin: 0,
@@ -86,15 +90,15 @@ const styles = {
     },
     defaultHeader: {
       color: '#E86956',
-      fontSize: 42,
+      fontSize: 35,
     },
     defaultText: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
     },
     defaultLink: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
       display: 'block',
@@ -108,7 +112,6 @@ const styles = {
   },
   iconWrapper: {
     width: '100%',
-    maxWidth: 450,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -120,12 +123,12 @@ const styles = {
     paddingBottom: 50,
   },
   socials: {
-    width: 50,
-    height: 50,
+    width: 35,
+    height: 35,
   },
   button: {
-    height: 50,
-    width: 50,
+    height: 35,
+    width: 35,
     position: 'relative',
     borderWidth: 0,
     borderStyle: 'solid',
@@ -137,16 +140,15 @@ const styles = {
     },
   },
   buttonImg: {
-    width: 50,
-    height: 50,
+    width: 35,
+    height: 35,
     position: 'absolute',
     top: 0,
     left: 0,
   },
   copyright: {
-    maxWidth: 450,
     color: '#EDE8E4',
-    fontSize: 25,
+    fontSize: 20,
     marginTop: 50,
   },
 }

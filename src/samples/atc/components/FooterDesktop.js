@@ -91,15 +91,15 @@ const styles = {
     },
     defaultHeader: {
       color: '#E86956',
-      fontSize: 42,
+      fontSize: 35,
     },
     defaultText: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
     },
     defaultLink: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
       display: 'block',
@@ -147,7 +147,7 @@ const styles = {
   },
   copyright: {
     color: '#EDE8E4',
-    fontSize: 25,
+    fontSize: 20,
     marginRight: 25,
   },
   socialWrapper: {
