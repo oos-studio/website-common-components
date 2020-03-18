@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Footer } from './components/index'
+import { Footer, ContactForm } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withResize from '../../utils/ResizeHandler'
 
@@ -14,6 +14,9 @@ class ATCHomepage extends Component {
         </Section>
         <Section styles={styles.designSection} isMobile={isMobile}>
           <Blurb content={blurbContent.design} styles={styles.designBlurb} isMobile={isMobile}/>
+        </Section>
+        <Section styles={styles.contact}>
+          <ContactForm isMobile={isMobile} />
         </Section>
         <Footer isMobile={isMobile}/>
       </div>
@@ -64,6 +67,10 @@ const styles = {
     },
     text: {
       color: '#7D7773',
+    },
+  },
+  contact: {
+    container: {
     },
   },
 }

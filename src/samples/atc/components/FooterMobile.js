@@ -108,7 +108,7 @@ const styles = {
   },
   iconWrapper: {
     width: '100%',
-    maxWidth: 450,
+   // maxWidth: 450,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

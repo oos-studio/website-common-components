@@ -7,7 +7,7 @@ class Section extends Component {
     const { children, styles, isMobile } = this.props
 
     const activeStyles = isMobile ? deepmerge(styles, styles.mobile) : styles
-    console.log(activeStyles)
+
     return (
       <div style={activeStyles.container}>
         {children}
