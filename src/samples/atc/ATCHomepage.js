@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm } from './components/index'
+import { Footer, ContactForm, NavBar } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withResize from '../../utils/ResizeHandler'
 
@@ -9,6 +9,7 @@ class ATCHomepage extends Component {
     const { isMobile } = this.props
     return (
       <div style={styles.container}>
+        <NavBar isMobile={isMobile}/>
         <Section styles={styles.collabSection} isMobile={isMobile}>
           <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
         </Section>

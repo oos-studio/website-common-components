@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
+import { Collapse, DropdownMenu, DropdownItem, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 
@@ -57,13 +57,13 @@ class NavBar extends Component {
     }
 
     hideMegaMenu(){
-        this.setState({
+/*        this.setState({
             megaMenu: null,
             aside: null,
             megaMenuOpen: false,
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
-        })
+        })*/
     }
 
     renderNavigationItems(item, index) {
@@ -88,6 +88,11 @@ class NavBar extends Component {
                         {item.text}
                         <Media style={{height: 7.5, width: 11.25, marginLeft: 5}} object src={icon} />
                     </DropdownToggle>
+                    <DropdownMenu right>
+                        <DropdownItem>
+                            TEST
+                        </DropdownItem>
+                    </DropdownMenu>
                 </UncontrolledDropdown>)
                 break
             default:
@@ -159,6 +164,7 @@ const defaultStyles = {
     },
     megaMenu: {
         padding: 0,
+
     },
     asideWrapper: {
         width: '20%',
