@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
-import ListPage from '../components/ListPage'
-import ImageRowItem from "../components/ImageRowItem"
+import ListPage from '../../components/ListPage'
+import ImageRowItem from "../../components/ImageRowItem"
 import { Button } from 'reactstrap'
 
 function ListItemBody(props) {
