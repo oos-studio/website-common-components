@@ -9,6 +9,7 @@ class ATCHomepage extends Component {
     const { isMobile } = this.props
     return (
       <div style={styles.container}>
+        <img src={require('./assets/SampleHeader.png')} style={{width: '100vw', height: '100vh', objectFit: 'cover'}}/>
         <NavBar isMobile={isMobile}/>
         <Section styles={styles.collabSection} isMobile={isMobile}>
           <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
@@ -41,7 +42,9 @@ const styles = {
 
   },
   collabSection: {
-
+    container: {
+      backgroundColor: '#FFFFFF',
+    },
   },
   designSection: {
     container: {

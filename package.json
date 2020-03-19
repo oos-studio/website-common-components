@@ -15,7 +15,8 @@
     "react-render-html": "^0.6.0",
     "react-scripts": "3.3.1",
     "react-scroll-parallax": "^2.3.1",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "what-input": "^5.2.7"
   },
   "scripts": {
     "start": "react-scripts start",
