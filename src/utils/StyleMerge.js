@@ -9,6 +9,13 @@ const mergeStyles = defaultStyle => Component => {
         mergedStyles: this.props.styles ? deepmerge(defaultStyle, this.props.styles) : defaultStyle
       }
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+      if(prevProps !== this.props)
+        this.setState({
+          mergedStyles: this.props.styles ? deepmerge(defaultStyle, this.props.styles) : defaultStyle
+        })
+    }
+
     render() {
       const { styles, ...rest } = this.props
       return <Component styles={this.state.mergedStyles} {...rest}/>
