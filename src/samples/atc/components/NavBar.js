@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavBar as NavBarComp} from '../../../components'
+import { NavBarAnimated as NavBarComp} from '../../../components'
 import { Media, Form, Input, FormGroup} from 'reactstrap'
 import deepmerge from 'deepmerge'
 import MegaMenu from '../../../components/MegaMenu'

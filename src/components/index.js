@@ -7,5 +7,6 @@ import ImageAlignedText from './ImageAlignedText'
 import Button from './Button'
 import Blurb from './Blurb'
 import Section from './Section'
+import NavBarAnimated from './NavBarAnimated'
 
-export { CardGrid, NavBar, Footer, ImageCaptionBlock, FullScreenIntro, ImageAlignedText, Button, Blurb, Section }
+export { CardGrid, NavBar, Footer, ImageCaptionBlock, FullScreenIntro, ImageAlignedText, Button, Blurb, Section, NavBarAnimated }
