@@ -87,11 +87,13 @@ class NavBar extends Component {
              TweenLite.to('#navbar', duration, { height: 100, ease: Power2.easeInOut })
 
              //document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 100}], {duration: duration, fill: 'forwards'})
-             TweenLite.to('#navBrand', duration, { transform: 'translateX(-550px)', width: styles.brandImage.small.width, ease: Power2.easeIn}).then(() => {
+             TweenLite.to('#navBrand', duration, { transform: 'translateX(-510px)', width: styles.brandImage.small.width, ease: Power2.easeOut }).then(() => {
                  this.setState({
                      activeNavImage: scrollNavImage
                  })
-                 TweenLite.to('#navBrand', duration, { transform: 'translateX(0px)', ease: Power2.easeOut })
+                 TweenLite.to('#navBrand', 0, { opacity: 0 })
+                 TweenLite.to('#navBrand', 0, { transform: 'translateX(0px)' })
+                 TweenLite.to('#navBrand', duration, { opacity: 1, ease: Power2.easeOut })
              })
              TweenLite.to('#navSpacer', duration, { width: '60%', ease: Power2.easeInOut })
 
@@ -317,11 +319,12 @@ class NavBar extends Component {
                 color={megaMenuOpen ? activeStyles.mmOpen.navbar.backgroundColor : activeStyles.navbar.backgroundColor}
                 style={ megaMenuOpen ? deepmerge(activeStyles.navbar, activeStyles.mmOpen.navbar) : activeStyles.navbar}>
                 <NavbarBrand href="#" style={activeStyles.brand}>
-                    <img ref={r => this._brandRef = r}
-                         id={'navBrand'}
-                       src={activeNavImage}
-                       alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
-                       style={activeStyles.brandImage} />
+                    <div ref={r => this._brandRef = r} id={'navBrand'}>
+                        <img
+                           src={activeNavImage}
+                           alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
+                           style={activeStyles.brandImage} />
+                    </div>
                     <NavbarText style={activeStyles.brandTitle}>
                         {brand.title}
                     </NavbarText>
