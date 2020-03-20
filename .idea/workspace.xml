@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="378c7b0f-8e54-482d-b986-67d8e6ea8d0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/ContactForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/ContactForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/FooterDesktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/FooterDesktop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/samples/atc/components/FooterMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/FooterMobile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +59,18 @@
       <recent name="$PROJECT_DIR$/src/samples/oos" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
@@ -82,24 +90,12 @@
       <item itemvalue="npm.npm start" />
     </list>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="378c7b0f-8e54-482d-b986-67d8e6ea8d0a" name="Default Changelist" comment="" />
+      <changelist id="a1c34b5f-a1f1-480a-b134-7a31519cb4f3" name="Default Changelist" comment="" />
       <created>1580483898940</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -113,6 +109,7 @@
       <workItem from="1581474460546" duration="781000" />
       <workItem from="1581541250076" duration="3297000" />
       <workItem from="1584709587011" duration="258000" />
+      <workItem from="1584734855293" duration="1160000" />
     </task>
     <task id="LOCAL-00001" summary="Added Header common component">
       <created>1580931315237</created>
@@ -177,21 +174,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="Increase subtitle font size" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584724052857" />
-    <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.bottom" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.bottom/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.center" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.center/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.left" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.left/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.right" timestamp="1584724052857" />
-    <state width="2097" height="388" key="GridCell.Tab.0.right/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state x="3129" y="379" key="SettingsEditor" timestamp="1584724052857" />
-    <state x="3129" y="379" key="SettingsEditor/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" timestamp="1584724052857" />
-    <state x="-1320" y="319" key="git4idea.merge.GitPullDialog" timestamp="1584724087675">
-      <screen x="-1920" y="0" width="1920" height="1080" />
-    </state>
-    <state x="-1320" y="319" key="git4idea.merge.GitPullDialog/0.23.1792.1097/-1920.0.1920.1080@-1920.0.1920.1080" timestamp="1584724087675" />
+    <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state width="2097" height="388" key="GridCell.Tab.0.bottom" />
+    <state width="2097" height="388" key="GridCell.Tab.0.bottom/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state width="2097" height="388" key="GridCell.Tab.0.center" />
+    <state width="2097" height="388" key="GridCell.Tab.0.center/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state width="2097" height="388" key="GridCell.Tab.0.left" />
+    <state width="2097" height="388" key="GridCell.Tab.0.left/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state width="2097" height="388" key="GridCell.Tab.0.right" />
+    <state width="2097" height="388" key="GridCell.Tab.0.right/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state x="3129" y="379" key="SettingsEditor" />
+    <state x="3129" y="379" key="SettingsEditor/0.23.2560.1337/2560.23.2560.1417@2560.23.2560.1417" />
+    <state x="-1320" y="319" key="git4idea.merge.GitPullDialog" />
+    <state x="-1320" y="319" key="git4idea.merge.GitPullDialog/0.23.1792.1097/-1920.0.1920.1080@-1920.0.1920.1080" />
   </component>
 </project>

@@ -62,8 +62,8 @@ const columns = [
 const styles = {
   container: {
     backgroundColor: '#562A31',
-    height: 900,
-    md: {
+    //height: 900,
+    /*md: {
       height: 450,
     },
     sm: {
@@ -71,7 +71,7 @@ const styles = {
     },
     xs: {
       height: 800,
-    }
+    }*/
   },
   widthRestrict: {
     minWidth: 275,
@@ -109,7 +109,8 @@ const styles = {
     },
     defaultHeader: {
       color: '#E86956',
-      fontSize: 35,
+      fontSize: 24,
+      paddingBottom: 10,
     },
     defaultText: {
       fontSize: 16,
@@ -140,16 +141,18 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 0,
+    paddingTop: 20,
+    paddingBottom: 35,
   },
   divider: {
-    borderBottomWidth: 1,
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#EDE8E4',
+    height: 1,
+    backgroundColor: '#EDE8E4',
     width: '100%',
+    marginBottom: 35,
   },
   socials: {
-    width: 25,
-    height: 25,
+    width: 32,
+    height: 32,
   },
   button: {
     height: 35,
@@ -175,7 +178,8 @@ const styles = {
     textAlign: 'left',
     alignSelf: 'flex-start',
     color: '#EDE8E4',
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: 600,
   },
 }
 
