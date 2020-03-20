@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import { Footer, ContactForm } from './components/index'
 import { Blurb, Section } from '../../components/index'
+import withSizes from '../../utils/Sizes'
 
 class ATCHomepage extends Component {
 
   render() {
+    const { getStyle } = this.props
     return (
-      <div style={styles.container}>
-        <Section styles={styles.collabSection}>
-          <Blurb content={blurbContent.collab} styles={styles.collabBlurb}/>
+      <div style={getStyle(styles.container)}>
+        <Section styles={getStyle(styles.collabSection)}>
+          <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
         </Section>
-        <Section styles={styles.designSection}>
-          <Blurb content={blurbContent.design} styles={styles.designBlurb}/>
+        <Section styles={getStyle(styles.designSection)}>
+          <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>
         </Section>
-        <Section styles={styles.contact}>
+        <Section styles={getStyle(styles.contact)}>
           <ContactForm/>
         </Section>
         <Footer />
@@ -73,4 +75,4 @@ const styles = {
   },
 }
 
-export default ATCHomepage
+export default withSizes(ATCHomepage)
