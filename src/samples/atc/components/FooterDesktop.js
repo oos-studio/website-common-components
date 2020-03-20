@@ -165,8 +165,10 @@ const styles = {
     color: '#EDE8E4',
     fontSize: 20,
     marginRight: 25,
+    flex: 8,
   },
   socialWrapper: {
+    flex: 1,
     width: 200,
     height: 50,
     display: 'flex',

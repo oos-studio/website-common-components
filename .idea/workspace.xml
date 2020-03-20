@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="378c7b0f-8e54-482d-b986-67d8e6ea8d0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/ContactForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/ContactForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/samples/atc/components/FooterDesktop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/FooterDesktop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/samples/atc/components/FooterMobile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/atc/components/FooterMobile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
