@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="378c7b0f-8e54-482d-b986-67d8e6ea8d0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="378c7b0f-8e54-482d-b986-67d8e6ea8d0a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +101,7 @@
       <workItem from="1581429590994" duration="3000" />
       <workItem from="1581474460546" duration="781000" />
       <workItem from="1581541250076" duration="3297000" />
+      <workItem from="1584709587011" duration="258000" />
     </task>
     <task id="LOCAL-00001" summary="Added Header common component">
       <created>1580931315237</created>
@@ -132,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584564186222</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Increase subtitle font size">
+      <created>1584709736792</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1584709736792</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,7 +162,8 @@
     <MESSAGE value="Add header render method to ListPage" />
     <MESSAGE value="Add List, ListItem, and ImageRowItem" />
     <MESSAGE value="Merge BlogListPage oos site sample into App.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge BlogListPage oos site sample into App.js" />
+    <MESSAGE value="Increase subtitle font size" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increase subtitle font size" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />

@@ -23,7 +23,7 @@ class ImageRowItem extends Component {
       this.setState({
         xs: true
       })
-    } else if (xs && window.innerWidth >= 768) {
+    } else if (xs && window.innerWidth >= 576) {
       this.setState({
         xs: false
       })
