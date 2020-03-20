@@ -28,9 +28,6 @@ const defaultStyles = {
 		alignItems: 'center',
 		padding: 35,
 		maxWidth: 1200,
-		md: {
-			padding: 15,
-		},
 	},
 	title: {
 		fontSize: 45,
