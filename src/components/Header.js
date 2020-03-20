@@ -70,7 +70,7 @@ const defaultStyles = {
   },
   subTitle: {
     marginTop: 5,
-    fontSize: 11,
+    fontSize: 12,
   },
   titleImage: {
 
