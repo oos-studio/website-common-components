@@ -16,6 +16,9 @@ class NavBar extends Component {
             navItemStyles: [],
             scrollY: window.pageYOffset,
             showScrolledNav: false,
+            defaultNavImage: null,
+            scrollNavImage: null,
+            activeNavImage: null,
         }
 
         this.toggle = this.toggle.bind(this)
@@ -25,8 +28,13 @@ class NavBar extends Component {
         this.hoverNavItem = this.hoverNavItem.bind(this)
         this.leaveHoverNavItem = this.leaveHoverNavItem.bind(this)
         this.handleScroll = this.handleScroll.bind(this)
+        this.swapImage = this.swapImage.bind(this)
 
         this._navRefs = []
+        this._brandRef = null
+        this._navbarRef = null
+        this._navRef = null
+        this._spacerRef = null
     }
 
     componentWillMount() {
@@ -46,14 +54,64 @@ class NavBar extends Component {
 
     componentDidMount() {
         const { handleScroll } = this
+        const { brand } = this.props
 
         window.addEventListener('scroll', handleScroll)
+
+        this.setState({
+            defaultNavImage: brand.image.src,
+            scrollNavImage: brand.image.scrolled.src,
+            activeNavImage: brand.image.src,
+        })
     }
 
     componentWillUnmount() {
         const { handleScroll } = this
 
         window.removeEventListener('scroll', handleScroll)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.showScrolledNav !== this.state.showScrolledNav) {
+            this.swapImage()
+        }
+    }
+
+        swapImage() {
+         const { defaultNavImage, scrollNavImage, activeNavImage, showScrolledNav } = this.state
+         const duration = 500
+
+         if(showScrolledNav) {
+             const navbarHeight = document.getElementById('navbarID').style.height
+
+             document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 100}], {duration: duration, fill: 'forwards'})
+
+             this._brandRef.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(-500px)'}], {duration: duration, fill: 'forwards'})
+             this._spacerRef.animate([{width: 0}, {width: '60%'}], {duration: duration, fill: 'forwards'})
+
+             this.setState({
+                 activeNavImage: scrollNavImage
+             })
+
+             this._brandRef.animate([{transform: 'translateX(-500px)'}, {transform: 'translateX(0px)'}], {duration: duration, fill: 'forwards'})
+
+         } else {
+             const navbarHeight = document.getElementById('navbarID').style.height
+
+             document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 150}], {duration: duration, fill: 'forwards'})
+
+             this._spacerRef.animate([{width: '60%'}, {width: 0}], {duration: duration, fill: 'forwards'})
+
+             this.setState({
+                     activeNavImage: defaultNavImage
+             })
+
+             this._brandRef.animate([{transform: 'translateX(-500px)'}, {transform: 'translateX(0px)'}], {duration: duration, fill: 'forwards'})
+
+         }
+
+
+
     }
 
     handleScroll = () => {
@@ -222,9 +280,10 @@ class NavBar extends Component {
                 </UncontrolledDropdown>)
                 break
             case 'spacer':
-                if(showScrolledNav) {
-                   navItem = item.render()
-                }
+                navItem = (
+                  <div ref={r => this._spacerRef = r} style={{width: showScrolledNav ? item.maxWidth : 0, /*transition: 'all 1s'*/}}>
+                  </div>
+                )
                 break
             default:
                 navItem = item.render()
@@ -234,7 +293,7 @@ class NavBar extends Component {
     }
 
     render() {
-        const { open, aside, megaMenu, megaMenuOpen, showScrolledNav} = this.state
+        const { open, aside, megaMenu, megaMenuOpen, showScrolledNav, activeNavImage} = this.state
         const { items, brand, styles, useCustomMegaMenu, fixed } = this.props
         const { toggle, renderNavigationItems } = this
 
@@ -247,12 +306,13 @@ class NavBar extends Component {
           }}>
               <div style={ megaMenuOpen ? deepmerge(activeStyles.mmBackground, activeStyles.mmOpen.mmBackground) : activeStyles.mmBackground} />
               <Navbar
+                id='navbarID'
                 expand="md"
                 color={megaMenuOpen ? activeStyles.mmOpen.navbar.backgroundColor : activeStyles.navbar.backgroundColor}
                 style={ megaMenuOpen ? deepmerge(activeStyles.navbar, activeStyles.mmOpen.navbar) : activeStyles.navbar}>
                 <NavbarBrand href="#" style={activeStyles.brand}>
-                    <Media object
-                           src={showScrolledNav ? brand.image.scrolled.src : brand.image.src}
+                    <img ref={r => this._brandRef = r}
+                           src={activeNavImage}
                            alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
                            style={activeStyles.brandImage} />
                     <NavbarText style={activeStyles.brandTitle}>
@@ -264,7 +324,7 @@ class NavBar extends Component {
                   navbar
                   isOpen={open}
                   style={activeStyles.collapse}>
-                    <Nav navbar style={megaMenuOpen ? deepmerge(activeStyles.nav, activeStyles.mmOpen.nav) : activeStyles.nav}>
+                    <Nav id='navID' navbar style={megaMenuOpen ? deepmerge(activeStyles.nav, activeStyles.mmOpen.nav) : activeStyles.nav}>
                         {items.map((item, index) => renderNavigationItems(item, index))}
                     </Nav>
                 </Collapse>

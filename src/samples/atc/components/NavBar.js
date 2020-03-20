@@ -55,8 +55,6 @@ const styles = {
     flex: 1,
     display: 'flex',
     justifyContent: 'space-evenly',
-    transition: 'all 1s',
-
   },
   navLink: {
     color: '#FFFFFF',
@@ -118,9 +116,7 @@ const styles = {
   scrolled: {
     navbar: {
       backgroundColor: '#000000',
-      height: 75,
       paddingTop: 35,
-      transition: 'height 0.5s ease-in',
     },
     nav: {
       borderLeftWidth: 2,
@@ -128,15 +124,12 @@ const styles = {
       borderLeftColor: '#FFFFFF',
       marginLeft: 10,
       paddingLeft: 10,
-      justifyContent: 'flex-start',
-      transition: 'all 1s',
     },
     brand: {
       marginLeft: 35,
     },
     brandImage: {
-      height: 60,
-      width: 60,
+
     },
     navItem: {
     },
@@ -406,13 +399,7 @@ const data = {
         "text": '',
         "url": '',
         "type": 'spacer',
-        render: () => {
-          return (
-            <div style={{width: '60%'}}>
-
-            </div>
-          )
-        }
+        "maxWidth": '60%',
       },
       {
         "text": '',
