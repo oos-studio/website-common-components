@@ -141,14 +141,25 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 0,
-    paddingTop: 20,
-    paddingBottom: 35,
+    xs: {
+      paddingTop: 20,
+      paddingBottom: 35,
+    },
+    md: {
+      paddingTop: 30,
+      paddingBottom: 55,
+    }
   },
   divider: {
     height: 1,
     backgroundColor: '#EDE8E4',
     width: '100%',
-    marginBottom: 35,
+    xs: {
+      marginBottom: 35,
+    },
+    md: {
+      marginBottom: 55,
+    },
   },
   socials: {
     width: 32,

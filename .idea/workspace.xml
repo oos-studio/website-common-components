@@ -109,7 +109,7 @@
       <workItem from="1581474460546" duration="781000" />
       <workItem from="1581541250076" duration="3297000" />
       <workItem from="1584709587011" duration="258000" />
-      <workItem from="1584734855293" duration="1160000" />
+      <workItem from="1584734855293" duration="1565000" />
     </task>
     <task id="LOCAL-00001" summary="Added Header common component">
       <created>1580931315237</created>
@@ -146,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584709736792</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adjust mobile spacing of social icons and divider">
+      <created>1584736173820</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1584736173820</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +178,8 @@
     <MESSAGE value="Add List, ListItem, and ImageRowItem" />
     <MESSAGE value="Merge BlogListPage oos site sample into App.js" />
     <MESSAGE value="Increase subtitle font size" />
-    <option name="LAST_COMMIT_MESSAGE" value="Increase subtitle font size" />
+    <MESSAGE value="Adjust mobile spacing of social icons and divider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjust mobile spacing of social icons and divider" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3358" y="484" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
