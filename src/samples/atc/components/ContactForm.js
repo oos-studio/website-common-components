@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from '../../../components/index'
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import withSizes from '../../../utils/Sizes'
 import deepmerge from 'deepmerge'
 import backgroundImg from '../assets/ContactForm.png'
 import '../index.css'
@@ -136,4 +137,4 @@ const styles = {
   },
 }
 
-export default ContactForm
+export default withSizes(ContactForm)

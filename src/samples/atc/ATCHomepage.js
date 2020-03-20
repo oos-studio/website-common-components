@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
 import { Footer, ContactForm } from './components/index'
 import { Blurb, Section } from '../../components/index'
-import withResize from '../../utils/ResizeHandler'
 
 class ATCHomepage extends Component {
 
   render() {
-    const { isMobile } = this.props
     return (
       <div style={styles.container}>
-        <Section styles={styles.collabSection} isMobile={isMobile}>
-          <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
+        <Section styles={styles.collabSection}>
+          <Blurb content={blurbContent.collab} styles={styles.collabBlurb}/>
         </Section>
-        <Section styles={styles.designSection} isMobile={isMobile}>
-          <Blurb content={blurbContent.design} styles={styles.designBlurb} isMobile={isMobile}/>
+        <Section styles={styles.designSection}>
+          <Blurb content={blurbContent.design} styles={styles.designBlurb}/>
         </Section>
         <Section styles={styles.contact}>
-          <ContactForm isMobile={isMobile} />
+          <ContactForm/>
         </Section>
-        <Footer isMobile={isMobile}/>
+        <Footer />
       </div>
     )
   }
@@ -75,4 +73,4 @@ const styles = {
   },
 }
 
-export default withResize(800)(ATCHomepage)
+export default ATCHomepage
