@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
+import { TweenLite, Power2 } from 'gsap'
 import '../App.css'
 
 class NavBar extends Component {
@@ -79,23 +80,28 @@ class NavBar extends Component {
 
         swapImage() {
          const { defaultNavImage, scrollNavImage, activeNavImage, showScrolledNav } = this.state
-         const duration = 500
+            const { styles } = this.props
+         const duration = 0.5
 
          if(showScrolledNav) {
-             const navbarHeight = document.getElementById('navbarID').style.height
+             TweenLite.to('#navbar', duration, { height: 100, ease: Power2.easeInOut })
 
-             document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 100}], {duration: duration, fill: 'forwards'})
-
-             this._brandRef.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(-500px)'}], {duration: duration, fill: 'forwards'})
-             this._spacerRef.animate([{width: 0}, {width: '60%'}], {duration: duration, fill: 'forwards'})
-
-             this.setState({
-                 activeNavImage: scrollNavImage
+             //document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 100}], {duration: duration, fill: 'forwards'})
+             TweenLite.to('#navBrand', duration, { transform: 'translateX(-550px)', width: styles.brandImage.small.width, ease: Power2.easeIn}).then(() => {
+                 this.setState({
+                     activeNavImage: scrollNavImage
+                 })
+                 TweenLite.to('#navBrand', duration, { transform: 'translateX(0px)', ease: Power2.easeOut })
              })
+             TweenLite.to('#navSpacer', duration, { width: '60%', ease: Power2.easeInOut })
 
-             this._brandRef.animate([{transform: 'translateX(-500px)'}, {transform: 'translateX(0px)'}], {duration: duration, fill: 'forwards'})
 
-         } else {
+             //this._brandRef.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(-500px)'}], {duration: duration, fill: 'forwards'})
+             //this._spacerRef.animate([{width: 0}, {width: '60%'}], {duration: duration, fill: 'forwards'})
+
+             //this._brandRef.animate([{transform: 'translateX(-500px)'}, {transform: 'translateX(0px)'}], {duration: duration, fill: 'forwards'})
+
+         } /*else {
              const navbarHeight = document.getElementById('navbarID').style.height
 
              document.getElementById('navbarID').animate([{height: navbarHeight}, {height: 150}], {duration: duration, fill: 'forwards'})
@@ -108,7 +114,7 @@ class NavBar extends Component {
 
              this._brandRef.animate([{transform: 'translateX(-500px)'}, {transform: 'translateX(0px)'}], {duration: duration, fill: 'forwards'})
 
-         }
+         }*/
 
 
 
@@ -281,7 +287,7 @@ class NavBar extends Component {
                 break
             case 'spacer':
                 navItem = (
-                  <div ref={r => this._spacerRef = r} style={{width: showScrolledNav ? item.maxWidth : 0, /*transition: 'all 1s'*/}}>
+                  <div ref={r => this._spacerRef = r} id={'navSpacer'} /*style={{width: showScrolledNav ? item.maxWidth : 0, /*transition: 'all 1s'}}*/>
                   </div>
                 )
                 break
@@ -306,15 +312,16 @@ class NavBar extends Component {
           }}>
               <div style={ megaMenuOpen ? deepmerge(activeStyles.mmBackground, activeStyles.mmOpen.mmBackground) : activeStyles.mmBackground} />
               <Navbar
-                id='navbarID'
+                id='navbar'
                 expand="md"
                 color={megaMenuOpen ? activeStyles.mmOpen.navbar.backgroundColor : activeStyles.navbar.backgroundColor}
                 style={ megaMenuOpen ? deepmerge(activeStyles.navbar, activeStyles.mmOpen.navbar) : activeStyles.navbar}>
                 <NavbarBrand href="#" style={activeStyles.brand}>
                     <img ref={r => this._brandRef = r}
-                           src={activeNavImage}
-                           alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
-                           style={activeStyles.brandImage} />
+                         id={'navBrand'}
+                       src={activeNavImage}
+                       alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
+                       style={activeStyles.brandImage} />
                     <NavbarText style={activeStyles.brandTitle}>
                         {brand.title}
                     </NavbarText>
@@ -364,7 +371,11 @@ const defaultStyles = {
     mmBackground: {},
     navbar: {},
     brand: {},
-    brandImage: {},
+    brandImage: {
+        small: {
+            width: 100,
+        }
+    },
     brandTitle: {},
     toggler: {},
     nav: {},

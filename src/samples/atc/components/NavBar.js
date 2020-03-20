@@ -47,6 +47,9 @@ const styles = {
 
   },
   brandImage: {
+    small: {
+      width: 97,
+    }
   },
   collapse: {
 
