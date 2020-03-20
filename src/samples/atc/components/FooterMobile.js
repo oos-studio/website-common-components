@@ -32,11 +32,20 @@ const columns = [
   },
   {
     heading: 'Contact Us',
-    type: 'text',
-    text: [
-      'Toll Free: 800.238.2687',
-      'Office: 574.262.1258',
-      'sales@atcomp.com',
+    type: 'links',
+    links: [
+      {
+        title: 'Toll Free: 800.238.2687',
+        url: '',
+      },
+      {
+        title: 'Office: 574.262.1258',
+        url: '',
+      },
+      {
+        title: 'sales@atcomp.com',
+        url: 'mailto:sales@atcomp.com',
+      },
     ],
   },
   {
