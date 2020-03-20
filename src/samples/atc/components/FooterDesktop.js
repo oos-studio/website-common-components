@@ -165,17 +165,18 @@ const styles = {
     color: '#EDE8E4',
     fontSize: 20,
     marginRight: 25,
-    flex: 8,
   },
   socialWrapper: {
-    flex: 1,
     width: 200,
     height: 50,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   socials: {
+    paddingLeft: 35,
+  },
+  socialImages: {
     height: 25,
     width: 25,
   },
@@ -231,9 +232,9 @@ class FooterDesktop extends Component {
           <div style={styles.socialWrapper}>
             {socials.map(s => {
               return(
-                <React.Fragment>
-                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
-                </React.Fragment>
+                <div style={styles.socials}>
+                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socialImages} /></a>
+                </div>
               )
             })}
           </div>
