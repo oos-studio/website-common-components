@@ -31,11 +31,20 @@ const columns = [
   },
   {
     heading: 'Contact Us',
-    type: 'text',
-    text: [
-      'Toll Free: 800.238.2687',
-      'Office: 574.262.1258',
-      'sales@atcomp.com',
+    type: 'links',
+    links: [
+      {
+        title: 'Toll Free: 800.238.2687',
+        url: '',
+      },
+      {
+        title: 'Office: 574.262.1258',
+        url: '',
+      },
+      {
+        title: 'sales@atcomp.com',
+        url: 'mailto:sales@atcomp.com',
+      },
     ],
   },
   {
@@ -74,7 +83,7 @@ const styles = {
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 1200,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
     flex: 1.6,
@@ -117,24 +126,25 @@ const styles = {
     justifyContent: 'flex-end',
   },
   button: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 80,
     position: 'relative',
-    borderWidth: 0,
+    borderWidth: 2,
+    borderColor: '#EDE8E4',
     borderStyle: 'solid',
     borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     hovered: {
-      backgroundColor: 'rgba(255,255,255,0)',
-      borderWidth: 0,
-      color: 'white',
+      backgroundColor: 'rgba(0,0,0,0)',
+      borderColor: '#EDE8E4',
     },
   },
   buttonImg: {
-    height: 90,
-    width: 90,
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    height: 45,
+    width: 45,
+    paddingBottom: 5,
   },
   bottomWrapper: {
     width: '100%',
@@ -158,8 +168,8 @@ const styles = {
     alignItems: 'center',
   },
   socials: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
   },
 }
 
@@ -199,7 +209,7 @@ class FooterDesktop extends Component {
           <FooterComponent columns={columns} styles={styles.footerComp}/>
           <div style={styles.buttonWrapper}>
             <Button onClick={handleScroll} styles={styles.button}>
-              <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
+              <Media object src={require('../assets/ScrollButton.png')} style={styles.buttonImg}/>
             </Button>
           </div>
         </div>
