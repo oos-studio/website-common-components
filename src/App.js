@@ -6,9 +6,9 @@ import './App.css'
 
 function App() {
 
-  //return <ATCHomepage />
+  return <ATCHomepage />
   //return <ProvidenceHomepage/>
-  return <BlogListPage/>
+  //return <BlogListPage/>
 }
 
 export default App

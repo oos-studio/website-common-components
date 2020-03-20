@@ -12,30 +12,28 @@ class ContactForm extends Component {
   }
 
   render() {
-    const { isMobile } = this.props
     const { handleSubmit } = this
-
-    const activeStyles = isMobile ? deepmerge(styles, styles.mobile) : styles
+    const { getStyle } = this.props
 
     return (
-      <div style={activeStyles.container}>
-        <div style={activeStyles.header}>
+      <div style={getStyle(styles.container)}>
+        <div style={getStyle(styles.header)}>
           Contact Us
         </div>
-        <Form style={activeStyles.formWrapper}>
+        <Form style={getStyle(styles.formWrapper)}>
           <FormGroup>
-            <Input type="text" name="name" id="name" placeholder="Name" style={activeStyles.formInput}/>
+            <Input type="text" name="name" id="name" placeholder="Name" style={getStyle(styles.formInput)}/>
           </FormGroup>
           <FormGroup>
-            <Input type="email" name="email" id="email" placeholder="Email" style={activeStyles.formInput}/>
+            <Input type="email" name="email" id="email" placeholder="Email" style={getStyle(styles.formInput)}/>
           </FormGroup>
           <FormGroup>
-            <Input type="text" name="phone" id="phone" placeholder="Phone" style={activeStyles.formInput}/>
+            <Input type="text" name="phone" id="phone" placeholder="Phone" style={getStyle(styles.formInput)}/>
           </FormGroup>
           <FormGroup>
-            <Input type="textarea" name="message" id="message" placeholder="Type something..." style={activeStyles.formMessage} />
+            <Input type="textarea" name="message" id="message" placeholder="Type something..." style={getStyle(styles.formMessage)} />
           </FormGroup>
-          <Button styles={activeStyles.submit} onClick={handleSubmit}>
+          <Button styles={getStyle(styles.submit)} onClick={handleSubmit}>
             SUBMIT
           </Button>
         </Form>
@@ -54,11 +52,17 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: 50,
+    sm: {
+      padding: 35,
+    }
   },
   header: {
     fontSize: 60,
     color: '#FFFFFF',
     marginBottom: 25,
+    sm: {
+      fontSize: 35,
+    }
   },
   formWrapper: {
     minHeight: 0,
@@ -81,6 +85,13 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
+    sm: {
+      marginBottom: 15,
+      height: 53,
+    },
+    xs: {
+      width: 300,
+    },
   },
   formMessage: {
     height: 175,
@@ -96,6 +107,14 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
+    sm: {
+      marginBottom: 15,
+      marginLeft: 0,
+      height: 100,
+    },
+    xs: {
+      width: 300,
+    },
   },
   submit: {
     marginLeft: 38,
@@ -109,30 +128,13 @@ const styles = {
       backgroundColor: '#E86956',
       borderWidth: 0,
       color: '#FFFFFF',
-    }
-  },
-  mobile: {
-    container: {
-      padding: 35,
     },
-    header: {
-      fontSize: 35,
-    },
-    formInput: {
-      marginBottom: 15,
+    sm: {
       height: 53,
-      width: 300,
-    },
-    formMessage: {
-      marginBottom: 15,
       marginLeft: 0,
-      height: 100,
-      width: 300,
     },
-    submit: {
-      height: 53,
+    xs: {
       width: 300,
-      marginLeft: 0,
     },
   },
 }
