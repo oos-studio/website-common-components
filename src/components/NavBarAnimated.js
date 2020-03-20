@@ -237,16 +237,14 @@ class NavBar extends Component {
             <NavLink
               ref={_r => {_navRefs[index] = _r}}
               href={item.url}
-              style={{
-                ...activeStyles.navLink,
-                color: activeNavIndex === index ? activeStyles.navLink.hover.color : activeStyles.navLink.color,
-                borderBottomStyle: item.image ? '' : navItemStyles[index].borderBottomStyle,
-                borderBottomWidth: item.image ? 0 : navItemStyles[index].borderBottomWidth,
-              }}>
+              style={activeStyles.navLink}>
               {item.image ?
                 <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
                 : item.text}
             </NavLink>
+            <div style={activeNavIndex === index && !item.image ? activeStyles.itemBorder : {width: 0}}>
+
+            </div>
           </NavItem>)
         break
       case 'dropdown':
@@ -259,13 +257,14 @@ class NavBar extends Component {
                             style={{
                               ...activeStyles.dropdownItem,
                               color: activeNavIndex === index ? activeStyles.dropdownItem.hover.color : activeStyles.dropdownItem.color,
-                              borderBottomStyle: item.image ? '' : navItemStyles[index].borderBottomStyle,
-                              borderBottomWidth: item.image ? 0 : navItemStyles[index].borderBottomWidth,
                             }}
                             onMouseEnter={() => hoverNavItem(item, index)}>
               {item.image ?
                 <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
                 : item.text}
+              <div style={activeNavIndex === index && !item.image ? activeStyles.itemBorder : {width: 0}}>
+
+              </div>
               <Media object
                      style={{height: 7.5, width: 11.25, marginLeft: 5}}
                      src={icon} />

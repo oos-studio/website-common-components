@@ -59,12 +59,18 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-evenly',
   },
+  itemBorder: {
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: '#E86956',
+    width: '100%',
+   // transition: 'width 0.25s ease-in-out',
+  },
   navLink: {
     color: '#FFFFFF',
     fontSize: 16,
     whiteSpace: 'nowrap',
-    borderBottomColor: '#E86956',
-    marginRight: 15,
+    marginRight: 0,
     hover: {
       color: '#E86956',
     },
@@ -73,7 +79,6 @@ const styles = {
     color: '#FFFFFF',
     fontSize: 16,
     whiteSpace: 'nowrap',
-    borderBottomColor: '#E86956',
     marginRight: 15,
     hover: {
       color: '#E86956',
