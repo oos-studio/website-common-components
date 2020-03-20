@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Button, Footer as FooterComponent} from '../../../components'
 import {Media} from 'reactstrap'
+import withSizes from '../../../utils/Sizes'
 
 const socials = [
   {
@@ -31,11 +32,20 @@ const columns = [
   },
   {
     heading: 'Contact Us',
-    type: 'text',
-    text: [
-      'Toll Free: 800.238.2687',
-      'Office: 574.262.1258',
-      'sales@atcomp.com',
+    type: 'links',
+    links: [
+      {
+        title: 'Toll Free: 800.238.2687',
+        url: '',
+      },
+      {
+        title: 'Office: 574.262.1258',
+        url: '',
+      },
+      {
+        title: 'sales@atcomp.com',
+        url: 'mailto:sales@atcomp.com',
+      },
     ],
   },
   {
@@ -61,40 +71,63 @@ const columns = [
 const styles = {
   container: {
     backgroundColor: '#562A31',
-    height: 900,
+    //height: 900,
+    /*md: {
+      height: 450,
+    },
+    sm: {
+      height: 450,
+    },
+    xs: {
+      height: 800,
+    }*/
   },
   widthRestrict: {
-    maxWidth: 800,
     minWidth: 275,
-    height: 900,
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems:  'flex-start',
-    padding: 25,
+    alignItems:  'center',
+    justifyContent: 'space-between',
+    padding: 50,
+    md: {
+      paddingTop: 25,
+    }
   },
   footerComp: {
     container: {
+      display: 'flex',
       backgroundColor: '#562A31',
     },
     content: {
-      display: 'block',
+      flex: 1,
+      display: 'flex',
+      width: 'auto',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start',
     },
     defaultColumn: {
-      margin: 0,
+      whiteSpace: 'nowrap',
+      margin: 10,
       marginBottom: 30,
+      marginLeft: 0,
       padding: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     },
     defaultHeader: {
       color: '#E86956',
-      fontSize: 42,
+      fontSize: 24,
+      paddingBottom: 10,
     },
     defaultText: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
     },
     defaultLink: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
       display: 'block',
@@ -104,50 +137,69 @@ const styles = {
       {},
       {},
       {},
-    ]
+    ],
+    xs: {
+      defaultColumn: {
+        marginBottom: 10,
+      }
+    }
   },
   iconWrapper: {
     width: '100%',
-   // maxWidth: 450,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#EDE8E4',
-    marginTop: 35,
     padding: 0,
-    paddingBottom: 50,
+    xs: {
+      paddingTop: 20,
+      paddingBottom: 35,
+    },
+    md: {
+      paddingTop: 30,
+      paddingBottom: 55,
+    }
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#EDE8E4',
+    width: '100%',
+    xs: {
+      marginBottom: 35,
+    },
+    md: {
+      marginBottom: 55,
+    },
   },
   socials: {
-    width: 50,
-    height: 50,
+    width: 32,
+    height: 32,
   },
   button: {
-    height: 50,
-    width: 50,
+    height: 35,
+    width: 35,
     position: 'relative',
-    borderWidth: 0,
+    borderWidth: 2,
+    borderColor: '#EDE8E4',
     borderStyle: 'solid',
     borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     hovered: {
-      backgroundColor: 'rgba(255,255,255,0)',
-      borderWidth: 0,
-      color: 'white',
+      backgroundColor: 'rgba(0,0,0,0)',
+      borderColor: '#EDE8E4',
     },
   },
   buttonImg: {
-    width: 50,
-    height: 50,
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    height: 15,
+    width: 15,
   },
   copyright: {
-    maxWidth: 450,
+    textAlign: 'left',
+    alignSelf: 'flex-start',
     color: '#EDE8E4',
-    fontSize: 25,
-    marginTop: 50,
+    fontSize: 16,
+    fontWeight: 600,
   },
 }
 
@@ -181,23 +233,27 @@ class FooterMobile extends Component {
 
   render() {
     const { handleScroll } = this
+    const { getStyle } = this.props
     return (
-      <div style={styles.container}>
-        <div style={styles.widthRestrict}>
-          <FooterComponent columns={columns} styles={styles.footerComp}/>
-          <div style={styles.iconWrapper}>
+      <div style={getStyle(styles.container)}>
+        <div style={getStyle(styles.widthRestrict)}>
+          <FooterComponent columns={columns} styles={getStyle(styles.footerComp)}/>
+          <div style={getStyle(styles.iconWrapper)}>
               {socials.map(s => {
                 return(
                   <React.Fragment>
-                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
+                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={getStyle(styles.socials)} /></a>
                   </React.Fragment>
                 )
               })}
-              <Button onClick={handleScroll} styles={styles.button}>
-                <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
+              <Button onClick={handleScroll} styles={getStyle(styles.button)}>
+                <Media style={getStyle(styles.buttonImg)} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
               </Button>
           </div>
-          <div style={styles.copyright}>
+          <div style={getStyle(styles.divider)}>
+
+          </div>
+          <div style={getStyle(styles.copyright)}>
               Copyright 2020 American Technology Components, Inc.
           </div>
         </div>
@@ -206,4 +262,4 @@ class FooterMobile extends Component {
   }
 }
 
-export default FooterMobile
+export default withSizes(FooterMobile)

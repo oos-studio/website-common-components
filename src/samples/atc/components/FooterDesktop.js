@@ -31,11 +31,20 @@ const columns = [
   },
   {
     heading: 'Contact Us',
-    type: 'text',
-    text: [
-      'Toll Free: 800.238.2687',
-      'Office: 574.262.1258',
-      'sales@atcomp.com',
+    type: 'links',
+    links: [
+      {
+        title: 'Toll Free: 800.238.2687',
+        url: '',
+      },
+      {
+        title: 'Office: 574.262.1258',
+        url: '',
+      },
+      {
+        title: 'sales@atcomp.com',
+        url: 'mailto:sales@atcomp.com',
+      },
     ],
   },
   {
@@ -61,23 +70,28 @@ const columns = [
 const styles = {
   container: {
     backgroundColor: '#562A31',
-    height: 600,
+    height: 450,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems:  'center',
-    padding: 30,
-    paddingTop: 75,
+    padding: 75,
+    paddingTop: 50,
+    paddingBottom: 0,
   },
   topWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 1200,
-    borderBottomWidth: 2,
+    flex: 1.6,
+  },
+  divider: {
+    borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
-    flex: 1.6,
+    width: '100%',
+    maxWidth: 1200,
   },
   footerComp: {
     container: {
@@ -91,15 +105,15 @@ const styles = {
     },
     defaultHeader: {
       color: '#E86956',
-      fontSize: 42,
+      fontSize: 35,
     },
     defaultText: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
     },
     defaultLink: {
-      fontSize: 20,
+      fontSize: 16,
       color: '#EDE8E4',
       marginBottom: 10,
       display: 'block',
@@ -115,26 +129,28 @@ const styles = {
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
+    alignItems: 'flex-start',
   },
   button: {
-    height: 90,
-    width: 90,
+    height: 80,
+    width: 80,
     position: 'relative',
-    borderWidth: 0,
+    borderWidth: 2,
+    borderColor: '#EDE8E4',
     borderStyle: 'solid',
     borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     hovered: {
-      backgroundColor: 'rgba(255,255,255,0)',
-      borderWidth: 0,
-      color: 'white',
+      backgroundColor: 'rgba(0,0,0,0)',
+      borderColor: '#EDE8E4',
     },
   },
   buttonImg: {
-    height: 90,
-    width: 90,
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    height: 45,
+    width: 45,
+    paddingBottom: 5,
   },
   bottomWrapper: {
     width: '100%',
@@ -147,19 +163,22 @@ const styles = {
   },
   copyright: {
     color: '#EDE8E4',
-    fontSize: 25,
+    fontSize: 20,
     marginRight: 25,
   },
   socialWrapper: {
     width: 200,
     height: 50,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   socials: {
-    height: 40,
-    width: 40,
+    paddingLeft: 35,
+  },
+  socialImages: {
+    height: 25,
+    width: 25,
   },
 }
 
@@ -199,9 +218,12 @@ class FooterDesktop extends Component {
           <FooterComponent columns={columns} styles={styles.footerComp}/>
           <div style={styles.buttonWrapper}>
             <Button onClick={handleScroll} styles={styles.button}>
-              <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
+              <Media object src={require('../assets/ScrollButton.png')} style={styles.buttonImg}/>
             </Button>
           </div>
+        </div>
+        <div style={styles.divider}>
+
         </div>
         <div style={styles.bottomWrapper}>
           <div style={styles.copyright}>
@@ -210,9 +232,9 @@ class FooterDesktop extends Component {
           <div style={styles.socialWrapper}>
             {socials.map(s => {
               return(
-                <React.Fragment>
-                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
-                </React.Fragment>
+                <div style={styles.socials}>
+                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socialImages} /></a>
+                </div>
               )
             })}
           </div>

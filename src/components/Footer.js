@@ -87,7 +87,20 @@ class Footer extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map(link => <a href={link.url}  style={linkStyle}>{link.title}</a>)}
+            {column.links.map(link => {
+              return(
+              <React.Fragment>
+                {
+                  link.url.length > 0 &&
+                <a href={link.url} style={linkStyle}>{link.title}</a>
+                }
+                {
+                  link.url.length <= 0 &&
+                <div style={linkStyle}>{link.title}</div>
+                }
+              </React.Fragment>
+              )
+            })}
           </React.Fragment>
         )
       case 'image':
@@ -110,7 +123,7 @@ class Footer extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <div style={styles.container}>
+      <Container fluid style={styles.container}>
         <div style={styles.content}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
@@ -121,7 +134,7 @@ class Footer extends Component {
           )
         })}
         </div>
-      </div>
+      </Container>
     )
   }
 }
