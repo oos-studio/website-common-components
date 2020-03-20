@@ -70,23 +70,28 @@ const columns = [
 const styles = {
   container: {
     backgroundColor: '#562A31',
-    height: 600,
+    height: 450,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems:  'center',
-    padding: 30,
-    paddingTop: 75,
+    padding: 75,
+    paddingTop: 50,
+    paddingBottom: 0,
   },
   topWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
     maxWidth: 1200,
+    flex: 1.6,
+  },
+  divider: {
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
-    flex: 1.6,
+    width: '100%',
+    maxWidth: 1200,
   },
   footerComp: {
     container: {
@@ -124,6 +129,7 @@ const styles = {
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end',
+    alignItems: 'flex-start',
   },
   button: {
     height: 80,
@@ -168,8 +174,8 @@ const styles = {
     alignItems: 'center',
   },
   socials: {
-    height: 35,
-    width: 35,
+    height: 25,
+    width: 25,
   },
 }
 
@@ -212,6 +218,9 @@ class FooterDesktop extends Component {
               <Media object src={require('../assets/ScrollButton.png')} style={styles.buttonImg}/>
             </Button>
           </div>
+        </div>
+        <div style={styles.divider}>
+
         </div>
         <div style={styles.bottomWrapper}>
           <div style={styles.copyright}>

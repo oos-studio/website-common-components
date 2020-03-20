@@ -5,10 +5,10 @@ import withSizes from '../../../utils/Sizes'
 
 class Footer extends Component {
   render() {
-    const { sm } = this.props
+    const { md } = this.props
     return (
        <React.Fragment>
-         { sm ? <FooterMobile /> : <FooterDesktop /> }
+         { md ? <FooterMobile /> : <FooterDesktop /> }
       </React.Fragment>
     )
   }

@@ -21,16 +21,16 @@ class ContactForm extends Component {
           Contact Us
         </div>
         <Form style={getStyle(styles.formWrapper)}>
-          <FormGroup>
+          <FormGroup style={getStyle(styles.formGroup)}>
             <Input type="text" name="name" id="name" placeholder="Name" style={getStyle(styles.formInput)}/>
           </FormGroup>
-          <FormGroup>
+          <FormGroup style={getStyle(styles.formGroup)}>
             <Input type="email" name="email" id="email" placeholder="Email" style={getStyle(styles.formInput)}/>
           </FormGroup>
-          <FormGroup>
+          <FormGroup style={getStyle(styles.formGroup)}>
             <Input type="text" name="phone" id="phone" placeholder="Phone" style={getStyle(styles.formInput)}/>
           </FormGroup>
-          <FormGroup>
+          <FormGroup style={getStyle(styles.formGroup)}>
             <Input type="textarea" name="message" id="message" placeholder="Type something..." style={getStyle(styles.formMessage)} />
           </FormGroup>
           <Button styles={getStyle(styles.submit)} onClick={handleSubmit}>
@@ -72,6 +72,15 @@ const styles = {
     justifyContent: 'flex-start',
     alignContent: 'center',
     alignItems: 'center',
+    sm: {
+      width: '100%',
+    },
+
+  },
+  formGroup: {
+    sm: {
+      width: '100%',
+    },
   },
   formInput: {
     marginBottom: 38,
@@ -88,9 +97,10 @@ const styles = {
     sm: {
       marginBottom: 15,
       height: 53,
+      width: '100%',
+
     },
     xs: {
-      width: 300,
     },
   },
   formMessage: {
@@ -111,9 +121,9 @@ const styles = {
       marginBottom: 15,
       marginLeft: 0,
       height: 100,
+      width: '100%',
     },
     xs: {
-      width: 300,
     },
   },
   submit: {
@@ -132,9 +142,9 @@ const styles = {
     sm: {
       height: 53,
       marginLeft: 0,
+      width: '100%',
     },
     xs: {
-      width: 300,
     },
   },
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Button, Footer as FooterComponent} from '../../../components'
 import {Media} from 'reactstrap'
+import withSizes from '../../../utils/Sizes'
 
 const socials = [
   {
@@ -62,17 +63,27 @@ const styles = {
   container: {
     backgroundColor: '#562A31',
     height: 900,
+    md: {
+      height: 450,
+    },
+    sm: {
+      height: 450,
+    },
+    xs: {
+      height: 800,
+    }
   },
   widthRestrict: {
-    maxWidth: 800,
     minWidth: 275,
-    height: 900,
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems:  'center',
-    justifyContent: 'space-evenly',
-    padding: 55,
-    paddingTop: 0,
+    justifyContent: 'space-between',
+    padding: 50,
+    md: {
+      paddingTop: 25,
+    }
   },
   footerComp: {
     container: {
@@ -90,6 +101,7 @@ const styles = {
       whiteSpace: 'nowrap',
       margin: 10,
       marginBottom: 30,
+      marginLeft: 0,
       padding: 0,
       display: 'flex',
       flexDirection: 'column',
@@ -115,26 +127,33 @@ const styles = {
       {},
       {},
       {},
-    ]
+    ],
+    xs: {
+      defaultColumn: {
+        marginBottom: 10,
+      }
+    }
   },
   iconWrapper: {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: 0,
+  },
+  divider: {
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#EDE8E4',
-    padding: 0,
-    paddingBottom: 50,
+    width: '100%',
   },
   socials: {
-    width: 35,
-    height: 35,
+    width: 25,
+    height: 25,
   },
   button: {
-    height: 45,
-    width: 45,
+    height: 35,
+    width: 35,
     position: 'relative',
     borderWidth: 2,
     borderColor: '#EDE8E4',
@@ -149,11 +168,12 @@ const styles = {
     },
   },
   buttonImg: {
-    height: 25,
-    width: 25,
+    height: 15,
+    width: 15,
   },
   copyright: {
-    textAlign: 'center',
+    textAlign: 'left',
+    alignSelf: 'flex-start',
     color: '#EDE8E4',
     fontSize: 20,
   },
@@ -189,23 +209,27 @@ class FooterMobile extends Component {
 
   render() {
     const { handleScroll } = this
+    const { getStyle } = this.props
     return (
-      <div style={styles.container}>
-        <div style={styles.widthRestrict}>
-          <FooterComponent columns={columns} styles={styles.footerComp}/>
-          <div style={styles.iconWrapper}>
+      <div style={getStyle(styles.container)}>
+        <div style={getStyle(styles.widthRestrict)}>
+          <FooterComponent columns={columns} styles={getStyle(styles.footerComp)}/>
+          <div style={getStyle(styles.iconWrapper)}>
               {socials.map(s => {
                 return(
                   <React.Fragment>
-                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socials} /></a>
+                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={getStyle(styles.socials)} /></a>
                   </React.Fragment>
                 )
               })}
-              <Button onClick={handleScroll} styles={styles.button}>
-                <Media style={styles.buttonImg} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
+              <Button onClick={handleScroll} styles={getStyle(styles.button)}>
+                <Media style={getStyle(styles.buttonImg)} object src={require('../assets/ScrollButton.png')} alt={'scroll'}/>
               </Button>
           </div>
-          <div style={styles.copyright}>
+          <div style={getStyle(styles.divider)}>
+
+          </div>
+          <div style={getStyle(styles.copyright)}>
               Copyright 2020 American Technology Components, Inc.
           </div>
         </div>
@@ -214,4 +238,4 @@ class FooterMobile extends Component {
   }
 }
 
-export default FooterMobile
+export default withSizes(FooterMobile)
