@@ -1,71 +1,79 @@
 import React, { Component } from 'react'
 import { Footer as FooterComponent } from '../../../components'
-import { Form, FormGroup, Input } from 'reactstrap'
+import { FooterInfo, FooterContactForm } from './index'
+
+const socials = [
+  {
+    name: 'facebook',
+    icon: 'http://picsum.photos/100/100',
+    url: 'https://www.facebook.com'
+  },
+  {
+    name: 'instagram',
+    icon: 'http://picsum.photos/100/100',
+    url: 'https://www.instagram.com'
+
+  },
+  {
+    name: 'vimeo',
+    icon: 'http://picsum.photos/100/100',
+    url: 'https://www.vimeo.com'
+
+  },
+]
 
 const columns = [
   {
     heading: '',
-    type: 'image',
-    src: 'https://picsum.photos/200/200',
-    title: 'Image',
+    render: () => {
+      return (
+      <FooterInfo socials={socials}/>
+      )
+    }
   },
   {
     heading: 'Contact Us',
-    type: 'links',
-    links: [
-      {
-        title: 'Email | jordan@oos-studio.com',
-        url: '#/A'
-      },
-      {
-        title: "Phone | 919-600-4862",
-        url: "#/B"
-      },
-    ]
-  },
-  {
-    heading: 'Address',
-    type: 'text',
-    text: [
-      '815 Frost Rd \n #503 \n Streetsboro, OH 44241'
-    ]
-  },
-  {
-    heading: 'Contact Form',
     render: () => {
       return (
-        <Form style={styles.form}>
-          <FormGroup style={styles.formGroup}>
-            <Input type='email' placeholder='Enter your email address' />
-          </FormGroup>
-          <FormGroup style={styles.formGroup}>
-            <Input type='text' placeholder='Subject' />
-          </FormGroup>
-          <FormGroup style={styles.formGroup}>
-            <Input type='textarea' placeholder='Enter your message here' />
-          </FormGroup>
-        </Form>
+      <FooterContactForm />
       )
     }
   },
 ]
 
 const styles = {
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+  container: {
+    width: '100vw',
+    height: 600,
+    backgroundColor: '#6A5B5D',
+    paddingTop: 50,
   },
-  formGroup: {
-    width: '100%',
-    margin: 5,
-  }
+  columns: [
+    {
+      column: {
+        flex: 2,
+      }
+    },
+    {
+      column: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+      },
+      header: {
+        fontSize: 30,
+        color: '#FDECBB',
+        marginBottom: 125,
+      }
+    },
+  ]
 }
 
 class Footer extends Component {
   render() {
     return (
-      <FooterComponent columns={columns}/>
+      <FooterComponent columns={columns} styles={styles}/>
     )
   }
 }
