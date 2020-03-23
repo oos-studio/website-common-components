@@ -22,12 +22,11 @@ class Button extends Component {
   render() {
     const { styles, onClick } = this.props
     const { hovered } = this.state
-    const { handleHover } = this.handleHover
 
     const activeStyles = hovered ? deepmerge(styles, styles.hovered) : styles
 
     return (
-      <BasicButton onClick={onClick} onMouseEnter={handleHover} onMouseLeave={handleHover} style={activeStyles}>
+      <BasicButton onClick={onClick} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
         {this.props.children}
       </BasicButton>
     )

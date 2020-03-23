@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
-import deepmerge from 'deepmerge'
+import withSizes from '../utils/Sizes'
 
 class Section extends Component {
   render() {
-    const { children, styles, isMobile } = this.props
-
-    const activeStyles = isMobile ? deepmerge(styles, styles.mobile) : styles
+    const { children, styles, getStyle } = this.props
 
     return (
-      <div style={activeStyles.container}>
+      <div style={getStyle(styles.container)}>
         {children}
       </div>
     )
@@ -23,9 +21,21 @@ const defaultStyles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  mobile: {
+    xs: {
 
+    },
+    sm: {
+
+    },
+    md: {
+
+    },
+    lg: {
+
+    },
+    xl: {
+
+    },
   },
 }
 
@@ -34,4 +44,4 @@ Section.defaultProps = {
   isMobile: false,
 }
 
-export default mergeStyles(defaultStyles)(Section)
+export default mergeStyles(defaultStyles)(withSizes(Section))

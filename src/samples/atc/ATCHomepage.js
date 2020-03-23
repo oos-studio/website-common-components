@@ -1,26 +1,24 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm, NavBar } from './components/index'
+import { Footer, ContactForm } from './components/index'
 import { Blurb, Section } from '../../components/index'
-import withResize from '../../utils/ResizeHandler'
+import withSizes from '../../utils/Sizes'
 
 class ATCHomepage extends Component {
 
   render() {
-    const { isMobile } = this.props
+    const { getStyle } = this.props
     return (
-      <div style={styles.container}>
-        <img src={require('./assets/SampleHeader.png')} style={{width: '100vw', height: '100vh', objectFit: 'cover'}}/>
-        <NavBar isMobile={isMobile}/>
-        <Section styles={styles.collabSection} isMobile={isMobile}>
-          <Blurb content={blurbContent.collab} styles={styles.collabBlurb} isMobile={isMobile}/>
+      <div style={getStyle(styles.container)}>
+        <Section styles={getStyle(styles.collabSection)}>
+          <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
         </Section>
-        <Section styles={styles.designSection} isMobile={isMobile}>
-          <Blurb content={blurbContent.design} styles={styles.designBlurb} isMobile={isMobile}/>
+        <Section styles={getStyle(styles.designSection)}>
+          <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>
         </Section>
-        <Section styles={styles.contact}>
-          <ContactForm isMobile={isMobile} />
+        <Section styles={getStyle(styles.contact)}>
+          <ContactForm/>
         </Section>
-        <Footer isMobile={isMobile}/>
+        <Footer />
       </div>
     )
   }
@@ -42,9 +40,7 @@ const styles = {
 
   },
   collabSection: {
-    container: {
-      backgroundColor: '#FFFFFF',
-    },
+
   },
   designSection: {
     container: {
@@ -79,4 +75,4 @@ const styles = {
   },
 }
 
-export default withResize(800)(ATCHomepage)
+export default withSizes(ATCHomepage)
