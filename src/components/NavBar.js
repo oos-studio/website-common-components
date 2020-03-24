@@ -187,7 +187,9 @@ const defaultStyles = {
 
 NavBar.defaultProps = {
     items: [],
-    brand: {},
+    brand: {
+        image: {},
+    },
     style: {
         navigation: {},
         navigationDropdown: {}
