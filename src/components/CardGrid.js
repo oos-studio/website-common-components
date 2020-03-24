@@ -121,7 +121,7 @@ const defaultStyles = {
   subtitleRow: {
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
     paddingBottom: 3,
   },
@@ -129,7 +129,7 @@ const defaultStyles = {
     paddingBottom: 17,
   },
   text: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'left',
     flexGrow: 1,
   },

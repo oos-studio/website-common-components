@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import { Container, Col, Row, Media} from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import deepmerge from 'deepmerge'
 
 class Footer extends Component {
 
@@ -9,7 +10,7 @@ class Footer extends Component {
     let columnStyle = styles.defaultColumn
     if (styles.columns[index]) {
       if ('column' in styles.columns[index]) {
-        columnStyle = mergeStyles(styles.defaultColumn, styles.columns[index].column)
+        columnStyle = deepmerge(styles.defaultColumn, styles.columns[index].column)
       }
     }
     return columnStyle
@@ -20,7 +21,7 @@ class Footer extends Component {
     let headerStyle = styles.defaultHeader
     if (styles.columns[index]) {
       if ('header' in styles.columns[index]) {
-        headerStyle = mergeStyles(styles.defaultHeader, styles.columns[index].header)
+        headerStyle = deepmerge(styles.defaultHeader, styles.columns[index].header)
       }
     }
     return headerStyle
@@ -31,7 +32,7 @@ class Footer extends Component {
     let linkStyle = styles.defaultLink
     if (styles.columns[index]) {
       if ('link' in styles.columns[index]) {
-        linkStyle = mergeStyles(styles.defaultLink, styles.columns[index].link)
+        linkStyle = deepmerge(styles.defaultLink, styles.columns[index].link)
       }
     }
     return linkStyle
@@ -42,7 +43,7 @@ class Footer extends Component {
     let imageStyle = styles.defaultImage
     if (styles.columns[index]) {
       if ('image' in styles.columns[index]) {
-        imageStyle = mergeStyles(styles.defaultImage, styles.columns[index].image)
+        imageStyle = deepmerge(styles.defaultImage, styles.columns[index].image)
       }
     }
     return imageStyle
@@ -53,7 +54,7 @@ class Footer extends Component {
     let textStyle = styles.defaultText
     if(styles.columns[index]) {
       if('text' in styles.columns[index]) {
-        textStyle = mergeStyles(styles.defaultText, styles.columns[index].text)
+        textStyle = deepmerge(styles.defaultText, styles.columns[index].text)
       }
     }
 
@@ -86,7 +87,20 @@ class Footer extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map(link => <a href={link.url}  style={linkStyle}>{link.title}</a>)}
+            {column.links.map(link => {
+              return(
+              <React.Fragment>
+                {
+                  link.url.length > 0 &&
+                <a href={link.url} style={linkStyle}>{link.title}</a>
+                }
+                {
+                  link.url.length <= 0 &&
+                <div style={linkStyle}>{link.title}</div>
+                }
+              </React.Fragment>
+              )
+            })}
           </React.Fragment>
         )
       case 'image':
@@ -109,7 +123,8 @@ class Footer extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <div style={styles.container}>
+      <Container fluid style={styles.container}>
+        <div style={styles.content}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -118,7 +133,8 @@ class Footer extends Component {
             </Col>
           )
         })}
-      </div>
+        </div>
+      </Container>
     )
   }
 }
@@ -126,25 +142,18 @@ class Footer extends Component {
 const defaultStyles = {
   container: {
     backgroundColor: 'tan',
+    padding: 0,
+  },
+  content: {
+    margin: 'auto',
+    width: '100%',
     display: 'flex',
   },
   defaultColumn: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    width: '20%',
-    margin: '2%',
-    marginRight: '5%',
-    marginLeft: '5%',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+
   },
   defaultHeader: {
-    position: 'absolute',
-    top: 0,
-    fontSize: 25,
-    marginBottom: '20%',
-    color: 'white',
+
   },
   defaultLink: {
     fontSize: 18,
