@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
-import { TweenLite, Power2 } from 'gsap'
+import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import '../App.css'
 
-class NavBar extends Component {
+class NavBarAnimated extends Component {
   constructor(props) {
     super(props)
     this.state = {
       open: false,
-      megaMenu: null,
-      megaMenuOpen: false,
-      aside: null,
       activeNavIndex: null,
       navItemStyles: [],
       scrollY: window.pageYOffset,
@@ -20,22 +17,24 @@ class NavBar extends Component {
       defaultNavImage: null,
       scrollNavImage: null,
       activeNavImage: null,
+      brandImageStyles: null,
+      isAnimating: false,
     }
 
     this.toggle = this.toggle.bind(this)
     this.renderNavigationItems = this.renderNavigationItems.bind(this)
-    this.showMegaMenu = this.showMegaMenu.bind(this)
-    this.hideMegaMenu = this.hideMegaMenu.bind(this)
+    this.showDropdownMenu = this.showDropdownMenu.bind(this)
+    this.hideDropdownMenu = this.hideDropdownMenu.bind(this)
     this.hoverNavItem = this.hoverNavItem.bind(this)
     this.leaveHoverNavItem = this.leaveHoverNavItem.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
-    this.swapImage = this.swapImage.bind(this)
+    this.runAnimations = this.runAnimations.bind(this)
 
     this._navRefs = []
   }
 
   componentWillMount() {
-    const { items } = this.props
+    const { items, styles } = this.props
     const navItemStyles = []
     items.forEach(i => {
       navItemStyles.push({
@@ -46,11 +45,12 @@ class NavBar extends Component {
 
     this.setState({
       navItemStyles: navItemStyles,
+      brandImageStyles: styles.brandImage.large
     })
   }
 
   componentDidMount() {
-    const { handleScroll } = this
+    const { handleScroll, runAnimations } = this
     const { brand } = this.props
 
     window.addEventListener('scroll', handleScroll)
@@ -60,6 +60,8 @@ class NavBar extends Component {
       scrollNavImage: brand.image.scrolled.src,
       activeNavImage: brand.image.src,
     })
+
+    handleScroll()
   }
 
   componentWillUnmount() {
@@ -69,46 +71,61 @@ class NavBar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevState.showScrolledNav !== this.state.showScrolledNav) {
-      this.swapImage()
+    const { showScrolledNav } = this.state
+    const { runAnimations } = this
+
+    if(prevState.showScrolledNav !== showScrolledNav) {
+      runAnimations()
     }
   }
 
-  swapImage() {
+  runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
     const { styles } = this.props
-    const duration = 0.5
+    const duration = 0.25
+
 
     if(showScrolledNav) {
-      TweenLite.to('#navbar', duration, { height: 100, ease: Power2.easeInOut })
+     TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
+       TweenLite.to('#navBrand', duration, {
+         transform: 'translateX(-510px)',
+         width: styles.brandImage.small.width,
+         ease: Power2.easeOut
+       })
+       TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
+       TweenLite.to('#collapse', duration, {...styles.scrolled.collapse}).then(() => {
+         this.setState({
+           activeNavImage: scrollNavImage,
+           brandImageStyles: styles.brandImage.small
+         })
+         TweenLite.to('#navBrand', 0, {opacity: 0})
+         TweenLite.to('#navBrand', 0, {transform: 'translateX(0px)'})
+         TweenLite.to('#navBrand', duration, {opacity: 1, ease: Power2.easeOut})
+       })
 
-      TweenLite.to('#navBrand', duration, { transform: 'translateX(-510px)', width: styles.brandImage.small.width, ease: Power2.easeOut }).then(() => {
-        this.setState({
-          activeNavImage: scrollNavImage
-        })
-        TweenLite.to('#navBrand', 0, { opacity: 0 })
-        TweenLite.to('#navBrand', 0, { transform: 'translateX(0px)' })
-        TweenLite.to('#navBrand', duration, { opacity: 1, ease: Power2.easeOut })
-      })
-      TweenLite.to('#navSpacer', duration, { width: '60%', ease: Power2.easeInOut })
-
+       TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
+       TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
+     })
     } else {
-      TweenLite.to('#navbar', duration, { height: 150, ease: Power2.easeInOut })
+      const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-      TweenLite.to('#navBrand', duration, { transform: 'translateX(-510px)', width: styles.brandImage.small.width, ease: Power2.easeOut }).then(() => {
-        this.setState({
-          activeNavImage: defaultNavImage
-        })
-        TweenLite.to('#navSpacer', duration, { width: 0, ease: Power2.easeInOut })
-        TweenLite.to('#navBrand', 0, { opacity: 0 })
-        TweenLite.to('#navBrand', 0, { transform: 'translateX(0px)' })
-        TweenLite.to('#navBrand', duration, { opacity: 1, ease: Power2.easeOut })
+      TweenLite.to('#navbar', duration, { height: styles.navbar.height, ease: Power2.easeOut })
+      TweenLite.to('#navBrand', duration,{opacity: 0}).then(() => {
+          this.setState({
+            activeNavImage: defaultNavImage,
+            brandImageStyles: styles.brandImage.large
+          })
+
+        TweenLite.to('#collapse', 0, {borderLeftWidth: 0, ease: Power2.easeOut})
+
+        tl.to('#item5',{flex: 0}, 0 )
+        tl.to('#collapse',{...styles.collapse}, 0)
+        tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
+        tl.to('#navBrand', duration, {width: styles.brandImage.large.width, duration: 0 })
+
+        TweenLite.to('#navbar', duration, {...styles.navbar, ease: Power2.easeOut})
       })
-
-         }
-
-
-
+    }
   }
 
   handleScroll = () => {
@@ -120,15 +137,15 @@ class NavBar extends Component {
 
     const scrollY = winScroll / height
 
-    let showScrolledNav = false
+    let showScrolled = false
 
     if(scrollY >= 0.2 && changeOnScroll) {
-      showScrolledNav = true
+      showScrolled = true
     }
 
     this.setState({
       scrollY: scrollY,
-      showScrolledNav: showScrolledNav,
+      showScrolledNav: showScrolled,
     })
   }
 
@@ -137,44 +154,33 @@ class NavBar extends Component {
     this.setState({ open: !open })
   }
 
-  async showMegaMenu(item, index) {
-    const { useCustomMegaMenu } = this.props
+  async showDropdownMenu(item, index) {
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    await this.hideMegaMenu(null, activeNavIndex)
-
-    if(!useCustomMegaMenu) {
-      _navRefs[index].toggle()
-    }
+    await this.hideDropdownMenu(null, activeNavIndex)
+    _navRefs[index].toggle()
 
     this.setState({
-      aside: item.aside,
-      megaMenu: item.render(),
-      megaMenuOpen: true,
       activeNavIndex: index,
     })
   }
 
-  hideMegaMenu(item, index){
-    const { useCustomMegaMenu } = this.props
+  hideDropdownMenu(item, index){
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    if(!useCustomMegaMenu && activeNavIndex !== null) {
+    if(activeNavIndex !== null && _navRefs[index].toggle !== undefined) {
       _navRefs[index].toggle()
     }
 
     this.setState({
-      megaMenu: null,
-      aside: null,
-      megaMenuOpen: false,
       activeNavIndex: null,
     })
   }
 
   hoverNavItem(item, index) {
-    const { showMegaMenu } = this
+    const { showDropdownMenu } = this
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
@@ -185,9 +191,9 @@ class NavBar extends Component {
       navItemStyles: tmpStyles,
     })
 
-    if (item.type === 'dropdown')
+    if (item.type === 'dropdown' && !item.image)
     {
-      showMegaMenu(item, index)
+      showDropdownMenu(item, index)
     } else {
       this.setState({
         activeNavIndex: index,
@@ -196,7 +202,7 @@ class NavBar extends Component {
   }
 
   leaveHoverNavItem(item, index) {
-    const { hideMegaMenu } = this
+    const { hideDropdownMenu } = this
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
@@ -207,9 +213,9 @@ class NavBar extends Component {
       navItemStyles: tmpStyles,
     })
 
-    if (item.type === 'dropdown')
+    if (item.type === 'dropdown' && !item.image)
     {
-      hideMegaMenu(item, index)
+      hideDropdownMenu(item, index)
     } else {
       this.setState({
         activeNavIndex: null,
@@ -217,34 +223,41 @@ class NavBar extends Component {
     }
   }
 
-  renderNavigationItems(item, index) {
-    const { styles, icon, useCustomMegaMenu } = this.props
-    const { hoverNavItem, leaveHoverNavItem, _navRefs } = this
-    const { navItemStyles, activeNavIndex, showScrolledNav } = this.state
+  clickDropdown = (index) => {
+    const { hideDropdownMenu } = this
 
-    const activeStyles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
+    hideDropdownMenu(null, index)
+  }
+
+  renderNavigationItems(item, index) {
+    const { styles, icon } = this.props
+    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
+    const { activeNavIndex, showScrolledNav } = this.state
 
     let navItem = null
+    let id = `item${index}`
 
     switch(item.type) {
       case 'link':
         navItem = (
           <NavItem
+            id={id}
             key={index}
-            style={activeStyles.navItem}
+            style={styles.navItem}
             onMouseEnter={() => hoverNavItem(item, index)}
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
               ref={_r => {_navRefs[index] = _r}}
               href={item.url}
-              style={activeStyles.navLink}>
+              style={{
+                ...styles.navLink,
+                color: showScrolledNav ? styles.navLink.color : (activeNavIndex === index ? styles.navLink.hover.color : styles.navLink.color),
+                borderBottomColor: activeNavIndex === index && !item.image ? styles.navLink.hover.borderBottomColor : styles.navLink.borderBottomColor,
+              }}>
               {item.image ?
                 <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
                 : item.text}
             </NavLink>
-            <div style={activeNavIndex === index && !item.image ? activeStyles.itemBorder : {width: 0}}>
-
-            </div>
           </NavItem>)
         break
       case 'dropdown':
@@ -252,101 +265,72 @@ class NavBar extends Component {
           <UncontrolledDropdown nav inNavbar
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}
-                                key={index}>
-            <DropdownToggle nav
-                            style={{
-                              ...activeStyles.dropdownItem,
-                              color: activeNavIndex === index ? activeStyles.dropdownItem.hover.color : activeStyles.dropdownItem.color,
-                            }}
-                            onMouseEnter={() => hoverNavItem(item, index)}>
-              {item.image ?
-                <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
-                : item.text}
-              <div style={activeNavIndex === index && !item.image ? activeStyles.itemBorder : {width: 0}}>
-
+                                key={index}
+                                onClick={() => clickDropdown(index)}>
+            <DropdownToggle style={styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
+              <div style={{
+                ...styles.dropdownItem,
+                color: showScrolledNav ? styles.dropdownItem.color : (activeNavIndex === index ? styles.dropdownItem.hover.color : styles.dropdownItem.color),
+                borderBottomColor: activeNavIndex === index && !item.image ? styles.dropdownItem.hover.borderBottomColor : styles.dropdownItem.borderBottomColor,
+              }}>
+                {item.image ?
+                  <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
+                  : item.text}
               </div>
+              {!item.image &&
               <Media object
-                     style={{height: 7.5, width: 11.25, marginLeft: 5}}
-                     src={icon} />
+                     style={activeNavIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.hover) : styles.dropdownIcon}
+                     src={icon} />}
             </DropdownToggle>
             <DropdownMenu onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {!useCustomMegaMenu && item.render()}
+              {item.render()}
             </DropdownMenu>
           </UncontrolledDropdown>)
         break
-      case 'spacer':
-        navItem = (
-          <div ref={r => this._spacerRef = r} id={'navSpacer'} /*style={{width: showScrolledNav ? item.maxWidth : 0, /*transition: 'all 1s'}}*/>
-          </div>
-        )
-        break
       default:
-        navItem = item.render()
         break
     }
     return navItem
   }
 
   render() {
-    const { open, aside, megaMenu, megaMenuOpen, showScrolledNav, activeNavImage} = this.state
-    const { items, brand, styles, useCustomMegaMenu, fixed } = this.props
+    const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
+    const { items, brand, styles, fixed } = this.props
     const { toggle, renderNavigationItems } = this
-
-    const activeStyles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
 
     return(
       <div style={{
         position: fixed ? 'fixed' : 'absolute',
-        ...activeStyles.container,
+        ...styles.container,
       }}>
-        <div style={ megaMenuOpen ? deepmerge(activeStyles.mmBackground, activeStyles.mmOpen.mmBackground) : activeStyles.mmBackground} />
         <Navbar
           id='navbar'
           expand="md"
-          color={megaMenuOpen ? activeStyles.mmOpen.navbar.backgroundColor : activeStyles.navbar.backgroundColor}
-          style={ megaMenuOpen ? deepmerge(activeStyles.navbar, activeStyles.mmOpen.navbar) : activeStyles.navbar}>
-          <NavbarBrand href="#" style={activeStyles.brand}>
-            <div ref={r => this._brandRef = r} id={'navBrand'}>
+          color={styles.navbar.backgroundColor}
+          style={styles.navbar}>
+          <NavbarBrand href="#" style={styles.brand}>
+            <div id={'navBrand'}>
               <img
                 src={activeNavImage}
                 alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
-                style={activeStyles.brandImage} />
+                style={brandImageStyles} />
             </div>
-            <NavbarText style={activeStyles.brandTitle}>
+            <NavbarText style={styles.brandTitle}>
               {brand.title}
             </NavbarText>
           </NavbarBrand>
-          <NavbarToggler onClick={toggle} style={activeStyles.toggler} />
+          <NavbarToggler onClick={toggle} style={styles.toggler} />
           <Collapse
+            id='collapse'
             navbar
             isOpen={open}
-            style={activeStyles.collapse}>
-            <Nav id='navID' navbar style={megaMenuOpen ? deepmerge(activeStyles.nav, activeStyles.mmOpen.nav) : activeStyles.nav}>
+            style={styles.collapse}>
+            <Nav id='nav' navbar style={styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index))}
             </Nav>
           </Collapse>
         </Navbar>
-        <div style={activeStyles.megaMenu}>
-          {aside !== null && aside !== undefined &&
-          <React.Fragment>
-            <Media
-              style={activeStyles.asideImage}
-              object
-              src={aside.brand.image.src}
-              alt={aside.brand.image.title}/>
-            <div style={activeStyles.asideWrapper}>
-              <div style={activeStyles.asideHeader}>
-                {aside.header}
-              </div>
-              <div style={activeStyles.asideBody}>
-                {aside.text}
-              </div>
-            </div>
-          </React.Fragment>
-          }
-          {useCustomMegaMenu && megaMenu}
-        </div>
       </div>
     )
   }
@@ -365,7 +349,10 @@ const defaultStyles = {
   brandImage: {
     small: {
       width: 100,
-    }
+    },
+    large: {
+      width: 400,
+    },
   },
   brandTitle: {},
   toggler: {},
@@ -374,9 +361,6 @@ const defaultStyles = {
   navLink: {},
   dropdownMenuContainer: {},
   dropdownContainer: {},
-  megaMenu: {
-    padding: 0,
-  },
   asideWrapper: {
     width: '20%',
     textAlign: 'center',
@@ -405,16 +389,15 @@ const defaultStyles = {
   },
 }
 
-NavBar.defaultProps = {
+NavBarAnimated.defaultProps = {
   items: [],
   brand: {},
   style: {
     navigation: {},
     navigationDropdown: {}
   },
-  useCustomMegaMenu: true,
   fixed: false,
   changeOnScroll: false,
 }
 
-export default mergeStyles(defaultStyles)(NavBar)
+export default mergeStyles(defaultStyles)(NavBarAnimated)

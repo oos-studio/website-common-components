@@ -52,7 +52,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: 50,
-    sm: {
+    md: {
       padding: 35,
     }
   },
@@ -60,7 +60,7 @@ const styles = {
     fontSize: 60,
     color: '#FFFFFF',
     marginBottom: 25,
-    sm: {
+    md: {
       fontSize: 35,
     }
   },
@@ -72,13 +72,13 @@ const styles = {
     justifyContent: 'flex-start',
     alignContent: 'center',
     alignItems: 'center',
-    sm: {
+    md: {
       width: '100%',
     },
 
   },
   formGroup: {
-    sm: {
+    md: {
       width: '100%',
     },
   },
@@ -94,7 +94,7 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
-    sm: {
+    md: {
       marginBottom: 15,
       height: 53,
       width: '100%',
@@ -117,7 +117,7 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
-    sm: {
+    md: {
       marginBottom: 15,
       marginLeft: 0,
       height: 100,
@@ -139,7 +139,7 @@ const styles = {
       borderWidth: 0,
       color: '#FFFFFF',
     },
-    sm: {
+    md: {
       height: 53,
       marginLeft: 0,
       width: '100%',

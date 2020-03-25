@@ -13,75 +13,115 @@ class NavBar extends Component {
     }
   }
   render() {
-    const { isMobile } = this.props
-
-    const activeStyles = isMobile ? deepmerge(styles, styles.mobile) : styles
-
     return (
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={activeStyles} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} fixed={true} changeOnScroll={true}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} fixed={true} changeOnScroll={true}/>
     )
   }
 }
 
 const styles = {
-  mmOpen: {
-    navbar: {
-    },
-    nav: {
-    },
-    mmBackground: {
-
-    },
-  },
-  mmBackground: {
-
-  },
   navbar: {
-    paddingBottom: 25,
     backgroundColor: 'rgba(0,0,0,0)',
     height: 150,
-    paddingTop: 10,
-    paddingLeft: 60,
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: 150,
+    paddingRight: 143,
+    paddingTop: 30,
+    paddingBottom: 30,
+    justifyContent: 'center',
   },
   brand: {
-
+    padding: 0,
+    display: 'flex',
+    alignItems: 'center',
+    flex: 1,
   },
   brandImage: {
     small: {
-      width: 97,
-    }
+      width: 73,
+      height: 50,
+    },
+    large: {
+      width: 376,
+      height: 58,
+    },
   },
   collapse: {
-
+    flex: 2,
+    borderWidth: 0,
+    marginLeft: 0,
+    paddingLeft: 0,
+    marginBottom: 15,
   },
   nav: {
     flex: 1,
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
+    height: 50,
+    paddingTop: 5,
+    borderLeftWidth: 0,
+    paddingLeft: 0,
   },
   itemBorder: {
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#E86956',
     width: '100%',
+
    // transition: 'width 0.25s ease-in-out',
   },
+navItem: {
+  display: 'flex',
+  justifyContent: 'flex-start',
+  paddingTop: 10,
+},
   navLink: {
     color: '#FFFFFF',
     fontSize: 16,
     whiteSpace: 'nowrap',
-    marginRight: 0,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: 'rgba(0,0,0,0)',
     hover: {
       color: '#E86956',
+      borderBottomColor: '#E86956',
     },
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: 15,
+  },
+
+  toggle: {
+    display: 'flex',
+    marginRight: 15,
   },
   dropdownItem: {
     color: '#FFFFFF',
     fontSize: 16,
     whiteSpace: 'nowrap',
-    marginRight: 15,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: 'rgba(0,0,0,0)',
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingBottom: 2,
+    paddingTop: 10,
     hover: {
       color: '#E86956',
+      borderBottomColor: '#E86956',
+    },
+  },
+  dropdownIcon: {
+    height: 12,
+    width: 15,
+    marginLeft: 7,
+    marginTop: 5,
+    alignSelf: 'center',
+    transform: '',
+    transition: 'transform 0.1s',
+    hover: {
+      transform: 'rotate(180deg)',
     },
   },
   search: {
@@ -118,61 +158,46 @@ const styles = {
       right: 125,
     },
   },
-  mobile: {
-
-  },
   scrolled: {
     navbar: {
+      height: 90,
+      paddingLeft: 40,
+      paddingRight: 18,
       backgroundColor: '#000000',
-      paddingTop: 35,
     },
-    nav: {
+    collapse: {
       borderLeftWidth: 2,
       borderLeftStyle: 'solid',
       borderLeftColor: '#FFFFFF',
-      marginLeft: 10,
-      paddingLeft: 10,
-    },
-    brand: {
-      marginLeft: 35,
-    },
-    brandImage: {
-
-    },
-    navItem: {
-    },
-    navLink: {
-      hover: {
-        color: '#FFFFFF',
-      },
-    },
-    collapse:{
-
-    },
-    dropdownItem: {
-      hover: {
-        color: '#FFFFFF',
-      },
+      flex: 30,
+      paddingLeft: 40,
+      marginLeft: 40,
     },
   },
 }
 
-const megaMenuStyles = {
+const dropdownMenuStyles = {
   container: {
     backgroundColor: '#EDE8E4',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: 5,
     padding: 20,
-    marginTop: 10,
   },
   defaultColumn: {
     alignItems: 'flex-start',
     justifyContent: 'center',
     padding: 0,
+  },
+  keepFocus: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    width: '100%',
+    height: 10,
+    position: 'absolute',
+    top: -5,
+    left: 0,
   },
   defaultHeader: {
     fontSize: 16,
@@ -195,14 +220,15 @@ const megaMenuStyles = {
     container: {
       width: 150,
       height: 200,
+      right: 30,
     },
     shadow: {
       backgroundColor: '#E86956',
       width: 150,
       height: 200,
       position: 'absolute',
-      top: 15,
-      left: 5,
+      top: 10,
+      right: 25,
     },
   },
   services: {
@@ -210,6 +236,7 @@ const megaMenuStyles = {
       width: 500,
       height: 300,
       padding: 30,
+      right: -150,
     },
     columns: [],
     shadow: {
@@ -217,12 +244,9 @@ const megaMenuStyles = {
       width: 500,
       height: 300,
       position: 'absolute',
-      top: 15,
-      left: 5,
+      top: 10,
+      right: -155,
     },
-  },
-  mobile: {
-
   },
 }
 
@@ -253,10 +277,13 @@ const data = {
         align: 'left',
         render: () => {return (
           <React.Fragment>
-            <div style={megaMenuStyles.markets.shadow}>
+            <div style={dropdownMenuStyles.keepFocus}>
 
             </div>
-            <MegaMenu styles={deepmerge(megaMenuStyles, megaMenuStyles.markets)} columns={[
+            <div style={dropdownMenuStyles.markets.shadow}>
+
+            </div>
+            <MegaMenu styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.markets)} columns={[
           {
             heading: '',
             type: 'links',
@@ -298,10 +325,13 @@ const data = {
         align: 'left',
         render: () => { return (
           <React.Fragment>
-            <div style={megaMenuStyles.services.shadow}>
+            <div style={dropdownMenuStyles.keepFocus}>
 
             </div>
-            <MegaMenu styles={deepmerge(megaMenuStyles, megaMenuStyles.services)} columns={[
+            <div style={dropdownMenuStyles.services.shadow}>
+
+            </div>
+            <MegaMenu styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.services)} columns={[
             {
               heading: 'DESIGN',
               type: 'links',
@@ -402,12 +432,6 @@ const data = {
         "text": "CONTACT",
         "url": "#/4",
         "type": "link",
-      },
-      {
-        "text": '',
-        "url": '',
-        "type": 'spacer',
-        "maxWidth": '60%',
       },
       {
         "text": '',
