@@ -46,7 +46,7 @@ class ImageRowItem extends Component {
     const _alignImage = xs ? 'left' : alignImage
 
     return (
-      <Container style={styles.container}>
+      <Container fluid style={styles.container}>
         <Row style={styles.row}>
           {_alignImage === 'right' ?
             bodyColumn():

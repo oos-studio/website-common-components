@@ -13,7 +13,7 @@ class ListPage extends Component {
     } = this.props
 
     return (
-      <div style={styles.page}>
+      <div style={styles.pageContainer}>
         {typeof(header) === 'object' ? <Header {...header}/> : null}
         <div style={styles.contentSection}>
           <div style={styles.contentContainer}>
