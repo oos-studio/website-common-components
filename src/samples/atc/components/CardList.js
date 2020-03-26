@@ -75,6 +75,9 @@ const styles = {
     imageColumn: {
       height: 450,
       padding: 0,
+      xs: {
+        height: 300,
+      },
     },
     md: {
       container: {
@@ -94,10 +97,26 @@ const styles = {
     },
     xs: {
       container: {
-        height: 700,
-        backgroundColor: 'blue',
+        height: 800,
       },
-    }
+      imageColumn: {
+        height: 300,
+      },
+      image: {
+        height: 200,
+      },
+      row: {
+        height: '100%',
+      },
+      bodyColumn: {
+        height: 500,
+      },
+    },
+    image: {
+      xs: {
+        height: 300,
+      },
+    },
   },
   listItemBody: {
     container: {
@@ -114,9 +133,7 @@ const styles = {
         paddingTop: 25,
       },
       xs: {
-        paddingTop: 25,
-        backgroundColor: 'red',
-        height: 450,
+        paddingTop: 10,
       }
     },
     title: {
@@ -161,7 +178,7 @@ const styles = {
         color: '#E86956',
       },
       xs: {
-        bottom: 0,
+        bottom: 15,
       }
     },
   },

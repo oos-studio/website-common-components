@@ -26,7 +26,13 @@ class ListItemBody extends Component {
         </div>
         <div>
           <Button styles={getStyle(styles.button)}>
-            Read More >
+            Read More
+            <img src={require('../assets/ReadMore.png')} alt='Read More' style={{
+              height: 17,
+              width: 17,
+              marginLeft: 5,
+              marginBottom: 2,
+            }}/>
           </Button>
         </div>
       </div>
