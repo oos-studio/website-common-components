@@ -105,7 +105,7 @@ const styles = {
     }
   },
   navbar: {
-    backgroundColor: 'rgba(0,0,0,1)',
+    backgroundColor: 'rgba(0,0,0,0)',
     height: 150,
     paddingLeft: 100,
     paddingRight: 100,
