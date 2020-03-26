@@ -72,9 +72,6 @@ class NavBar extends Component {
         let key = 0
 
         switch(item.type) {
-            case 'link':
-                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
-                break
             case 'dropdown':
                 this.dropdownCounter++
                 key = this.dropdownCounter
@@ -90,7 +87,9 @@ class NavBar extends Component {
                     </DropdownToggle>
                 </UncontrolledDropdown>)
                 break
+            case 'link':
             default:
+                navItem = (<NavItem onClick={item.onClick && item.onClick} onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
         }
 
@@ -150,6 +149,7 @@ const defaultStyles = {
     mmBackground: {
     },
     navbar: {
+      height: '100%',
     },
     brand: {},
     brandImage: {},
