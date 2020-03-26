@@ -4,6 +4,7 @@ import { Media, Form, Input, FormGroup} from 'reactstrap'
 import deepmerge from 'deepmerge'
 import MegaMenu from '../../../components/MegaMenu'
 import '../index.css'
+import withSizes from '../../../utils/Sizes'
 
 class NavBar extends Component {
   constructor(props) {
@@ -13,29 +14,106 @@ class NavBar extends Component {
     }
   }
   render() {
+    const { getStyle } = this.props
     return (
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} fixed={true} changeOnScroll={true}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} iconScrolled={data.navigation.dropdownIconScrolled} useCustomMegaMenu={false} fixed={true} changeOnScroll={true}/>
     )
   }
 }
 
 const styles = {
+  xl: {
+    nav: {
+      minWidth: 650,
+      maxWidth: 650,
+    },
+    imageItems: {
+    //  minWidth: 175,
+    //  maxWidth: 175,
+    },
+    brand: {
+      display: 'flex',
+      alignItems: 'center',
+      marginRight: 30,
+      borderRightWidth: 0,
+      paddingRight: 0,
+    },
+    imageStyles: {
+      marginLeft: 20,
+    },
+    scrolled: {
+      navbar: {
+        height: 75,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        backdropFilter: 'blur(8px)',
+        "-webkit-backdrop-filter": 'blur(8px)',
+        paddingLeft: 30,
+        paddingRight: 15,
+      },
+      brand: {
+        marginRight: 15,
+        borderRightWidth: 2,
+        borderRightStyle: 'solid',
+        borderRightColor: '#FFFFFF',
+        paddingRight: 110,
+      },
+      collapse: {
+        paddingTop: 5,
+        marginLeft: -10,
+      },
+    }
+  },
+  lg: {
+    navbar: {
+    },
+    brand: {
+      display: 'flex',
+      alignItems: 'center',
+      borderRightWidth: 0,
+      paddingRight: 0,
+      marginRight: 25,
+    },
+    nav: {
+      justifyContent: 'space-evenly',
+    },
+    navItem: {
+      marginRight: 10,
+    },
+    dropdownIcon: {
+      marginRight: 10,
+    },
+    scrolled: {
+      navbar: {
+        height: 75,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+        backdropFilter: 'blur(8px)',
+        "-webkit-backdrop-filter": 'blur(8px)',
+        paddingLeft: 30,
+        paddingRight: 15,
+      },
+      brand: {
+        marginRight: 15,
+        borderRightWidth: 2,
+        borderRightStyle: 'solid',
+        borderRightColor: '#FFFFFF',
+        paddingRight: 110,
+      },
+      collapse: {
+        paddingTop: 5,
+        marginLeft: -10,
+      },
+    }
+  },
   navbar: {
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: 'rgba(0,0,0,1)',
     height: 150,
+    paddingLeft: 100,
+    paddingRight: 100,
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 150,
-    paddingRight: 143,
-    paddingTop: 30,
-    paddingBottom: 30,
     justifyContent: 'center',
   },
   brand: {
-    padding: 0,
-    display: 'flex',
-    alignItems: 'center',
-    flex: 1,
   },
   brandImage: {
     small: {
@@ -48,34 +126,24 @@ const styles = {
     },
   },
   collapse: {
-    flex: 2,
     borderWidth: 0,
+    margin: 0,
+    padding: 0,
     marginLeft: 0,
-    paddingLeft: 0,
-    marginBottom: 15,
+    justifyContent: 'space-between',
   },
   nav: {
-    flex: 1,
     display: 'flex',
-    justifyContent: 'space-between',
-    height: 50,
-    paddingTop: 5,
+    justifyContent: 'flex-end',
+    padding: 0,
     borderLeftWidth: 0,
-    paddingLeft: 0,
+    flex: 1,
+    maxWidth:700,
+   // minWidth: 490,
   },
-  itemBorder: {
-    borderBottomWidth: 1,
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#E86956',
-    width: '100%',
-
-   // transition: 'width 0.25s ease-in-out',
+  navItem: {
+    marginRight: 35,
   },
-navItem: {
-  display: 'flex',
-  justifyContent: 'flex-start',
-  paddingTop: 10,
-},
   navLink: {
     color: '#FFFFFF',
     fontSize: 16,
@@ -87,14 +155,12 @@ navItem: {
       color: '#E86956',
       borderBottomColor: '#E86956',
     },
-    paddingLeft: 0,
-    paddingRight: 0,
-    marginRight: 15,
+    padding: 0,
+    margin: 0,
   },
 
   toggle: {
     display: 'flex',
-    marginRight: 15,
   },
   dropdownItem: {
     color: '#FFFFFF',
@@ -103,10 +169,7 @@ navItem: {
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: 'rgba(0,0,0,0)',
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingBottom: 2,
-    paddingTop: 10,
+    padding: 0,
     hover: {
       color: '#E86956',
       borderBottomColor: '#E86956',
@@ -115,13 +178,30 @@ navItem: {
   dropdownIcon: {
     height: 12,
     width: 15,
-    marginLeft: 7,
     marginTop: 5,
-    alignSelf: 'center',
+    marginLeft: 5,
+    marginRight: 35,
     transform: '',
     transition: 'transform 0.1s',
     hover: {
       transform: 'rotate(180deg)',
+    },
+  },
+  ucDropdown: {
+  },
+  imageItems: {
+    minWidth: 100,
+    maxWidth: 100,
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    position: 'relative',
+  },
+  imageStyles: {
+    height: 25,
+    width: 25,
+    filter: '',
+    hover: {
+      filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
     },
   },
   search: {
@@ -133,8 +213,8 @@ navItem: {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'absolute',
-      top: 0,
-      right: 130,
+      bottom: -60,
+      right: 20,
       marginTop: 10,
       paddingTop: 15,
     },
@@ -154,25 +234,12 @@ navItem: {
       width: 300,
       height: 50,
       position: 'absolute',
-      top: 15,
-      right: 125,
+      bottom: -65,
+      right: 15,
     },
   },
   scrolled: {
-    navbar: {
-      height: 90,
-      paddingLeft: 40,
-      paddingRight: 18,
-      backgroundColor: '#000000',
-    },
-    collapse: {
-      borderLeftWidth: 2,
-      borderLeftStyle: 'solid',
-      borderLeftColor: '#FFFFFF',
-      flex: 30,
-      paddingLeft: 40,
-      marginLeft: 40,
-    },
+
   },
 }
 
@@ -220,7 +287,7 @@ const dropdownMenuStyles = {
     container: {
       width: 150,
       height: 200,
-      right: 30,
+      left: 0,
     },
     shadow: {
       backgroundColor: '#E86956',
@@ -228,7 +295,7 @@ const dropdownMenuStyles = {
       height: 200,
       position: 'absolute',
       top: 10,
-      right: 25,
+      left: 5,
     },
   },
   services: {
@@ -236,7 +303,7 @@ const dropdownMenuStyles = {
       width: 500,
       height: 300,
       padding: 30,
-      right: -150,
+      left: 0,
     },
     columns: [],
     shadow: {
@@ -245,7 +312,7 @@ const dropdownMenuStyles = {
       height: 300,
       position: 'absolute',
       top: 10,
-      right: -155,
+      left: 5,
     },
   },
 }
@@ -263,7 +330,8 @@ const data = {
         },
       },
     },
-    dropdownIcon: require("../assets/DropdownCaret.png"),
+    dropdownIcon: require('../assets/DropdownCaret.png'),
+    dropdownIconScrolled: require('../assets/DropdownCaretScrolled.png'),
     "items": [
       {
         "text": "ABOUT US",
@@ -438,14 +506,6 @@ const data = {
         "url": "#/TEST",
         "type": 'link',
         image: require('../assets/ShoppingCart.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-        },
       },
       {
         "text": '',
@@ -453,14 +513,6 @@ const data = {
         "type": "dropdown",
         align: 'right',
         image: require('../assets/Search.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-        },
         render: () => {
           return (
             <React.Fragment>
@@ -482,4 +534,4 @@ const data = {
   }
 }
 
-export default NavBar
+export default withSizes(NavBar)
