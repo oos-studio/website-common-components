@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm } from './components/index'
+import { Footer, ContactForm, TileGrid } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withSizes from '../../utils/Sizes'
 
@@ -11,6 +11,7 @@ class ATCHomepage extends Component {
       <div style={getStyle(styles.container)}>
         <Section styles={getStyle(styles.collabSection)}>
           <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
+          <TileGrid />
         </Section>
         <Section styles={getStyle(styles.designSection)}>
           <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>
@@ -40,7 +41,15 @@ const styles = {
 
   },
   collabSection: {
-
+    container: {
+      paddingBottom: 75,
+      paddingLeft: 50,
+      paddingRight: 50,
+      sm: {
+        paddingLeft: 25,
+        paddingRight: 25,
+      },
+    },
   },
   designSection: {
     container: {
@@ -49,7 +58,10 @@ const styles = {
   },
   collabBlurb: {
     container: {
-      height: 350,
+      height: 300,
+      xs: {
+        height: 400
+      },
     },
     title: {
       color: '#852D3D',
@@ -60,8 +72,10 @@ const styles = {
   },
   designBlurb: {
     container: {
-      height: 350,
-    },
+      height: 300,
+      xs: {
+        height: 400
+      },    },
     title: {
       color: '#852D3D',
     },
