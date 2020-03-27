@@ -82,7 +82,7 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles, xl } = this.props
+    const { styles } = this.props
     const duration = 0.25
 
 
@@ -118,16 +118,10 @@ class NavBarAnimated extends Component {
             brandImageStyles: styles.brandImage.large
           })
 
-      if(xl) {
-        tl.to('#collapse', {...styles.collapse}, 0)
-        tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1,}, duration / 3)
-        tl.to('#navBrand', duration, {width: styles.brandImage.large.width, duration: 0})
-        }
-      else {
+
         tl.to('#collapse',{...styles.collapse}, 0)
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
         tl.to('#navBrand', {width: styles.brandImage.large.width }, 0)
-        }
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
       })
     }

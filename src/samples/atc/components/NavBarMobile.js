@@ -211,8 +211,11 @@ const data = {
 
 const styles = {
   container: {
-    backgroundColor: '#000000',
+    backgroundColor: 'rgba(57,57,57,0.9)',
+    backdropFilter: 'blur(8px)',
+    "-webkit-backdrop-filter": 'blur(8px)',
     minWidth: 320,
+    height: 75,
   },
   navbar: {
     padding: 0,
@@ -222,8 +225,7 @@ const styles = {
   },
   brandImage: {
     marginLeft: 30,
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: 7,
     width: 300,
     height: 48,
     xxs: {
@@ -248,7 +250,8 @@ const styles = {
     borderTopColor: '#E86956',
     paddingTop: 25,
     paddingBottom: 25,
-    height: 'calc(100vh - 95px)',
+    marginTop: 10,
+    height: 'calc(100vh - 75px)',
   },
   nav: {
     flexDirection: 'column',

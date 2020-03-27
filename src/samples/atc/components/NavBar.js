@@ -27,17 +27,15 @@ const styles = {
     height: 150,
     display: 'flex',
     alignItems: 'center',
-    paddingLeft: 75,
-    paddingRight: 75,
+    paddingLeft: 65,
+    paddingRight: 35,
     paddingTop: 30,
     paddingBottom: 30,
-    justifyContent: 'center',
   },
   brand: {
     padding: 0,
     display: 'flex',
     alignItems: 'center',
-    flex: 1,
   },
   brandImage: {
     small: {
@@ -183,7 +181,7 @@ const styles = {
       height: 75,
       paddingLeft: 40,
       paddingRight: 18,
-      backgroundColor: 'rgba(0,0,0,0.8)',
+      backgroundColor: 'rgba(57,57,57,0.9)',
       backdropFilter: 'blur(8px)',
       "-webkit-backdrop-filter": 'blur(8px)',
     },

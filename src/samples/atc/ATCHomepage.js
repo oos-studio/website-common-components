@@ -9,7 +9,7 @@ class ATCHomepage extends Component {
     const { getStyle, md } = this.props
     return (
       <React.Fragment>
-      { md ? <NavBarMobile /> : <NavBar /> }
+      { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
     <div id='homeContainer' style={getStyle(styles.container)}>
         <img src={require('./assets/SampleHeader.png')} style={{width: '100vw', height: '100vh', objectFit: 'cover'}}/>
         <Section styles={getStyle(styles.collabSection)}>
