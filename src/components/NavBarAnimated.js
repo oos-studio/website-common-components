@@ -175,7 +175,7 @@ class NavBarAnimated extends Component {
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    if(activeNavIndex !== null && _navRefs[index].toggle !== undefined) {
+    if(activeNavIndex !== null && _navRefs[index] !== undefined) {
       _navRefs[index].toggle()
     }
 
