@@ -13,10 +13,19 @@ class Button extends Component {
     }
   }
 
-  handleHover() {
+ async handleHover() {
+    const { handleHover, leaveHover } = this.props
+    const { hovered } = this.state
     this.setState({
       hovered: !this.state.hovered,
     })
+
+    if(handleHover && !hovered) {
+      await handleHover()
+    }
+    if(leaveHover && hovered) {
+      await leaveHover()
+    }
   }
 
   render() {

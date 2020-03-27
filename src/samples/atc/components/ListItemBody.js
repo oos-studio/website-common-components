@@ -1,8 +1,28 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import withSizes from '../../../utils/Sizes'
 import Button from '../../../components/Button'
 
 class ListItemBody extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hovered: false,
+    }
+  }
+  hoverButton = () => {
+    this.setState({
+      hovered: true,
+    })
+    console.log('hover')
+  }
+  leaveHoverButton = () => {
+    this.setState({
+      hovered: false,
+    })
+
+    console.log('leave hover')
+  }
   render() {
     const {
       text,
@@ -11,7 +31,11 @@ class ListItemBody extends Component {
       align,
       xs,
       getStyle,
+      image,
+      hoverImage,
     } = this.props
+    const { hoverButton, leaveHoverButton } = this
+    const { hovered } = this.state
 
     const _align = xs ? 'left' : align
 
@@ -25,13 +49,14 @@ class ListItemBody extends Component {
           {text}
         </div>
         <div>
-          <Button styles={getStyle(styles.button)}>
+          <Button handleHover={hoverButton} leaveHover={leaveHoverButton} styles={getStyle(styles.button)}>
             Read More
-            <img src={require('../assets/ReadMore.png')} alt='Read More' style={{
+            <img src={hovered ? hoverImage : image} alt='Read More' style={{
               height: 17,
               width: 17,
               marginLeft: 5,
               marginBottom: 2,
+              filter: hovered ? 'filter: invert(19%) sepia(23%) saturate(4569%) hue-rotate(321deg) brightness(95%) contrast(85%)' : 'none',
             }}/>
           </Button>
         </div>

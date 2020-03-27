@@ -34,8 +34,8 @@ class CardList extends Component {
             },
           ],
           renderItems: [
-            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'right'} {...props} renderBody={xs => <ListItemBody {...props} align={'left'} xs={xs} styles={styles.listItemBody}/>}/>,
-            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'left'} {...props} renderBody={xs => <ListItemBody {...props} align={'left'} xs={xs} styles={styles.listItemBody} />}/>,
+            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'right'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} xs={xs} styles={styles.listItemBody}/>}/>,
+            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'left'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} xs={xs} styles={styles.listItemBody} />}/>,
           ]
         }}/>
     )
@@ -75,6 +75,8 @@ const styles = {
     imageColumn: {
       height: 450,
       padding: 0,
+      paddingBottom: 2,
+      width: '50%',
       xs: {
         height: 300,
       },
@@ -128,7 +130,7 @@ const styles = {
       paddingRight: 50,
       paddingTop: 35,
       sm: {
-        paddingLeft: 15,
+        paddingLeft: 5,
         paddingRight: 15,
         paddingTop: 25,
       },
@@ -172,10 +174,11 @@ const styles = {
       padding: 0,
       position: 'absolute',
       bottom: 35,
+      transition: 'none',
       hovered: {
         borderWidth: 0,
         backgroundColor: '#FFFFFF',
-        color: '#E86956',
+        color: '#852D3D',
       },
       xs: {
         bottom: 15,
