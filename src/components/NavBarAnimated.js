@@ -20,7 +20,6 @@ class NavBarAnimated extends Component {
       activeNavImage: null,
       brandImageStyles: null,
       isAnimating: false,
-      activeImgNavIndex: null,
     }
 
     this.toggle = this.toggle.bind(this)
@@ -33,7 +32,6 @@ class NavBarAnimated extends Component {
     this.runAnimations = this.runAnimations.bind(this)
 
     this._navRefs = []
-    this._imgNavRefs = []
   }
 
   componentWillMount() {
@@ -84,7 +82,7 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles } = this.props
+    const { styles, xl } = this.props
     const duration = 0.25
 
 
@@ -95,6 +93,7 @@ class NavBarAnimated extends Component {
          width: styles.brandImage.small.width,
          ease: Power2.easeOut
        })
+      // TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
        TweenLite.to('#collapse', duration, {...styles.scrolled.collapse}).then(() => {
          this.setState({
            activeNavImage: scrollNavImage,
@@ -102,27 +101,34 @@ class NavBarAnimated extends Component {
          })
          TweenLite.to('#navBrand', 0, {opacity: 0})
          TweenLite.to('#navBrand', 0, {transform: 'translateX(0px)'})
-         TweenLite.to('#navBrand', duration, {opacity: 1, ...styles.scrolled.brand, ease: Power2.easeOut})
-         TweenLite.to('#imageItem', duration, {...styles.scrolled.imageItems, ease: Power2.easeOut})
-         TweenLite.to('#nav', duration, {opacity: 1, ...styles.scrolled.nav, ease: Power2.easeOut})
+         TweenLite.to('#navBrand', duration, {opacity: 1, ease: Power2.easeOut})
        })
-
        TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
+       TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
+       TweenLite.to('#divider', duration, {opacity: 1,})
      })
     } else {
+      const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
+      TweenLite.to('#divider', 0, {opacity: 0,})
       TweenLite.to('#navbar', duration, { height: styles.navbar.height, ease: Power2.easeOut })
-      TweenLite.to('#navBrand', duration,{opacity: 0,}).then(() => {
+      TweenLite.to('#navBrand', duration,{opacity: 0}).then(() => {
           this.setState({
             activeNavImage: defaultNavImage,
             brandImageStyles: styles.brandImage.large
           })
 
-        TweenLite.to('#navBrand', duration, {transform: 'translateX(0px)', opacity: 1})
-        TweenLite.to('#navBrand', duration, {width: styles.brandImage.large.width, ...styles.brand})
-        TweenLite.to('#navbar', duration, {...styles.navbar, ease: Power2.easeOut})
-        TweenLite.to('#imageItem', duration, {...styles.imageItems, ease: Power2.easeOut})
-        TweenLite.to('#nav', duration, {opacity: 1, ...styles.nav, ease: Power2.easeOut})
+      if(xl) {
+        tl.to('#collapse', {...styles.collapse}, 0)
+        tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1,}, duration / 3)
+        tl.to('#navBrand', duration, {width: styles.brandImage.large.width, duration: 0})
+        }
+      else {
+        tl.to('#collapse',{...styles.collapse}, 0)
+        tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
+        tl.to('#navBrand', {width: styles.brandImage.large.width }, 0)
+        }
+        TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
       })
     }
   }
@@ -182,12 +188,6 @@ class NavBarAnimated extends Component {
     const { showDropdownMenu } = this
     const { navItemStyles } = this.state
 
-    if(!item.image && item.type === 'dropdown') {
-      this.setState({
-        activeImgNavIndex: null,
-      })
-    }
-
     let tmpStyles = navItemStyles
     tmpStyles[index].borderBottomStyle = 'solid'
     tmpStyles[index].borderBottomWidth = 2
@@ -234,92 +234,68 @@ class NavBarAnimated extends Component {
     hideDropdownMenu(null, index)
   }
 
-  renderImageNavItems = (item, index) => {
-    const { activeNavIndex, activeImgNavIndex } = this.state
-    const { styles } = this.props
-    const { hoverNavItem, leaveHoverNavItem } = this
-    return (
-      item.image ?
-        <React.Fragment>
-        <Media
-          onMouseEnter={() => hoverNavItem(item, index)}
-          onMouseLeave={() => leaveHoverNavItem(item, index)}
-          onClick={() => {
-            if(item.type === 'dropdown') {
-              if(activeImgNavIndex === index) {
-                this.setState({
-                  activeImgNavIndex: null,
-                })
-                return
-              }
-              this.setState({
-                activeImgNavIndex: index,
-              })
-            }
-          }}
-          object
-          src={item.image}
-          style={activeNavIndex === index ? deepmerge(styles.imageStyles, styles.imageStyles.hover) : styles.imageStyles}/>
-          {item.type === 'dropdown' ? activeImgNavIndex && item.render() : null}
-        </React.Fragment>
-          : null
-    )
-  }
-
-  renderNavigationItems(item, index) {
-    const { styles, icon, iconScrolled } = this.props
+  renderNavigationItems(item, index, renderImages) {
+    const { styles, icon, scrolledDropdownIcon, xl } = this.props
     const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
     const { activeNavIndex, showScrolledNav } = this.state
+
+    const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
 
     let navItem = null
     let id = `item${index}`
 
+    if(item.image && !renderImages) {
+      return
+    }
+    if(!item.image && renderImages) {
+      return
+    }
+
     switch(item.type) {
       case 'link':
-        item.image ? navItem = null :
         navItem = (
           <NavItem
             id={id}
             key={index}
-            style={styles.navItem}
+            style={_styles.navItem}
             onMouseEnter={() => hoverNavItem(item, index)}
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
-              ref={_r => {_navRefs[index] = _r}}
               href={item.url}
               style={{
-                ...styles.navLink,
-                color: showScrolledNav ? styles.navLink.color : (activeNavIndex === index ? styles.navLink.hover.color : styles.navLink.color),
-                borderBottomColor: activeNavIndex === index ? styles.navLink.hover.borderBottomColor : styles.navLink.borderBottomColor,
-                transition: 'border-bottom-color 0.25s, color 0.15s',
+                ..._styles.navLink,
+                color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
+                borderBottomColor: activeNavIndex === index && !item.image ? _styles.navLink.hover.borderBottomColor : _styles.navLink.borderBottomColor,
               }}>
-              {item.text}
+              {item.image ?
+                <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
+                : item.text}
             </NavLink>
           </NavItem>)
         break
       case 'dropdown':
-        item.image ? navItem = null :
         navItem = (
           <UncontrolledDropdown nav inNavbar
-                                style={styles.ucDropdown}
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}
                                 key={index}
+                                id={xl ? id : ''}
                                 onClick={() => clickDropdown(index)}>
-            <div style={styles.toggle} onMouseEnter={() => hoverNavItem(item, index)}>
-              <div
-                style={{
-                ...styles.dropdownItem,
-                color: showScrolledNav ? styles.dropdownItem.color : (activeNavIndex === index ? styles.dropdownItem.hover.color : styles.dropdownItem.color),
-                borderBottomColor: activeNavIndex === index ? styles.dropdownItem.hover.borderBottomColor : styles.dropdownItem.borderBottomColor,
-                  transition: 'border-bottom-color 0.25s, color 0.15s',
+            <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
+              <div style={{
+                ..._styles.dropdownItem,
+                color: showScrolledNav ? _styles.dropdownItem.color : (activeNavIndex === index ? _styles.dropdownItem.hover.color : _styles.dropdownItem.color),
+                borderBottomColor: activeNavIndex === index && !item.image ? _styles.dropdownItem.hover.borderBottomColor : _styles.dropdownItem.borderBottomColor,
               }}>
-                {item.text}
+                {item.image ?
+                  <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
+                  : item.text}
               </div>
+              {!item.image &&
               <Media object
-                     style={activeNavIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.hover) : styles.dropdownIcon}
-                     src={showScrolledNav ? iconScrolled : icon} />
-            </div>
+                     style={activeNavIndex === index ? deepmerge(_styles.dropdownIcon, _styles.dropdownIcon.hover) : _styles.dropdownIcon}
+                     src={showScrolledNav ? scrolledDropdownIcon : icon} />}
+            </DropdownToggle>
             <DropdownMenu onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
               {item.render()}
@@ -333,10 +309,9 @@ class NavBarAnimated extends Component {
   }
 
   render() {
-    const { open, showScrolledNav, activeNavImage, brandImageStyles, activeNavIndex } = this.state
+    const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
     const { items, brand, styles, fixed } = this.props
-    const { toggle, renderNavigationItems, renderImageNavItems } = this
-    const { lg } = this.props
+    const { toggle, renderNavigationItems } = this
 
     return(
       <div style={{
@@ -348,15 +323,19 @@ class NavBarAnimated extends Component {
           expand="md"
           color={styles.navbar.backgroundColor}
           style={styles.navbar}>
-          <NavbarBrand id={'navBrand'} href="#" style={styles.brand}>
+          <NavbarBrand href="#" style={styles.brand}>
+            <div id={'navBrand'}>
               <img
                 src={activeNavImage}
                 alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
                 style={brandImageStyles} />
-            <NavbarText style={styles.brandTitle}>
-              {brand.title}
-            </NavbarText>
+            </div>
           </NavbarBrand>
+          <div id='divider' style={{
+            display: showScrolledNav ? 'flex' : 'none',
+            ...styles.divider,
+          }}>
+          </div>
           <NavbarToggler onClick={toggle} style={styles.toggler} />
           <Collapse
             id='collapse'
@@ -364,11 +343,11 @@ class NavBarAnimated extends Component {
             isOpen={open}
             style={styles.collapse}>
             <Nav id='nav' navbar style={styles.nav}>
-              {items.map((item, index) => renderNavigationItems(item, index))}
+              {items.map((item, index) => renderNavigationItems(item, index, false))}
             </Nav>
-             <div id='imageItem' style={styles.imageItems}>
-               {items.map((item, index) => renderImageNavItems(item, index))}
-             </div>
+            <div id='imageItems' style={styles.imageItems}>
+              {items.map((item, index) => renderNavigationItems(item, index, true))}
+            </div>
           </Collapse>
         </Navbar>
       </div>

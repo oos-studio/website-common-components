@@ -2,11 +2,12 @@
 body {
     margin: 0;
 }
-#nav {
-}
 #collapse {
     transition: none;
 }
 .collapsing {
     transition: none;
+}
+li {
+    list-style-type: none;
 }
