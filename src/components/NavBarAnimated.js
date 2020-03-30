@@ -5,6 +5,7 @@ import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import '../App.css'
 import withSizes from '../utils/Sizes'
+import '../samples/atc/index.css'
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -290,7 +291,7 @@ class NavBarAnimated extends Component {
                      style={activeNavIndex === index ? deepmerge(_styles.dropdownIcon, _styles.dropdownIcon.hover) : _styles.dropdownIcon}
                      src={showScrolledNav ? scrolledDropdownIcon : icon} />}
             </DropdownToggle>
-            <DropdownMenu onMouseLeave={() => leaveHoverNavItem(item, index)}
+            <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
               {item.render()}
             </DropdownMenu>

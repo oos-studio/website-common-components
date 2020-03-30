@@ -307,7 +307,7 @@ const data = {
             <div style={dropdownMenuStyles.markets.shadow}>
 
             </div>
-            <MegaMenu styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.markets)} columns={[
+            <MegaMenu id='megamenu' styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.markets)} columns={[
           {
             heading: '',
             type: 'links',

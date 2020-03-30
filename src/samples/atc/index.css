@@ -14,3 +14,6 @@
     color: white;
     opacity: 1;
 }
+#ddMenu:focus {
+    outline: none;
+}

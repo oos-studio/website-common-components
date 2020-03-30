@@ -13,23 +13,50 @@ class NavBarMobile extends Component {
     this.state = {
       open: false,
       activeDropdownIndex: null,
+      touchscreen: false,
+      scrollPosition: 0,
     }
   }
 
   componentDidMount() {
     document.body.style.overflow = 'scroll'
+
+    window.addEventListener('touchend', () => {
+      this.setState({
+        touchscreen: true,
+      })
+    })
   }
 
   toggle = () => {
-    const { open } = this.state
+    const { open, touchscreen, scrollPosition } = this.state
     const { closeDropdownMenu } = this
+    const body = document.querySelector('body')
 
     if(!open) {
-      disableBodyScroll(document.querySelector('#homeContainer'))
+      if(touchscreen) {
+        this.setState({
+          scrollPosition: window.pageYOffset
+        })
+        body.style.overflow = 'hidden'
+        body.style.position = 'fixed'
+        body.style.top = `-${scrollPosition}px`
+        body.style.width = '100%'
+      } else {
+        disableBodyScroll(document.querySelector('#homeContainer'))
+      }
 
     } else {
       closeDropdownMenu()
-      enableBodyScroll(document.querySelector('#homeContainer'))
+      if(touchscreen) {
+        body.style.removeProperty('overflow');
+        body.style.removeProperty('position');
+        body.style.removeProperty('top');
+        body.style.removeProperty('width');
+        window.scrollTo(0, scrollPosition);
+      } else {
+        enableBodyScroll(document.querySelector('#homeContainer'))
+      }
     }
 
     this.setState({
