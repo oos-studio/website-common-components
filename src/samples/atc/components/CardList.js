@@ -34,8 +34,8 @@ class CardList extends Component {
             },
           ],
           renderItems: [
-            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'right'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} xs={xs} styles={styles.listItemBody}/>}/>,
-            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} alignImage={'left'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} xs={xs} styles={styles.listItemBody} />}/>,
+            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} stack={'sm'} alignImage={'right'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} styles={styles.listItemBody}/>}/>,
+            props => <ImageRowItem styles={getStyle(styles.imageRowItem)} stack={'sm'} alignImage={'left'} {...props} renderBody={xs => <ListItemBody {...props} image={require('../assets/ReadMore.png')} hoverImage={require('../assets/ReadMore_hover.png')} align={'left'} styles={styles.listItemBody} />}/>,
           ]
         }}/>
     )
@@ -91,10 +91,19 @@ const styles = {
     },
     sm: {
       container: {
-        height: 500,
+        height: 650,
       },
       imageColumn: {
-        height: 500,
+        height: 250,
+      },
+      image: {
+        height: 250,
+      },
+      row: {
+        height: '100%',
+      },
+      bodyColumn: {
+        height: 400,
       },
     },
     xs: {
@@ -132,10 +141,9 @@ const styles = {
       sm: {
         paddingLeft: 5,
         paddingRight: 15,
-        paddingTop: 25,
+        paddingTop: 10,
       },
       xs: {
-        paddingTop: 10,
       }
     },
     title: {

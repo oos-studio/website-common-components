@@ -29,7 +29,7 @@ class ListItemBody extends Component {
       title,
       styles,
       align,
-      xs,
+      sm,
       getStyle,
       image,
       hoverImage,
@@ -37,7 +37,7 @@ class ListItemBody extends Component {
     const { hoverButton, leaveHoverButton } = this
     const { hovered } = this.state
 
-    const _align = xs ? 'left' : align
+    const _align = sm ? 'left' : align
 
     return (
       <div style={getStyle(styles.container)} align={_align}>
