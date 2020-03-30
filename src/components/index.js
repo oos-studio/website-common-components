@@ -16,6 +16,7 @@ import List from './List'
 import ListItem from './ListItem'
 import ListPage from './ListPage'
 import MegaMenu from './MegaMenu'
+import Page from './Page'
 
 export {
   CardGrid,
@@ -35,5 +36,6 @@ export {
   List,
   ListItem,
   ListPage,
-  MegaMenu
+  MegaMenu,
+  Page,
 }

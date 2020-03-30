@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row  } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
+import withSizes from '../utils/Sizes'
 
 class Header extends Component {
   render() {
@@ -10,8 +11,11 @@ class Header extends Component {
       subTitle,
       titleImageUrl,
       backgroundAsset,
-      video
+      video,
+      getStyle
     } = this.props
+
+    console.log(this.props)
 
     if (!styles.backgroundAsset.height) {
       styles.backgroundAsset.height = styles.container.height
@@ -19,10 +23,16 @@ class Header extends Component {
 
     return (
       <Container style={styles.container}>
-        <div style={styles.text}>
-          { titleImageUrl && titleImageUrl !== '' ?
+        <div style={getStyle(styles.text)}>
+          {titleImageUrl && titleImageUrl !== '' ?
             <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
-            : <span style={styles.title}>{title}</span>
+            :
+            Array.isArray(title) ?
+              title.map(t => {
+                return (<span style={getStyle(styles.title)}>{t}</span>)
+              })
+              :
+            <span style={getStyle(styles.title)}>{title}</span>
           }
           <div style={styles.subTitle}>
             <span>{subTitle}</span>
@@ -91,4 +101,4 @@ Header.defaultProps = {
   }
 }
 
-export default mergeStyle(defaultStyles)(Header)
+export default mergeStyle(defaultStyles)(withSizes(Header))

@@ -1,4 +1,3 @@
-import Footer from './Footer'
-import ContactForm from './ContactForm'
+import Page from './Page'
 
-export { Footer, ContactForm }
+export { Page }
