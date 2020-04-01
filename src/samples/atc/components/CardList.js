@@ -70,10 +70,10 @@ const styles = {
       borderWidth: 1,
       borderStyle: 'solid',
       borderColor: '#7D7773',
-      height: 450,
+      minHeight: 450,
     },
     imageColumn: {
-      height: 450,
+      minHeight: 450,
       padding: 0,
       paddingBottom: 2,
       width: '50%',
@@ -83,18 +83,18 @@ const styles = {
     },
     md: {
       container: {
-        height: 550
+        minHeight: 550
       },
       imageColumn: {
-        height: 550,
+        minHeight: 550,
       },
     },
     sm: {
       container: {
-        height: 650,
+        minHeight: 650,
       },
       imageColumn: {
-        height: 250,
+        minHeight: 250,
       },
       image: {
         height: 250,
@@ -103,15 +103,15 @@ const styles = {
         height: '100%',
       },
       bodyColumn: {
-        height: 400,
+        minHeight: 400,
       },
     },
     xs: {
       container: {
-        height: 800,
+        minHeight: 800,
       },
       imageColumn: {
-        height: 300,
+        minHeight: 300,
       },
       image: {
         height: 200,
@@ -120,7 +120,7 @@ const styles = {
         height: '100%',
       },
       bodyColumn: {
-        height: 500,
+        minHeight: 500,
       },
     },
     image: {
@@ -135,12 +135,13 @@ const styles = {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      paddingLeft: 50,
-      paddingRight: 50,
+      paddingLeft: 32,
+      paddingRight: 32,
       paddingTop: 35,
+      paddingBottom: 75,
       sm: {
-        paddingLeft: 5,
-        paddingRight: 15,
+        paddingLeft: 20,
+        paddingRight: 25,
         paddingTop: 10,
       },
       xs: {
@@ -152,9 +153,9 @@ const styles = {
       fontWeight: 'bold',
       marginBottom: 35,
       md: {
-        fontSize: 35,
       },
       sm: {
+        fontSize: 35,
         marginBottom: 10,
       },
     },
