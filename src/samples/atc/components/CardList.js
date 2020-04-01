@@ -25,7 +25,7 @@ class CardList extends Component {
             {
               title: 'Manufacture',
               imageUrl: require('../assets/Manufacture.png'),
-              text: 'High efficiency, controlled manufacturing environments allow us to build world-class dependable products.',
+              text: 'High efficiency, controlled manufacturing environments allow us to build world-class dependable products.High efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable products',
             },
             {
               title: 'Support Services',
@@ -74,8 +74,10 @@ const styles = {
     },
     imageColumn: {
       minHeight: 450,
+      maxHeight: 'none',
+      height: 'auto',
       padding: 0,
-      paddingBottom: 2,
+    //  paddingBottom: 2,
       width: '50%',
       xs: {
         height: 300,
@@ -91,7 +93,9 @@ const styles = {
     },
     sm: {
       container: {
-        minHeight: 650,
+        minHeight: 0,
+        maxHeight: 'none',
+        height: 'auto',
       },
       imageColumn: {
         minHeight: 250,
@@ -103,13 +107,11 @@ const styles = {
         height: '100%',
       },
       bodyColumn: {
-        minHeight: 400,
+        minHeight: 'none',
+        height: 'auto',
       },
     },
     xs: {
-      container: {
-        minHeight: 800,
-      },
       imageColumn: {
         minHeight: 300,
       },
@@ -118,9 +120,6 @@ const styles = {
       },
       row: {
         height: '100%',
-      },
-      bodyColumn: {
-        minHeight: 500,
       },
     },
     image: {
@@ -143,6 +142,8 @@ const styles = {
         paddingLeft: 20,
         paddingRight: 25,
         paddingTop: 10,
+       // justifyContent: 'space-between',
+        paddingBottom: 10,
       },
       xs: {
       }
@@ -189,9 +190,10 @@ const styles = {
         backgroundColor: '#FFFFFF',
         color: '#852D3D',
       },
-      xs: {
-        bottom: 15,
-      }
+      sm: {
+        position: 'static',
+        marginTop: 10,
+      },
     },
   },
 }
