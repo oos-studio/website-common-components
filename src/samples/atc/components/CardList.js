@@ -25,7 +25,7 @@ class CardList extends Component {
             {
               title: 'Manufacture',
               imageUrl: require('../assets/Manufacture.png'),
-              text: 'High efficiency, controlled manufacturing environments allow us to build world-class dependable products.High efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable productsHigh efficiency, controlled manufacturing environments allow us to build world-class dependable products',
+              text: 'High efficiency, controlled manufacturing environments allow us to build world-class dependable products.',
             },
             {
               title: 'Support Services',
