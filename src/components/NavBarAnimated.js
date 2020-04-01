@@ -104,6 +104,7 @@ class NavBarAnimated extends Component {
          TweenLite.to('#navBrand', 0, {transform: 'translateX(0px)'})
          TweenLite.to('#navBrand', duration, {opacity: 1, ease: Power2.easeOut})
        })
+       TweenLite.to('#nav', 0, {...styles.scrolled.nav})
        TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
        TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
        TweenLite.to('#divider', duration, {opacity: 1,})
@@ -112,13 +113,13 @@ class NavBarAnimated extends Component {
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
+      TweenLite.to('#nav', 0, {...styles.nav})
       TweenLite.to('#navbar', duration, { height: styles.navbar.height, ease: Power2.easeOut })
       TweenLite.to('#navBrand', duration,{opacity: 0}).then(() => {
           this.setState({
             activeNavImage: defaultNavImage,
             brandImageStyles: styles.brandImage.large
           })
-
 
         tl.to('#collapse',{...styles.collapse}, 0)
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)

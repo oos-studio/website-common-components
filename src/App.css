@@ -2,12 +2,10 @@
 body {
     margin: 0;
 }
-#collapse {
-    transition: none;
-}
-.collapsing {
-    transition: none;
-}
 li {
     list-style-type: none;
+}
+#dropdown {
+    outline: none;
+    box-shadow: none;
 }

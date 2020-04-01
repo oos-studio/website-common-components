@@ -106,7 +106,7 @@ class NavBarMobile extends Component {
       case 'dropdown':
         navItem = (
           <UncontrolledDropdown style={styles.ucDropdown} nav inNavbar>
-              <DropdownToggle style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
+              <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>

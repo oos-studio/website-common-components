@@ -17,3 +17,7 @@
 #ddMenu:focus {
     outline: none;
 }
+#search {
+    outline: none;
+    box-shadow: none;
+}

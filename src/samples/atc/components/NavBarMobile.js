@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavBarMobile as NavBarComp } from '../../../components/'
 import { NavLink } from 'reactstrap'
 import deepmerge from 'deepmerge'
+import '../index.css'
 
 class NavBarMobile extends Component {
 
@@ -215,7 +216,7 @@ const styles = {
     backdropFilter: 'blur(8px)',
     "-webkit-backdrop-filter": 'blur(8px)',
     minWidth: 320,
-    height: 75,
+    height: 65,
   },
   navbar: {
     padding: 0,
@@ -225,7 +226,7 @@ const styles = {
   },
   brandImage: {
     marginLeft: 30,
-    marginTop: 7,
+    marginTop: 3,
     width: 300,
     height: 48,
     xxs: {
@@ -250,8 +251,8 @@ const styles = {
     borderTopColor: '#E86956',
     paddingTop: 25,
     paddingBottom: 25,
-    marginTop: 10,
-    height: 'calc(100vh - 75px)',
+    marginTop: 4,
+    height: 'calc(100vh - 65px)',
   },
   nav: {
     flexDirection: 'column',
@@ -322,6 +323,7 @@ const styles = {
       flexDirection: 'column',
       marginLeft: -25,
       marginRight: -25,
+      transition: 'height 2s',
     },
     itemWrapper: {
       paddingBottom: 10,

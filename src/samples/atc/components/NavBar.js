@@ -70,8 +70,6 @@ const styles = {
     borderBottomStyle: 'solid',
     borderBottomColor: '#E86956',
     width: '100%',
-
-   // transition: 'width 0.25s ease-in-out',
   },
   navItem: {
   display: 'flex',
@@ -92,11 +90,9 @@ const styles = {
     },
     paddingLeft: 0,
     paddingRight: 0,
-    marginRight: 15,
   },
   toggle: {
     display: 'flex',
-    marginRight: 15,
   },
   dropdownItem: {
     color: '#FFFFFF',
@@ -135,9 +131,9 @@ const styles = {
   },
   divider: {
     width: 2,
-    height: 40,
+    height: 30,
     position: 'absolute',
-    left: 170,
+    left: 135,
     top: 17,
     opacity: 0,
     backgroundColor: '#FFFFFF',
@@ -178,8 +174,8 @@ const styles = {
   },
   scrolled: {
     navbar: {
-      height: 75,
-      paddingLeft: 40,
+      height: 65,
+      paddingLeft: 35,
       paddingRight: 18,
       backgroundColor: 'rgba(57,57,57,0.9)',
       backdropFilter: 'blur(8px)',
@@ -187,15 +183,19 @@ const styles = {
     },
     collapse: {
       flex: 30,
+    },
+    nav: {
+      justifyContent: 'flex-start',
       paddingLeft: 40,
-      marginLeft: 40,
     },
-    navLink : {
-      marginRight: 30,
+    navLink: {
+      marginRight: 40,
     },
-    dropdownIcon: {
-      marginRight: 5,
-    },
+    toggle: {
+      marginRight: 40,
+      paddingLeft: 0,
+      paddingRight: 0,
+    }
   },
 }
 
