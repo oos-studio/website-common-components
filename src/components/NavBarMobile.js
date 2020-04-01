@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
@@ -16,6 +16,8 @@ class NavBarMobile extends Component {
       touchscreen: false,
       scrollPosition: 0,
     }
+
+    this.menus = []
   }
 
   componentDidMount() {
@@ -28,10 +30,17 @@ class NavBarMobile extends Component {
     })
   }
 
+  componentWillUpdate() {
+    this.menus = []
+  }
+
   toggle = () => {
     const { open, touchscreen, scrollPosition } = this.state
     const { closeDropdownMenu } = this
+    const { toggleCollapse } = this.props
     const body = document.querySelector('body')
+
+    toggleCollapse(!open)
 
     if(!open) {
       if(touchscreen) {
@@ -87,7 +96,7 @@ class NavBarMobile extends Component {
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
     const { styles, icon, items } = this.props
-    const { toggleDropdownMenu } = this
+    const { toggleDropdownMenu, menus } = this
     let navItem = null
 
     switch(item.type) {
@@ -110,9 +119,8 @@ class NavBarMobile extends Component {
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>
-              {activeDropdownIndex === index && item.render()}
+              {activeDropdownIndex === index ? item.menu(true) : item.menu(false)}
             </UncontrolledDropdown>
-
       )
         break
       default:
@@ -140,13 +148,11 @@ class NavBarMobile extends Component {
             </NavbarText>
           </NavbarBrand>
           <Media object style={getStyle(styles.toggler)} onClick={toggle} src={open ? closeToggleIcon : openToggleIcon}/>
-          <Collapse id='collapse' isOpen={open} navbar style={{
-            ...styles.collapse,
-          }}>
+          <div id='mobileCollapse' style={styles.collapse}>
             <Nav id='nav' navbar style={styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index))}
             </Nav>
-          </Collapse>
+          </div>
         </Navbar>
       </div>
     )
