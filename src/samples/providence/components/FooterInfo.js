@@ -11,9 +11,11 @@ class FooterInfo extends Component {
           <Media object src={require('../assets/Footer_Logo.png')} style={styles.logo} />
         </div>
         <div style={styles.contact}>
+          <div>
           35295 Detroit Road, Avon, Ohio 44011
           <br />
           440.937.5001 | <a style={{color: '#FCEBBE'}} href='https://www.oos-studio.com'>info@providencechurch.us</a>
+          </div>
           <div style={styles.login}>
             <a style={{color: '#FCEBBE'}} href='https://www.oos-studio.com'>Providence Connect Login</a>
           </div>
@@ -47,15 +49,16 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     height: '100%',
-    fontSize: 16,
-    paddingRight: 50,
+    fontSize: 18,
+   // paddingRight: 50,
     color: '#F8F5EE',
   },
   topSection: {
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     display: 'flex',
-    paddingBottom: 50,
+    alignItems: 'center',
+    paddingBottom: 60,
   },
   logoWrapper: {
   },
@@ -64,23 +67,26 @@ const styles = {
   },
   contact: {
     paddingLeft: 50,
+    alignSelf: 'flex-end',
+    paddingBottom: 15,
+    whiteSpace: 'nowrap',
   },
   login: {
     marginTop: 25,
   },
   bottomSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    marginTop: 60,
     flex: 1,
   },
   info: {
+    marginBottom: 90,
   },
   social: {
-    width: 200,
+    width: 150,
     height: 50,
     display: 'flex',
     justifyContent: 'space-between',
+    marginBottom: 15,
   },
   legal: {
     fontSize: 22,

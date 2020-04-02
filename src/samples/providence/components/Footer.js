@@ -5,18 +5,18 @@ import { FooterInfo, FooterContactForm } from './index'
 const socials = [
   {
     name: 'facebook',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Facebook.png'),
     url: 'https://www.facebook.com'
   },
   {
     name: 'instagram',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Instagram.png'),
     url: 'https://www.instagram.com'
 
   },
   {
     name: 'vimeo',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Vimeo.png'),
     url: 'https://www.vimeo.com'
 
   },
@@ -32,7 +32,7 @@ const columns = [
     }
   },
   {
-    heading: 'Contact Us',
+    heading: 'CONNECT WITH US',
     render: () => {
       return (
       <FooterContactForm />
@@ -43,28 +43,34 @@ const columns = [
 
 const styles = {
   container: {
-    width: '100vw',
-    height: 600,
+    width: '100%',
+    maxWidth: 1200,
     backgroundColor: '#6A5B5D',
-    paddingTop: 50,
+    padding: 0,
+  },
+  limitWidth: {
+    backgroundColor: '#6A5B5D',
+    width: '100%',
+    padding: 75,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   columns: [
     {
       column: {
-        flex: 2,
       }
     },
     {
       column: {
-        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
       },
       header: {
-        fontSize: 30,
+        fontSize: 25,
         color: '#FDECBB',
-        marginBottom: 125,
+        paddingLeft: 125,
+        whiteSpace: 'nowrap',
       }
     },
   ]
@@ -73,7 +79,9 @@ const styles = {
 class Footer extends Component {
   render() {
     return (
-      <FooterComponent columns={columns} styles={styles}/>
+      <div style={styles.limitWidth}>
+        <FooterComponent columns={columns} styles={styles}/>
+      </div>
     )
   }
 }
