@@ -6,23 +6,6 @@ import Slider from 'react-animated-slider'
 import '../styles/slider.css'
 
 class Header extends Component {
-  state = {
-    intervalId: 0,
-  }
-  scrollStep = () => {
-    const { intervalId } = this.state
-    if (window.pageYOffset >= window.innerHeight) {
-      clearInterval(intervalId);
-    }
-    window.scroll(0, window.pageYOffset + 15);
-  }
-  handleHeaderScroll = () => {
-    const { scrollStep } = this
-    let intervalId = setInterval(scrollStep, 0);
-    this.setState({
-      intervalId: intervalId ,
-    })
-  }
   render() {
     const {
       styles,
@@ -98,7 +81,7 @@ class Header extends Component {
             :
             null
         }
-        <a href='#'><img onClick={handleHeaderScroll} style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/></a>
+    <img onClick={handleHeaderScroll} style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/>
       </Container>
     )
   }
@@ -148,8 +131,8 @@ const defaultStyles = {
     width: 100,
     position: 'absolute',
     zIndex: 1,
-    bottom: 25,
-    left: 'calc(50% - 75px)',
+    bottom: 35,
+    left: 'calc(50% - 22px)',
   },
 }
 
