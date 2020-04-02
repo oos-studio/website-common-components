@@ -19,14 +19,33 @@ class ATCHomepage extends Component {
   getHomepageHeader = () => {
     return {
       styles: homepageStyles.header,
-      title: [
-        'Designing Innovative Solutions',
-        'Delivering Product Perfection',
-      ],
       backgroundAsset: {
         url: require('./assets/Header.png'),
         mimeType: 'image',
       },
+      title: [
+        'This is the first line',
+        'This is the second line',
+      ],
+      // slides: [
+      //     {
+      //       source: require('./assets/Header.png'),
+      //       title: [
+      //         'This is the first line',
+      //         'This is the second line',
+      //       ],
+      //     },
+      //     {
+      //       source: require('./assets/Header2.png'),
+      //       title: 'Slide 2 Title',
+      //     },
+      //     {
+      //       source: require('./assets/Header3.png'),
+      //       title: 'Slide 3 Title',
+      //
+      //     },
+      // ],
+      sliderAutoPlayDuration: 2500,
     }
   }
 
@@ -91,20 +110,18 @@ const homepageStyles = {
   header: {
     container: {
       height: '100vh',
+
     },
-    text: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    title: {
-      fontSize: 60,
-      marginTop: 25,
-      md: {
-        fontSize: 45,
+    slideshow: {
+      container: {
+        height: '100%',
+        width: '100%',
       },
-    },
-    backgroundAsset: {
-      height: '100%',
+      slider: {
+        slider: {
+          height: '100%',
+        },
+      },
     },
   },
 }
