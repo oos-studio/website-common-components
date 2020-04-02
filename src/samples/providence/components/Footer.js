@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Footer as FooterComponent } from '../../../components'
 import { FooterInfo, FooterContactForm } from './index'
+import withSizes from '../../../utils/Sizes'
 
 const socials = [
   {
@@ -32,7 +33,7 @@ const columns = [
     }
   },
   {
-    heading: 'CONNECT WITH US',
+    heading: '',
     render: () => {
       return (
       <FooterContactForm />
@@ -46,44 +47,53 @@ const styles = {
     width: '100%',
     maxWidth: 1200,
     backgroundColor: '#6A5B5D',
-    padding: 0,
   },
   limitWidth: {
     backgroundColor: '#6A5B5D',
     width: '100%',
-    padding: 75,
+    paddingTop: 75,
+    paddingBottom: 75,
     paddingLeft: 20,
     paddingRight: 20,
+    md: {
+      paddingTop: 0,
+      paddingBottom: 0
+    },
+  },
+  content: {
+    display: 'flex',
   },
   columns: [
     {
       column: {
+       flex: 2,
       }
     },
     {
       column: {
+        flex: 1.4,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
       },
-      header: {
-        fontSize: 25,
-        color: '#FDECBB',
-        paddingLeft: 125,
-        whiteSpace: 'nowrap',
-      }
     },
-  ]
+  ],
+  md: {
+    content: {
+      flexDirection: 'column-reverse',
+    },
+  },
 }
 
 class Footer extends Component {
   render() {
+    const { getStyle } = this.props
     return (
-      <div style={styles.limitWidth}>
-        <FooterComponent columns={columns} styles={styles}/>
+      <div style={getStyle(styles.limitWidth)}>
+        <FooterComponent columns={columns} styles={getStyle(styles)}/>
       </div>
     )
   }
 }
 
-export default Footer
+export default withSizes(Footer)

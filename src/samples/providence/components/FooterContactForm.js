@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, FormGroup, Input } from 'reactstrap'
 import { Button } from '../../../components/index'
 import '../index.css'
+import withSizes from '../../../utils/Sizes'
 
 class FooterContactForm extends Component {
   constructor(props) {
@@ -15,8 +16,13 @@ class FooterContactForm extends Component {
   }
 
   render() {
+    const { getStyle } = this.props
+    const styles = getStyle(_styles)
     return (
       <div style={styles.container}>
+        <div style={styles.header}>
+          CONNECT WITH US
+        </div>
        <Form style={styles.form}>
          <FormGroup style={styles.formGroup}>
            <div style={styles.formLabel}>NAME</div> <Input style={styles.input} type='text' name='name' id='name' placeholder="Enter your name..."/>
@@ -28,15 +34,21 @@ class FooterContactForm extends Component {
            <div style={styles.formLabel}>MESSAGE</div><Input style={styles.textArea} type='textarea' name='message' id='message' placeholder="Write your message here..."/>
          </FormGroup>
        </Form>
-        <Button onClick={this.onSubmit} styles={styles.button}>SUBMIT</Button>
+      <Button onClick={this.onSubmit} styles={styles.button}>SUBMIT</Button>
       </div>
     )
   }
 }
 
-const styles = {
+const _styles = {
   container: {
     marginTop: 10,
+  },
+  header: {
+    fontSize: 25,
+    color: '#FDECBB',
+    paddingLeft: 125,
+    whiteSpace: 'nowrap',
   },
   form: {
     display: 'flex',
@@ -83,6 +95,38 @@ const styles = {
       borderColor: '#6A5B5D',
     }
   },
+  md: {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      paddingTop: 35,
+      paddingBottom: 35,
+    },
+    header: {
+      paddingLeft: 0,
+    },
+    form: {
+      width: '100%',
+    },
+    formGroup: {
+      flexDirection: 'column',
+    },
+    formLabel: {
+      minWidth: 0,
+      textAlign: 'left',
+      marginRight: 0,
+    },
+    input: {
+    },
+    textArea: {
+
+    },
+    button: {
+      marginLeft: 0,
+      alignSelf: 'center',
+    },
+  },
 }
 
-export default FooterContactForm
+export default withSizes(FooterContactForm)
