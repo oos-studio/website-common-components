@@ -62,7 +62,7 @@ const bodyStyles = {
     },
     xs: {
       paddingTop: 25,
-      paddingBottom: 15,
+      paddingBottom: 25,
     }
   },
   text: {

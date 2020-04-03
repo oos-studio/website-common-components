@@ -8,7 +8,7 @@ class TileGrid extends Component {
     const { type } = this.props
 
     return (
-      <TileGridComp styles={type === 'image' ? imageStyles : iconStyles} tiles={type === 'image' ? imageTiles : iconTiles}/>
+      <TileGridComp styles={type === 'default' ? imageStyles : iconStyles} tiles={type === 'default' ? imageTiles : iconTiles}/>
     )
   }
 }
@@ -143,12 +143,12 @@ const vanIconStyles = {
   container: {
     paddingTop: 38,
     sm: {
-      paddingTop: 75,
+      paddingTop: 50,
       paddingBottom: 75,
     },
     xs: {
-      paddingTop: 25,
-      paddingBottom: 15,
+      paddingTop: 50,
+      paddingBottom: 25,
     },
   }
 }
@@ -157,12 +157,12 @@ const trailerIconStyles = {
   container: {
     paddingTop: 38,
     sm: {
-      paddingTop: 75,
+      paddingTop: 50,
       paddingBottom: 75,
     },
     xs: {
-      paddingTop: 25,
-      paddingBottom: 15,
+      paddingTop: 50,
+      paddingBottom: 25,
     },
   }
 }
