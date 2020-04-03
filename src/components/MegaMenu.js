@@ -4,7 +4,25 @@ import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 
 class MegaMenu extends Component {
-
+  state = {
+    linkHover: false,
+    activeColumn: null,
+    activeLink: null,
+  }
+  hoverLink = (index, colIndex) => {
+    this.setState({
+      linkHover: true,
+      activeLink: index,
+      activeColumn: colIndex,
+    })
+  }
+  leaveHoverLink = (index, colIndex) => {
+    this.setState({
+      linkHover: false,
+      activeLink: null,
+      activeColumn: null,
+    })
+  }
   getColumnStyle = index => {
     const { styles } = this.props
     let columnStyle = styles.defaultColumn
@@ -55,6 +73,8 @@ class MegaMenu extends Component {
   }
 
   renderColumn = (column, index) => {
+    const { linkHover, activeLink, activeColumn } = this.state
+    const { hoverLink, leaveHoverLink } = this
     const linkStyle = this.getLinkStyle(index)
     const imageStyle = this.getImageStyle(index)
     switch(column.type) {
@@ -62,7 +82,10 @@ class MegaMenu extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map(link => <NavLink href={link.url}  style={linkStyle}>{link.title}</NavLink>)}
+            {column.links.map((link, linkIndex) => <NavLink onMouseEnter={() => hoverLink(linkIndex, index)} onMouseLeave={() => leaveHoverLink(linkIndex, index)} href={link.url}  style={{
+              ...linkStyle,
+              color: activeLink === linkIndex && activeColumn === index && linkHover && linkStyle.hover ? linkStyle.hover.color : linkStyle.color,
+            }}>{link.title}</NavLink>)}
           </React.Fragment>
         )
       case 'image':

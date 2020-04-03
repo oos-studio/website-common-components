@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm, CardList, TileGrid } from './components/index'
+import { Footer, ContactForm, CardList, TileGrid, NavBar, NavBarMobile  } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withSizes from '../../utils/Sizes'
+import './index.css'
 
 class ATCHomepage extends Component {
 
   render() {
-    const { getStyle } = this.props
+    const { getStyle, md } = this.props
     return (
-      <div style={getStyle(styles.container)}>
+      <React.Fragment>
+      { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
+    <div id='homeContainer' style={getStyle(styles.container)}>
+        <img src={require('./assets/SampleHeader.png')} style={{width: '100vw', height: '100vh', objectFit: 'cover'}}/>
         <Section styles={getStyle(styles.collabSection)}>
           <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
           <TileGrid type={'icon'} />
         </Section>
         <Section styles={getStyle(styles.designSection)}>
-          <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>
+          <Blurb content={blurbContent.design} />
           <CardList />
         </Section>
         <Section styles={getStyle(styles.contact)}>
@@ -22,6 +26,7 @@ class ATCHomepage extends Component {
         </Section>
         <Footer />
       </div>
+      </React.Fragment>
     )
   }
 }

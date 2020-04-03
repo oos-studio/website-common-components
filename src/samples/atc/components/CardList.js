@@ -180,6 +180,7 @@ const styles = {
       color: '#E86956',
       fontSize: 30,
       fontStyle: 'italic',
+      fontFamily: 'capitolina, serif',
       backgroundColor: '#FFFFFF',
       padding: 0,
       position: 'absolute',

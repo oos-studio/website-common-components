@@ -7,6 +7,8 @@ import ImageAlignedText from './ImageAlignedText'
 import Button from './Button'
 import Blurb from './Blurb'
 import Section from './Section'
+import NavBarAnimated from './NavBarAnimated'
+import NavBarMobile from './NavBarMobile'
 import Header from './Header'
 import DropdownMenu from './DropdownMenu'
 import FloatingParallax from './FloatingParallax'
@@ -37,5 +39,7 @@ export {
   ListItem,
   ListPage,
   MegaMenu,
+  NavBarAnimated,
+  NavBarMobile,
   TileGrid
 }
