@@ -18,9 +18,6 @@ class Header extends Component {
       slides,
       sliderAutoPlayDuration,
     } = this.props
-    const {
-      handleHeaderScroll,
-    } = this
 
     if (!styles.backgroundAsset.height) {
       styles.backgroundAsset.height = styles.container.height
@@ -81,7 +78,7 @@ class Header extends Component {
             :
             null
         }
-    <img onClick={handleHeaderScroll} style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/>
+    <img style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/>
       </Container>
     )
   }
@@ -128,11 +125,11 @@ const defaultStyles = {
   },
   scroll: {
     height: 75,
-    width: 100,
+    width: 75,
     position: 'absolute',
     zIndex: 1,
     bottom: 35,
-    left: 'calc(50% - 22px)',
+    left: (0.5 * window.clientWidth) - 37,
   },
 }
 

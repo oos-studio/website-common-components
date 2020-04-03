@@ -11,20 +11,18 @@
     line-height: 0;
     position: absolute;
     top: 50%;
+    /*-webkit-transform: translateY(-50%);*/
+    /*transform: translateY(-50%);*/
+    /*-webkit-transition: all .5s linear;*/
     display: none;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    -webkit-transition: all .5s linear;
-    transition: all .3s linear;
+    /*transition: all .3s linear;*/
     z-index: 1;
-    color: #333;
     padding: 10px;
     text-decoration: none;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden
     /* prevent jump effect when scaling */
 }
-
 .center {
     color: #FFFFFF;
     font-size: 65px;

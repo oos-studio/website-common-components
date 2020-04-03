@@ -19,32 +19,24 @@ class ATCHomepage extends Component {
   getHomepageHeader = () => {
     return {
       styles: homepageStyles.header,
-      backgroundAsset: {
-        url: require('./assets/Header.png'),
-        mimeType: 'image',
-      },
-      title: [
-        'This is the first line',
-        'This is the second line',
+      slides: [
+          {
+            source: require('./assets/Header.png'),
+            title: [
+              'This is the first line',
+              'This is the second line',
+            ],
+          },
+          {
+            source: require('./assets/Header2.png'),
+            title: 'Slide 2 Title',
+          },
+          {
+            source: require('./assets/Header3.png'),
+            title: 'Slide 3 Title',
+
+          },
       ],
-      // slides: [
-      //     {
-      //       source: require('./assets/Header.png'),
-      //       title: [
-      //         'This is the first line',
-      //         'This is the second line',
-      //       ],
-      //     },
-      //     {
-      //       source: require('./assets/Header2.png'),
-      //       title: 'Slide 2 Title',
-      //     },
-      //     {
-      //       source: require('./assets/Header3.png'),
-      //       title: 'Slide 3 Title',
-      //
-      //     },
-      // ],
       sliderAutoPlayDuration: 2500,
     }
   }
