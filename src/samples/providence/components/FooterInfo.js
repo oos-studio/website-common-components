@@ -104,7 +104,7 @@ const _styles = {
     topSection: {
       flexDirection: 'column',
       paddingRight: 0,
-      paddingBottom: 25,
+      paddingBottom: 15,
     },
     contact: {
       paddingLeft: 0,
@@ -113,7 +113,7 @@ const _styles = {
       marginTop: 50,
     },
     bottomSection: {
-      marginTop: 25,
+      marginTop: 30,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

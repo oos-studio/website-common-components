@@ -25,13 +25,13 @@ class FooterContactForm extends Component {
         </div>
        <Form style={styles.form}>
          <FormGroup style={styles.formGroup}>
-           <div style={styles.formLabel}>NAME</div> <Input style={styles.input} type='text' name='name' id='name' placeholder="Enter your name..."/>
+           <div style={styles.formLabel}>NAME</div> <Input style={styles.input} type='text' name='name' id='name'/>
          </FormGroup>
          <FormGroup style={styles.formGroup}>
-           <div style={styles.formLabel}>EMAIL</div><Input style={styles.input} type='email' name='email' id='email' placeholder="Enter your email..." />
+           <div style={styles.formLabel}>EMAIL</div><Input style={styles.input} type='email' name='email' id='email' />
          </FormGroup>
          <FormGroup style={styles.formGroup}>
-           <div style={styles.formLabel}>MESSAGE</div><Input style={styles.textArea} type='textarea' name='message' id='message' placeholder="Write your message here..."/>
+           <div style={styles.formLabel}>MESSAGE</div><Input style={styles.textArea} type='textarea' name='message' id='message'/>
          </FormGroup>
        </Form>
       <Button onClick={this.onSubmit} styles={styles.button}>SUBMIT</Button>
