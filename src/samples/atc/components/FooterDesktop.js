@@ -142,16 +142,18 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    filter: 'none',
     hovered: {
       backgroundColor: 'rgba(0,0,0,0)',
       borderColor: '#EDE8E4',
+      filter: 'invert(57%) sepia(14%) saturate(4670%) hue-rotate(325deg) brightness(95%) contrast(91%)',
     },
   },
   buttonImg: {
     height: 45,
     width: 45,
     paddingBottom: 5,
-  },
+},
   bottomWrapper: {
     width: '100%',
     maxWidth: 1200,
@@ -187,7 +189,9 @@ class FooterDesktop extends Component {
     super(props)
 
     this.state = {
-      intervalId: 0
+      intervalId: 0,
+      hovered: false,
+      activeIndex: null,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -209,9 +213,21 @@ class FooterDesktop extends Component {
       intervalId: intervalId ,
     })
   }
-
+  hoverImg = (index=null) => {
+    this.setState({
+      hovered: true,
+      activeIndex: index,
+    })
+  }
+  leaveHoverImg = (index=null) => {
+    this.setState({
+      hovered: false,
+      activeIndex: null,
+    })
+  }
   render() {
-    const { handleScroll } = this
+    const { handleScroll, hoverImg, leaveHoverImg } = this
+    const { hovered, activeIndex } = this.state
     return (
       <div style={styles.container}>
         <div style={styles.topWrapper}>
@@ -230,10 +246,13 @@ class FooterDesktop extends Component {
             Copyright 2020 American Technology Components, Inc.
           </div>
           <div style={styles.socialWrapper}>
-            {socials.map(s => {
+            {socials.map((s, index) => {
               return(
                 <div style={styles.socials}>
-                  <a href={s.url}><Media object src={s.icon} alt={s.name} style={styles.socialImages} /></a>
+                  <a href={s.url}><Media onMouseEnter={() => hoverImg(index)} onMouseLeave={() => leaveHoverImg(index)} object src={s.icon} alt={s.name} style={{
+                    ...styles.socialImages,
+                    filter: hovered && activeIndex === index ? 'invert(57%) sepia(14%) saturate(4670%) hue-rotate(325deg) brightness(95%) contrast(91%)' : 'none',
+                  }} /></a>
                 </div>
               )
             })}
