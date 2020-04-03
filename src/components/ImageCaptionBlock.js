@@ -10,9 +10,9 @@ class ImageCaptionBlock extends Component {
         <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
         <div style={styles.overlay}>
           <div style={styles.bottom}>
-          <div style={styles.text}>
-          {text}
-          </div>
+            <div style={styles.text}>
+              {text}
+            </div>
           </div>
           <div style={styles.logoWrapper}>
             <img alt={logo.title} src={logo.image} style={styles.logo} />
@@ -25,7 +25,7 @@ class ImageCaptionBlock extends Component {
 
 const defaultStyles = {
   container: {
-    height: 500,
+    //  height: 500,
     position: 'relative',
   },
   image: {
@@ -36,7 +36,7 @@ const defaultStyles = {
   overlay: {
     position: 'absolute',
     bottom: 0,
-    backgroundColor: 'rgba(96, 151, 181, 0.75)',
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
     width: '100%',
     height: '100%',
   },
@@ -44,8 +44,7 @@ const defaultStyles = {
     width: '100%',
     position: 'absolute',
     bottom: 0,
-    height: '30%',
-    backgroundColor: 'rgb(96, 151, 181)',
+    backgroundColor: 'rgb(0, 0, 0)',
     textAlign: 'right',
     display: 'flex',
     flexDirection: 'column',
