@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm, CardList } from './components/index'
+import { Footer, ContactForm, CardList, TileGrid } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withSizes from '../../utils/Sizes'
 
@@ -11,6 +11,7 @@ class ATCHomepage extends Component {
       <div style={getStyle(styles.container)}>
         <Section styles={getStyle(styles.collabSection)}>
           <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
+          <TileGrid />
         </Section>
         <Section styles={getStyle(styles.designSection)}>
           <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>
