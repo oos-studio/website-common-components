@@ -11,7 +11,7 @@ class ATCHomepage extends Component {
       <div style={getStyle(styles.container)}>
         <Section styles={getStyle(styles.collabSection)}>
           <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
-          <TileGrid />
+          <TileGrid type={'icon'} />
         </Section>
         <Section styles={getStyle(styles.designSection)}>
           <Blurb content={blurbContent.design} styles={getStyle(styles.designBlurb)}/>

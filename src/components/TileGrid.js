@@ -10,7 +10,7 @@ class TileGrid extends Component {
         {tiles.map(t => {
           return (
             <div style={getStyle(styles.tileWrapper)}>
-              <div style={getStyle(styles.tileBodyWrapper)}>
+              <div id='tileWrapper'  style={getStyle(styles.tileBodyWrapper)}>
                 {t.renderBody()}
               </div>
               <div style={getStyle(styles.tileSubtitle)}>
