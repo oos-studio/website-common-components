@@ -18,6 +18,7 @@ import List from './List'
 import ListItem from './ListItem'
 import ListPage from './ListPage'
 import MegaMenu from './MegaMenu'
+import TileGrid from './TileGrid'
 
 export {
   CardGrid,
@@ -40,4 +41,5 @@ export {
   MegaMenu,
   NavBarAnimated,
   NavBarMobile,
+  TileGrid
 }

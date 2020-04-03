@@ -106,6 +106,8 @@ const styles = {
     defaultHeader: {
       color: '#E86956',
       fontSize: 35,
+      fontFamily: 'capitolina, serif',
+      fontStyle: 'italic',
     },
     defaultText: {
       fontSize: 16,
@@ -165,8 +167,10 @@ const styles = {
   },
   copyright: {
     color: '#EDE8E4',
-    fontSize: 20,
+    fontSize: 18,
     marginRight: 25,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 1.25,
   },
   socialWrapper: {
     width: 200,

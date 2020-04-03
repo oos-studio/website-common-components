@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import withSizes from '../utils/Sizes'
 
 class ImageCenteredText extends Component {
   render() {
-    const { styles, image, text } = this.props
-
+    const { styles, image, text, getStyle } = this.props
+    console.log(styles)
     return (
-      <Container style={styles.container}>
-        <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
-        <div style={styles.overlay}>
-          <div style={styles.text}>
+      <Container fluid style={getStyle(styles.container)}>
+        <img alt={image.title ? image.title : 'img'} src={image.image} style={getStyle(styles.image)}/>
+        <div style={getStyle(styles.overlay)}>
+          <div style={getStyle(styles.text)}>
             {text}
           </div>
         </div>
@@ -57,4 +58,4 @@ ImageCenteredText.defaultProps = {
   }
 }
 
-export default mergeStyles(defaultStyles)(ImageCenteredText)
+export default mergeStyles(defaultStyles)(withSizes(ImageCenteredText))

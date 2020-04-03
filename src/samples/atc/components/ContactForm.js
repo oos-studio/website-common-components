@@ -52,7 +52,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: 50,
-    md: {
+    sm: {
       padding: 35,
     }
   },
@@ -60,7 +60,9 @@ const styles = {
     fontSize: 60,
     color: '#FFFFFF',
     marginBottom: 25,
-    md: {
+    fontFamily: 'capitolina, serif',
+    fontWeight: 700,
+    sm: {
       fontSize: 35,
     }
   },
@@ -72,13 +74,13 @@ const styles = {
     justifyContent: 'flex-start',
     alignContent: 'center',
     alignItems: 'center',
-    md: {
+    sm: {
       width: '100%',
     },
 
   },
   formGroup: {
-    md: {
+    sm: {
       width: '100%',
     },
   },
@@ -94,7 +96,7 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
-    md: {
+    sm: {
       marginBottom: 15,
       height: 53,
       width: '100%',
@@ -117,7 +119,7 @@ const styles = {
     borderWidth: 2,
     borderStyle: 'solid',
     borderRadius: 0,
-    md: {
+    sm: {
       marginBottom: 15,
       marginLeft: 0,
       height: 100,
@@ -134,12 +136,14 @@ const styles = {
     color: '#FFFFFF',
     width: 381,
     borderRadius: 0,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 1.25,
     hovered: {
       backgroundColor: '#E86956',
       borderWidth: 0,
       color: '#FFFFFF',
     },
-    md: {
+    sm: {
       height: 53,
       marginLeft: 0,
       width: '100%',
