@@ -90,9 +90,9 @@ const _styles = {
     borderRadius: 0,
     marginLeft: 125,
     hovered: {
-      backgroundColor: '#F8F5EE',
-      color: '#6A5B5D',
-      borderColor: '#6A5B5D',
+      backgroundColor: 'transparent',
+      color: '#CD7D43',
+      borderColor: '#CD7D43',
     }
   },
   md: {
