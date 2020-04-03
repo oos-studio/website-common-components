@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
+import withSizes from '../utils/Sizes'
 
 class ImageCaptionBlock extends Component {
   render() {
-    const { styles, image, text, logo } = this.props
+    const { getStyle, styles, image, text, logo } = this.props
 
     return (
-      <div style={styles.container}>
-        <img alt={image.title ? image.title : 'img'} src={image.image} style={styles.image}/>
-        <div style={styles.overlay}>
-          <div style={styles.bottom}>
-            <div style={styles.text}>
+      <div style={getStyle(styles.container)}>
+        <img alt={image.title ? image.title : 'img'} src={image.image} style={getStyle(styles.image)}/>
+        <div style={getStyle(styles.overlay)}>
+          <div style={getStyle(styles.bottom)}>
+            <div style={getStyle(styles.logoWrapper)}>
+              <img alt={logo.title} src={logo.image} style={getStyle(styles.logo)} />
+            </div>
+            <div style={getStyle(styles.text)}>
               {text}
             </div>
-          </div>
-          <div style={styles.logoWrapper}>
-            <img alt={logo.title} src={logo.image} style={styles.logo} />
           </div>
         </div>
       </div>
@@ -25,8 +26,11 @@ class ImageCaptionBlock extends Component {
 
 const defaultStyles = {
   container: {
-    //  height: 500,
     position: 'relative',
+    height: 700,
+    md: {
+      height: 500,
+    },
   },
   image: {
     objectFit: 'cover',
@@ -41,33 +45,62 @@ const defaultStyles = {
     height: '100%',
   },
   bottom: {
-    width: '100%',
     position: 'absolute',
+    backgroundColor: 'tan',
+    width: '100%',
     bottom: 0,
-    backgroundColor: 'rgb(0, 0, 0)',
-    textAlign: 'right',
+    height: '40%',
     display: 'flex',
-    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    paddingLeft: 75,
+    paddingRight: 75,
+    paddingTop: 25,
+    paddingBottom: 25,
+    sm: {
+      paddingLeft: 25,
+      paddingRight: 25,
+    },
   },
   text: {
-    width: '40%',
-    overflow: 'hidden',
-    marginRight: '10%',
+    fontSize: 45,
+    maxWidth: 800,
+    textAlign: 'right',
+    md: {
+      fontSize: 25,
+      maxWidth: 400,
+    },
+    sm: {
+      fontSize: 20,
+    },
   },
   logoWrapper: {
-    position: 'absolute',
-    width: '30%',
-    height: '50%',
-    bottom: '20%',
-    left: '10%',
-
+    height: 400,
+    width: 400,
+    alignSelf: 'flex-end',
+    marginBottom: 150,
+    md: {
+      height: 250,
+      width: 250,
+      marginBottom: 100,
+    },
+    sm: {
+      height: 150,
+      width: 150,
+      marginBottom: 125,
+    },
   },
   logo: {
-    objectFit: 'cover',
-    height: '100%',
-    width: '100%',
+    height: 400,
+    width: 400,
+    md: {
+      height: 250,
+      width: 250,
+    },
+    sm: {
+      height: 150,
+      width: 150,
+    },
   },
 }
 
@@ -79,4 +112,4 @@ ImageCaptionBlock.defaultProps = {
   }
 }
 
-export default mergeStyles(defaultStyles)(ImageCaptionBlock)
+export default mergeStyles(defaultStyles)(withSizes(ImageCaptionBlock))
