@@ -3,6 +3,22 @@ import {NavLink} from 'reactstrap'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 
 class MarketsMobile extends Component {
+  state = {
+    linkHover: false,
+    activeLink: null,
+  }
+  hoverLink = (index) => {
+    this.setState({
+      linkHover: true,
+      activeLink: index,
+    })
+  }
+  leaveHoverLink = (index) => {
+    this.setState({
+      linkHover: false,
+      activeLink: null,
+    })
+  }
   open = () => {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
@@ -27,12 +43,18 @@ class MarketsMobile extends Component {
   }
 
   render() {
+    const { activeLink, linkHover } = this.state
+    const { hoverLink, leaveHoverLink } = this
+
     return (
       <div id='marketsContainer' style={styles.markets.container}>
-        {marketsData.map(m => {
+        {marketsData.map((m, index) => {
           return (
             <div style={styles.markets.itemWrapper}>
-              <NavLink style={styles.markets.item} href={m.url}>{m.title}</NavLink>
+              <NavLink onMouseEnter={() => hoverLink(index)} onMouseLeave={() => leaveHoverLink(index)} style={{
+                ...styles.markets.item,
+                color: activeLink === index && linkHover &&  styles.markets.item.hover ? styles.markets.item.hover.color : styles.markets.item.color,
+              }} href={m.url}>{m.title}</NavLink>
             </div>
           )
         })}
@@ -91,6 +113,9 @@ const styles = {
       display: 'inline-block',
       fontSize: 20,
       color: '#EDE8E4',
+      hover: {
+        color: '#E86956',
+      },
     },
   },
 }

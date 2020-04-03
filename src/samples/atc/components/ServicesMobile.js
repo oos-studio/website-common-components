@@ -3,6 +3,25 @@ import {NavLink} from 'reactstrap'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 
 class ServicesMobile extends Component {
+  state = {
+    linkHover: false,
+    activeLink: null,
+    activeColumn: null,
+  }
+  hoverLink = (index, colIndex) => {
+    this.setState({
+      linkHover: true,
+      activeLink: index,
+      activeColumn: colIndex,
+    })
+  }
+  leaveHoverLink = (index) => {
+    this.setState({
+      linkHover: false,
+      activeLink: null,
+      activeColumn: null,
+    })
+  }
   open = () => {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
@@ -27,19 +46,25 @@ class ServicesMobile extends Component {
   }
 
   render() {
+    const { activeLink, linkHover, activeColumn } = this.state
+    const { hoverLink, leaveHoverLink } = this
+
     return (
       <div id='servicesContainer' style={styles.services.container}>
-        {servicesData.map(s => {
+        {servicesData.map((s, colIndex) => {
           return (
             <React.Fragment>
               <div style={styles.services.header}>
                 {s.heading}
               </div>
               <div style={styles.services.sectionWrapper}>
-                {s.links.map(l => {
+                {s.links.map((l, index) => {
                   return (
                     <div style={styles.services.itemWrapper}>
-                      <NavLink style={styles.services.item} href={l.url}>{l.title}</NavLink>
+                      <NavLink onMouseEnter={() => hoverLink(index, colIndex)} onMouseLeave={() => leaveHoverLink(index, colIndex)} style={{
+                        ...styles.services.item,
+                        color: activeColumn === colIndex && activeLink === index && linkHover &&  styles.services.item.hover ? styles.services.item.hover.color : styles.services.item.color,
+                      }} href={l.url}>{l.title}</NavLink>
                     </div>
                   )
                 })}
@@ -169,6 +194,9 @@ const styles = {
       display: 'inline-block',
       fontSize: 20,
       color: '#EDE8E4',
+      hover: {
+        color: '#E86956',
+      },
     },
   },
 }

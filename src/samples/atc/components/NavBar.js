@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavBarAnimated as NavBarComp} from '../../../components'
 import { Media, Form, Input, FormGroup} from 'reactstrap'
+import DropdownSearch from '../components/DropdownSearch'
 import deepmerge from 'deepmerge'
 import MegaMenu from '../../../components/MegaMenu'
 import '../index.css'
@@ -238,6 +239,9 @@ const dropdownMenuStyles = {
     fontWeight: 'bold',
     color: '#562A31',
     padding: 2,
+    hover: {
+      color: '#E86956',
+    }
   },
   markets: {
     container: {
@@ -485,22 +489,7 @@ const data = {
             filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
           },
         },
-        render: () => {
-          return (
-            <React.Fragment>
-              <div style={styles.search.shadow}>
-
-              </div>
-              <div style={styles.search.container}>
-                <Form style={styles.search.form}>
-                  <FormGroup style={styles.search.formGroup}>
-                    <Input type='text' name='search' id='search' placeholder='Search' style={styles.search.input} />
-                  </FormGroup>
-                </Form>
-              </div>
-            </React.Fragment>
-          )
-        }
+        render: <DropdownSearch styles={styles} />
       },
     ],
   }
