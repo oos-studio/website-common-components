@@ -18,3 +18,10 @@ body {
     color: white;
     opacity: 1;
 }
+#ddMenu:focus {
+    outline: none;
+}
+#ddSearch:focus {
+    outline: none;
+    box-shadow: none;
+}
