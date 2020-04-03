@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Footer, ContactForm, CardList, TileGrid, Blurb, NavBar, NavBarMobile  } from './components/index'
+import { Footer, ContactForm, CardList, TileGrid, NavBar, NavBarMobile  } from './components/index'
 import { Blurb, Section } from '../../components/index'
 import withSizes from '../../utils/Sizes'
 import './index.css'
