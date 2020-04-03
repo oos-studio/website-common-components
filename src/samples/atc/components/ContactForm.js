@@ -60,6 +60,8 @@ const styles = {
     fontSize: 60,
     color: '#FFFFFF',
     marginBottom: 25,
+    fontFamily: 'capitolina, serif',
+    fontWeight: 700,
     sm: {
       fontSize: 35,
     }
@@ -134,6 +136,8 @@ const styles = {
     color: '#FFFFFF',
     width: 381,
     borderRadius: 0,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 1.25,
     hovered: {
       backgroundColor: '#E86956',
       borderWidth: 0,

@@ -120,6 +120,8 @@ const styles = {
       color: '#E86956',
       fontSize: 24,
       paddingBottom: 10,
+      fontFamily: 'capitolina, serif',
+      fontStyle: 'italic',
     },
     defaultText: {
       fontSize: 16,
@@ -200,8 +202,10 @@ const styles = {
     textAlign: 'left',
     alignSelf: 'flex-start',
     color: '#EDE8E4',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 600,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 1.25,
   },
 }
 

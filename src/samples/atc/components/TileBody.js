@@ -40,6 +40,9 @@ const bodyStyles = {
   text: {
     color: '#FFFFFF',
     fontSize: 45,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 3,
+    textTransform: 'uppercase',
     margin: 20,
     transition: 'color 0.25s',
     md: {
