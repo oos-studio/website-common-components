@@ -4,7 +4,9 @@ import {Form, FormGroup, Input} from 'reactstrap'
 class DropdownSearch extends Component {
   componentDidUpdate() {
     setTimeout(() => {
-      document.getElementById('ddSearch').focus()
+      if(document.getElementById('ddSearch') !== null){
+        document.getElementById('ddSearch').focus()
+      }
     }, 0)
   }
 
