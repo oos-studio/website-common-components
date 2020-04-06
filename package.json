@@ -1,7 +1,20 @@
 {
-  "name": "website-common-components",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@oos-studio/website-common-components",
+  "version": "0.0.13-alpha",
+  "description": "A directory of commonly used components for building websites with react",
+  "main": "dist/components/index.js",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,12 +24,9 @@
     "deepmerge": "^4.2.2",
     "gsap": "^3.2.4",
     "prop-types": "^15.7.2",
-    "react": "^16.12.0",
     "react-crossfade-image": "^1.2.0",
-    "react-dom": "^16.12.0",
     "react-parallax": "^3.0.3",
     "react-render-html": "^0.6.0",
-    "react-scripts": "3.3.1",
     "react-scroll-parallax": "^2.3.1",
     "reactstrap": "^8.4.1",
     "what-input": "^5.2.7"
@@ -25,10 +35,25 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:npm": "rm -rf dist && mkdir dist && babel ./src/components -d dist/components --copy-files && babel ./src/utils -d dist/utils --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "author": "oos-studio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oos-studio/website-common-components/issues"
+  },
+  "homepage": "https://github.com/oos-studio/website-common-components#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-react": "^7.9.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.3.1"
   },
   "browserslist": {
     "production": [

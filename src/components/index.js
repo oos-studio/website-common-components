@@ -20,6 +20,8 @@ import ListPage from './ListPage'
 import MegaMenu from './MegaMenu'
 import Page from './Page'
 import TileGrid from './TileGrid'
+import withSizes from '../utils/Sizes'
+import { getSizes, sizes } from '../utils/Sizes'
 
 export {
   CardGrid,
@@ -43,5 +45,8 @@ export {
   Page,
   NavBarAnimated,
   NavBarMobile,
-  TileGrid
+  TileGrid,
+  withSizes,
+  getSizes,
+  sizes,
 }
