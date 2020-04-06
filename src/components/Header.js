@@ -16,6 +16,7 @@ class Header extends Component {
       getStyle,
       slides,
       sliderAutoPlayDuration,
+      scrollImg
     } = this.props
 
     if (!styles.backgroundAsset.height) {
@@ -58,7 +59,7 @@ class Header extends Component {
             :
             null
         }
-    <img style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/>
+    <img style={styles.scroll} src={scrollImg}/>
       </Container>
     )
   }

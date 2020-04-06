@@ -5,7 +5,6 @@ import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
 import withSizes from '../utils/Sizes'
-import '../samples/atc/index.css'
 
 class NavBarAnimated extends Component {
   constructor(props) {
