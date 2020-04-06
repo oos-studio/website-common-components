@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Container, Row  } from 'reactstrap'
+import { Container  } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
+import withSizes from '../utils/Sizes'
+import FadeImages from './FadeImages'
 
 class Header extends Component {
   render() {
@@ -10,7 +12,10 @@ class Header extends Component {
       subTitle,
       titleImageUrl,
       backgroundAsset,
-      video
+      video,
+      getStyle,
+      slides,
+      sliderAutoPlayDuration,
     } = this.props
 
     if (!styles.backgroundAsset.height) {
@@ -18,17 +23,25 @@ class Header extends Component {
     }
 
     return (
-      <Container style={styles.container}>
-        <div style={styles.text}>
-          { titleImageUrl && titleImageUrl !== '' ?
-            <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
-            : <span style={styles.title}>{title}</span>
-          }
-          <div style={styles.subTitle}>
-            <span>{subTitle}</span>
+      <Container fluid style={styles.container}>
+        {!slides &&
+          <div style={getStyle(styles.text)}>
+            {titleImageUrl && titleImageUrl !== '' ?
+              <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
+              :
+              Array.isArray(title) ?
+                title.map(t => {
+                  return (<span style={getStyle(styles.title)}>{t}</span>)
+                })
+                :
+                <span style={getStyle(styles.title)}>{title}</span>
+            }
+            <div style={styles.subTitle}>
+              <span>{subTitle}</span>
+            </div>
           </div>
-        </div>
-        { backgroundAsset && backgroundAsset !== {} ?
+        }
+        {!slides && backgroundAsset && backgroundAsset !== {} ?
           backgroundAsset.mimeType && backgroundAsset.mimeType.split('/')[0] === 'video' ?
             <video style={styles.backgroundAsset} {...video}>
               <source src={backgroundAsset.url} type={backgroundAsset.mimeType}/>
@@ -37,6 +50,15 @@ class Header extends Component {
             <img style={styles.backgroundAsset} src={backgroundAsset.url} alt={''}/>
           : null
         : null}
+        {
+          slides && slides !== {} ?
+            <div style={styles.slideshow.container}>
+              <FadeImages styles={styles.fadeImages} slides={slides} duration={sliderAutoPlayDuration} transitionDuration={500}/>
+            </div>
+            :
+            null
+        }
+    <img style={styles.scroll} src={require('../samples/atc/assets/HeaderScroll.png')}/>
       </Container>
     )
   }
@@ -50,9 +72,11 @@ const defaultStyles = {
     fontSize: 32,
     fontWeight: 500,
     color: 'white',
+    padding: 0,
+    position: 'relative',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   backgroundAsset: {
     position: 'fixed',
@@ -63,10 +87,16 @@ const defaultStyles = {
     left: 0,
     right: 0,
   },
+  slideshow: {
+    container: {
+      height: '100vh',
+    },
+  },
   text: {
   },
   title: {
-
+    backgroundColor: 'blue',
+    zIndex: 10000,
   },
   subTitle: {
     marginTop: 5,
@@ -74,6 +104,17 @@ const defaultStyles = {
   },
   titleImage: {
 
+  },
+  fadeImages: {
+
+  },
+  scroll: {
+    height: 75,
+    width: 75,
+    position: 'absolute',
+    zIndex: 1,
+    bottom: 35,
+    left: (0.5 * window.clientWidth) - 37,
   },
 }
 
@@ -91,4 +132,4 @@ Header.defaultProps = {
   }
 }
 
-export default mergeStyle(defaultStyles)(Header)
+export default mergeStyle(defaultStyles)(withSizes(Header))

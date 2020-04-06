@@ -137,7 +137,7 @@ class NavBarMobile extends Component {
 
     return(
       <div id='container' style={{
-        position: fixed ? 'sticky' : 'absolute',
+        position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
         <Navbar id='navbar' style={styles.navbar}>
