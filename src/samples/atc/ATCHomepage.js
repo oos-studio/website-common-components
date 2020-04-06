@@ -41,6 +41,7 @@ class ATCHomepage extends Component {
           },
       ],
       sliderAutoPlayDuration: 3000,
+      scrollImg: require('./assets/HeaderScroll.png')
     }
   }
 
