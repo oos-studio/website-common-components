@@ -76,6 +76,18 @@ const homepageStyles = {
       paddingRight: 50,
       paddingBottom: 50,
     },
+    collabBlurb: {
+      container: {
+        marginTop: 50,
+        marginBottom: 50,
+      },
+      title: {
+        color: '#852D3D',
+      },
+      text: {
+        color: '#7D7773',
+      },
+    },
   },
   designSection: {
     container: {
@@ -84,28 +96,17 @@ const homepageStyles = {
       paddingRight: 50,
       paddingBottom: 50,
     },
-  },
-  collabBlurb: {
-    container: {
-      marginTop: 50,
-    },
-    title: {
-      color: '#852D3D',
-    },
-    text: {
-      color: '#7D7773',
-    },
-  },
-  designBlurb: {
-    container: {
-      marginTop: 50,
-      marginBottom: 50,
-    },
-    title: {
-      color: '#852D3D',
-    },
-    text: {
-      color: '#7D7773',
+    designBlurb: {
+      container: {
+        marginTop: 50,
+        marginBottom: 50,
+      },
+      title: {
+        color: '#852D3D',
+      },
+      text: {
+        color: '#7D7773',
+      },
     },
   },
   contact: {
