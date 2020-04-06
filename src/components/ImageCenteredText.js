@@ -6,7 +6,6 @@ import withSizes from '../utils/Sizes'
 class ImageCenteredText extends Component {
   render() {
     const { styles, image, text, getStyle } = this.props
-    console.log(styles)
     return (
       <Container fluid style={getStyle(styles.container)}>
         <img alt={image.title ? image.title : 'img'} src={image.image} style={getStyle(styles.image)}/>

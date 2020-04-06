@@ -1,31 +1,57 @@
-import React, { Component } from 'react'
-import { Footer, ContactForm, CardList, TileGrid, NavBar, NavBarMobile  } from './components/index'
-import { Blurb, Section } from '../../components/index'
+import React, {Component} from 'react'
+import {Page,  NavBar, NavBarMobile, TileGrid, CardList} from './components/index'
+import {Blurb, Section} from '../../components/index'
 import withSizes from '../../utils/Sizes'
 import './index.css'
 
 class ATCHomepage extends Component {
 
+  getHomepageSections = () => {
+    return [
+      <Section styles={homepageStyles.collabSection}>
+        <Blurb content={blurbContent.collab} styles={homepageStyles.collabSection.collabBlurb}/>
+        <TileGrid />
+      </Section>,
+      <Section styles={homepageStyles.designSection}>
+        <Blurb content={blurbContent.design} styles={homepageStyles.designSection.designBlurb}/>
+        <CardList />
+      </Section>
+    ]
+  }
+
+  getHomepageHeader = () => {
+    return {
+      styles: homepageStyles.header,
+      slides: [
+          {
+            source: require('./assets/Header.png'),
+            title: [
+              'This is the first line',
+              'This is the second line',
+            ],
+          },
+          {
+            source: require('./assets/Header2.png'),
+            title: 'Slide 2 Title',
+          },
+          {
+            source: require('./assets/Header3.png'),
+            title: 'Slide 3 Title',
+
+          },
+      ],
+      sliderAutoPlayDuration: 3000,
+    }
+  }
+
+
   render() {
-    const { getStyle, md } = this.props
+    const { getHomepageSections, getHomepageHeader } = this
+
     return (
       <React.Fragment>
-      { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
-    <div id='homeContainer' style={getStyle(styles.container)}>
-        <img src={require('./assets/SampleHeader.png')} style={{width: '100vw', height: '100vh', objectFit: 'cover'}}/>
-        <Section styles={getStyle(styles.collabSection)}>
-          <Blurb content={blurbContent.collab} styles={getStyle(styles.collabBlurb)}/>
-          <TileGrid type={'icon'} />
-        </Section>
-        <Section styles={getStyle(styles.designSection)}>
-          <Blurb content={blurbContent.design} />
-          <CardList />
-        </Section>
-        <Section styles={getStyle(styles.contact)}>
-          <ContactForm/>
-        </Section>
-        <Footer />
-      </div>
+        { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
+        <Page sections={getHomepageSections()} header={getHomepageHeader()}/>
       </React.Fragment>
     )
   }
@@ -42,16 +68,25 @@ const blurbContent = {
   },
 }
 
-const styles = {
-  container: {
-
-  },
+const homepageStyles = {
   collabSection: {
     container: {
-
+      backgroundColor: '#FFFFFF',
       paddingLeft: 50,
       paddingRight: 50,
       paddingBottom: 50,
+    },
+    collabBlurb: {
+      container: {
+        marginTop: 50,
+        marginBottom: 50,
+      },
+      title: {
+        color: '#852D3D',
+      },
+      text: {
+        color: '#7D7773',
+      },
     },
   },
   designSection: {
@@ -61,32 +96,44 @@ const styles = {
       paddingRight: 50,
       paddingBottom: 50,
     },
-  },
-  collabBlurb: {
-    container: {
-      marginTop: 50,
-    },
-    title: {
-      color: '#852D3D',
-    },
-    text: {
-      color: '#7D7773',
-    },
-  },
-  designBlurb: {
-    container: {
-      marginTop: 50,
-      marginBottom: 50,
-    },
-    title: {
-      color: '#852D3D',
-    },
-    text: {
-      color: '#7D7773',
+    designBlurb: {
+      container: {
+        marginTop: 50,
+        marginBottom: 50,
+      },
+      title: {
+        color: '#852D3D',
+      },
+      text: {
+        color: '#7D7773',
+      },
     },
   },
   contact: {
     container: {
+    },
+  },
+  header: {
+    container: {
+      height: '100vh',
+
+    },
+    fadeImages: {
+      title: {
+        fontFamily: 'capitolina, serif',
+        fontWeight: 'bold',
+      },
+    },
+    slideshow: {
+      container: {
+        height: '100%',
+        width: '100%',
+      },
+      slider: {
+        slider: {
+          height: '100%',
+        },
+      },
     },
   },
 }
