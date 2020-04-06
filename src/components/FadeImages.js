@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import CrossfadeImage from 'react-crossfade-image'
 import '../App.css'
+import mergeStyles from '../utils/StyleMerge'
 
 class FadeImages extends Component {
   state = {
@@ -24,11 +25,11 @@ class FadeImages extends Component {
     })
   }
   render() {
-    const { slides, transitionDuration } = this.props
+    const { slides, transitionDuration, styles } = this.props
     const { activeImage } = this.state
 
     return(
-      <div id='container' style={styles.container}>
+      <div style={styles.container}>
         <div style={styles.content}>
           <div style={styles.titleWrapper}>
           {Array.isArray(slides[activeImage].title) ?
@@ -52,7 +53,7 @@ class FadeImages extends Component {
   }
 }
 
-const styles = {
+const defaultStyles = {
   container: {
     height: '100%',
     width: '100%',
@@ -85,4 +86,10 @@ const styles = {
   }
 }
 
-export default FadeImages
+FadeImages.defaultProps = {
+  slides: [],
+  duration: 0,
+  transitionDuration: 0,
+}
+
+export default mergeStyles(defaultStyles)(FadeImages)

@@ -53,7 +53,7 @@ class Header extends Component {
         {
           slides && slides !== {} ?
             <div style={styles.slideshow.container}>
-              <FadeImages slides={slides} duration={sliderAutoPlayDuration} transitionDuration={500}/>
+              <FadeImages styles={styles.fadeImages} slides={slides} duration={sliderAutoPlayDuration} transitionDuration={500}/>
             </div>
             :
             null
@@ -103,6 +103,9 @@ const defaultStyles = {
     fontSize: 12,
   },
   titleImage: {
+
+  },
+  fadeImages: {
 
   },
   scroll: {

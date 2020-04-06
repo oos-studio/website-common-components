@@ -117,6 +117,12 @@ const homepageStyles = {
       height: '100vh',
 
     },
+    fadeImages: {
+      title: {
+        fontFamily: 'capitolina, serif',
+        fontWeight: 'bold',
+      },
+    },
     slideshow: {
       container: {
         height: '100%',
