@@ -71,7 +71,7 @@ const blurbContent = {
 const homepageStyles = {
   collabSection: {
     container: {
-
+      backgroundColor: '#FFFFFF',
       paddingLeft: 50,
       paddingRight: 50,
       paddingBottom: 50,
