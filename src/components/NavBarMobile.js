@@ -3,7 +3,7 @@ import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, NavLink
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
-import '../App.css'
+import './commonCSS.css'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 class NavBarMobile extends Component {
