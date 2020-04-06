@@ -37,7 +37,7 @@ class ATCHomepage extends Component {
 
           },
       ],
-      sliderAutoPlayDuration: 2500,
+      sliderAutoPlayDuration: 3000,
     }
   }
 

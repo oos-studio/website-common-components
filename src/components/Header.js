@@ -4,6 +4,7 @@ import mergeStyle from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 import Slider from 'react-animated-slider'
 import '../styles/slider.css'
+import FadeImages from './FadeImages'
 
 class Header extends Component {
   render() {
@@ -54,26 +55,7 @@ class Header extends Component {
         {
           slides && slides !== {} ?
             <div style={styles.slideshow.container}>
-              <Slider duration={500} touchDisabled={true} autoplay={sliderAutoPlayDuration}>
-                {slides.map((item, index) => (
-                  <div
-                    key={index}
-                    className="wrapper"
-                    style={{ background:  `url(${item.source}) no-repeat center center`, backgroundSize: 'cover',   boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.5)'
-                    }}
-                  >
-                    <div className="center">
-                      {Array.isArray(item.title) ?
-                        item.title.map(t => {
-                          return(<div>{t}</div>)
-                        })
-                        :
-                        <div>{item.title}</div>
-                      }
-                    </div>
-                  </div>
-                ))}
-              </Slider>
+              <FadeImages slides={slides} duration={sliderAutoPlayDuration} transitionDuration={500}/>
             </div>
             :
             null
@@ -108,7 +90,9 @@ const defaultStyles = {
     right: 0,
   },
   slideshow: {
-
+    container: {
+      height: '100vh',
+    },
   },
   text: {
   },
