@@ -86,7 +86,7 @@ const bodyStyles = {
     alignItems: 'center',
   },
   image: {
-    height: '65%',
+   // height: '65%',
     width: '65%',
   },
   hovered: {
