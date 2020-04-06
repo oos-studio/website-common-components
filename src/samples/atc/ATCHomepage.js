@@ -10,7 +10,7 @@ class ATCHomepage extends Component {
     return [
       <Section styles={homepageStyles.collabSection}>
         <Blurb content={blurbContent.collab} styles={homepageStyles.collabSection.collabBlurb}/>
-        <TileGrid />
+        <TileGrid type={'icon'}/>
       </Section>,
       <Section styles={homepageStyles.designSection}>
         <Blurb content={blurbContent.design} styles={homepageStyles.designSection.designBlurb}/>

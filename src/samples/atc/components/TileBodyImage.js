@@ -1,8 +1,9 @@
 import React, {Component, useState} from 'react'
 import {ImageCenteredText} from '../../../components'
 import deepmerge from 'deepmerge'
+import withSizes from '../../../utils/Sizes'
 
-class TileBody extends Component {
+class TileBodyImage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,14 +19,14 @@ class TileBody extends Component {
   }
 
   render() {
-    const { img, url, txt } = this.props
+    const { img, url, txt, getStyle } = this.props
     const { hovered } = this.state
     const { onHover } = this
 
     const styles = hovered ? deepmerge(bodyStyles, bodyStyles.hovered) : bodyStyles
 
     return (
-      <a href={url} onMouseEnter={onHover} onMouseLeave={onHover}><ImageCenteredText styles={styles} image={{image: img, title: txt}} text={txt}/></a>
+      <a href={url} onMouseEnter={onHover} onMouseLeave={onHover}><ImageCenteredText styles={getStyle(styles)} image={{image: img, title: txt}} text={txt}/></a>
     )
   }
 }
@@ -36,6 +37,13 @@ const bodyStyles = {
     width: '100%',
     padding: 0,
     transition: 'transform 0.5s',
+    sm: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+    },
   },
   text: {
     color: '#FFFFFF',
@@ -45,9 +53,6 @@ const bodyStyles = {
     textTransform: 'uppercase',
     margin: 20,
     transition: 'color 0.25s',
-    md: {
-      fontSize: 35,
-    }
   },
   overlay: {
     alignItems: 'flex-start',
@@ -64,4 +69,4 @@ const bodyStyles = {
   },
 }
 
-export default TileBody
+export default withSizes(TileBodyImage)
