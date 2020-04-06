@@ -3,7 +3,7 @@ import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, Na
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
-import '../App.css'
+import './commonCSS.css'
 import withSizes from '../utils/Sizes'
 import '../samples/atc/index.css'
 

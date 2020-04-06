@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CrossfadeImage from 'react-crossfade-image'
-import '../App.css'
+import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
 
 class FadeImages extends Component {
