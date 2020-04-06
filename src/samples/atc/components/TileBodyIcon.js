@@ -9,14 +9,12 @@ class TileBodyIcon extends Component {
       hovered: false,
     }
   }
-
   onHover = () => {
     const { hovered } = this.state
     this.setState({
       hovered: !hovered
     })
   }
-
   render() {
     const { img, url, txt, _styles, getStyle } = this.props
     const { hovered } = this.state
@@ -26,14 +24,14 @@ class TileBodyIcon extends Component {
     styles = _styles ? deepmerge(styles, getStyle(_styles)) : styles
 
     return (
-      <div style={getStyle(styles.container)} onMouseEnter={onHover} onMouseLeave={onHover}>
-        <a href={url} style={getStyle(styles.imageWrapper)}>
+      <a href={url} style={getStyle(styles.container)} onMouseEnter={onHover} onMouseLeave={onHover}>
+        <div style={getStyle(styles.imageWrapper)}>
           <img src={img} alt={txt} style={getStyle(styles.image)}/>
-        </a>
+        </div>
         <div style={getStyle(styles.text)}>
           {txt}
         </div>
-      </div>
+      </a>
     )
   }
 }
@@ -50,26 +48,32 @@ const bodyStyles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: 25,
-    paddingBottom: 25,
+    textDecoration: 'none',
     sm: {
-      paddingTop: 75,
-      paddingBottom: 75,
+      paddingTop: 20,
+      justifyContent: 'space-around',
       position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
       bottom: 0,
     },
-    xs: {
-      paddingTop: 25,
-      paddingBottom: 25,
-    }
   },
   text: {
     color: '#7D7773',
     fontSize: 45,
-    transition: 'color 0.25s',
     textAlign: 'center',
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 3,
+    textTransform: 'uppercase',
+    margin: 20,
+    transition: 'color 0.25s',
+    sm: {
+      fontSize: 75,
+    },
+    xs: {
+      fontSize: 45,
+    },
   },
   overlay: {
     alignItems: 'flex-start',
