@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Page} from './components/index'
+import {Page,  NavBar, NavBarMobile, TileGrid, CardList} from './components/index'
 import {Blurb, Section} from '../../components/index'
 import withSizes from '../../utils/Sizes'
+import './index.css'
 
 class ATCHomepage extends Component {
 
@@ -9,9 +10,11 @@ class ATCHomepage extends Component {
     return [
       <Section styles={homepageStyles.collabSection}>
         <Blurb content={blurbContent.collab} styles={homepageStyles.collabSection.collabBlurb}/>
+        <TileGrid />
       </Section>,
       <Section styles={homepageStyles.designSection}>
         <Blurb content={blurbContent.design} styles={homepageStyles.designSection.designBlurb}/>
+        <CardList />
       </Section>
     ]
   }
@@ -46,7 +49,10 @@ class ATCHomepage extends Component {
     const { getHomepageSections, getHomepageHeader } = this
 
     return (
-      <Page sections={getHomepageSections()} header={getHomepageHeader()}/>
+      <React.Fragment>
+        { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
+        <Page sections={getHomepageSections()} header={getHomepageHeader()}/>
+      </React.Fragment>
     )
   }
 }
@@ -64,35 +70,42 @@ const blurbContent = {
 
 const homepageStyles = {
   collabSection: {
-    container:  {
-      backgroundColor: '#FFFFFF',
-    },
-    collabBlurb: {
-      container: {
-        height: 350,
-      },
-      title: {
-        color: '#852D3D',
-      },
-      text: {
-        color: '#7D7773',
-      },
+    container: {
+
+      paddingLeft: 50,
+      paddingRight: 50,
+      paddingBottom: 50,
     },
   },
   designSection: {
     container: {
       backgroundColor: '#EDE8E4',
+      paddingLeft: 50,
+      paddingRight: 50,
+      paddingBottom: 50,
     },
-    designBlurb: {
-      container: {
-        height: 350,
-      },
-      title: {
-        color: '#852D3D',
-      },
-      text: {
-        color: '#7D7773',
-      },
+  },
+  collabBlurb: {
+    container: {
+      marginTop: 50,
+    },
+    title: {
+      color: '#852D3D',
+    },
+    text: {
+      color: '#7D7773',
+    },
+  },
+  designBlurb: {
+    container: {
+      marginTop: 50,
+      marginBottom: 50,
+    },
+    title: {
+      color: '#852D3D',
+    },
+    text: {
+      color: '#7D7773',
     },
   },
   contact: {

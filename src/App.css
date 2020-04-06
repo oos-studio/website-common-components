@@ -1,6 +1,13 @@
 body {
     margin: 0;
 }
+li {
+    list-style-type: none;
+}
+#dropdown {
+    outline: none;
+    box-shadow: none;
+}
 .CrossfadeImage {
     height: 100%;
     position: fixed !important;

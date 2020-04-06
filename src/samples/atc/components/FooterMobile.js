@@ -120,6 +120,8 @@ const styles = {
       color: '#E86956',
       fontSize: 24,
       paddingBottom: 10,
+      fontFamily: 'capitolina, serif',
+      fontStyle: 'italic',
     },
     defaultText: {
       fontSize: 16,
@@ -184,10 +186,12 @@ const styles = {
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
+    filter: 'none',
     alignItems: 'center',
     hovered: {
       backgroundColor: 'rgba(0,0,0,0)',
       borderColor: '#EDE8E4',
+      filter: 'invert(57%) sepia(14%) saturate(4670%) hue-rotate(325deg) brightness(95%) contrast(91%)',
     },
   },
   buttonImg: {
@@ -198,8 +202,10 @@ const styles = {
     textAlign: 'left',
     alignSelf: 'flex-start',
     color: '#EDE8E4',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 600,
+    fontFamily: 'acumin-pro-condensed, sans-serif',
+    letterSpacing: 1.25,
   },
 }
 
@@ -208,7 +214,9 @@ class FooterMobile extends Component {
     super(props)
 
     this.state = {
-      intervalId: 0
+      intervalId: 0,
+      hovered: false,
+      activeIndex: null,
     }
 
     this.handleScroll = this.handleScroll.bind(this)
@@ -230,19 +238,34 @@ class FooterMobile extends Component {
       intervalId: intervalId ,
     })
   }
-
+  hoverImg = (index=null) => {
+    this.setState({
+      hovered: true,
+      activeIndex: index,
+    })
+  }
+  leaveHoverImg = (index=null) => {
+    this.setState({
+      hovered: false,
+      activeIndex: null,
+    })
+  }
   render() {
-    const { handleScroll } = this
+    const { handleScroll, hoverImg, leaveHoverImg } = this
+    const { hovered, activeIndex } = this.state
     const { getStyle } = this.props
     return (
       <div style={getStyle(styles.container)}>
         <div style={getStyle(styles.widthRestrict)}>
           <FooterComponent columns={columns} styles={getStyle(styles.footerComp)}/>
           <div style={getStyle(styles.iconWrapper)}>
-              {socials.map(s => {
+              {socials.map((s, index) => {
                 return(
                   <React.Fragment>
-                    <a href={s.url}><Media object src={s.icon} alt={s.name} style={getStyle(styles.socials)} /></a>
+                    <a href={s.url}><Media onMouseEnter={() => hoverImg(index)} onMouseLeave={() => leaveHoverImg(index)} object src={s.icon} alt={s.name} style={{
+                      ...getStyle(styles.socials),
+                      filter: hovered && activeIndex === index ? 'invert(57%) sepia(14%) saturate(4670%) hue-rotate(325deg) brightness(95%) contrast(91%)' : 'none',
+                    }}/></a>
                   </React.Fragment>
                 )
               })}

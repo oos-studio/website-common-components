@@ -7,6 +7,8 @@ import ImageAlignedText from './ImageAlignedText'
 import Button from './Button'
 import Blurb from './Blurb'
 import Section from './Section'
+import NavBarAnimated from './NavBarAnimated'
+import NavBarMobile from './NavBarMobile'
 import Header from './Header'
 import DropdownMenu from './DropdownMenu'
 import FloatingParallax from './FloatingParallax'
@@ -17,6 +19,7 @@ import ListItem from './ListItem'
 import ListPage from './ListPage'
 import MegaMenu from './MegaMenu'
 import Page from './Page'
+import TileGrid from './TileGrid'
 
 export {
   CardGrid,
@@ -38,4 +41,7 @@ export {
   ListPage,
   MegaMenu,
   Page,
+  NavBarAnimated,
+  NavBarMobile,
+  TileGrid
 }

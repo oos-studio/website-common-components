@@ -14,10 +14,33 @@ class ImageRowItem extends Component {
       styles,
       imageUrl,
       getStyle,
+      stack
     } = this.props
 
+    let xs = 'auto'
+    let sm = 'auto'
+    let md = 'auto'
+
+    switch(stack) {
+      case 'xs':
+        xs = '12'
+        break
+      case 'sm':
+        sm = '12'
+        xs = '12'
+        break
+      case 'md':
+        md = '12'
+        sm = '12'
+        xs = '12'
+        break
+      default:
+        xs = '12'
+        break
+    }
+
     return (
-      <Col style={getStyle(styles.imageColumn)} xs={'12'} sm={'auto'} md={'auto'}>
+      <Col style={getStyle(styles.imageColumn)} xs={xs} sm={sm} md={md}>
         <img style={getStyle(styles.image)} src={imageUrl} alt={''}/>
       </Col>
     )
@@ -36,17 +59,35 @@ class ImageRowItem extends Component {
     const {
       styles,
       alignImage,
+      sm,
+      xs,
+      md,
+      stack,
     } = this.props
-    const { xs } = this.props
     const {
       bodyColumn,
       imageColumn
     } = this
 
-    const _alignImage = xs ? 'left' : alignImage
+    let _alignImage = ''
+
+    switch(stack) {
+      case 'xs':
+        _alignImage = xs ? 'left' : alignImage
+        break
+      case 'sm':
+        _alignImage = sm ? 'left' : alignImage
+        break
+      case 'md':
+        _alignImage = md ? 'left' : alignImage
+        break
+      default:
+        _alignImage = xs ? 'left' : alignImage
+        break
+    }
 
     return (
-      <Container style={styles.container}>
+      <Container fluid style={styles.container}>
         <Row style={styles.row}>
           {_alignImage === 'right' ?
             bodyColumn():
