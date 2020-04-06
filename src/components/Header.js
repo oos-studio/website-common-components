@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Container  } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
-import Slider from 'react-animated-slider'
-import '../styles/slider.css'
 import FadeImages from './FadeImages'
 
 class Header extends Component {
