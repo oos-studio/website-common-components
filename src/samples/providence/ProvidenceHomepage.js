@@ -49,6 +49,7 @@ class ProvidenceHomepage extends Component {
         <NavBar />
         <FullScreenIntro/>
         <FloatingParallax/>
+        <ImageAlignedText {...churchIllustrationProps}/>
         <ImageCaptionBlock/>
         <ImageAlignedText/>
         <HomeFeed/>
