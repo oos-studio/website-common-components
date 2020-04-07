@@ -40,7 +40,7 @@ const styles = {
   },
   brandImgWrapper: {
     small: {
-      width: 73,
+      width: 'auto',
       height: 50,
     },
     large: {
@@ -51,7 +51,7 @@ const styles = {
   brandImage: {
     small: {
       width: 'auto',
-      height: 38,
+      height: 22,
     },
     large: {
       width: 'auto',
