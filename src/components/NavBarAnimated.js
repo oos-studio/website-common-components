@@ -3,8 +3,9 @@ import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, Na
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
-import './commonCSS.css'
+import '../App.css'
 import withSizes from '../utils/Sizes'
+import '../samples/atc/index.css'
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -87,27 +88,27 @@ class NavBarAnimated extends Component {
 
 
     if(showScrolledNav) {
-     TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
-       TweenLite.to('#navBrand', duration, {
-         transform: 'translateX(-510px)',
-         width: styles.brandImage.small.width,
-         ease: Power2.easeOut
-       })
-      // TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
-       TweenLite.to('#collapse', duration, {...styles.scrolled.collapse}).then(() => {
-         this.setState({
-           activeNavImage: scrollNavImage,
-           brandImageStyles: styles.brandImage.small
-         })
-         TweenLite.to('#navBrand', 0, {opacity: 0})
-         TweenLite.to('#navBrand', 0, {transform: 'translateX(0px)'})
-         TweenLite.to('#navBrand', duration, {opacity: 1, ease: Power2.easeOut})
-       })
-       TweenLite.to('#nav', 0, {...styles.scrolled.nav})
-       TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
-       TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
-       TweenLite.to('#divider', duration, {opacity: 1,})
-     })
+      TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
+        TweenLite.to('#navBrand', duration, {
+          transform: 'translateX(-510px)',
+          width: styles.brandImgWrapper.small.width,
+          ease: Power2.easeOut
+        })
+        // TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
+        TweenLite.to('#collapse', duration, {...styles.scrolled.collapse}).then(() => {
+          this.setState({
+            activeNavImage: scrollNavImage,
+            brandImageStyles: styles.brandImage.small
+          })
+          TweenLite.to('#navBrand', 0, {opacity: 0})
+          TweenLite.to('#navBrand', 0, {transform: 'translateX(0px)'})
+          TweenLite.to('#navBrand', duration, {opacity: 1, ease: Power2.easeOut})
+        })
+        TweenLite.to('#nav', 0, {...styles.scrolled.nav})
+        TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
+        TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
+        TweenLite.to('#divider', duration, {opacity: 1,})
+      })
     } else {
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
@@ -115,14 +116,14 @@ class NavBarAnimated extends Component {
       TweenLite.to('#nav', 0, {...styles.nav})
       TweenLite.to('#navbar', duration, { height: styles.navbar.height, ease: Power2.easeOut })
       TweenLite.to('#navBrand', duration,{opacity: 0}).then(() => {
-          this.setState({
-            activeNavImage: defaultNavImage,
-            brandImageStyles: styles.brandImage.large
-          })
+        this.setState({
+          activeNavImage: defaultNavImage,
+          brandImageStyles: styles.brandImage.large
+        })
 
         tl.to('#collapse',{...styles.collapse}, 0)
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
-        tl.to('#navBrand', {width: styles.brandImage.large.width }, 0)
+        tl.to('#navBrand', {width: styles.brandImgWrapper.large.width }, 0)
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
       })
     }
@@ -130,11 +131,16 @@ class NavBarAnimated extends Component {
 
   handleScroll = () => {
     const { changeOnScroll } = this.props
-    const { scrollY } = this.state
+
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+    const scrollY = winScroll / height
 
     let showScrolled = false
 
-    if(window.pageYOffset >= 300 && changeOnScroll) {
+    if(scrollY >= 0.2 && changeOnScroll) {
       showScrolled = true
     }
 
@@ -357,10 +363,10 @@ const defaultStyles = {
   brand: {},
   brandImage: {
     small: {
-      width: 100,
+      width: 'auto',
     },
     large: {
-      width: 400,
+      width: 'auto',
     },
   },
   brandTitle: {},

@@ -38,13 +38,23 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
   },
-  brandImage: {
+  brandImgWrapper: {
     small: {
       width: 73,
       height: 50,
     },
     large: {
       width: 376,
+      height: 58,
+    },
+  },
+  brandImage: {
+    small: {
+      width: 'auto',
+      height: 38,
+    },
+    large: {
+      width: 'auto',
       height: 58,
     },
   },
