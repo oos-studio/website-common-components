@@ -39,24 +39,14 @@ const styles = {
     alignItems: 'center',
     marginRight: 0,
   },
-  brandImgWrapper: {
+  brandImage: {
     small: {
       width: 73,
-      height: 50,
+      height: 'auto',
     },
     large: {
       width: 376,
-      height: 58,
-    },
-  },
-  brandImage: {
-    small: {
-      width: 'auto',
-      height: 55,
-    },
-    large: {
-      width: 'auto',
-      height: 58,
+      height: 'auto',
     },
   },
   collapse: {

@@ -90,8 +90,7 @@ class NavBarAnimated extends Component {
       TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
-          width: styles.brandImgWrapper.small.width,
-          display: 'flex',
+          width: styles.brandImage.small.width,
           ease: Power2.easeOut
         })
         // TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
@@ -123,7 +122,7 @@ class NavBarAnimated extends Component {
 
         tl.to('#collapse',{...styles.collapse}, 0)
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
-        tl.to('#navBrand', {width: styles.brandImgWrapper.large.width,}, 0)
+        tl.to('#navBrand', {width: styles.brandImage.large.width,}, 0)
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
       })
     }
