@@ -130,16 +130,11 @@ class NavBarAnimated extends Component {
 
   handleScroll = () => {
     const { changeOnScroll } = this.props
-
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop
-
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-
-    const scrollY = winScroll / height
+    const { scrollY } = this.state
 
     let showScrolled = false
 
-    if(scrollY >= 0.2 && changeOnScroll) {
+    if(window.pageYOffset >= 300 && changeOnScroll) {
       showScrolled = true
     }
 
