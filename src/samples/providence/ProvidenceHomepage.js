@@ -49,6 +49,7 @@ class ProvidenceHomepage extends Component {
   }
   componentDidMount() {
     const { renderMobileNav } = this
+    renderMobileNav()
     window.addEventListener('resize', renderMobileNav)
   }
   renderMobileNav = () => {

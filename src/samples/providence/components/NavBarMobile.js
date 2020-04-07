@@ -6,6 +6,9 @@ import '../index.css'
 import gsap, {Power2} from 'gsap'
 import MarketsMobile from '../../atc/components/MarketsMobile'
 import ServicesMobile from '../../atc/components/ServicesMobile'
+import ImNewMobile from './ImNewMobile'
+import MinistriesMobile from './MinistriesMobile'
+import ResourcesMobile from './ResourcesMobile'
 
 class NavBarMobile extends Component {
   toggleCollapse = (open) => {
@@ -15,7 +18,7 @@ class NavBarMobile extends Component {
 
     if(open) {
       tl.to('#mobileCollapse', {
-        height: 'calc(100vh - 65px)',
+        height: 1400,
         paddingTop: 25,
         paddingBottom: 25,
         marginTop: 4,
@@ -31,7 +34,7 @@ class NavBarMobile extends Component {
   }
   render() {
     return(
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={false} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={false} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon} lockBodyScroll={true}/>
     )
   }
 }
@@ -53,19 +56,19 @@ const data = {
         "text": "I'm New",
         "url": "#",
         "type": "dropdown",
-        menu: (d) => {return <MarketsMobile display={d}/>}
+        menu: (d) => {return <ImNewMobile display={d}/>}
       },
       {
         "text": "Ministries",
         "url": "#",
         "type": "dropdown",
-        menu: (d) => {return <ServicesMobile display={d}/>}
+        menu: (d) => {return <MinistriesMobile display={d}/>}
       },
       {
         "text": "Resources",
         "url": "#",
         "type": "dropdown",
-        menu: (d) => {return <ServicesMobile display={d}/>}
+        menu: (d) => {return <ResourcesMobile display={d}/>}
       },
       {
         "text": "Calendar",
@@ -128,7 +131,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 5,
+    marginBottom: 15,
     paddingRight: 25,
     paddingLeft: 25,
   },
@@ -138,7 +141,7 @@ const styles = {
     fontSize: 22,
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: 5,
+    paddingBottom: 25,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#6A5B5D',
@@ -154,7 +157,7 @@ const styles = {
     fontSize: 22,
     alignItems: 'center',
     paddingLeft: 0,
-    paddingBottom: 5,
+    paddingBottom: 25,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#6A5B5D',
@@ -163,7 +166,7 @@ const styles = {
     paddingRight: 25,
     paddingLeft: 25,
     width: '100%',
-    marginBottom: 5,
+    marginBottom: 15,
   },
   dropdownIcon: {
     height: 'auto',

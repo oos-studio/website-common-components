@@ -37,34 +37,36 @@ class NavBarMobile extends Component {
   toggle = () => {
     const { open, touchscreen, scrollPosition } = this.state
     const { closeDropdownMenu } = this
-    const { toggleCollapse } = this.props
+    const { toggleCollapse, lockBodyScroll } = this.props
     const body = document.querySelector('body')
 
     toggleCollapse(!open)
 
-    if(!open) {
-      if(touchscreen) {
-        this.setState({
-          scrollPosition: window.pageYOffset
-        })
-        body.style.overflow = 'hidden'
-        body.style.position = 'fixed'
-        body.style.top = `-${scrollPosition}px`
-        body.style.width = '100%'
-      } else {
-        disableBodyScroll(document.querySelector('#homeContainer'))
-      }
+    if(lockBodyScroll) {
+      if (!open) {
+        if (touchscreen) {
+          this.setState({
+            scrollPosition: window.pageYOffset
+          })
+          body.style.overflow = 'hidden'
+          body.style.position = 'fixed'
+          body.style.top = `-${scrollPosition}px`
+          body.style.width = '100%'
+        } else {
+          disableBodyScroll(document.querySelector('#homeContainer'))
+        }
 
-    } else {
-      closeDropdownMenu()
-      if(touchscreen) {
-        body.style.removeProperty('overflow');
-        body.style.removeProperty('position');
-        body.style.removeProperty('top');
-        body.style.removeProperty('width');
-        window.scrollTo(0, scrollPosition);
       } else {
-        enableBodyScroll(document.querySelector('#homeContainer'))
+        closeDropdownMenu()
+        if (touchscreen) {
+          body.style.removeProperty('overflow');
+          body.style.removeProperty('position');
+          body.style.removeProperty('top');
+          body.style.removeProperty('width');
+          window.scrollTo(0, scrollPosition);
+        } else {
+          enableBodyScroll(document.querySelector('#homeContainer'))
+        }
       }
     }
 
@@ -98,6 +100,7 @@ class NavBarMobile extends Component {
     const { styles, icon, items } = this.props
     const { toggleDropdownMenu, menus } = this
     let navItem = null
+    console.log(activeDropdownIndex)
 
     switch(item.type) {
       case 'link':
@@ -205,7 +208,7 @@ const defaultStyles = {
 }
 
 NavBarMobile.defaultProps = {
-
+  lockBodyScroll: true,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarMobile))
