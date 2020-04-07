@@ -37,10 +37,11 @@ const styles = {
     padding: 0,
     display: 'flex',
     alignItems: 'center',
+    marginRight: 0,
   },
   brandImgWrapper: {
     small: {
-      width: 'auto',
+      width: 73,
       height: 50,
     },
     large: {
@@ -51,7 +52,7 @@ const styles = {
   brandImage: {
     small: {
       width: 'auto',
-      height: 22,
+      height: 55,
     },
     large: {
       width: 'auto',
@@ -143,11 +144,11 @@ const styles = {
   divider: {
     width: 2,
     height: 30,
-    position: 'absolute',
-    left: 135,
-    top: 17,
+
     opacity: 0,
     backgroundColor: '#FFFFFF',
+    marginLeft: 35,
+    marginRight: 35,
   },
   search: {
     container: {
@@ -197,7 +198,7 @@ const styles = {
     },
     nav: {
       justifyContent: 'flex-start',
-      paddingLeft: 40,
+     // paddingLeft: 40,
     },
     navLink: {
       marginRight: 40,

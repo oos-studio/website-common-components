@@ -5,7 +5,6 @@ import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
 import withSizes from '../utils/Sizes'
-import '../samples/atc/index.css'
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -92,6 +91,7 @@ class NavBarAnimated extends Component {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
           width: styles.brandImgWrapper.small.width,
+          display: 'flex',
           ease: Power2.easeOut
         })
         // TweenLite.to('#item5', duration, {flex: 12, ease: Power2.easeOut})
@@ -123,7 +123,7 @@ class NavBarAnimated extends Component {
 
         tl.to('#collapse',{...styles.collapse}, 0)
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
-        tl.to('#navBrand', {width: styles.brandImgWrapper.large.width }, 0)
+        tl.to('#navBrand', {width: styles.brandImgWrapper.large.width,}, 0)
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
       })
     }
