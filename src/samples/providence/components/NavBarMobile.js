@@ -14,7 +14,6 @@ class NavBarMobile extends Component {
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
     if(open) {
-      document.getElementById('mobileCollapse').style.borderTopWidth = '5px'
       tl.to('#mobileCollapse', {
         height: 'calc(100vh - 65px)',
         paddingTop: 25,
@@ -22,7 +21,6 @@ class NavBarMobile extends Component {
         marginTop: 4,
       }, 0)
     } else {
-      document.getElementById('mobileCollapse').style.borderTopWidth = '0px'
       tl.to('#mobileCollapse', {
         height: 0,
         paddingTop: 0,
@@ -33,7 +31,7 @@ class NavBarMobile extends Component {
   }
   render() {
     return(
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={true} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={false} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon}/>
     )
   }
 }
@@ -52,34 +50,30 @@ const data = {
     closeToggleIcon: require('../assets/toggleClose.png'),
     "items": [
       {
-        "text": "ABOUT US",
-        "url": "#/1",
-        "type": "link",
-      },
-      {
-        "text": "MARKETS",
+        "text": "I'm New",
         "url": "#",
         "type": "dropdown",
         menu: (d) => {return <MarketsMobile display={d}/>}
       },
       {
-        "text": "SERVICES",
+        "text": "Ministries",
         "url": "#",
         "type": "dropdown",
         menu: (d) => {return <ServicesMobile display={d}/>}
       },
       {
-        "text": "SHOP",
-        "url": "#/2",
-        "type": "link",
+        "text": "Resources",
+        "url": "#",
+        "type": "dropdown",
+        menu: (d) => {return <ServicesMobile display={d}/>}
       },
       {
-        "text": "NEWS",
+        "text": "Calendar",
         "url": "#/3",
         "type": "link",
       },
       {
-        "text": "CONTACT",
+        "text": "Giving",
         "url": "#/4",
         "type": "link",
       },
@@ -89,11 +83,11 @@ const data = {
 
 const styles = {
   container: {
-    backgroundColor: 'rgba(57,57,57,0.9)',
+    backgroundColor: '#FFFFFF',
     backdropFilter: 'blur(8px)',
     "-webkit-backdrop-filter": 'blur(8px)',
     minWidth: 320,
-    height: 65,
+    height: 90,
   },
   navbar: {
     padding: 0,
@@ -104,13 +98,8 @@ const styles = {
   brandImage: {
     marginLeft: 30,
     marginTop: 3,
-    width: 300,
-    height: 48,
-    xxs: {
-      width: 245,
-      height: 37,
-      marginLeft: 15,
-    }
+    width: 200,
+    height: 'auto',
   },
   toggler: {
     height: 25,
@@ -122,10 +111,7 @@ const styles = {
   },
   collapse: {
     overflow: 'scroll',
-    backgroundColor: '#EDE8E4',
-    borderTopWidth: 0,
-    borderTopStyle: 'solid',
-    borderTopColor: '#E86956',
+    backgroundColor: '#FFFFFF',
     paddingTop: 0,
     paddingBottom: 0,
     marginTop: 0,
@@ -148,18 +134,18 @@ const styles = {
   },
   navLink: {
     width: '100%',
-    color: '#852D3D',
+    color: '#6A5B5D',
     fontSize: 22,
     display: 'flex',
     alignItems: 'center',
     paddingBottom: 5,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
-    borderBottomColor: '#7D777341',
+    borderBottomColor: '#6A5B5D',
   },
   dropdownItem: {
     width: '100%',
-    color: '#852D3D',
+    color: '#6A5B5D',
     backgroundColor: 'rgba(0,0,0,0)',
     borderWidth: 0,
     textAlign: 'left',
@@ -171,7 +157,7 @@ const styles = {
     paddingBottom: 5,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
-    borderBottomColor: '#7D777341',
+    borderBottomColor: '#6A5B5D',
   },
   ucDropdown: {
     paddingRight: 25,
@@ -180,8 +166,8 @@ const styles = {
     marginBottom: 5,
   },
   dropdownIcon: {
-    height: 15,
-    width: 15,
+    height: 'auto',
+    width: 20,
     transform: 'none',
     transition: 'all 0.25s',
     click: {
