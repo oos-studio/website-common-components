@@ -20,6 +20,7 @@ import ListPage from './ListPage'
 import MegaMenu from './MegaMenu'
 import Page from './Page'
 import TileGrid from './TileGrid'
+import GoogleMapView from './GoogleMapView'
 
 export {
   CardGrid,
@@ -43,5 +44,6 @@ export {
   Page,
   NavBarAnimated,
   NavBarMobile,
-  TileGrid
+  TileGrid,
+  GoogleMapView,
 }

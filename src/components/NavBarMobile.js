@@ -55,7 +55,6 @@ class NavBarMobile extends Component {
         } else {
           disableBodyScroll(document.querySelector('#homeContainer'))
         }
-
       } else {
         closeDropdownMenu()
         if (touchscreen) {

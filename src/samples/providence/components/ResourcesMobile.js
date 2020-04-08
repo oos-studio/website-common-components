@@ -8,15 +8,18 @@ class ResourcesMobile extends Component {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#resourcesContainer', {height: 400, opacity: 1, paddingTop: 25, paddingBottom: 15}, 0)
+    tl.to('#resourcesContainer', {display: 'flex',}, 0)
+    tl.to('#resourcesContainer', {height: 'auto', paddingTop: 15,}, 0)
+    tl.to('#resourcesContainer', {opacity: 1,}, 0)
   }
   close = () => {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#resourcesContainer', {opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0}, 0)
+    tl.to('#resourcesContainer', {display: 'none',}, duration)
+    tl.to('#resourcesContainer', {opacity: 0,}, 0)
+    tl.to('#resourcesContainer', {height: 0, paddingTop: 0,}, 0)
   }
-
   componentDidUpdate(prevProps, prevState, snapshot) {
     if(prevProps.display !== this.props.display) {
       if(this.props.display) {
@@ -32,7 +35,9 @@ class ResourcesMobile extends Component {
       <div id='resourcesContainer' style={styles.container}>
         {resourcesData.map((r, index) => {
           return (
-              <ImageCenteredText text={r.title} image={r.image} styles={styles.item}/>
+            <div style={styles.imgWrapper}>
+              <ImageCenteredText image={r.image} text={r.title} styles={styles.img} />
+            </div>
           )
         })}
       </div>
@@ -43,13 +48,13 @@ class ResourcesMobile extends Component {
 const resourcesData = [
   {
     image: {
-      image: 'https://picsum.photos/200'
+      image: 'https://picsum.photos/1920/1080'
     },
     title: 'Sermons',
   },
   {
     image: {
-      image: 'https://picsum.photos/200'
+      image: 'https://picsum.photos/1920/1080'
     },
     title: 'Blog',
   },
@@ -57,22 +62,34 @@ const resourcesData = [
 
 const styles = {
   container: {
+    display: 'none',
+    flexDirection: 'column',
     width: '100%',
     height: 0,
     opacity: 0,
-    paddingBottom: 25,
+    paddingBottom: 0,
+    paddingTop: 0,
+    maxHeight: 400,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  item: {
+  img: {
     container: {
-      marginTop: 15,
       width: '100%',
-      height: '100%',
       padding: 0,
+      marginTop: 10,
+    },
+    image: {
+      objectFit: 'cover',
+      width: '100%',
+      maxWidth: 500,
+      height: 150,
     },
     text: {
-      color: '#6A5B5D',
-      fontSize: 45,
-    }
+      fontSize: 35,
+      color: '#FFFFFF',
+
+    },
   },
 }
 

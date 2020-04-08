@@ -18,23 +18,17 @@ class NavBarMobile extends Component {
 
     if(open) {
       tl.to('#mobileCollapse', {
-        height: 1400,
-        paddingTop: 25,
-        paddingBottom: 25,
-        marginTop: 4,
+        height: 'auto',
       }, 0)
     } else {
       tl.to('#mobileCollapse', {
         height: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        marginTop: 0,
       }, 0)
     }
   }
   render() {
     return(
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={false} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon} lockBodyScroll={true}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon} fixed={false} openToggleIcon={data.navigation.openToggleIcon} toggleCollapse={this.toggleCollapse} closeToggleIcon={data.navigation.closeToggleIcon} lockBodyScroll={false}/>
     )
   }
 }
@@ -108,9 +102,6 @@ const styles = {
     height: 25,
     width: 25,
     marginRight: 30,
-    xxs: {
-      marginRight: 15,
-    },
   },
   collapse: {
     overflow: 'scroll',
@@ -131,7 +122,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 10,
     paddingRight: 25,
     paddingLeft: 25,
   },
@@ -141,7 +132,7 @@ const styles = {
     fontSize: 22,
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: 25,
+    paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#6A5B5D',
@@ -157,7 +148,7 @@ const styles = {
     fontSize: 22,
     alignItems: 'center',
     paddingLeft: 0,
-    paddingBottom: 25,
+    paddingBottom: 15,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
     borderBottomColor: '#6A5B5D',
@@ -166,7 +157,7 @@ const styles = {
     paddingRight: 25,
     paddingLeft: 25,
     width: '100%',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   dropdownIcon: {
     height: 'auto',

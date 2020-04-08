@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {NavLink} from 'reactstrap'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
+import { GoogleMapView } from '../../../components/index'
 
 class ImNewMobile extends Component {
   state = {
@@ -23,13 +24,17 @@ class ImNewMobile extends Component {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#imNewContainer', {height: 400, opacity: 1, paddingTop: 25, paddingBottom: 15}, 0)
+    tl.to('#imNewContainer', {display: 'flex',}, 0)
+    tl.to('#imNewContainer', {height: 'auto', paddingTop: 25,}, 0)
+    tl.to('#imNewContainer', {opacity: 1,}, duration)
   }
   close = () => {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#imNewContainer', {opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0}, 0)
+    tl.to('#imNewContainer', {opacity: 0,}, 0)
+    tl.to('#imNewContainer', {height: 0, paddingTop: 0,}, duration / 2)
+    tl.to('#imNewContainer', {display: 'none',}, duration / 2)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -60,7 +65,7 @@ class ImNewMobile extends Component {
           )
         })}
         </div>
-        <div style={styles.timeWrapper}>
+        <div id='timeWrapper' style={styles.timeWrapper}>
           <div style={styles.timeWrapper.header}>
             SERVICE TIMES & LOCATION
           </div>
@@ -75,6 +80,7 @@ class ImNewMobile extends Component {
           </div>
         </div>
         <div style={styles.mapWrapper}>
+          <GoogleMapView styles={styles.mapWrapper.map}/>
         </div>
       </div>
     )
@@ -106,19 +112,21 @@ const imNewData = [
 
 const styles = {
   container: {
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: 0,
     opacity: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    display: 'none',
   },
   linkWrapper: {
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
-    alignItems: 'center',
-    paddingTop: 25,
+    alignItems: 'flex-start',
     paddingBottom: 25,
+    maxHeight: 200,
   },
   link: {
     fontSize: 22,
@@ -128,14 +136,16 @@ const styles = {
     }
   },
   timeWrapper: {
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
     paddingBottom: 25,
     header: {
+      textAlign: 'center',
+      whiteSpace: 'nowrap',
       color: '#6A5B5D',
-      fontSize: 22,
+      fontSize: 20,
       marginBottom: 25,
     },
     divider: {
@@ -143,6 +153,7 @@ const styles = {
       backgroundColor: '#6A5B5D',
       width: '100%',
       marginBottom: 25,
+      opacity: 0.5,
     },
     info: {
       marginBottom: 10,
@@ -152,11 +163,13 @@ const styles = {
     },
   },
   mapWrapper: {
-    marginLeft: -25,
-    marginRight: -25,
+    width: '100%',
     map: {
-      width: '100%',
-      objectFit: 'cover',
+      container: {
+        backgroundColor: 'blue',
+        marginLeft: -25,
+        marginRight: -25,
+      },
     },
   },
 }

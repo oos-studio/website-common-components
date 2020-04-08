@@ -23,13 +23,18 @@ class MinistriesMobile extends Component {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#ministriesContainer', {height: 400, opacity: 1, paddingTop: 25, paddingBottom: 15}, 0)
+    tl.to('#ministriesContainer', {display: 'flex',}, 0)
+    tl.to('#ministriesContainer', {height: 'auto', paddingTop: 25,}, 0)
+    tl.to('#ministriesContainer', {opacity: 1,}, duration)
+
   }
   close = () => {
     const duration = 0.25
     const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
-    tl.to('#ministriesContainer', {opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0}, 0)
+    tl.to('#ministriesContainer', {opacity: 0,}, 0)
+    tl.to('#ministriesContainer', {height: 0, paddingTop: 0, marginBottom: 0}, duration / 3)
+    tl.to('#ministriesContainer', {display: 'none',}, duration)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -102,22 +107,25 @@ const ministriesData = [
 
 const styles = {
   container: {
-    display: 'flex',
+    display: 'none',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     height: 0,
     opacity: 0,
+    maxHeight: 250,
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginBottom: 0,
   },
   linkWrapper: {
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingTop: 25,
-    paddingBottom: 25,
   },
   link: {
-    fontSize: 22,
+    fontSize: 20,
     color: '#6A5B5D',
     hover: {
       color: '#D07D3C',
