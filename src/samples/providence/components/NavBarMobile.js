@@ -147,6 +147,8 @@ const styles = {
     justifyContent: 'space-between',
     fontSize: 22,
     alignItems: 'center',
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
     paddingLeft: 0,
     paddingBottom: 15,
     borderBottomWidth: 1,
