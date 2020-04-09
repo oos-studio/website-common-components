@@ -375,32 +375,7 @@ const defaultStyles = {
   navLink: {},
   dropdownMenuContainer: {},
   dropdownContainer: {},
-  asideWrapper: {
-    width: '20%',
-    textAlign: 'center',
-    position: 'absolute',
-    zIndex: 9999,
-    height: '60vh',
-    top: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  asideImage: {
-    float: 'left',
-    display: 'inline',
-  },
-  asideHeader: {
-    fontSize: 25,
-    display: 'flex',
-  },
-  asideBody: {
-    fontSize: 18,
-    color: 'tan',
-    padding: 10,
-  },
-  scrolled: {
-
-  },
+  scrolled: {},
 }
 
 NavBarAnimated.defaultProps = {

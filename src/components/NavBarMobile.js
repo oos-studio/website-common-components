@@ -168,42 +168,18 @@ const defaultStyles = {
     right: 0,
     top: 0,
   },
-  navbar: {
-
-  },
-  brand: {
-
-  },
-  brandImage: {
-
-  },
-  brandTitle: {
-
-  },
-  toggler: {
-
-  },
-  collapse: {
-
-  },
-  nav: {
-
-  },
-  navItem: {
-
-  },
-  navLink: {
-
-  },
-  dropdownItem: {
-
-  },
-  ucDropdown: {
-
-  },
-  dropdownIcon: {
-
-  },
+  navbar: {},
+  brand: {},
+  brandImage: {},
+  brandTitle: {},
+  toggler: {},
+  collapse: {},
+  nav: {},
+  navItem: {},
+  navLink: {},
+  dropdownItem: {},
+  ucDropdown: {},
+  dropdownIcon: {},
 }
 
 NavBarMobile.defaultProps = {
