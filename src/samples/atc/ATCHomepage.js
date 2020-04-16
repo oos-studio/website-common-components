@@ -41,13 +41,11 @@ class ATCHomepage extends Component {
               {
                 text: 'This is the first line',
                 style: {
-                  backgroundColor: 'red',
                 },
               },
               {
                 text: 'This is the second line',
                 style: {
-                  backgroundColor: 'yellow',
                 },
               },
             ],
@@ -58,13 +56,11 @@ class ATCHomepage extends Component {
               {
                 text: 'This is the first line',
                 style: {
-                  backgroundColor: 'red',
                 },
               },
               {
                 text: 'This is the second line',
                 style: {
-                  backgroundColor: 'yellow',
                 },
               },
             ],
@@ -75,13 +71,11 @@ class ATCHomepage extends Component {
               {
                 text: 'This is the first line',
                 style: {
-                  backgroundColor: 'red',
                 },
               },
               {
                 text: 'This is the second line',
                 style: {
-                  backgroundColor: 'yellow',
                 },
               },
             ],
