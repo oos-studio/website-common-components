@@ -25,7 +25,7 @@ class ATCHomepage extends Component {
       slideshow: {
         type: 'fade',
         options: {
-          duration: 5000,
+          duration: 2500,
           transitionDuration: 500,
           infinite: true,
           indicators: false,
