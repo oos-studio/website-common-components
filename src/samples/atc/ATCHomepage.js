@@ -22,25 +22,66 @@ class ATCHomepage extends Component {
   getHomepageHeader = () => {
     return {
       styles: homepageStyles.header,
-      slides: [
+      slideshow: {
+        type: 'fade',
+        options: {
+          duration: 2500,
+          transitionDuration: 500,
+          infinite: true,
+          indicators: false,
+          arrows: false,
+          onChange: (oldIndex, newIndex) => {
+            console.log(`fade transition from ${oldIndex} to ${newIndex}`);
+          }
+        },
+        slides: [
           {
             source: require('./assets/Header.png'),
             title: [
-              'This is the first line',
-              'This is the second line',
+              {
+                text: 'This is the first line',
+                style: {
+                },
+              },
+              {
+                text: 'This is the second line',
+                style: {
+                },
+              },
             ],
           },
           {
             source: require('./assets/Header2.png'),
-            title: 'Slide 2 Title',
+            title: [
+              {
+                text: 'This is the first line',
+                style: {
+                },
+              },
+              {
+                text: 'This is the second line',
+                style: {
+                },
+              },
+            ],
           },
           {
             source: require('./assets/Header3.png'),
-            title: 'Slide 3 Title',
-
+            title: [
+              {
+                text: 'This is the first line',
+                style: {
+                },
+              },
+              {
+                text: 'This is the second line',
+                style: {
+                },
+              },
+            ],
           },
-      ],
-      sliderAutoPlayDuration: 3000,
+        ]
+      },
       scrollImg: require('./assets/HeaderScroll.png')
     }
   }

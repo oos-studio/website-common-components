@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container  } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
-import FadeImages from './FadeImages'
+import Slideshow from './Slideshow'
 
 class Header extends Component {
   render() {
@@ -14,8 +14,7 @@ class Header extends Component {
       backgroundAsset,
       video,
       getStyle,
-      slides,
-      sliderAutoPlayDuration,
+      slideshow,
       scrollImg
     } = this.props
 
@@ -25,7 +24,7 @@ class Header extends Component {
 
     return (
       <Container fluid style={styles.container}>
-        {!slides &&
+        {!slideshow &&
           <div style={getStyle(styles.text)}>
             {titleImageUrl && titleImageUrl !== '' ?
               <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
@@ -42,7 +41,7 @@ class Header extends Component {
             </div>
           </div>
         }
-        {!slides && backgroundAsset && backgroundAsset !== {} ?
+        {!slideshow && backgroundAsset && backgroundAsset !== {} ?
           backgroundAsset.mimeType && backgroundAsset.mimeType.split('/')[0] === 'video' ?
             <video style={styles.backgroundAsset} {...video}>
               <source src={backgroundAsset.url} type={backgroundAsset.mimeType}/>
@@ -52,14 +51,14 @@ class Header extends Component {
           : null
         : null}
         {
-          slides && slides !== {} ?
-            <div style={styles.slideshow.container}>
-              <FadeImages styles={styles.fadeImages} slides={slides} duration={sliderAutoPlayDuration} transitionDuration={500}/>
+          slideshow && slideshow !== {} ?
+            <div style={styles.slideshow}>
+              <Slideshow {...slideshow} />
             </div>
             :
             null
         }
-    <img style={styles.scroll} src={scrollImg}/>
+    <img style={styles.scroll} src={scrollImg} alt={'scrollImg'} />
       </Container>
     )
   }
@@ -89,14 +88,12 @@ const defaultStyles = {
     right: 0,
   },
   slideshow: {
-    container: {
-      height: '100vh',
-    },
+    height: '100%',
+    width: '100%',
   },
   text: {
   },
   title: {
-    backgroundColor: 'blue',
     zIndex: 10000,
   },
   subTitle: {
