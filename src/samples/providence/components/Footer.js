@@ -55,6 +55,7 @@ const styles = {
     paddingBottom: 75,
     paddingLeft: 20,
     paddingRight: 20,
+    display: 'flex',
     md: {
       paddingTop: 0,
       paddingBottom: 0
@@ -67,11 +68,13 @@ const styles = {
     {
       column: {
        flex: 2,
+        padding: 0,
       }
     },
     {
       column: {
         flex: 1.4,
+        padding: 0,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',

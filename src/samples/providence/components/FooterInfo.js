@@ -25,6 +25,7 @@ class FooterInfo extends Component {
           </div>
         </div>
         </div>
+        <div style={styles.divider} />
         <div style={styles.bottomSection}>
         <div style={styles.info}>
           Providence Church is a member of the <a style={{color: '#FCEBBE'}} href='https://www.efca.org'>Evangelical Free Church in America</a>
@@ -58,25 +59,31 @@ const _styles = {
     color: '#F8F5EE',
   },
   topSection: {
-    borderBottomWidth: 2,
+    borderBottomWidth: 0,
     borderBottomStyle: 'solid',
     display: 'flex',
     alignItems: 'center',
     paddingBottom: 60,
   },
   logoWrapper: {
+    marginRight: 'auto',
   },
   logo: {
     width: 250,
   },
   contact: {
-    paddingLeft: 50,
+    paddingLeft: 10,
     alignSelf: 'flex-end',
     paddingBottom: 15,
     whiteSpace: 'nowrap',
   },
   login: {
     marginTop: 25,
+  },
+  divider: {
+    backgroundColor: '#F8F5EE',
+    width: '100%',
+    height: 2,
   },
   bottomSection: {
     marginTop: 60,
@@ -105,6 +112,9 @@ const _styles = {
       flexDirection: 'column',
       paddingRight: 0,
       paddingBottom: 15,
+    },
+    logoWrapper: {
+      marginRight: 0,
     },
     contact: {
       paddingLeft: 0,
