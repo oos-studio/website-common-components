@@ -55,8 +55,9 @@ const _styles = {
     justifyContent: 'flex-start',
     height: '100%',
     fontSize: 18,
-    paddingRight: 50,
+    paddingRight: 0,
     color: '#F8F5EE',
+    maxWidth: 660,
   },
   topSection: {
     borderBottomWidth: 0,
@@ -75,10 +76,11 @@ const _styles = {
     paddingLeft: 10,
     alignSelf: 'flex-end',
     paddingBottom: 15,
-    whiteSpace: 'nowrap',
+    //whiteSpace: 'nowrap',
   },
   login: {
     marginTop: 25,
+    whiteSpace: 'nowrap',
   },
   divider: {
     backgroundColor: '#F8F5EE',
@@ -87,10 +89,12 @@ const _styles = {
   },
   bottomSection: {
     marginTop: 60,
-    flex: 1,
+   // flex: 1,
+    maxHeight: 260,
   },
   info: {
     marginBottom: 90,
+    height: 55,
   },
   social: {
     width: 150,
@@ -101,12 +105,15 @@ const _styles = {
   },
   legal: {
     fontSize: 22,
+    letterSpacing: 2,
+    whiteSpace: 'nowrap',
   },
   md: {
     container: {
       paddingRight: 0,
-      paddingTop: 35,
+      paddingTop: 20,
       paddingBottom: 35,
+      maxWidth: 'none',
     },
     topSection: {
       flexDirection: 'column',
@@ -127,16 +134,20 @@ const _styles = {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      maxHeight: 'none',
+      flex: 1,
     },
     info: {
       marginBottom: 50,
       textAlign: 'center',
+      height: 'auto',
     },
     social: {
       marginBottom: 10,
     },
     legal: {
       textAlign: 'center',
+      whiteSpace: 'wrap',
     }
   },
 }

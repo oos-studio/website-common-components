@@ -53,8 +53,8 @@ const styles = {
     width: '100%',
     paddingTop: 75,
     paddingBottom: 75,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 45,
+    paddingRight: 45,
     display: 'flex',
     md: {
       paddingTop: 0,

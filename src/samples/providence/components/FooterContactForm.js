@@ -43,12 +43,15 @@ class FooterContactForm extends Component {
 const _styles = {
   container: {
     marginTop: 10,
+    marginLeft: 35,
   },
   header: {
     fontSize: 25,
     color: '#FDECBB',
     paddingLeft: 125,
     whiteSpace: 'nowrap',
+    letterSpacing: 2.6,
+    marginBottom: 20,
   },
   form: {
     display: 'flex',
@@ -61,25 +64,28 @@ const _styles = {
     marginBottom: 30,
   },
   input: {
-    height: 60,
+    height: 45,
     borderRadius: 0,
     backgroundColor: '#F8F5EE',
     color: '#6A5B5D',
+    minWidth: 250,
   },
   formLabel: {
     fontSize: 20,
     minWidth: 100,
     marginRight: 25,
     textAlign: 'right',
-    paddingTop: 15,
+    paddingTop: 10,
+    letterSpacing: 2,
     color: '#F8F5EE',
   },
   textArea: {
-    height: 185,
+    height: 138,
     paddingTop: 15,
     borderRadius: 0,
     backgroundColor: '#F8F5EE',
     color: '#6A5B5D',
+    minWidth: 250,
   },
   button: {
     borderColor: '#F8F5EE',
@@ -89,6 +95,7 @@ const _styles = {
     color: '#F8F5EE',
     borderRadius: 0,
     marginLeft: 125,
+    letterSpacing: 2,
     hovered: {
       backgroundColor: 'transparent',
       color: '#CD7D43',
@@ -102,29 +109,34 @@ const _styles = {
       alignItems: 'center',
       paddingTop: 35,
       paddingBottom: 35,
+      marginLeft: 0,
     },
     header: {
       paddingLeft: 0,
+      fontSize: 30,
     },
     form: {
       width: '100%',
     },
     formGroup: {
       flexDirection: 'column',
+      marginBottom: 10,
     },
     formLabel: {
       minWidth: 0,
       textAlign: 'left',
       marginRight: 0,
+      marginBottom: 10,
     },
     input: {
     },
     textArea: {
-
+      marginBottom: 30,
     },
     button: {
       marginLeft: 0,
       alignSelf: 'center',
+      width: 215,
     },
   },
 }
