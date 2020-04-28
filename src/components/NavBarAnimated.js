@@ -5,6 +5,7 @@ import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
 import withSizes from '../utils/Sizes'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class NavBarAnimated extends Component {
     })
 
     handleScroll()
+
   }
 
   componentWillUnmount() {

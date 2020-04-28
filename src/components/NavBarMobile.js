@@ -34,6 +34,25 @@ class NavBarMobile extends Component {
     this.menus = []
   }
 
+  componentWillUnmount() {
+    const { closeDropdownMenu } = this
+    const { touchscreen, scrollPosition } = this.state
+
+    const body = document.querySelector('body')
+
+    closeDropdownMenu()
+
+    if(touchscreen) {
+      body.style.removeProperty('overflow');
+      body.style.removeProperty('position');
+      body.style.removeProperty('top');
+      body.style.removeProperty('width');
+      window.scrollTo(0, scrollPosition);
+    } else {
+      enableBodyScroll(document.querySelector('#homeContainer'))
+    }
+  }
+
   toggle = () => {
     const { open, touchscreen, scrollPosition } = this.state
     const { closeDropdownMenu } = this
