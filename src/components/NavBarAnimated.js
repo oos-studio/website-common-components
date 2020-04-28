@@ -218,10 +218,15 @@ class NavBarAnimated extends Component {
     }
   }
 
-  clickDropdown = (index) => {
+  clickDropdown = (item, index) => {
     const { hideDropdownMenu } = this
+    const { onClickItem } = this.props
 
     hideDropdownMenu(null, index)
+
+    if(onClickItem) {
+      onClickItem(item.url)
+    }
   }
 
   renderNavigationItems(item, index, renderImages) {
@@ -270,7 +275,7 @@ class NavBarAnimated extends Component {
                                 ref={_r => {_navRefs[index] = _r}}
                                 key={index}
                                 id={xl ? id : ''}
-                                onClick={() => clickDropdown(index)}>
+                                onClick={() => clickDropdown(item, index)}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{
                 ..._styles.dropdownItem,
