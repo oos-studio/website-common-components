@@ -132,18 +132,22 @@ class NavBarAnimated extends Component {
 
   handleScroll = () => {
     const { changeOnScroll } = this.props
-    const { scrollY } = this.state
+    const { showScrolledNav } = this.state
 
     let showScrolled = false
 
     if(window.pageYOffset >= 300 && changeOnScroll) {
       showScrolled = true
     }
+    else {
+      showScrolled = false
+    }
 
-    this.setState({
-      scrollY: scrollY,
-      showScrolledNav: showScrolled,
-    })
+    if(showScrolledNav !== showScrolled) {
+      this.setState({
+        showScrolledNav: showScrolled,
+      })
+    }
   }
 
   toggle() {
