@@ -213,7 +213,7 @@ const defaultStyles = {
 
   },
   navLink: {
-
+    cursor: 'pointer',
   },
   dropdownItem: {
 
