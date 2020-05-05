@@ -228,7 +228,7 @@ class NavBarAnimated extends Component {
 
   renderNavigationItems(item, index, renderImages) {
     const { styles, icon, scrolledDropdownIcon, xl, useRouter, onClickItem, location } = this.props
-    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, clickLink } = this
+    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, clickLink, hideDropdownMenu } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
@@ -278,6 +278,7 @@ class NavBarAnimated extends Component {
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}
                                 useRouter={useRouter}
+                                hideDropDown={hideDropdownMenu}
                                 onClickItem={onClickItem}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{

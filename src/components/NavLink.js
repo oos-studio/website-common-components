@@ -4,10 +4,15 @@ import { NavLink as RSNavLink, UncontrolledDropdown } from 'reactstrap'
 class NavLink extends Component {
   _navLink = React.createRef()
   clickLink = (e) => {
-    const { useRouter, onClickItem, item, location } = this.props
+    const { useRouter, onClickItem, item, location, hideDropDown } = this.props
+
+    if(hideDropDown) {
+      hideDropDown()
+    }
 
     if(useRouter && location) {
       e.preventDefault()
+      console.log(item.url)
       location.push(item.url)
     }
     if(onClickItem) {
