@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
 import withSizes from '../utils/Sizes'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import NavLink from './NavLink'
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -139,9 +140,6 @@ class NavBarAnimated extends Component {
     if(window.pageYOffset >= 300 && changeOnScroll) {
       showScrolled = true
     }
-    else {
-      showScrolled = false
-    }
 
     if(showScrolledNav !== showScrolled) {
       this.setState({
@@ -224,20 +222,9 @@ class NavBarAnimated extends Component {
     }
   }
 
-  clickDropdown = (item, index) => {
-    const { hideDropdownMenu } = this
-    const { onClickItem } = this.props
-
-    hideDropdownMenu(null, index)
-
-    if(onClickItem) {
-      onClickItem(item.url)
-    }
-  }
-
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl } = this.props
-    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
+    const { styles, icon, scrolledDropdownIcon, xl, useRouter, onClickItem, location } = this.props
+    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, clickLink } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
@@ -263,6 +250,10 @@ class NavBarAnimated extends Component {
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
               href={item.url}
+              item={item}
+              onClickItem={onClickItem}
+              useRouter={useRouter}
+              location={location}
               style={{
                 ..._styles.navLink,
                 color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
@@ -276,12 +267,14 @@ class NavBarAnimated extends Component {
         break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown nav inNavbar
+
+          <NavLink              dropdown
+                                location={location}
+                                item={item}
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}
-                                key={index}
-                                id={xl ? id : ''}
-                                onClick={() => clickDropdown(item, index)}>
+                                useRouter={useRouter}
+                                onClickItem={onClickItem}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{
                 ..._styles.dropdownItem,
@@ -301,7 +294,7 @@ class NavBarAnimated extends Component {
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
               {typeof(item.render) === 'function' ? item.render() : item.render}
             </DropdownMenu>
-          </UncontrolledDropdown>)
+          </NavLink>)
         break
       default:
         break
@@ -418,6 +411,7 @@ NavBarAnimated.defaultProps = {
   },
   fixed: false,
   changeOnScroll: false,
+  useRouter: false,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))

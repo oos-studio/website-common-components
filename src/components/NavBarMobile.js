@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
 import './commonCSS.css'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import NavLink from './NavLink'
 
 class NavBarMobile extends Component {
   constructor(props) {
@@ -112,17 +113,19 @@ class NavBarMobile extends Component {
     })
   }
 
+
+
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
-    const { styles, icon, items } = this.props
-    const { toggleDropdownMenu, menus } = this
+    const { styles, icon, items, useRouter, onClickItem, location } = this.props
+    const { toggleDropdownMenu, menus, clickLink } = this
     let navItem = null
 
     switch(item.type) {
       case 'link':
         navItem = (
-            <NavItem key={index} style={styles.navItem}>
-              <NavLink href={item.url} style={{
+            <NavItem location={location} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
+              <NavLink item={item} href={item.url} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
@@ -133,13 +136,13 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown style={styles.ucDropdown} nav inNavbar>
+          <NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} dropdown item={item} style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>
               {activeDropdownIndex === index ? item.menu(true) : item.menu(false)}
-            </UncontrolledDropdown>
+            </NavLink>
       )
         break
       default:

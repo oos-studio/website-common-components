@@ -17,7 +17,7 @@ class NavBar extends Component {
   render() {
     const { getStyle } = this.props
     return (
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} fixed={true} changeOnScroll={true}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} fixed={true} changeOnScroll={true} useRouter={false}/>
     )
   }
 }
@@ -301,7 +301,7 @@ const data = {
       },
       {
         "text": "MARKETS",
-        "url": "#",
+        "url": "#A",
         "type": "dropdown",
         align: 'left',
         render: () => {return (
@@ -349,7 +349,7 @@ const data = {
       },
       {
         "text": "SERVICES",
-        "url": "#",
+        "url": "#B",
         "type": "dropdown",
         align: 'left',
         render: () => { return (

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle, Container } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, DropdownToggle, Container } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
+import NavLink from './NavLink'
 
 class NavBar extends Component {
     constructor(props) {
@@ -65,21 +66,20 @@ class NavBar extends Component {
             navBorderStyle: ['','',''],
         })
     }
-
     renderNavigationItems(item, index) {
-        const { styles, icon } = this.props
+        const { styles, icon, useRouter, onClickItem, location } = this.props
         let navItem = null
         let key = 0
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
+                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
                 this.dropdownCounter++
                 key = this.dropdownCounter
                 this.menus.push({index: key, item: item})
-                navItem = (<UncontrolledDropdown nav inNavbar >
+                navItem = (<NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} item={item} dropdown>
                     <DropdownToggle style={{
                         borderBottomWidth: this.state.navBorderWidth[key],
                         borderBottomStyle: this.state.navBorderStyle[key],
@@ -88,7 +88,7 @@ class NavBar extends Component {
                         {item.text}
                         <Media style={{height: 7.5, width: 11.25, marginLeft: 5}} object src={icon} />
                     </DropdownToggle>
-                </UncontrolledDropdown>)
+                </NavLink>)
                 break
             default:
                 break
@@ -192,6 +192,7 @@ NavBar.defaultProps = {
         navigation: {},
         navigationDropdown: {}
     },
+    useRouter: false,
 }
 
 export default mergeStyles(defaultStyles)(NavBar)
