@@ -125,7 +125,7 @@ class NavBarMobile extends Component {
       case 'link':
         navItem = (
             <NavItem location={location} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
-              <NavLink item={item} href={item.url} style={{
+              <NavLink item={item} href={item.url} key={index} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
@@ -136,7 +136,7 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} dropdown item={item} style={styles.ucDropdown}>
+          <NavLink key={index} location={location} useRouter={useRouter} onClickItem={onClickItem} dropdown item={item} style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
