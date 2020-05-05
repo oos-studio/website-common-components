@@ -67,19 +67,19 @@ class NavBar extends Component {
         })
     }
     renderNavigationItems(item, index) {
-        const { styles, icon, useRouter, onClickItem, location } = this.props
+        const { styles, icon, useRouter, onClickItem, history } = this.props
         let navItem = null
         let key = 0
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
+                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
                 this.dropdownCounter++
                 key = this.dropdownCounter
                 this.menus.push({index: key, item: item})
-                navItem = (<NavLink location={location} useRouter={useRouter} onClickItem={onClickItem} item={item} dropdown>
+                navItem = (<NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} dropdown>
                     <DropdownToggle style={{
                         borderBottomWidth: this.state.navBorderWidth[key],
                         borderBottomStyle: this.state.navBorderStyle[key],

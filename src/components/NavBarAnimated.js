@@ -227,7 +227,7 @@ class NavBarAnimated extends Component {
   }
 
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl, useRouter, onClickItem, location } = this.props
+    const { styles, icon, scrolledDropdownIcon, xl, useRouter, onClickItem, history } = this.props
     const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, clickLink, hideDropdownMenu } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
@@ -257,7 +257,7 @@ class NavBarAnimated extends Component {
               item={item}
               onClickItem={onClickItem}
               useRouter={useRouter}
-              location={location}
+              history={history}
               style={{
                 ..._styles.navLink,
                 color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
@@ -273,7 +273,7 @@ class NavBarAnimated extends Component {
         navItem = (
 
           <NavLink              dropdown
-                                location={location}
+                                history={history}
                                 item={item}
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}

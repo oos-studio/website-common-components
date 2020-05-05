@@ -117,14 +117,14 @@ class NavBarMobile extends Component {
 
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
-    const { styles, icon, items, useRouter, onClickItem, location } = this.props
+    const { styles, icon, items, useRouter, onClickItem, history } = this.props
     const { toggleDropdownMenu, menus, clickLink } = this
     let navItem = null
 
     switch(item.type) {
       case 'link':
         navItem = (
-            <NavItem location={location} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
+            <NavItem history={history} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
               <NavLink item={item} href={item.url} key={index * index} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
@@ -136,7 +136,7 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <NavLink key={index} location={location} useRouter={useRouter} onClickItem={onClickItem} dropdown item={item} style={styles.ucDropdown}>
+          <NavLink key={index} history={history} useRouter={useRouter} onClickItem={onClickItem} dropdown item={item} style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
@@ -227,7 +227,6 @@ const defaultStyles = {
 }
 
 NavBarMobile.defaultProps = {
-
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarMobile))
