@@ -125,7 +125,7 @@ class NavBarMobile extends Component {
       case 'link':
         navItem = (
             <NavItem location={location} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
-              <NavLink item={item} href={item.url} key={index} style={{
+              <NavLink item={item} href={item.url} key={index * index} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
