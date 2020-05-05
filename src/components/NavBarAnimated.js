@@ -206,12 +206,15 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    tmpStyles[index].borderBottomStyle = '0'
-    tmpStyles[index].borderBottomWidth = 0
 
-    this.setState({
-      navItemStyles: tmpStyles,
-    })
+    if(tmpStyles[index]) {
+      tmpStyles[index].borderBottomStyle = '0'
+      tmpStyles[index].borderBottomWidth = 0
+
+      this.setState({
+        navItemStyles: tmpStyles,
+      })
+    }
 
     if (item.type === 'dropdown' && !item.image)
     {
@@ -372,7 +375,9 @@ const defaultStyles = {
   toggler: {},
   nav: {},
   navItem: {},
-  navLink: {},
+  navLink: {
+    cursor: 'pointer',
+  },
   dropdownMenuContainer: {},
   dropdownContainer: {},
   asideWrapper: {
