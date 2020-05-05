@@ -278,7 +278,7 @@ class NavBarAnimated extends Component {
                                 onMouseLeave={() => leaveHoverNavItem(item, index)}
                                 ref={_r => {_navRefs[index] = _r}}
                                 useRouter={useRouter}
-                                hideDropDown={hideDropdownMenu}
+                                hideDropDown={() => hideDropdownMenu(item, index)}
                                 onClickItem={onClickItem}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{
