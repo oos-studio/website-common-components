@@ -77,10 +77,14 @@ class MegaMenu extends Component {
     const { linkHover, activeLink, activeColumn } = this.state
     const { hoverLink, leaveHoverLink } = this
     const { useRouter, history } = this.props
+
     const linkStyle = this.getLinkStyle(index)
     const imageStyle = this.getImageStyle(index)
+
     switch(column.type) {
       case 'links':
+        console.log('MM COLUMN')
+        console.log(column)
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
