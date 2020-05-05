@@ -183,13 +183,14 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    tmpStyles[index].borderBottomStyle = 'solid'
-    tmpStyles[index].borderBottomWidth = 2
+    if(tmpStyles[index]) {
+      tmpStyles[index].borderBottomStyle = 'solid'
+      tmpStyles[index].borderBottomWidth = 2
 
-    this.setState({
-      navItemStyles: tmpStyles,
-    })
-
+      this.setState({
+        navItemStyles: tmpStyles,
+      })
+    }
     if (item.type === 'dropdown' && !item.image)
     {
       showDropdownMenu(item, index)
