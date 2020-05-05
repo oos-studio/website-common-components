@@ -36,7 +36,7 @@ class ATCHomepage extends Component {
         },
         slides: [
           {
-            source: require('./assets/Header.png'),
+            source: undefined,
             title: [
               {
                 text: 'This is the first line',
@@ -158,7 +158,7 @@ const homepageStyles = {
   header: {
     container: {
       height: '100vh',
-
+      backgroundColor: 'blue',
     },
     fadeImages: {
       title: {

@@ -40,7 +40,7 @@ class Slideshow extends Component {
           return(
           <div key={index} style={_styles.slide}>
             <div style={_styles.imageWrapper}>
-              <img src={slide.source} style={_styles.image} alt={`img${index}`}/>
+              {slide.source && <img src={slide.source} style={_styles.image} alt={`img${index}`}/>}
             </div>
             <div style={_styles.titleWrapper}>
               {slide.title.map((title, subIndex) => {
