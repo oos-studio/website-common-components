@@ -26,7 +26,7 @@ class NavLink extends Component {
     const { dropdown, onMouseEnter, onMouseLeave, style, item, children } = this.props
     const { clickLink } = this
 
-    return dropdown ? (<UncontrolledDropdown style={style} ref={r => this._navLink = r} onMouseEnter={onMouseEnter} nav inNavbar onMouseLeave={onMouseLeave} onClick={clickLink}>{children}</UncontrolledDropdown>) : (<RSNavLink onClick={clickLink} href={item.url} style={style}>{children}</RSNavLink>)
+    return dropdown ? (<UncontrolledDropdown style={style} ref={r => this._navLink = r} onMouseEnter={onMouseEnter} nav inNavbar onMouseLeave={onMouseLeave} onClick={clickLink}>{children}</UncontrolledDropdown>) : (<RSNavLink onClick={clickLink} href={item.url} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >{children}</RSNavLink>)
  }
 }
 
