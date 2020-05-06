@@ -210,6 +210,8 @@ const dropdownMenuStyles = {
     position: 'absolute',
     top: 5,
     padding: 20,
+    width: 'auto',
+    height: 'auto',
   },
   defaultColumn: {
     alignItems: 'flex-start',
@@ -240,14 +242,13 @@ const dropdownMenuStyles = {
     fontWeight: 'bold',
     color: '#562A31',
     padding: 2,
+    paddingRight: 75,
     hover: {
       color: '#E86956',
     }
   },
   markets: {
     container: {
-      width: 150,
-      height: 200,
       left: 7,
     },
     shadow: {
@@ -261,8 +262,6 @@ const dropdownMenuStyles = {
   },
   services: {
     container: {
-      width: 500,
-      height: 300,
       padding: 30,
       left: 7,
     },

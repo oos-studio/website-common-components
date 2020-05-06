@@ -114,18 +114,18 @@ class MegaMenu extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <Container fluid style={{
+      <div style={{
         ...styles.container}}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
-            <Col key={index} style={{
+            <div key={index} style={{
               ...columnStyle}}>
               {this.renderColumn(column, index)}
-            </Col>
+            </div>
           )
         })}
-      </Container>
+      </div>
     )
   }
 }
