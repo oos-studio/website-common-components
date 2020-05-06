@@ -56,6 +56,11 @@ class ATCHomepage extends Component {
               {
                 text: 'This is the first line',
                 style: {
+                  fontSize: 60,
+                  sm: {
+                    color: 'blue',
+                    fontSize: 10,
+                  }
                 },
               },
               {
