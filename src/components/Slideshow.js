@@ -6,7 +6,7 @@ import deepmerge from 'deepmerge'
 
 class Slideshow extends Component {
   renderSlide = () => {
-    const { slides, options, styles } = this.props
+    const { slides, options, styles, getStyle } = this.props
     const _styles = deepmerge(styles, slideStyles)
 
     return (
@@ -20,7 +20,7 @@ class Slideshow extends Component {
               <div style={_styles.titleWrapper}>
                 {slide.title.map((title, subIndex) => {
                   return (
-                    <div key={subIndex} style={title.style}>{title.text}</div>
+                    <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
                   )
                 })}
               </div>

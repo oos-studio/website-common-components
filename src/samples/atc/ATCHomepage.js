@@ -61,6 +61,10 @@ class ATCHomepage extends Component {
               {
                 text: 'This is the second line',
                 style: {
+                  fontSize: 60,
+                  sm: {
+                    fontSize: 10,
+                  }
                 },
               },
             ],
