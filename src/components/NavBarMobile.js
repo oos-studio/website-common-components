@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Collapse, NavLink as RSNavLink, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
+import { UncontrolledDropdown, Collapse, NavLink as RSNavLink, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
 import './commonCSS.css'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import NavLink from './NavLink'
-import UncontrolledDropdown from 'reactstrap/lib/UncontrolledDropdown'
 
 class NavBarMobile extends Component {
   constructor(props) {
@@ -137,7 +136,7 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown key={index} onClickItem={onClickItem} style={styles.ucDropdown}>
+          <UncontrolledDropdown key={index} nav inNavbar style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
