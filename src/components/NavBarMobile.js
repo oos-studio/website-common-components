@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { UncontrolledDropdown, Collapse, NavLink as RSNavLink, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
+import { UncontrolledDropdown, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
@@ -124,8 +124,8 @@ class NavBarMobile extends Component {
     switch(item.type) {
       case 'link':
         navItem = (
-            <NavItem history={history} useRouter={useRouter} onClickItem={onClickItem} key={index} style={styles.navItem}>
-              <NavLink item={item} href={item.url} key={index * index} style={{
+            <NavItem key={index} style={styles.navItem}>
+              <NavLink history={history} useRouter={useRouter} onClickItem={onClickItem}  item={item} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
