@@ -201,7 +201,7 @@ const defaultStyles = {
 
   },
   toggler: {
-
+    cursor: 'pointer',
   },
   collapse: {
 
