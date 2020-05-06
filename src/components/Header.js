@@ -58,7 +58,7 @@ class Header extends Component {
             :
             null
         }
-    <img style={styles.scroll} src={scrollImg} alt={'scrollImg'} />
+        {scrollImg !== undefined && <img style={styles.scroll} src={scrollImg} alt={'scrollImg'} />}
       </Container>
     )
   }
