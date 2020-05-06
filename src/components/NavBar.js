@@ -106,7 +106,7 @@ class NavBar extends Component {
           <div style={styles.container}>
               <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
               <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
-                  <NavbarBrand href="#" style={styles.brand}>
+                  <NavbarBrand href="/" style={styles.brand}>
                       <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
                       <NavbarText style={styles.brandTitle}>{brand.title}</NavbarText>
                   </NavbarBrand>

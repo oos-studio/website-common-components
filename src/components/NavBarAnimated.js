@@ -321,7 +321,7 @@ class NavBarAnimated extends Component {
           expand="md"
           color={styles.navbar.backgroundColor}
           style={styles.navbar}>
-          <NavbarBrand href="#" style={styles.brand}>
+          <NavbarBrand href="/" style={styles.brand}>
             <div id={'navBrand'}>
               <img
                 src={activeNavImage}

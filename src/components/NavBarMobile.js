@@ -118,7 +118,7 @@ class NavBarMobile extends Component {
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
     const { styles, icon, items, useRouter, onClickItem, history } = this.props
-    const { toggleDropdownMenu, menus, clickLink } = this
+    const { toggleDropdownMenu } = this
     let navItem = null
 
     switch(item.type) {
