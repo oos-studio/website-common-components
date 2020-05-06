@@ -6,6 +6,8 @@ class NavLink extends Component {
   clickLink = (e) => {
     const { useRouter, onClickItem, item, history, hideDropDown } = this.props
 
+    e.stopPropagation()
+
     if(hideDropDown !== undefined) {
       hideDropDown()
     }
@@ -13,7 +15,7 @@ class NavLink extends Component {
     if(useRouter && history) {
       e.preventDefault()
       console.log(item.url)
-      history.push(item.url)
+      history.push(`/${item.url}`)
     }
     if(onClickItem) {
       onClickItem(e, item.url)
