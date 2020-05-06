@@ -303,7 +303,7 @@ const data = {
         "url": "#A",
         "type": "dropdown",
         align: 'left',
-        render: () => {return (
+        render: (hideMenu) => {return (
           <React.Fragment>
             <div style={dropdownMenuStyles.keepFocus}>
 
@@ -311,7 +311,7 @@ const data = {
             <div style={dropdownMenuStyles.markets.shadow}>
 
             </div>
-            <MegaMenu id='megamenu' styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.markets)} columns={[
+            <MegaMenu onClickItem={() => hideMenu(null, null, true)} id='megamenu' styles={deepmerge(dropdownMenuStyles, dropdownMenuStyles.markets)} columns={[
           {
             heading: '',
             type: 'links',

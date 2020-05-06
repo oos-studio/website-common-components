@@ -165,11 +165,13 @@ class NavBarAnimated extends Component {
     })
   }
 
-  hideDropdownMenu(item, index){
+  hideDropdownMenu(item, index, didClick = false){
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    if(activeNavIndex !== null && _navRefs[index] !== undefined) {
+    if(didClick) {
+      _navRefs[activeNavIndex].toggle()
+    } else if(activeNavIndex !== null && _navRefs[index] !== undefined) {
       _navRefs[index].toggle()
     }
 
@@ -296,7 +298,7 @@ class NavBarAnimated extends Component {
             </DropdownToggle>
             <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {typeof(item.render) === 'function' ? item.render() : item.render}
+              {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
             </DropdownMenu>
           </NavLink>)
         break

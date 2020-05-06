@@ -141,7 +141,7 @@ class NavBarMobile extends Component {
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>
-              {activeDropdownIndex === index ? item.menu(true) : item.menu(false)}
+              {activeDropdownIndex === index ? item.menu(true, toggle) : item.menu(false, toggle)}
             </UncontrolledDropdown>
       )
         break
