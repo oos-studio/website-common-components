@@ -31,7 +31,7 @@ class Slideshow extends Component {
     )
   }
   renderFade = () => {
-    const { slides, options, styles } = this.props
+    const { slides, options, styles, getStyle } = this.props
     const _styles = deepmerge(styles, fadeStyles)
 
     return (
@@ -45,7 +45,7 @@ class Slideshow extends Component {
             <div style={_styles.titleWrapper}>
               {slide.title.map((title, subIndex) => {
                   return (
-                    <div key={subIndex} style={title.style}>{title.text}</div>
+                    <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
                   )
               })}
             </div>
