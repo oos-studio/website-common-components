@@ -71,4 +71,4 @@ const defaultStyles = {
   paragraph: {},
 }
 
-export default withSizes(mergeStyles(defaultStyles)(Article))
+export default mergeStyles(defaultStyles)(withSizes(Article))

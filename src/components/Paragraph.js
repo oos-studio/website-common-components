@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
+import withSizes from '../utils/Sizes'
 
 class Paragraph extends Component {
   componentDidMount() {
@@ -28,4 +29,4 @@ const defaultStyles = {
   },
 }
 
-export default mergeStyles(defaultStyles)(Paragraph)
+export default mergeStyles(defaultStyles)(withSizes(Paragraph))
