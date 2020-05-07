@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 
