@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Paragraph from './Paragraph'
 import Supplement from './Supplement'
 import withSizes from '../utils/Sizes'
+import mergeStyles from '../utils/StyleMerge'
 
 class Article extends Component {
   addTagClass = (text, tag, _class) => {
@@ -12,7 +13,7 @@ class Article extends Component {
     return tmpText
   }
   buildArticle = () => {
-    const { md, data } = this.props
+    const { md, data, styles } = this.props
     const { addTagClass } = this
     return data.newsPostBody.map((b) => {
       let section = null
@@ -24,7 +25,7 @@ class Article extends Component {
         tmpContent.text = addTagClass(tmpContent.text, 'ul', 'articleUl')
         tmpContent.text = addTagClass(tmpContent.text, 'a', 'articleAnchor')
 
-        section = <Paragraph dropCap={data.dropCap} content={tmpContent} />
+        section = <Paragraph styles={styles.paragraph} dropCap={data.dropCap} content={tmpContent} />
       } else {
         let content = b.typeHandle === 'quote' ? b.text : b
         section = (
@@ -32,6 +33,7 @@ class Article extends Component {
             content={content}
             float={md ? 'center' : b.position}
             type={b.typeHandle}
+            styles={styles.supplement}
           />
         )
       }
@@ -41,6 +43,7 @@ class Article extends Component {
   }
   render() {
     const { buildArticle } = this
+    const { styles } = this.props
     return (
       <div style={styles.container}>
         <div style={styles.content}>{buildArticle()}</div>
@@ -49,7 +52,7 @@ class Article extends Component {
   }
 }
 
-const styles = {
+const defaultStyles = {
   container: {
     margin: 100,
     marginTop: 0,
@@ -58,12 +61,14 @@ const styles = {
     paddingTop: 25,
     borderTopStyle: 'solid',
     borderTopWidth: 1,
-    borderTopColor: '#562A31',
+    borderTopColor: '#000000',
     display: 'flex',
     justifyContent: 'center',
     maxWidth: 1200,
   },
   content: {},
+  supplement: {},
+  paragraph: {},
 }
 
-export default withSizes(Article)
+export default withSizes(mergeStyles(defaultStyles)(Article))

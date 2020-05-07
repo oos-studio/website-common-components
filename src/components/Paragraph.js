@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './commonCSS.css'
+import mergeStyles from '../utils/StyleMerge'
+
 class Paragraph extends Component {
   componentDidMount() {
     const { dropCap } = this.props
@@ -8,7 +10,7 @@ class Paragraph extends Component {
     }
   }
   render() {
-    const { content } = this.props
+    const { content, styles } = this.props
     return (
       <div
         id="paragraph"
@@ -19,12 +21,11 @@ class Paragraph extends Component {
   }
 }
 
-const styles = {
+const defaultStyles = {
   container: {
-    color: '#404144',
     marginTop: 25,
     lineHeight: 2,
   },
 }
 
-export default Paragraph
+export default mergeStyles(defaultStyles)(Paragraph)

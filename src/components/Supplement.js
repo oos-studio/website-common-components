@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import deepmerge from 'deepmerge'
+import mergeStyles from '../utils/StyleMerge'
 
 class Supplement extends Component {
   getDynamicStyles = () => {
-    const { float } = this.props
+    const { float, styles } = this.props
     let newStyles = {}
     switch (float) {
       case 'left':
@@ -107,7 +108,7 @@ class Supplement extends Component {
   }
 }
 
-const styles = {
+const defaultStyles = {
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -126,19 +127,16 @@ const styles = {
       objectFit: 'cover',
     },
     imgCaption: {
-      color: '#862C3C',
       marginTop: 15,
       fontWeight: 600,
     },
     quote: {
-      color: '#E86956',
       fontSize: 45,
       maxWidth: 350,
       fontStyle: 'italic',
       textAlign: 'left',
-      fontFamily: 'capitolina',
     },
   },
 }
 
-export default Supplement
+export default mergeStyles(defaultStyles)(Supplement)
