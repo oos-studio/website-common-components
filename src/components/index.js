@@ -21,6 +21,8 @@ import MegaMenu from './MegaMenu'
 import Page from './Page'
 import TileGrid from './TileGrid'
 import NavLink from './NavLink'
+import Article from './Article'
+import PathIndicator from './PathIndicator'
 import withSizes from '../utils/Sizes'
 import { getSizes, sizes } from '../utils/Sizes'
 
@@ -48,6 +50,8 @@ export {
   NavBarMobile,
   TileGrid,
   NavLink,
+  Article,
+  PathIndicator,
   withSizes,
   getSizes,
   sizes,

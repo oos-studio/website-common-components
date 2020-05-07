@@ -44,3 +44,91 @@ li {
 .react-slideshow-fade-images-wrap, .react-slideshow-fade-images-wrap > div, .react-slideshow-fade-wrapper, .react-slideshow-container, .slideshowWrapper {
     height: 100% !important;
 }
+
+/* Begin Article styles */
+p.dropCap:first-letter {
+    position: relative;
+    float: left;
+    display: block;
+    font-size: 150px;
+    line-height: 125px;
+    font-weight: 300;
+    padding-top: 3px;
+    padding-right: 25px;
+    padding-left: 0;
+    color: #E86956;
+    font-family: 'capitolina';
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: inherit !important;
+}
+h1 {
+    color: #852D3D;
+    font-family: 'capitolina';
+    font-weight: 700 !important;
+}
+h2 {
+    color: #862C3C;
+    font-weight: 300 !important;
+}
+h3 {
+    color: #7D7773;
+}
+h4 {
+    color: #852D3D;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+    font-weight: 700 !important;
+}
+h5 {
+    color: #7D7773;
+    text-transform: uppercase;
+    letter-spacing: 1.25px;
+    font-weight: 600 !important;
+}
+h6 {
+    color: #7D7773;
+    font-weight: 700 !important;
+}
+blockquote {
+    color: #862C3C;
+    background-color: #EDE8E4;
+    padding: 50px;
+    font-weight: 500;
+}
+.articleAnchor, .articleAnchor:link {
+    color: #862C3C !important;
+    text-decoration: underline;
+}
+.articleUl {
+    padding-inline-start: 34px;
+}
+.articleUl li {
+    list-style: none;
+    position: relative;
+}
+.articleUl li::before {
+    color: #E86956;
+    content: "\2022";
+    display: inline-block;
+    font-size: 40px;
+    left: -34px;
+    position: absolute;
+    top: -29px;
+}
+.articleOl {
+    counter-reset: li;
+    padding-inline-start: 0;
+}
+.articleOl li::before {
+    content: counter(li) '.';
+    counter-increment: li;
+    color: #E86956;
+    font-weight: 800;
+    display: inline-block;
+    width: 1em;
+    margin-right: 1em;
+    letter-spacing: 1px;
+}
+/* End Article styles */
+
