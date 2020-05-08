@@ -37,7 +37,10 @@ const defaultStyles = {
     textTransform: 'uppercase',
     width: '100%',
   },
-  links: {},
+  links: {
+    display: 'inline',
+    padding: 0,
+  },
 }
 
 export default mergeStyles(defaultStyles)(PathIndicator)
