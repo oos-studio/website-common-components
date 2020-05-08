@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
+import NavLink from './index'
 
 class PathIndicator extends Component {
   render() {
-    const { styles } = this.props
+    const { styles, useRouter, history } = this.props
 
     let path = window.location.pathname
     path = path.substr(1, path.length - 1)
@@ -14,9 +15,9 @@ class PathIndicator extends Component {
       currentHref += `/${p}`
       return (
         <React.Fragment key={index}>
-          <a style={styles.links} href={currentHref}>
+          <NavLink style={styles.links} item={{url: currentHref}} history={history} useRouter={useRouter}>
             {p}
-          </a>
+          </NavLink>
           {index !== path.length - 1 && ' > '}
         </React.Fragment>
       )
