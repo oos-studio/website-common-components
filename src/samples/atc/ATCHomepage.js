@@ -36,45 +36,6 @@ class ATCHomepage extends Component {
         },
         slides: [
           {
-            source: undefined,
-            title: [
-              {
-                text: 'This is the first line',
-                style: {
-                },
-              },
-              {
-                text: 'This is the second line',
-                style: {
-                },
-              },
-            ],
-          },
-          {
-            source: require('./assets/Header2.png'),
-            title: [
-              {
-                text: 'This is the first line',
-                style: {
-                  fontSize: 60,
-                  sm: {
-                    color: 'blue',
-                    fontSize: 10,
-                  }
-                },
-              },
-              {
-                text: 'This is the second line',
-                style: {
-                  fontSize: 60,
-                  sm: {
-                    fontSize: 10,
-                  }
-                },
-              },
-            ],
-          },
-          {
             source: require('./assets/Header3.png'),
             title: [
               {

@@ -1,5 +1,18 @@
 import React, { Component } from 'react'
-import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import {
+  Collapse,
+  DropdownMenu,
+  Media,
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarText,
+  NavbarToggler,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  Container
+} from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
@@ -90,6 +103,7 @@ class NavBarAnimated extends Component {
 
 
     if(showScrolledNav) {
+      document.getElementById('gradientOverlay').style.display = 'none'
       TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
@@ -112,6 +126,7 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
+      document.getElementById('gradientOverlay').style.display = 'flex'
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
@@ -310,7 +325,7 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed } = this.props
+    const { items, brand, styles, fixed, useGradient } = this.props
     const { toggle, renderNavigationItems } = this
 
     return(
@@ -318,6 +333,7 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
+        {useGradient && <div id={'gradientOverlay'} style={styles.gradient}></div>}
         <Navbar
           id='navbar'
           expand="md"
@@ -408,6 +424,17 @@ const defaultStyles = {
   scrolled: {
 
   },
+  gradient: {
+    background: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%)',
+    opacity: 0.5,
+    position: 'absolute',
+    display: 'flex',
+    top: 0,
+    left: 0,
+    height: '125%',
+    width: '100%',
+    zIndex: 0,
+  },
 }
 
 NavBarAnimated.defaultProps = {
@@ -420,6 +447,7 @@ NavBarAnimated.defaultProps = {
   fixed: false,
   changeOnScroll: false,
   useRouter: false,
+  useGradient: true,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))
