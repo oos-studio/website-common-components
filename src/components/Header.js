@@ -25,6 +25,7 @@ class Header extends Component {
 
     return (
       <Container fluid style={styles.container}>
+        {useGradient && <div style={styles.gradient}></div>}
         {!slideshow &&
           <div style={getStyle(styles.text)}>
             {titleImageUrl && titleImageUrl !== '' ?
@@ -59,7 +60,6 @@ class Header extends Component {
             :
             null
         }
-        {useGradient && <div style={styles.gradient}></div>}
         {scrollImg !== undefined && <img style={styles.scroll} src={scrollImg} alt={'scrollImg'} />}
       </Container>
     )
