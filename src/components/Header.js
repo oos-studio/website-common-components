@@ -15,7 +15,8 @@ class Header extends Component {
       video,
       getStyle,
       slideshow,
-      scrollImg
+      scrollImg,
+      useGradient,
     } = this.props
 
     if (!styles.backgroundAsset.height) {
@@ -58,6 +59,7 @@ class Header extends Component {
             :
             null
         }
+        {useGradient && <div style={styles.gradient}></div>}
         {scrollImg !== undefined && <img style={styles.scroll} src={scrollImg} alt={'scrollImg'} />}
       </Container>
     )
@@ -106,6 +108,16 @@ const defaultStyles = {
   fadeImages: {
 
   },
+  gradient: {
+    background: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 50%)',
+    opacity: 0.5,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    zIndex: 10000,
+  },
   scroll: {
     height: 75,
     width: 75,
@@ -127,7 +139,8 @@ Header.defaultProps = {
     playsInline: true,
     autoPlay: true,
     poser: '',
-  }
+  },
+  useGradient: true,
 }
 
 export default mergeStyle(defaultStyles)(withSizes(Header))
