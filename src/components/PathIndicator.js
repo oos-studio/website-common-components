@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
-import NavLink from './index'
+import {NavLink} from './index'
 
 class PathIndicator extends Component {
   render() {
