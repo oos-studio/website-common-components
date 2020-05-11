@@ -44,6 +44,29 @@ li {
 .react-slideshow-fade-images-wrap, .react-slideshow-fade-images-wrap > div, .react-slideshow-fade-wrapper, .react-slideshow-container, .slideshowWrapper {
     height: 100% !important;
 }
-
-
-
+.slick-slider{
+    height: 100%;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+}
+.slick-track, .slick-list {
+    display: flex !important;
+    align-items: center;
+}
+.slick-slide {
+    height: 200px !important;
+    width: 200px !important;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.slick-slide img {
+    height: 200px !important;
+    width: 200px !important;
+    margin-left: 25px;
+    margin-right: 25px;
+    object-fit: cover;
+}
+.slick-arrow {
+    display: none !important;
+}
