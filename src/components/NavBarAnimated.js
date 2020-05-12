@@ -98,12 +98,14 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles } = this.props
+    const { styles, useGradient } = this.props
     const duration = 0.25
 
 
     if(showScrolledNav) {
-      document.getElementById('gradientOverlay').style.display = 'none'
+      if(useGradient) {
+        document.getElementById('gradientOverlay').style.display = 'none'
+      }
       TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
@@ -126,7 +128,9 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
-      document.getElementById('gradientOverlay').style.display = 'flex'
+      if(useGradient) {
+        document.getElementById('gradientOverlay').style.display = 'flex'
+      }
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
