@@ -47,10 +47,12 @@ li {
 .slick-slider{
     width: 100%;
 }
-.slick-slide, .slick-slide img  {
-    height: 400px !important;
+.sliderWrapper {
+    padding: 20px;
+    overflow: hidden;
 }
-
-.slick-slide img {
+.sliderWrapper img {
+    height: 100% !important;
+    width: 100% !important;
     object-fit: cover;
 }

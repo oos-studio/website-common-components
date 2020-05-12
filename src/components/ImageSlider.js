@@ -12,14 +12,17 @@ class ImageSlider extends Component {
 
     let _settings = settings
     _settings.slidesToShow = 3
+    _settings.slidesToScroll = 3
     _settings.dots = false
     _settings.swipe = true
 
     if(sm) {
       _settings.slidesToShow = 1
+      _settings.slidesToScroll = 1
       _settings.dots = true
     } else if(md) {
       _settings.slidesToShow = 2
+      _settings.slidesToScroll = 2
     }
 
     if(sm) {
@@ -28,9 +31,9 @@ class ImageSlider extends Component {
 
     return(
       <div style={styles.container}>
-          <Slider {..._settings}>
+          <Slider arrows={!sm}{..._settings}>
             {data.map((entry) => {
-              return <div><img style={styles.image} src={entry.image.source} alt={'img'} /></div>
+              return <div className='sliderWrapper'><img src={entry.image.source} alt={'img'} /></div>
             })}
           </Slider>
       </div>
@@ -39,8 +42,6 @@ class ImageSlider extends Component {
 }
 
 ImageSlider.defaultProps = {
-  rotateArrow: true,
-  arrowImg: '',
   settings: {
     dots: false,
     infinite: false,
@@ -60,6 +61,7 @@ const defaultStyles = {
     display: 'flex',
     alignItems: 'center',
     padding: 100,
+    overflow: 'hidden',
   },
 }
 
