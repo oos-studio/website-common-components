@@ -62,15 +62,18 @@ class ATCHomepage extends Component {
     const { getHomepageSections, getHomepageHeader } = this
 
     return (
-        <ImageSlider settings={sliderSettings} data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
+      <ImageSlider settings={sliderSettings} data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
     )
   }
 }
 let sliderSettings = {
-  itemWidth: 300,
-  itemsPerPage: 3,
-  itemsToScroll: 1,
-  margin: 20,
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: false,
+  centerMode: false,
 }
 const sliderStyles = {
 

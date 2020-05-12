@@ -55,14 +55,14 @@ li {
     align-items: center;
 }
 .slick-slide {
-    height: 200px !important;
-    width: 200px !important;
+    height: 300px !important;
+    width: 300px !important;
     margin-left: 25px;
     margin-right: 25px;
 }
 .slick-slide img {
-    height: 200px !important;
-    width: 200px !important;
+    height: 300px !important;
+    width: 300px !important;
     margin-left: 25px;
     margin-right: 25px;
     object-fit: cover;
