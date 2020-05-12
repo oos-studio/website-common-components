@@ -45,28 +45,12 @@ li {
     height: 100% !important;
 }
 .slick-slider{
-    height: 100%;
-    display: flex !important;
-    flex-direction: row;
-    align-items: center;
+    width: 100%;
 }
-.slick-track, .slick-list {
-    display: flex !important;
-    align-items: center;
+.slick-slide, .slick-slide img  {
+    height: 400px !important;
 }
-.slick-slide {
-    height: 300px !important;
-    width: 300px !important;
-    margin-left: 25px;
-    margin-right: 25px;
-}
+
 .slick-slide img {
-    height: 300px !important;
-    width: 300px !important;
-    margin-left: 25px;
-    margin-right: 25px;
     object-fit: cover;
-}
-.slick-arrow {
-    display: none !important;
 }

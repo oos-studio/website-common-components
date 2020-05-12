@@ -62,7 +62,9 @@ class ATCHomepage extends Component {
     const { getHomepageSections, getHomepageHeader } = this
 
     return (
-      <ImageSlider settings={sliderSettings} data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
+      <div style={{backgroundColor: 'green', height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center',}}>
+      <ImageSlider data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
+      </div>
     )
   }
 }
