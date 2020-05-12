@@ -44,6 +44,15 @@ li {
 .react-slideshow-fade-images-wrap, .react-slideshow-fade-images-wrap > div, .react-slideshow-fade-wrapper, .react-slideshow-container, .slideshowWrapper {
     height: 100% !important;
 }
-
-
-
+.slick-slider{
+    width: 100%;
+}
+.sliderWrapper {
+    padding: 20px;
+    overflow: hidden;
+}
+.sliderWrapper img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+}

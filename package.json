@@ -1,6 +1,6 @@
 {
   "name": "@oos-studio/website-common-components",
-  "version": "0.0.67-alpha",
+  "version": "0.0.68-alpha",
   "description": "A directory of commonly used components for building websites with react",
   "main": "dist/components/index.js",
   "private": false,
@@ -25,12 +25,15 @@
     "gsap": "^3.2.4",
     "prop-types": "^15.7.2",
     "react-crossfade-image": "^1.2.0",
+    "react-multi-carousel": "^2.5.5",
     "react-parallax": "^3.0.3",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^5.1.2",
     "react-scroll-parallax": "^2.3.1",
+    "react-slick": "^0.26.1",
     "react-slideshow-image": "^1.4.0",
     "reactstrap": "^8.4.1",
+    "slick-carousel": "^1.8.1",
     "what-input": "^5.2.7"
   },
   "scripts": {

@@ -3,6 +3,7 @@ import {Page,  NavBar, NavBarMobile, TileGrid, CardList} from './components/inde
 import {Blurb, Section} from '../../components/index'
 import withSizes from '../../utils/Sizes'
 import './index.css'
+import ImageSlider from '../../components/ImageSlider'
 
 class ATCHomepage extends Component {
 
@@ -61,13 +62,57 @@ class ATCHomepage extends Component {
     const { getHomepageSections, getHomepageHeader } = this
 
     return (
-      <React.Fragment>
-        { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
-        <Page sections={getHomepageSections()} header={getHomepageHeader()}/>
-      </React.Fragment>
+      <div style={{backgroundColor: 'green', height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center',}}>
+      <ImageSlider data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
+      </div>
     )
   }
 }
+let sliderSettings = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: false,
+  centerMode: false,
+}
+const sliderStyles = {
+
+}
+const sliderData = [
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1081',
+    },
+  },
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1082',
+    },
+  },
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1083',
+    },
+  },
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1084',
+    },
+  },
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1085',
+    },
+  },
+  {
+    image: {
+      source: 'https://picsum.photos/1920/1086',
+    },
+  },
+]
+
 
 const blurbContent = {
   collab: {

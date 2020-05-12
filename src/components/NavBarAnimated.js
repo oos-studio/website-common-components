@@ -329,7 +329,7 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed, useGradient } = this.props
+    const { items, brand, styles, fixed } = this.props
     const { toggle, renderNavigationItems } = this
 
     return(
@@ -337,7 +337,7 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
-        {useGradient && <div id={'gradientOverlay'} style={styles.gradient}></div>}
+        <div id={'gradientOverlay'} style={{...styles.gradient, opacity: showScrolledNav ? 0 : styles.gradient.opacity}}></div>
         <Navbar
           id='navbar'
           expand="md"
