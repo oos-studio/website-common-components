@@ -67,13 +67,10 @@ class ATCHomepage extends Component {
   }
 }
 let sliderSettings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: false,
-    centerMode: true,
+  itemWidth: 300,
+  itemsPerPage: 3,
+  itemsToScroll: 1,
+  margin: 20,
 }
 const sliderStyles = {
 

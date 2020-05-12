@@ -1,103 +1,112 @@
 import React, { Component } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
-import {withSizes} from './index'
+import {Button, withSizes} from './index'
 
 class ImageSlider extends Component {
+  state = {
+    items: [],
+  }
+
   _sliderRef = React.createRef()
+
+  componentDidMount() {
+    const { data, settings, styles } = this.props
+    const { getSliderRef } = this
+
+    let items = data.map(d => {
+      return <SliderItem data={d} width={styles.container.width / settings.itemsPerPage - settings.margin * 2} margin={settings.margin}/>
+    })
+
+    this.setState({
+      items: items,
+    })
+
+   // getSliderRef().style.overflow = 'hidden'
+  }
 
   getSliderRef = () => {
     return this._sliderRef
   }
 
-  onClickPrev = () => {
-    const { getSliderRef } = this
-    getSliderRef().slickPrev()
+  scrollNext = () => {
+    const { settings } = this.props
+
+    const offset = (settings.itemWidth + settings.margin * 2) * settings.itemsToScroll
+    console.log(offset)
+
+    this.getSliderRef().scrollLeft += offset
   }
 
-  onClickNext = () => {
-    const { getSliderRef } = this
-    getSliderRef().slickNext()
+  scrollPrev = () => {
+    const { settings } = this.props
+
+    const offset = (settings.itemWidth + settings.margin * 2) * settings.itemsToScroll
+    console.log(offset)
+
+    this.getSliderRef().scrollLeft -= offset
   }
 
   render() {
-    const { styles, data, settings, arrowImg, rotateArrow, sm, md } = this.props
-    const { onClickPrev, onClickNext } = this
-
-    const prevTransform = rotateArrow ? 'rotate(-90deg)' : 'none'
-    const nextTransform = rotateArrow ? 'rotate(90deg)' : 'none'
-
-    let _settings = settings
-    _settings.slidesToShow = 3
-    _settings.dots = false
-
-    if(sm) {
-      _settings.slidesToShow = 1
-      _settings.dots = true
-    } else if(md) {
-      _settings.slidesToShow = 2
-    }
-
+    const { styles, arrowImg, settings } = this.props
+    const { items } = this.state
+    const { scrollNext, scrollPrev } = this
     return(
-      <div style={styles.container}>
-        {!sm && <div style={styles.arrowWrapper}><img onClick={() => onClickPrev()} style={{...styles.arrowImg, transform: prevTransform}} src={arrowImg} alt={'img'} /></div>}
-        <div style={styles.sliderWrapper}>
-          <Slider ref={r => this._sliderRef = r} {..._settings}>
-            {data.map((entry) => {
-              return <img style={styles.image} src={entry.image.source} alt={'img'} />
-            })}
-          </Slider>
+      <React.Fragment>
+        <Button onClick={() => scrollPrev()}>
+          NEXT
+        </Button>
+        <div ref={r => this._sliderRef = r} style={styles.container}>
+          {items}
         </div>
-        {!sm && <div style={styles.arrowWrapper}><img onClick={() => onClickNext()} style={{...styles.arrowImg, transform: nextTransform}} src={arrowImg} alt={'img'} /></div>}
-      </div>
+        <Button onClick={() => scrollNext()}>
+          NEXT
+        </Button>
+      </React.Fragment>
     )
   }
 }
 
-ImageSlider.defaultProps = {
-  rotateArrow: true,
-  arrowImg: '',
-  settings: {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: false,
-    centerMode: true,
+function SliderItem(props) {
+  const { data, width, margin } = props
+
+  return (
+    <div style={{...itemStyles.itemContainer, width: width, height: width, marginLeft: margin, marginRight: margin}}>
+      <img style={itemStyles.itemImg} src={data.image.source} alt={'img'}/>
+    </div>
+  )
+}
+
+const itemStyles = {
+  itemContainer: {
+    flexGrow: 0,
+    flexShrink: 0,
+    flex: '0 0 auto',
+    transition: 'all 0.5s',
+    overflow: 'hidden',
+    backgroundColor: 'blue',
   },
+  itemImg: {
+    height: '100%',
+    objectFit: 'cover',
+  },
+}
+
+ImageSlider.defaultProps = {
+
 }
 
 const defaultStyles = {
   container: {
+    width: 1000,
+    height: 400,
+    paddingTop: 100,
+    paddingBottom: 100,
     backgroundColor: 'tan',
-    width: '100%',
-    maxWidth: 1200,
-   // margin: 100,
-    height: 500,
     display: 'flex',
-    justifyContent: 'center',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
     alignItems: 'center',
-  },
-  sliderWrapper: {
-    height: '100%',
-    width: '75%',
-  },
-  image: {
-    height: '400 !important',
-    width: '400 !important',
-  },
-  arrowWrapper: {
-    marginRight: 50,
-    marginLeft: 50,
-    cursor: 'pointer',
-  },
-  arrowImg: {
-    width: 75,
-    height: 75,
+    overflowY: 'hidden',
   },
 }
 

@@ -98,7 +98,7 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles } = this.props
+    const { styles, useGradient } = this.props
     const duration = 0.25
 
 
@@ -126,7 +126,9 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
-      document.getElementById('gradientOverlay').style.display = 'flex'
+      if(useGradient) {
+        document.getElementById('gradientOverlay').style.display = 'flex'
+      }
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
@@ -325,7 +327,7 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed, useGradient } = this.props
+    const { items, brand, styles, fixed } = this.props
     const { toggle, renderNavigationItems } = this
 
     return(
@@ -333,7 +335,7 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
-        {useGradient && <div id={'gradientOverlay'} style={styles.gradient}></div>}
+        <div id={'gradientOverlay'} style={{...styles.gradient, opacity: showScrolledNav ? 0 : styles.gradient.opacity}}></div>
         <Navbar
           id='navbar'
           expand="md"

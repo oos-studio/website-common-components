@@ -25,6 +25,7 @@
     "gsap": "^3.2.4",
     "prop-types": "^15.7.2",
     "react-crossfade-image": "^1.2.0",
+    "react-multi-carousel": "^2.5.5",
     "react-parallax": "^3.0.3",
     "react-render-html": "^0.6.0",
     "react-router-dom": "^5.1.2",
