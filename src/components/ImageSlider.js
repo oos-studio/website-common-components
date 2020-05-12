@@ -9,29 +9,9 @@ import withSizes from '../utils/Sizes'
 class ImageSlider extends Component {
   render() {
     const { styles, data, settings, sm, md } = this.props
-
-    let _settings = settings
-    _settings.slidesToShow = 3
-    _settings.slidesToScroll = 3
-    _settings.dots = false
-    _settings.swipe = true
-
-    if(sm) {
-      _settings.slidesToShow = 1
-      _settings.slidesToScroll = 1
-      _settings.dots = true
-    } else if(md) {
-      _settings.slidesToShow = 2
-      _settings.slidesToScroll = 2
-    }
-
-    if(sm) {
-      _settings.swipe = true
-    }
-
     return(
       <div style={styles.container}>
-          <Slider arrows={!sm}{..._settings}>
+          <Slider arrows={!sm}{...settings}>
             {data.map((entry) => {
               return <div className='sliderWrapper'><img src={entry.image.source} alt={'img'} /></div>
             })}
