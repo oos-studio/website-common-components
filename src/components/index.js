@@ -23,6 +23,7 @@ import TileGrid from './TileGrid'
 import NavLink from './NavLink'
 import Article from './Article'
 import PathIndicator from './PathIndicator'
+import ImageSlider from './ImageSlider'
 import withSizes from '../utils/Sizes'
 import { getSizes, sizes } from '../utils/Sizes'
 
@@ -52,6 +53,7 @@ export {
   NavLink,
   Article,
   PathIndicator,
+  ImageSlider,
   withSizes,
   getSizes,
   sizes,
