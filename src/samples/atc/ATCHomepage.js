@@ -78,7 +78,9 @@ let sliderSettings = {
   centerMode: false,
 }
 const sliderStyles = {
+  container: {
 
+  },
 }
 const sliderData = [
   {

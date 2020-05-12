@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
-import {withSizes} from './index'
+import withSizes from '../utils/Sizes'
 
 class ImageSlider extends Component {
   render() {
