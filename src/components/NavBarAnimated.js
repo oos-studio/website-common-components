@@ -67,7 +67,7 @@ class NavBarAnimated extends Component {
 
   componentDidMount() {
     const { handleScroll, runAnimations } = this
-    const { brand } = this.props
+    const { brand, useGradient } = this.props
 
     window.addEventListener('scroll', handleScroll)
 
@@ -76,6 +76,10 @@ class NavBarAnimated extends Component {
       scrollNavImage: brand.image.scrolled.src,
       activeNavImage: brand.image.src,
     })
+
+    if(useGradient) {
+      document.getElementById('gradientOverlay').style.display = 'flex'
+    }
 
     handleScroll()
 
@@ -329,7 +333,7 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed, useGradient } = this.props
+    const { items, brand, styles, fixed } = this.props
     const { toggle, renderNavigationItems } = this
 
     return(
@@ -337,7 +341,7 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
-        {useGradient && <div id={'gradientOverlay'} style={styles.gradient}></div>}
+        <div id={'gradientOverlay'} style={{...styles.gradient, opacity: showScrolledNav ? 0 : styles.gradient.opacity}}></div>
         <Navbar
           id='navbar'
           expand="md"
@@ -432,7 +436,7 @@ const defaultStyles = {
     background: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%)',
     opacity: 0.5,
     position: 'absolute',
-    display: 'flex',
+    display: 'none',
     top: 0,
     left: 0,
     height: '125%',
