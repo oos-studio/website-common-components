@@ -37,6 +37,7 @@ const defaultStyles = {
   contentContainer: {
     margin: 'auto',
     maxWidth: 650,
+    width: '100%',
   }
 }
 
