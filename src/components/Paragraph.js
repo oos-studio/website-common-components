@@ -5,8 +5,10 @@ import withSizes from '../utils/Sizes'
 class Paragraph extends Component {
   componentDidMount() {
     const { dropCap } = this.props
-    if (dropCap) {
-      document.getElementsByTagName('p')[0].classList.add('dropCap')
+    const elements = document.getElementsByTagName('p')
+
+    if (dropCap && elements[0]) {
+      elements[0].classList.add('dropCap')
     }
   }
   render() {

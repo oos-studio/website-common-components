@@ -3,7 +3,6 @@ import {Page,  NavBar, NavBarMobile, TileGrid, CardList} from './components/inde
 import {Blurb, Section} from '../../components/index'
 import withSizes from '../../utils/Sizes'
 import './index.css'
-import ImageSlider from '../../components/ImageSlider'
 
 class ATCHomepage extends Component {
 
@@ -23,35 +22,9 @@ class ATCHomepage extends Component {
   getHomepageHeader = () => {
     return {
       styles: homepageStyles.header,
-      slideshow: {
-        type: 'fade',
-        options: {
-          duration: 2500,
-          transitionDuration: 500,
-          infinite: true,
-          indicators: false,
-          arrows: false,
-          onChange: (oldIndex, newIndex) => {
-            console.log(`fade transition from ${oldIndex} to ${newIndex}`);
-          }
-        },
-        slides: [
-          {
-            source: require('./assets/Header3.png'),
-            title: [
-              {
-                text: 'This is the first line',
-                style: {
-                },
-              },
-              {
-                text: 'This is the second line',
-                style: {
-                },
-              },
-            ],
-          },
-        ]
+      backgroundAsset: {
+        url: 'https://picsum.photos/1920/1080',
+        mimeType: 'image/png',
       },
       scrollImg: require('./assets/HeaderScroll.png')
     }
@@ -62,59 +35,13 @@ class ATCHomepage extends Component {
     const { getHomepageSections, getHomepageHeader } = this
 
     return (
-      <div style={{backgroundColor: 'green', height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center',}}>
-      <ImageSlider data={sliderData} styles={sliderStyles} arrowImg={require('./assets/ScrollButton.png')}/>
-      </div>
+      <React.Fragment>
+        { window.innerWidth < 1160 ? <NavBarMobile /> : <NavBar /> }
+        <Page sections={getHomepageSections()} header={getHomepageHeader()}/>
+      </React.Fragment>
     )
   }
 }
-let sliderSettings = {
-  dots: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  autoplay: false,
-  centerMode: false,
-}
-const sliderStyles = {
-  container: {
-
-  },
-}
-const sliderData = [
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1081',
-    },
-  },
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1082',
-    },
-  },
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1083',
-    },
-  },
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1084',
-    },
-  },
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1085',
-    },
-  },
-  {
-    image: {
-      source: 'https://picsum.photos/1920/1086',
-    },
-  },
-]
-
 
 const blurbContent = {
   collab: {
@@ -198,3 +125,4 @@ const homepageStyles = {
 }
 
 export default withSizes(ATCHomepage)
+
