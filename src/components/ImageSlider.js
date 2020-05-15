@@ -8,9 +8,9 @@ import withSizes from '../utils/Sizes'
 
 class ImageSlider extends Component {
   render() {
-    const { styles, data, settings, sm, md } = this.props
+    const { styles, data, settings, sm, getStyle } = this.props
     return(
-      <div style={styles.container}>
+      <div style={getStyle(styles.container)}>
           <Slider arrows={!sm}{...settings}>
             {data.map((entry) => {
               return <div className='sliderWrapper'><img src={entry.image.source} alt={'img'} /></div>
