@@ -99,7 +99,7 @@ class NavBarAnimated extends Component {
     const gradientOverlay = document.getElementById('gradientOverlay')
 
     if(gradientOverlay) {
-      gradientOverlay.style.display = useGradient ? 'none' : 'flex'
+      gradientOverlay.style.display = useGradient ? 'flex' : 'none'
     }
 
     if(prevState.showScrolledNav !== showScrolledNav) {
