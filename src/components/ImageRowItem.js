@@ -7,6 +7,22 @@ import deepmerge from 'deepmerge'
 class ImageRowItem extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      overImage: false,
+    }
+  }
+
+  onMouseOver = () => {
+    this.setState({
+      overImage: true,
+    })
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      overImage: false,
+    })
   }
 
   imageColumn = () => {
@@ -14,8 +30,12 @@ class ImageRowItem extends Component {
       styles,
       imageUrl,
       getStyle,
-      stack
+      stack,
+      imageProps,
+      imageHoverStyles,
+      imageWrapperHoverStyles,
     } = this.props
+    const { overImage } = this.state
 
     let xs = 'auto'
     let sm = 'auto'
@@ -39,9 +59,23 @@ class ImageRowItem extends Component {
         break
     }
 
+    const imageStyles = overImage ? imageHoverStyles : {}
+    const imageWrapperStyles = overImage ? imageWrapperHoverStyles : {}
+
+    const image = {
+      ...styles.image,
+      ...imageStyles,
+    }
+    const imageWrapper = {
+      ...styles.imageWrapper,
+      ...imageWrapperStyles,
+    }
+
     return (
       <Col style={getStyle(styles.imageColumn)} xs={xs} sm={sm} md={md}>
-        <img style={getStyle(styles.image)} src={imageUrl} alt={''}/>
+        <div style={getStyle(imageWrapper)}>
+          <img {...imageProps} onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} style={getStyle(image)} src={imageUrl} alt={''}/>
+        </div>
       </Col>
     )
   }
@@ -113,6 +147,7 @@ const defaultStyles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    //transform: 'scale(1.15)',
     xs: {
       height: 'auto',
       maxHeight: 300,
@@ -126,6 +161,10 @@ const defaultStyles = {
       height: 'auto',
     }
   },
+  imageWrapper: {
+    overflow: 'hidden',
+    height: '100%',
+  },
   bodyColumn: {
     padding: 10,
   },
@@ -134,6 +173,8 @@ const defaultStyles = {
 ImageRowItem.defaultProps = {
   alignImage: 'left',
   renderBody: () => {},
+  imageHoverStyles: {},
+  imageWrapperStyles: {},
 }
 
 export default mergeStyle(defaultStyles)(withSizes(ImageRowItem))

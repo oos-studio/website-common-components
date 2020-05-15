@@ -10,6 +10,8 @@ class ListPage extends Component {
       styles,
       header,
       list,
+      renderAboveList,
+      renderBelowList,
     } = this.props
 
     return (
@@ -17,12 +19,19 @@ class ListPage extends Component {
         {typeof(header) === 'object' ? <Header {...header}/> : null}
         <div style={styles.contentSection}>
           <div style={styles.contentContainer}>
+            {renderAboveList()}
             <List {...list}/>
+            {renderBelowList()}
           </div>
         </div>
       </div>
     )
   }
+}
+
+ListPage.defaultProps = {
+  renderAboveList: () => null,
+  renderBelowList: () => null,
 }
 
 const defaultStyles = {
@@ -37,6 +46,7 @@ const defaultStyles = {
   contentContainer: {
     margin: 'auto',
     maxWidth: 650,
+    width: '100%',
   }
 }
 

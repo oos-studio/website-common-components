@@ -34,7 +34,12 @@ class Header extends Component {
                   return (<span style={getStyle(styles.title)}>{t}</span>)
                 })
                 :
-                <span style={getStyle(styles.title)}>{title}</span>
+                <React.Fragment>
+                  <div style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
+                    <div style={getStyle(styles.titleShadow)}>{title}</div>
+                  </div>
+                  <div style={getStyle(styles.title)}>{title}</div>
+                </React.Fragment>
             }
             <div style={styles.subTitle}>
               <span>{subTitle}</span>
@@ -81,7 +86,7 @@ const defaultStyles = {
   backgroundAsset: {
     position: 'fixed',
     width: '100%',
-    zIndex: -10000,
+    zIndex: -1,
     objectFit: 'cover',
     top: 0,
     left: 0,
@@ -92,9 +97,15 @@ const defaultStyles = {
     width: '100%',
   },
   text: {
+    zIndex: 10000,
   },
   title: {
-    zIndex: 10000,
+  },
+  titleShadow: {
+  },
+  titleShadowWrapper: {
+    position: 'absolute',
+    zIndex: -1,
   },
   subTitle: {
     marginTop: 5,
