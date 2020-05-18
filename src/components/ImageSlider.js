@@ -20,7 +20,7 @@ class ImageSlider extends Component {
                 url: entry.linkToPage[0] ? entry.linkToPage[0].url : entry.imageSliderItemUrl,
               }
               if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
-                return <div className='sliderWrapper'><NavLink style={styles} history={history} useRouter={useRouter} item={item}><img
+                return <div className='sliderWrapper'><NavLink style={styles.navLink} history={history} useRouter={useRouter} item={item}><img
                   src={entry.imageSliderItemImage[0].url} alt={'img'}/></NavLink></div>
               } else {
                 return <div className='sliderWrapper'><img
@@ -54,6 +54,9 @@ const defaultStyles = {
     alignItems: 'center',
     padding: 100,
     overflow: 'hidden',
+  },
+  navLink: {
+    padding: 0,
   },
 }
 
