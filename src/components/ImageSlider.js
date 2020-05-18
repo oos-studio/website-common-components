@@ -19,10 +19,10 @@ class ImageSlider extends Component {
               }
               if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
                 return <div className='sliderWrapper'><NavLink style={styles} history={history} useRouter={useRouter} item={item}><img
-                  src={entry.imageSliderItemImage.url} alt={'img'}/></NavLink></div>
+                  src={entry.imageSliderItemImage[0].url} alt={'img'}/></NavLink></div>
               } else {
                 return <div className='sliderWrapper'><img
-                  src={entry.imageSliderItemImage.url} alt={'img'}/></div>
+                  src={entry.imageSliderItemImage[0].url} alt={'img'}/></div>
               }
             })}
           </Slider>
