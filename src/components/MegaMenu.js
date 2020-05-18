@@ -83,8 +83,6 @@ class MegaMenu extends Component {
 
     switch(column.type) {
       case 'links':
-        console.log('MM COLUMN')
-        console.log(column)
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}

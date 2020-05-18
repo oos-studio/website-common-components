@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-//import 'slick-carousel/slick/slick.css'
-//import 'slick-carousel/slick/slick-theme.css'
+import NavLink from './index'
 import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 
 class ImageSlider extends Component {
   render() {
-    const { styles, data, settings, sm, getStyle } = this.props
-    return(
-      <div style={getStyle(styles.container)}>
+    const { styles, data, settings, sm, getStyle, history } = this.props
+
+      return(
+        <div style={getStyle(styles.container)}>
           <Slider arrows={!sm}{...settings}>
             {data.map((entry) => {
-              return <div className='sliderWrapper'><img src={entry.image.source} alt={'img'} /></div>
+              const useRouter = entry.linkToPage.length > 0
+              const item = {
+                url: entry.linkToPage[0] ? entry.linkToPage[0].url : entry.imageSliderItemUrl,
+              }
+              if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
+                return <div className='sliderWrapper'><NavLink history={history} useRouter={useRouter} item={item}><img
+                  src={entry.imageSliderItemImage.url} alt={'img'}/></NavLink></div>
+              } else {
+                return <div className='sliderWrapper'><img
+                  src={entry.imageSliderItemImage.url} alt={'img'}/></div>
+              }
             })}
           </Slider>
-      </div>
-    )
+        </div>
+      )
   }
 }
 
