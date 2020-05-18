@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
-import NavLink from './index'
+import {NavLink} from './index'
 import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
@@ -18,7 +18,7 @@ class ImageSlider extends Component {
                 url: entry.linkToPage[0] ? entry.linkToPage[0].url : entry.imageSliderItemUrl,
               }
               if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
-                return <div className='sliderWrapper'><NavLink history={history} useRouter={useRouter} item={item}><img
+                return <div className='sliderWrapper'><NavLink style={styles} history={history} useRouter={useRouter} item={item}><img
                   src={entry.imageSliderItemImage.url} alt={'img'}/></NavLink></div>
               } else {
                 return <div className='sliderWrapper'><img
