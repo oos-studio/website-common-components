@@ -17,7 +17,7 @@ class ImageSlider extends Component {
             {data.map((entry) => {
               const useRouter = entry.linkToPage.length > 0
               const item = {
-                url: entry.linkToPage[0] ? entry.linkToPage[0].url : entry.imageSliderItemUrl,
+                url: entry.linkToPage[0] ? entry.linkToPage[0].slug : entry.imageSliderItemUrl,
               }
               if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
                 return <div className='sliderWrapper'><NavLink style={styles.navLink} history={history} useRouter={useRouter} item={item}><img
