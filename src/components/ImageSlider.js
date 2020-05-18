@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Slider from 'react-slick'
 import {NavLink} from './index'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 import './commonCSS.css'
 import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
