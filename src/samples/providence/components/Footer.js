@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { Footer as FooterComponent } from '../../../components'
 import { FooterInfo, FooterContactForm } from './index'
+import withSizes from '../../../utils/Sizes'
 
 const socials = [
   {
     name: 'facebook',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Facebook.png'),
     url: 'https://www.facebook.com'
   },
   {
     name: 'instagram',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Instagram.png'),
     url: 'https://www.instagram.com'
 
   },
   {
     name: 'vimeo',
-    icon: 'http://picsum.photos/100/100',
+    icon: require('../assets/Vimeo.png'),
     url: 'https://www.vimeo.com'
 
   },
@@ -32,7 +33,7 @@ const columns = [
     }
   },
   {
-    heading: 'Contact Us',
+    heading: '',
     render: () => {
       return (
       <FooterContactForm />
@@ -43,39 +44,59 @@ const columns = [
 
 const styles = {
   container: {
-    width: '100vw',
-    height: 600,
+    width: '100%',
+    maxWidth: 1200,
     backgroundColor: '#6A5B5D',
-    paddingTop: 50,
+  },
+  limitWidth: {
+    backgroundColor: '#6A5B5D',
+    width: '100%',
+    paddingTop: 75,
+    paddingBottom: 75,
+    paddingLeft: 45,
+    paddingRight: 45,
+    display: 'flex',
+    md: {
+      paddingTop: 0,
+      paddingBottom: 0
+    },
+  },
+  content: {
+    display: 'flex',
   },
   columns: [
     {
       column: {
-        flex: 2,
+       flex: 2,
+        padding: 0,
       }
     },
     {
       column: {
-        flex: 1,
+        flex: 1.4,
+        padding: 0,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
       },
-      header: {
-        fontSize: 30,
-        color: '#FDECBB',
-        marginBottom: 125,
-      }
     },
-  ]
+  ],
+  md: {
+    content: {
+      flexDirection: 'column-reverse',
+    },
+  },
 }
 
 class Footer extends Component {
   render() {
+    const { getStyle } = this.props
     return (
-      <FooterComponent columns={columns} styles={styles}/>
+      <div style={getStyle(styles.limitWidth)}>
+        <FooterComponent columns={columns} styles={getStyle(styles)}/>
+      </div>
     )
   }
 }
 
-export default Footer
+export default withSizes(Footer)
