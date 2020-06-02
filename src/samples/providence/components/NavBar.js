@@ -4,7 +4,6 @@ import MegaMenu from '../../../components/MegaMenu'
 import deepmerge from 'deepmerge'
 
 class NavBar extends Component {
-
   render() {
     return(
       <NavBarComponent items={data.navigation.items} brand={data.navigation.brand} styles={styles} icon={data.navigation.dropdownIcon}/>
@@ -207,12 +206,15 @@ const styles = {
       backgroundColor: 'white',
     },
     nav: {
+
+    },
+    itemWrapper: {
       borderBottomWidth: 0,
     },
     mmBackground: {
       opacity: 1,
       backgroundColor: 'white',
-      height: 500,
+      height: 493,
     },
   },
   mmBackground: {
@@ -227,10 +229,12 @@ const styles = {
     backgroundColor: 'rgb(254,248,232)',
     padding: 0,
     paddingTop: 50,
-    paddingLeft: 100,
-    paddingRight: 75,
+    paddingLeft: 325,
+    paddingRight: 334,
     height: 221,
     zIndex: 4,
+    display: 'flex',
+    justifyContent: 'center',
   },
   brand: {
     padding: 0,
@@ -243,13 +247,23 @@ const styles = {
     width: 339,
   },
   collapse: {
-    fontSize: 25,
+    fontSize: 22,
     margin: 0,
     marginLeft: 75,
   },
   nav: {
+    flex: 1,
+    position: 'relative',
+  },
+  itemWrapper: {
+    display: 'flex',
     justifyContent: 'space-between',
     flex: 1,
+    minWidth: 620,
+    position: 'relative',
+    top: 0,
+    left: 0,
+    padding: 0,
     borderBottomStyle: 'solid',
     borderBottomWidth: 2,
     borderBottomColor: '#6A5B5D',
@@ -268,8 +282,8 @@ const styles = {
   asideWrapper: {
     fontSize: 25,
     position: 'absolute',
-    top: 76,
-    left: 185,
+    top: -47,
+    left: -330,
     width: 255,
     height: 400,
     padding: 0,
@@ -310,16 +324,18 @@ const megaMenuStyles = {
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     zIndex: 4,
-    overflowX: 'scroll',
+    overflowX: 'hidden',
     position: 'absolute',
     width: 'auto',
-    left: 500,
+    top: 75,
+    left: 0,
     right: 0,
+    height: 305,
   },
   defaultColumn:{
     padding: 0,
     margin: 0,
-    fontSize: 15,
+    fontSize: 20,
     wordWrap: 'break-word',
     color: '#6A5B5D',
     flexWrap: 'wrap',
@@ -332,43 +348,48 @@ const megaMenuStyles = {
 
 const newColumns = {
   timeColumn: {
-    fontSize: 22,
-    textAlign: 'center',
+    fontSize: 20,
+    textAlign: 'right',
   },
   columns: [
     {
       column: {
         alignItems: 'flex-start',
-        flex: 0.65,
+        maxWidth: 175,
       },
       link: {
         width: 150,
-        fontSize: 22,
+        fontSize: 20,
       },
     },
     {
       column: {
+        height: '100%',
         alignItems: 'flex-start',
+        marginRight: 50,
       },
       header: {
-        textAlign: 'center',
-        fontSize: 25,
+        textAlign: 'right',
+        fontSize: 22,
+        fontWeight: 'bold',
         borderBottomStyle: 'solid',
         borderBottomWidth: 2,
         borderBottomColor: '#6A5B5D',
-        marginBottom: 25,
+        marginBottom: 15,
         marginLeft: 10,
         marginRight: 5,
+        paddingBottom: 15,
       },
     },
     {
       column: {
         alignItems: 'flex-start',
+        height: '100%',
       },
       image: {
         width: '100%',
         maxWidth: 400,
-        height: 200,
+        height: '100%',
       }
     }
   ]
@@ -379,20 +400,22 @@ const ministriesColumns = {
       column: {
         alignItems: 'flex-start',
         marginRight: 0,
+        width: 180,
       },
       link: {
         width: 155,
-        fontSize: 22,
+        fontSize: 20,
       },
     },
     {
       column: {
         alignItems: 'flex-start',
         marginRight: 0,
+        width: 155,
       },
       link: {
         width: 130,
-        fontSize: 22,
+        fontSize: 20,
       },
     },
     {
@@ -402,7 +425,7 @@ const ministriesColumns = {
       },
       image: {
         width: '100%',
-        maxWidth: 400,
+        maxWidth: 350,
         height: 200,
       }
     }
@@ -413,22 +436,22 @@ const resourcesColumns = {
     {
       column: {
         alignItems: 'flex-start',
-        marginRight: 0,
+        marginRight: 10,
       },
       image: {
         width: '100%',
-        maxWidth: 400,
+        maxWidth: 350,
         height: 200,
       }
     },
     {
       column: {
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         marginRight: 0,
       },
       image: {
         width: '100%',
-        maxWidth: 400,
+        maxWidth: 350,
         height: 200,
       }
     },

@@ -112,23 +112,25 @@ class NavBar extends Component {
                   </NavbarBrand>
                   <NavbarToggler onClick={toggle} style={styles.toggler} />
                   <Collapse isOpen={open} navbar style={styles.collapse}>
-                      <Nav navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
-                          {items.map((item, index) => renderNavigationItems(item, index))}
+                      <Nav id='nav' navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
+                          <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
+                              {items.map((item, index) => renderNavigationItems(item, index))}
+                          </div>
+                          <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
+                              {aside !== null && aside !== undefined &&
+                              <React.Fragment>
+                                  <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
+                                  <div style={styles.asideWrapper}>
+                                      <div style={styles.asideHeader}>{aside.header}</div>
+                                      <div style={styles.asideBody}>{aside.text}</div>
+                                  </div>
+                              </React.Fragment>
+                              }
+                              {megaMenu}
+                          </div>
                       </Nav>
                   </Collapse>
               </Navbar>
-              <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
-                  {aside !== null && aside !== undefined &&
-                  <React.Fragment>
-                      <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
-                      <div style={styles.asideWrapper}>
-                          <div style={styles.asideHeader}>{aside.header}</div>
-                          <div style={styles.asideBody}>{aside.text}</div>
-                      </div>
-                  </React.Fragment>
-                  }
-                  {megaMenu}
-              </div>
           </div>
         )
     }
@@ -141,42 +143,25 @@ const defaultStyles = {
         right: 0,
         top: 0,
     },
-    mmBackground: {
-    },
-    navbar: {
-    },
+    mmBackground: {},
+    navbar: {},
     brand: {},
     brandImage: {},
     brandTitle: {},
     toggler: {},
-    nav: {
-    },
+    nav: {},
+    itemWrapper: {},
     navItem: {},
     navLink: {},
-    dropdownMenuContainer: {
-    },
-    dropdownContainer: {
-    },
+    dropdownMenuContainer: {},
+    dropdownContainer: {},
     megaMenu: {
         padding: 0,
     },
-    asideWrapper: {
-        width: '20%',
-        textAlign: 'center',
-        position: 'absolute',
-        zIndex: 9999,
-        height: '60vh',
-        top: 0,
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-    asideImage: {
-        float: 'left',
-        display: 'inline',
-    },
+    asideWrapper: {},
+    asideImage: {},
     asideHeader: {
         fontSize: 25,
-        display: 'flex',
     },
     asideBody: {
         fontSize: 18,

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { UncontrolledDropdown, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, DropdownToggle } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
 import './commonCSS.css'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import NavLink from './NavLink'
 
 class NavBarMobile extends Component {
   constructor(props) {
@@ -35,56 +34,38 @@ class NavBarMobile extends Component {
     this.menus = []
   }
 
-  componentWillUnmount() {
-    const { closeDropdownMenu } = this
-    const { touchscreen, scrollPosition } = this.state
-
-    const body = document.querySelector('body')
-
-    closeDropdownMenu()
-
-    if(touchscreen) {
-      body.style.removeProperty('overflow');
-      body.style.removeProperty('position');
-      body.style.removeProperty('top');
-      body.style.removeProperty('width');
-      window.scrollTo(0, scrollPosition);
-    } else {
-      enableBodyScroll(document.querySelector('#homeContainer'))
-    }
-  }
-
   toggle = () => {
     const { open, touchscreen, scrollPosition } = this.state
     const { closeDropdownMenu } = this
-    const { toggleCollapse } = this.props
+    const { toggleCollapse, lockBodyScroll } = this.props
     const body = document.querySelector('body')
 
     toggleCollapse(!open)
 
-    if(!open) {
-      if(touchscreen) {
-        this.setState({
-          scrollPosition: window.pageYOffset
-        })
-        body.style.overflow = 'hidden'
-        body.style.position = 'fixed'
-        body.style.top = `-${scrollPosition}px`
-        body.style.width = '100%'
+    if(lockBodyScroll) {
+      if (!open) {
+        if (touchscreen) {
+          this.setState({
+            scrollPosition: window.pageYOffset
+          })
+          body.style.overflow = 'hidden'
+          body.style.position = 'fixed'
+          body.style.top = `-${scrollPosition}px`
+          body.style.width = '100%'
+        } else {
+          disableBodyScroll(document.querySelector('#homeContainer'))
+        }
       } else {
-        disableBodyScroll(document.querySelector('#homeContainer'))
-      }
-
-    } else {
-      closeDropdownMenu()
-      if(touchscreen) {
-        body.style.removeProperty('overflow');
-        body.style.removeProperty('position');
-        body.style.removeProperty('top');
-        body.style.removeProperty('width');
-        window.scrollTo(0, scrollPosition);
-      } else {
-        enableBodyScroll(document.querySelector('#homeContainer'))
+        closeDropdownMenu()
+        if (touchscreen) {
+          body.style.removeProperty('overflow');
+          body.style.removeProperty('position');
+          body.style.removeProperty('top');
+          body.style.removeProperty('width');
+          window.scrollTo(0, scrollPosition);
+        } else {
+          enableBodyScroll(document.querySelector('#homeContainer'))
+        }
       }
     }
 
@@ -113,19 +94,18 @@ class NavBarMobile extends Component {
     })
   }
 
-
-
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
-    const { styles, icon, items, useRouter, onClickItem, history } = this.props
-    const { toggleDropdownMenu, toggle } = this
+    const { styles, icon, items } = this.props
+    const { toggleDropdownMenu, menus } = this
     let navItem = null
+    console.log(activeDropdownIndex)
 
     switch(item.type) {
       case 'link':
         navItem = (
             <NavItem key={index} style={styles.navItem}>
-              <NavLink history={history} useRouter={useRouter} onClickItem={() => toggle()}  item={item} style={{
+              <NavLink href={item.url} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
@@ -136,12 +116,12 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown key={index} nav inNavbar style={styles.ucDropdown}>
+          <UncontrolledDropdown style={styles.ucDropdown} nav inNavbar>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>
-              {activeDropdownIndex === index ? item.menu(true, toggle) : item.menu(false, toggle)}
+              {activeDropdownIndex === index ? item.menu(true) : item.menu(false)}
             </UncontrolledDropdown>
       )
         break
@@ -188,45 +168,22 @@ const defaultStyles = {
     right: 0,
     top: 0,
   },
-  navbar: {
-
-  },
-  brand: {
-
-  },
-  brandImage: {
-
-  },
-  brandTitle: {
-
-  },
-  toggler: {
-    cursor: 'pointer',
-  },
-  collapse: {
-
-  },
-  nav: {
-
-  },
-  navItem: {
-
-  },
-  navLink: {
-    cursor: 'pointer',
-  },
-  dropdownItem: {
-
-  },
-  ucDropdown: {
-
-  },
-  dropdownIcon: {
-
-  },
+  navbar: {},
+  brand: {},
+  brandImage: {},
+  brandTitle: {},
+  toggler: {},
+  collapse: {},
+  nav: {},
+  navItem: {},
+  navLink: {},
+  dropdownItem: {},
+  ucDropdown: {},
+  dropdownIcon: {},
 }
 
 NavBarMobile.defaultProps = {
+  lockBodyScroll: true,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarMobile))

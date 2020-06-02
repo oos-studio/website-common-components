@@ -10,7 +10,8 @@ import {
   FullScreenIntro,
   ImageAlignedText,
   HomeFeed,
-  NavBar
+  NavBar,
+  NavBarMobile,
 } from "./components"
 import './fonts/fonts.css'
 
@@ -43,18 +44,36 @@ const churchIllustrationProps = {
 }
 
 class ProvidenceHomepage extends Component {
+  state = {
+    mobileNav: false,
+  }
+  componentDidMount() {
+    const { renderMobileNav } = this
+    renderMobileNav()
+    window.addEventListener('resize', renderMobileNav)
+  }
+  renderMobileNav = () => {
+    if(window.innerWidth >= 1160) {
+      this.setState({mobileNav: false,})
+    } else {
+      this.setState({mobileNav: true,})
+    }
+  }
   render() {
+    const { mobileNav } = this.state
     return (
-      <div style={styles.container}>
-        <NavBar />
-        <FullScreenIntro/>
-        <FloatingParallax/>
-        <ImageAlignedText {...churchIllustrationProps}/>
-        <ImageCaptionBlock/>
-        <ImageAlignedText/>
-        <HomeFeed/>
-        <Footer/>
-      </div>
+      <React.Fragment>
+        <div style={styles.container}>
+          { mobileNav ? <NavBarMobile /> : <NavBar /> }
+          <FullScreenIntro/>
+          <FloatingParallax/>
+          <ImageAlignedText {...churchIllustrationProps}/>
+          <ImageCaptionBlock/>
+          <ImageAlignedText/>
+          <HomeFeed/>
+          <Footer/>
+        </div>
+      </React.Fragment>
     )
   }
 }

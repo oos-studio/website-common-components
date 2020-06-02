@@ -1,25 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Collapse,
-  DropdownMenu,
-  Media,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavbarText,
-  NavbarToggler,
-  NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Container
-} from 'reactstrap'
+import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
 import withSizes from '../utils/Sizes'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import NavLink from './NavLink'
 
 class NavBarAnimated extends Component {
   constructor(props) {
@@ -67,7 +52,7 @@ class NavBarAnimated extends Component {
 
   componentDidMount() {
     const { handleScroll, runAnimations } = this
-    const { brand, useGradient } = this.props
+    const { brand } = this.props
 
     window.addEventListener('scroll', handleScroll)
 
@@ -77,12 +62,7 @@ class NavBarAnimated extends Component {
       activeNavImage: brand.image.src,
     })
 
-    if(useGradient) {
-      document.getElementById('gradientOverlay').style.display = 'flex'
-    }
-
     handleScroll()
-
   }
 
   componentWillUnmount() {
@@ -94,13 +74,6 @@ class NavBarAnimated extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { showScrolledNav } = this.state
     const { runAnimations } = this
-    const { useGradient } = this.props
-
-    const gradientOverlay = document.getElementById('gradientOverlay')
-
-    if(gradientOverlay) {
-      gradientOverlay.style.display = useGradient ? 'flex' : 'none'
-    }
 
     if(prevState.showScrolledNav !== showScrolledNav) {
       runAnimations()
@@ -109,13 +82,11 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles, useGradient } = this.props
+    const { styles } = this.props
     const duration = 0.25
 
+
     if(showScrolledNav) {
-      if(useGradient) {
-        document.getElementById('gradientOverlay').style.display = 'none'
-      }
       TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
@@ -138,9 +109,6 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
-      if(useGradient) {
-        document.getElementById('gradientOverlay').style.display = 'flex'
-      }
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
@@ -162,19 +130,23 @@ class NavBarAnimated extends Component {
 
   handleScroll = () => {
     const { changeOnScroll } = this.props
-    const { showScrolledNav } = this.state
+
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop
+
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+    const scrollY = winScroll / height
 
     let showScrolled = false
 
-    if(window.pageYOffset >= 300 && changeOnScroll) {
+    if(scrollY >= 0.2 && changeOnScroll) {
       showScrolled = true
     }
 
-    if(showScrolledNav !== showScrolled) {
-      this.setState({
-        showScrolledNav: showScrolled,
-      })
-    }
+    this.setState({
+      scrollY: scrollY,
+      showScrolledNav: showScrolled,
+    })
   }
 
   toggle() {
@@ -194,13 +166,11 @@ class NavBarAnimated extends Component {
     })
   }
 
-  hideDropdownMenu(item, index, didClick = false){
+  hideDropdownMenu(item, index){
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    if(didClick) {
-      _navRefs[activeNavIndex].toggle()
-    } else if(activeNavIndex !== null && _navRefs[index] !== undefined) {
+    if(activeNavIndex !== null && _navRefs[index] !== undefined) {
       _navRefs[index].toggle()
     }
 
@@ -214,14 +184,13 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    if(tmpStyles[index]) {
-      tmpStyles[index].borderBottomStyle = 'solid'
-      tmpStyles[index].borderBottomWidth = 2
+    tmpStyles[index].borderBottomStyle = 'solid'
+    tmpStyles[index].borderBottomWidth = 2
 
-      this.setState({
-        navItemStyles: tmpStyles,
-      })
-    }
+    this.setState({
+      navItemStyles: tmpStyles,
+    })
+
     if (item.type === 'dropdown' && !item.image)
     {
       showDropdownMenu(item, index)
@@ -237,15 +206,12 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
+    tmpStyles[index].borderBottomStyle = '0'
+    tmpStyles[index].borderBottomWidth = 0
 
-    if(tmpStyles[index]) {
-      tmpStyles[index].borderBottomStyle = '0'
-      tmpStyles[index].borderBottomWidth = 0
-
-      this.setState({
-        navItemStyles: tmpStyles,
-      })
-    }
+    this.setState({
+      navItemStyles: tmpStyles,
+    })
 
     if (item.type === 'dropdown' && !item.image)
     {
@@ -257,9 +223,15 @@ class NavBarAnimated extends Component {
     }
   }
 
+  clickDropdown = (index) => {
+    const { hideDropdownMenu } = this
+
+    hideDropdownMenu(null, index)
+  }
+
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl, useRouter, onClickItem, history } = this.props
-    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, clickLink, hideDropdownMenu } = this
+    const { styles, icon, scrolledDropdownIcon, xl } = this.props
+    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
@@ -285,10 +257,6 @@ class NavBarAnimated extends Component {
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
               href={item.url}
-              item={item}
-              onClickItem={onClickItem}
-              useRouter={useRouter}
-              history={history}
               style={{
                 ..._styles.navLink,
                 color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
@@ -302,14 +270,12 @@ class NavBarAnimated extends Component {
         break
       case 'dropdown':
         navItem = (
-            <NavLink dropdown
-            history={history}
-            item={item}
-            onMouseLeave={() => leaveHoverNavItem(item, index)}
-            ref={_r => {_navRefs[index] = _r}}
-            useRouter={useRouter}
-            hideDropDown={() => hideDropdownMenu(item, index)}
-            onClickItem={onClickItem}>
+          <UncontrolledDropdown nav inNavbar
+                                onMouseLeave={() => leaveHoverNavItem(item, index)}
+                                ref={_r => {_navRefs[index] = _r}}
+                                key={index}
+                                id={xl ? id : ''}
+                                onClick={() => clickDropdown(index)}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{
                 ..._styles.dropdownItem,
@@ -327,9 +293,9 @@ class NavBarAnimated extends Component {
             </DropdownToggle>
             <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
+              {typeof(item.render) === 'function' ? item.render() : item.render}
             </DropdownMenu>
-          </NavLink>)
+          </UncontrolledDropdown>)
         break
       default:
         break
@@ -347,13 +313,12 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
-        <div id={'gradientOverlay'} style={{...styles.gradient, opacity: showScrolledNav ? 0 : styles.gradient.opacity}}></div>
         <Navbar
           id='navbar'
           expand="md"
           color={styles.navbar.backgroundColor}
           style={styles.navbar}>
-          <NavbarBrand href="/" style={styles.brand}>
+          <NavbarBrand href="#" style={styles.brand}>
             <div id={'navBrand'}>
               <img
                 src={activeNavImage}
@@ -407,48 +372,10 @@ const defaultStyles = {
   toggler: {},
   nav: {},
   navItem: {},
-  navLink: {
-    cursor: 'pointer',
-  },
+  navLink: {},
   dropdownMenuContainer: {},
   dropdownContainer: {},
-  asideWrapper: {
-    width: '20%',
-    textAlign: 'center',
-    position: 'absolute',
-    zIndex: 9999,
-    height: '60vh',
-    top: 0,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  asideImage: {
-    float: 'left',
-    display: 'inline',
-  },
-  asideHeader: {
-    fontSize: 25,
-    display: 'flex',
-  },
-  asideBody: {
-    fontSize: 18,
-    color: 'tan',
-    padding: 10,
-  },
-  scrolled: {
-
-  },
-  gradient: {
-    background: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%)',
-    opacity: 0.5,
-    position: 'absolute',
-    display: 'none',
-    top: 0,
-    left: 0,
-    height: '125%',
-    width: '100%',
-    zIndex: 0,
-  },
+  scrolled: {},
 }
 
 NavBarAnimated.defaultProps = {
@@ -460,8 +387,6 @@ NavBarAnimated.defaultProps = {
   },
   fixed: false,
   changeOnScroll: false,
-  useRouter: false,
-  useGradient: true,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))
