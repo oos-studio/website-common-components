@@ -56,3 +56,13 @@ li {
     width: 100% !important;
     object-fit: cover;
 }
+
+.vertical-timeline::before{
+    background-color: #B3ACA6 !important;
+    width: 2px !important;
+    opacity: 50% !important;
+}
+
+.vertical-timeline-element-content {
+    box-shadow: none !important;
+}

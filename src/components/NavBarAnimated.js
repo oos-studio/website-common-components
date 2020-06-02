@@ -112,7 +112,6 @@ class NavBarAnimated extends Component {
     const { styles, useGradient } = this.props
     const duration = 0.25
 
-
     if(showScrolledNav) {
       if(useGradient) {
         document.getElementById('gradientOverlay').style.display = 'none'
