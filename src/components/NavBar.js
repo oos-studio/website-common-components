@@ -49,8 +49,8 @@ class NavBar extends Component {
         this.dropdownCounter = 0
 
         this.setState({
-            aside: item[0]?.item?.aside,
-            megaMenu: item[0]?.item?.render(),
+            aside: item[0].item.aside,
+            megaMenu: item[0].item.render(),
             megaMenuOpen: true,
             navBorderWidth: borderWidth,
             navBorderStyle: borderStyle,
@@ -112,8 +112,7 @@ class NavBar extends Component {
                   </NavbarBrand>
                   <NavbarToggler onClick={toggle} style={styles.toggler} />
                   <Collapse isOpen={open} navbar style={styles.collapse}>
-                      <Nav id='nav' style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
-                          <div style={styles.navSubWrapper}>
+                      <Nav id='nav' navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
@@ -128,7 +127,6 @@ class NavBar extends Component {
                               </React.Fragment>
                               }
                               {megaMenu}
-                          </div>
                           </div>
                       </Nav>
                   </Collapse>
@@ -170,7 +168,6 @@ const defaultStyles = {
         color: 'tan',
         padding: 10,
     },
-    navSubWrapper: {},
 }
 
 NavBar.defaultProps = {
