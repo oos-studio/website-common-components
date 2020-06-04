@@ -115,7 +115,7 @@ class NavBar extends Component {
 
         return(
           <div style={styles.container}>
-              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
+              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} onMouseLeave={() => hideMegaMenu()}/>
               <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
                   <NavbarBrand href="/" style={styles.brand}>
                       <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
@@ -127,7 +127,7 @@ class NavBar extends Component {
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
-                          <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
+                          <div style={styles.megaMenu}>
                               {aside !== null && aside !== undefined &&
                               <React.Fragment>
                                   <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
