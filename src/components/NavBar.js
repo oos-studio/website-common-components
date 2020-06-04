@@ -49,8 +49,8 @@ class NavBar extends Component {
         this.dropdownCounter = 0
 
         this.setState({
-            aside: item[0].item.aside,
-            megaMenu: item[0].item.render(),
+            aside: item[0]?.item?.aside,
+            megaMenu: item[0]?.item?.render(),
             megaMenuOpen: true,
             navBorderWidth: borderWidth,
             navBorderStyle: borderStyle,
