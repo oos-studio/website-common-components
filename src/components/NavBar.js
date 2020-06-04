@@ -57,7 +57,11 @@ class NavBar extends Component {
             navBorderStyle: borderStyle,
         })
     }
-
+    unHoverLink = () => {
+        this.setState({
+            activeHoveredLink: null,
+        })
+    }
     hideMegaMenu(index = null){
         this.setState({
             megaMenu: null,
@@ -77,7 +81,7 @@ class NavBar extends Component {
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu(index)} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={{
+                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu(index)} onMouseLeave={() => this.unHoverLink()} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={{
                     ...styles.navLink,
                     color: activeHoveredLink === index ? styles.navLink.hovered.color : styles.navLink.color,
                 }}>{item.text}</NavLink></NavItem>)
