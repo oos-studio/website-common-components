@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
   MegaMenu,
-  NavBar as NavBarComponent,} from '../../../components'
+  NavBar as NavBarComponent,
+} from '../../../components'
 import deepmerge from 'deepmerge'
 
 class NavBar extends Component {
@@ -286,6 +287,9 @@ const styles = {
     padding: 0,
     color: '#6A5B5D',
     paddingBottom: 10,
+    hover: {
+      color: '#CD7D43',
+    },
   },
   dropdownItem: {
     padding: 0,
@@ -296,15 +300,14 @@ const styles = {
   asideWrapper: {
     fontSize: 25,
     position: 'absolute',
-    top: 76,
-    left: 185,
+    top: -106,
+    left: -330,
     width: 255,
     height: 400,
     padding: 0,
     paddingTop: 40,
     zIndex: 5,
     backgroundColor: 'white',
-    display: 'none',
   },
   asideHeader: {
     padding: 0,
@@ -330,7 +333,7 @@ const styles = {
   megaMenu: {
     width: 800,
     top: 175,
-    left: 400,
+    left: 412,
     zIndex: 4,
     position: 'absolute',
   },
@@ -340,7 +343,6 @@ const megaMenuStyles = {
   container: {
     padding: 0,
     margin: 0,
-    left: 0,
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 275,

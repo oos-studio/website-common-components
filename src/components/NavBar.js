@@ -14,6 +14,7 @@ class NavBar extends Component {
             megaMenuOpen: false,
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
+            activeHoveredLink: null,
         }
 
         this.toggle = this.toggle.bind(this)
@@ -57,9 +58,10 @@ class NavBar extends Component {
         })
     }
 
-    hideMegaMenu(){
+    hideMegaMenu(index = null){
         this.setState({
             megaMenu: null,
+            activeHoveredLink: index,
             aside: null,
             megaMenuOpen: false,
             navBorderWidth: [0,0,0],
@@ -68,12 +70,17 @@ class NavBar extends Component {
     }
     renderNavigationItems(item, index) {
         const { styles, icon, useRouter, onClickItem, history } = this.props
+        const { activeHoveredLink } = this.state
+
         let navItem = null
         let key = 0
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu()} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={styles.navLink}>{item.text}</NavLink></NavItem>)
+                navItem = (<NavItem onMouseEnter={() => this.hideMegaMenu(index)} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={{
+                    ...styles.navLink,
+                    color: activeHoveredLink === index ? styles.navLink.hovered.color : styles.navLink.color,
+                }}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
                 this.dropdownCounter++
@@ -158,7 +165,9 @@ const defaultStyles = {
     nav: {},
     itemWrapper: {},
     navItem: {},
-    navLink: {},
+    navLink: {
+        hovered: {},
+    },
     dropdownMenuContainer: {},
     dropdownContainer: {},
     megaMenu: {
