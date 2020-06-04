@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {NavLink} from 'reactstrap'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
-import { GoogleMapView } from '../../../components/index'
 
 class ImNewMobile extends Component {
   state = {
@@ -80,7 +79,6 @@ class ImNewMobile extends Component {
           </div>
         </div>
         <div style={styles.mapWrapper}>
-          <GoogleMapView styles={styles.mapWrapper.map}/>
         </div>
       </div>
     )

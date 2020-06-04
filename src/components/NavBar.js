@@ -112,7 +112,7 @@ class NavBar extends Component {
                   </NavbarBrand>
                   <NavbarToggler onClick={toggle} style={styles.toggler} />
                   <Collapse isOpen={open} navbar style={styles.collapse}>
-                      <Nav id='nav' navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
+                      <Nav id='nav' navbar-expand-lg navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
@@ -142,6 +142,12 @@ const defaultStyles = {
         left: 0,
         right: 0,
         top: 0,
+    },
+    mmOpen:{
+        nav:{},
+        navbar: {},
+        itemWrapper: {},
+        mmBackground: {},
     },
     mmBackground: {},
     navbar: {},
