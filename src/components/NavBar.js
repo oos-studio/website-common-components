@@ -112,24 +112,24 @@ class NavBar extends Component {
                   </NavbarBrand>
                   <NavbarToggler onClick={toggle} style={styles.toggler} />
                   <Collapse isOpen={open} navbar style={styles.collapse}>
-                      <Nav id='nav' navbar style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
+                      <div id='nav' style={megaMenuOpen ? deepmerge(styles.nav, styles.mmOpen.nav) : styles.nav}>
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
-                      </Nav>
-                  </Collapse>
-                  <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
-                      {aside !== null && aside !== undefined &&
-                      <React.Fragment>
-                          <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
-                          <div style={styles.asideWrapper}>
-                              <div style={styles.asideHeader}>{aside.header}</div>
-                              <div style={styles.asideBody}>{aside.text}</div>
+                          <div style={styles.megaMenu} onMouseLeave={() => hideMegaMenu()}>
+                              {aside !== null && aside !== undefined &&
+                              <React.Fragment>
+                                  <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
+                                  <div style={styles.asideWrapper}>
+                                      <div style={styles.asideHeader}>{aside.header}</div>
+                                      <div style={styles.asideBody}>{aside.text}</div>
+                                  </div>
+                              </React.Fragment>
+                              }
+                              {megaMenu}
                           </div>
-                      </React.Fragment>
-                      }
-                      {megaMenu}
-                  </div>
+                      </div>
+                  </Collapse>
               </Navbar>
           </div>
         )
