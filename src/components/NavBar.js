@@ -114,8 +114,8 @@ class NavBar extends Component {
         const { toggle, renderNavigationItems, hideMegaMenu } = this
 
         return(
-          <div style={styles.container}>
-              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} onMouseLeave={() => hideMegaMenu()}/>
+          <div style={styles.container} onMouseLeave={() => hideMegaMenu()}>
+              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
               <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
                   <NavbarBrand href="/" style={styles.brand}>
                       <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
