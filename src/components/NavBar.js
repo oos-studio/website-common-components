@@ -101,7 +101,7 @@ class NavBar extends Component {
                         color: activeHoveredDropdown === key ? styles.dropdownItem.hovered.color : styles.dropdownItem.color,
                     }} onMouseEnter={() => this.showMegaMenu(key)} onMouseLeave={() => this.unHoverLink()} nav>
                         {item.text}
-                        <Media style={{height: 7.5, width: 11.25, marginLeft: 5}} object src={activeHoveredDropdown === key ? icon[1] : icon[0]} />
+                        <Media style={{height: 13.5, width: 13.25, marginLeft: 5}} object src={activeHoveredDropdown === key ? icon[1] : icon[0]} />
                     </DropdownToggle>
                 </NavLink>)
                 break
