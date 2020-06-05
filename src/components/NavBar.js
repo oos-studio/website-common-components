@@ -15,6 +15,7 @@ class NavBar extends Component {
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
             activeHoveredLink: null,
+            aciveHoveredDropdown: null,
         }
 
         this.toggle = this.toggle.bind(this)
@@ -55,6 +56,7 @@ class NavBar extends Component {
             megaMenuOpen: true,
             navBorderWidth: borderWidth,
             navBorderStyle: borderStyle,
+            activeHoveredDropdown: key,
         })
     }
     unHoverLink = () => {
@@ -66,6 +68,7 @@ class NavBar extends Component {
         this.setState({
             megaMenu: null,
             activeHoveredLink: index,
+            activeHoveredDropdown: null,
             aside: null,
             megaMenuOpen: false,
             navBorderWidth: [0,0,0],
@@ -74,7 +77,7 @@ class NavBar extends Component {
     }
     renderNavigationItems(item, index) {
         const { styles, icon, useRouter, onClickItem, history } = this.props
-        const { activeHoveredLink } = this.state
+        const { activeHoveredLink, activeHoveredDropdown } = this.state
 
         let navItem = null
         let key = 0
@@ -95,7 +98,8 @@ class NavBar extends Component {
                         borderBottomWidth: this.state.navBorderWidth[key],
                         borderBottomStyle: this.state.navBorderStyle[key],
                         ...styles.dropdownItem,
-                    }} onMouseEnter={() => this.showMegaMenu(key)} nav>
+                        color: activeHoveredDropdown === key ? styles.dropdownItem.hovered.color : styles.dropdownItem.color,
+                    }} onMouseEnter={() => this.showMegaMenu(key)} onMouseLeave={() => this.unHoverLink()} nav>
                         {item.text}
                         <Media style={{height: 7.5, width: 11.25, marginLeft: 5}} object src={icon} />
                     </DropdownToggle>

@@ -96,7 +96,14 @@ class MegaMenu extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            <Media object src={column.src} alt={column.title} style={imageStyle}/>
+            {column.overlayText ?
+              <NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={{url: column.url}}>
+                <div style={imageStyle.overlay}>{column.overlayText}</div>
+                <Media object src={column.src} alt={column.title} style={imageStyle}/>
+              </NavLink>
+              : <Media object src={column.src} alt={column.title} style={imageStyle}/>
+            }
+
           </React.Fragment>
         )
       default:
@@ -147,6 +154,15 @@ const defaultStyles = {
   },
   defaultImage: {
     objectFit: 'cover',
+    overlay: {
+      position: 'absolute',
+      backgroundColor: 'rgba(0,0,0,0.5)',
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   },
   columns: [],
 }

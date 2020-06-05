@@ -205,6 +205,8 @@ const data = {
                 type: 'image',
                 src: 'https://picsum.photos/400/200',
                 title: 'Image',
+                overlayText: 'TEST',
+                url: 'https://www.oos-studio.com',
               },
             ]}
           />
@@ -296,6 +298,9 @@ const styles = {
     color: '#6A5B5D',
     borderBottomColor: '#CD7D43',
     paddingBottom: 10,
+    hovered: {
+      color: 'blue',
+    },
   },
   asideWrapper: {
     fontSize: 25,
@@ -360,6 +365,9 @@ const megaMenuStyles = {
   defaultImage: {
     width: 350,
     height: 190,
+    overlay: {
+      color: 'orange',
+    }
   },
 }
 
