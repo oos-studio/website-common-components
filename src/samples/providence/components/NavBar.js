@@ -12,7 +12,7 @@ class NavBar extends Component {
         items={data.navigation.items}
         brand={data.navigation.brand}
         styles={styles}
-        icon={data.navigation.dropdownIcon}
+        icon={[data.navigation.dropdownIcon, data.navigation.hoveredIcon]}
       />
     )
   }
@@ -28,6 +28,7 @@ const data = {
       },
     },
     dropdownIcon: require('../assets/DropdownCaret.png'),
+    hoveredIcon: require('../assets/DropdownCaret.png'),
     items: [
       {
         text: "I'm New",
