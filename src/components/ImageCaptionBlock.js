@@ -7,11 +7,15 @@ class ImageCaptionBlock extends Component {
     const { getStyle, styles, image, text, logo } = this.props
     console.log(styles)
 
+    const imageWrapperStyles = {
+      ...styles.imageWrapper,
+      backgroundImage: `url(${image.image})`,
+    }
 
     return (
       <div style={getStyle(styles.container)}>
-        <div style={getStyle(styles.imageWrapper)}>
-          <img alt={'img'} src={image.image} style={getStyle(styles.image)} />
+        <div style={getStyle(imageWrapperStyles)}>
+          <div style={getStyle(styles.imageOverlay)} />
         </div>
         <div style={getStyle(styles.bottomWrapper)}>
           <div style={getStyle(styles.logoWrapper)}>
@@ -36,6 +40,18 @@ const defaultStyles = {
   },
   imageWrapper: {
     minHeight: 375,
+    width: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+  },
+  imageOverlay: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: '100%',
+    background: '#65A3BE 0% 0% no-repeat',
+    mixBlendMode: 'color',
   },
   image: {
     width: '100%',
