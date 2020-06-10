@@ -5,18 +5,20 @@ import withSizes from '../utils/Sizes'
 class ImageCaptionBlock extends Component {
   render() {
     const { getStyle, styles, image, text, logo } = this.props
+    console.log(styles)
+
 
     return (
       <div style={getStyle(styles.container)}>
-        <img alt={image.title ? image.title : 'img'} src={image.image} style={getStyle(styles.image)}/>
-        <div style={getStyle(styles.overlay)}>
-          <div style={getStyle(styles.bottom)}>
-            <div style={getStyle(styles.logoWrapper)}>
-              <img alt={logo.title} src={logo.image} style={getStyle(styles.logo)} />
-            </div>
-            <div style={getStyle(styles.text)}>
-              {text}
-            </div>
+        <div style={getStyle(styles.imageWrapper)}>
+          <img alt={'img'} src={image.image} style={getStyle(styles.image)} />
+        </div>
+        <div style={getStyle(styles.bottomWrapper)}>
+          <div style={getStyle(styles.logoWrapper)}>
+            <img alt={'logo'} src={logo.image} style={getStyle(styles.logo)} />
+          </div>
+          <div style={getStyle(styles.text)}>
+            {text}
           </div>
         </div>
       </div>
@@ -26,80 +28,73 @@ class ImageCaptionBlock extends Component {
 
 const defaultStyles = {
   container: {
-    position: 'relative',
-    height: 700,
-    md: {
-      height: 500,
-    },
+    backgroundColor: '#65A3BE',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  imageWrapper: {
+    minHeight: 375,
   },
   image: {
+    width: '100%',
+    minHeight: 375,
     objectFit: 'cover',
-    height: '100%',
-    width: '100%',
   },
-  overlay: {
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    width: '100%',
-    height: '100%',
-  },
-  bottom: {
-    position: 'absolute',
-    backgroundColor: 'tan',
-    width: '100%',
-    bottom: 0,
-    height: '40%',
+  bottomWrapper: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingLeft: 75,
-    paddingRight: 75,
-    paddingTop: 25,
-    paddingBottom: 25,
-    sm: {
-      paddingLeft: 25,
-      paddingRight: 25,
-    },
-  },
-  text: {
-    fontSize: 45,
-    maxWidth: 800,
-    textAlign: 'right',
-    md: {
-      fontSize: 25,
-      maxWidth: 400,
-    },
-    sm: {
-      fontSize: 20,
-    },
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    maxWidth: 1200,
+    marginLeft: 35,
+    marginRight: 35,
+    paddingTop: 0,
   },
   logoWrapper: {
-    height: 400,
     width: 400,
-    alignSelf: 'flex-end',
-    marginBottom: 150,
-    md: {
-      height: 250,
-      width: 250,
-      marginBottom: 100,
-    },
+    position: 'relative',
     sm: {
-      height: 150,
-      width: 150,
-      marginBottom: 125,
+      width: 250,
+    },
+    xs: {
+      width: 50,
     },
   },
   logo: {
-    height: 400,
+    position: 'absolute',
+    top: -275,
     width: 400,
-    md: {
-      height: 250,
-      width: 250,
-    },
+    height: 400,
     sm: {
-      height: 150,
-      width: 150,
+      width: 250,
+      height: 250,
+      top: -175,
+    },
+    xs: {
+      width: 200,
+      height: 200,
+      top: -150,
+    },
+
+  },
+  text: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 45,
+    textAlign: 'right',
+    color: '#F8F5EE',
+    paddingTop: 25,
+    paddingBottom: 25,
+    sm: {
+      fontSize: 40,
+      paddingTop: 25,
+    },
+    xs: {
+      fontSize: 30,
+      paddingTop: 50,
     },
   },
 }

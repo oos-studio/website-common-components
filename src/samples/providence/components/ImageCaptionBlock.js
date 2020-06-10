@@ -3,17 +3,17 @@ import { ImageCaptionBlock as ImageCaptionBlockComponent } from '../../../compon
 import withSizes from '../../../utils/Sizes'
 
 const styles = {
-  container: {
-    overflowY: 'hidden',
-    width: '100%',
-  },
-  overlay: {
-    backgroundColor: 'rgba(101,163,176,0.75)'
-  },
-  bottom: {
-    backgroundColor: '#65A3BE',
-    color: '#F8F5EE',
-  },
+  // container: {
+  //   overflowY: 'hidden',
+  //   width: '100%',
+  // },
+  // overlay: {
+  //   backgroundColor: 'rgba(101,163,176,0.75)'
+  // },
+  // bottom: {
+  //   backgroundColor: '#65A3BE',
+  //   color: '#F8F5EE',
+  // },
 }
 
 
