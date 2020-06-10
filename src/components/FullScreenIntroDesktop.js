@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import ImageSlider from './ImageSlider'
+import mergeStyles from '../utils/StyleMerge'
 
 class FullScreenIntroDesktop extends Component {
   render() {
-    const { text, image, slideshow } = this.props
+    const { text, image, slideshow, styles } = this.props
 
     return (
       <React.Fragment>
@@ -41,7 +42,7 @@ const settings = {
   centerMode: false,
 }
 
-const styles = {
+const defaultStyles = {
   backgroundColors: {
     height: 1000,
     width: '100vw',
@@ -107,4 +108,4 @@ const styles = {
   },
 }
 
-export default FullScreenIntroDesktop
+export default mergeStyles(defaultStyles)(FullScreenIntroDesktop)

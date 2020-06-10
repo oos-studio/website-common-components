@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import ImageSlider from './ImageSlider'
 import withSizes from '../utils/Sizes'
+import mergeStyles from '../utils/StyleMerge'
 
 class FullScreenIntroMobile extends Component {
   render() {
-    const { text, image, slideshow, getStyle } = this.props
+    const { text, image, slideshow, getStyle, styles } = this.props
 
     return (
       <div style={styles.container}>
@@ -37,7 +38,7 @@ const settings = {
   centerMode: true,
 }
 
-const styles = {
+const defaultStyles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -85,4 +86,4 @@ const styles = {
   },
 }
 
-export default withSizes(FullScreenIntroMobile)
+export default mergeStyles(defaultStyles)(withSizes(FullScreenIntroMobile))

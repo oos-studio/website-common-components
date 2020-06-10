@@ -38,7 +38,7 @@ class FullScreenIntro extends Component {
 
   render() {
     const { fsIntro } = this.state
-    const { text, image, slides } = this.props
+    const { text, image, slides, styles } = this.props
 
     const FSIntroType = fsIntro
 
@@ -59,6 +59,7 @@ class FullScreenIntro extends Component {
         text={text}
         image={image}
         slideshow={slider}
+        styles={styles}
       />
     )
   }
