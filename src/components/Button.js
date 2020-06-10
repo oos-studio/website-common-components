@@ -37,9 +37,12 @@ class Button extends Component {
 
     return (
       <BasicButton onClick={onClick} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
-        <NavLink useRouter={useRouter} histor={history} item={item}>
-          {this.props.children}
-        </NavLink>
+        {item ? (<NavLink useRouter={useRouter} histor={history} item={item}>
+            {this.props.children}
+          </NavLink>)
+          :
+          this.props.children
+        }
       </BasicButton>
     )
   }
