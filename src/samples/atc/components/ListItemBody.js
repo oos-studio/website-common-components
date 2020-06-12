@@ -33,6 +33,8 @@ class ListItemBody extends Component {
       getStyle,
       image,
       hoverImage,
+      useRouter,
+      history,
     } = this.props
     const { hoverButton, leaveHoverButton } = this
     const { hovered } = this.state

@@ -39,7 +39,7 @@ class ImageAlignedText extends Component {
   }
 
   render() {
-    const { styles, image, text, button, textAlign, parallaxLayers } = this.props
+    const { styles, image, text, button, textAlign, parallaxLayers, useRouter, history, item } = this.props
     const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
     console.log(styles)
@@ -65,7 +65,7 @@ class ImageAlignedText extends Component {
             </div>
             {button.text.length > 0 &&
               <div style={styles.buttonWrapper}>
-                <Button onClick={button.onClick} styles={styles.button}>
+                <Button useRouter={useRouter} history={history} onClick={button.onClick} item={item} styles={styles.button}>
                   {button.text}
                 </Button>
               </div>

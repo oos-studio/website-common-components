@@ -16,7 +16,7 @@ class CardGrid extends Component {
   }
 
   render() {
-    const { styles, cards } = this.props
+    const { styles, cards, useRouter, history, item } = this.props
 
     const cardGrid = cards.map(card => {
       return(
@@ -43,7 +43,7 @@ class CardGrid extends Component {
               <div style={styles.footer}>
                 {card.button.render ?
                   card.button.render() :
-                  <Button styles={styles.button}>
+                  <Button useRouter={useRouter} history={history} item={item} styles={styles.button}>
                     {card.button.text}
                   </Button>
                 }

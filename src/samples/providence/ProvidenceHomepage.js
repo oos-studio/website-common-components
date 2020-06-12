@@ -65,12 +65,9 @@ class ProvidenceHomepage extends Component {
       <React.Fragment>
         <div style={styles.container}>
           { mobileNav ? <NavBarMobile /> : <NavBar /> }
-          <FullScreenIntro/>
-          <FloatingParallax/>
+
           <ImageAlignedText {...churchIllustrationProps}/>
           <ImageCaptionBlock/>
-          <ImageAlignedText/>
-          <HomeFeed/>
           <Footer/>
         </div>
       </React.Fragment>
