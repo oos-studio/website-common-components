@@ -19,6 +19,7 @@ class FullScreenIntroDesktop extends Component {
         <div style={styles.content}>
           <div style={styles.text}>{text}</div>
           <div style={styles.sliderWrapper}>
+            <div style={styles.scrollIcon}>SCROLL</div>
             <ImageSlider
               settings={settings}
               data={slideshow}
@@ -105,6 +106,19 @@ const defaultStyles = {
       padding: 0,
       paddingBottom: 75,
     },
+  },
+  scrollIcon: {
+    color: '#A39A93',
+    borderBottomWidth: 2,
+    borderBottomColor: '#A39A93',
+    borderBottomStyle: 'solid',
+    transform: 'rotate(90deg)',
+    width: 125,
+    position: 'absolute',
+    top: 640,
+    fontSize: 22,
+    zIndex: 20,
+    left: 50,
   },
 }
 

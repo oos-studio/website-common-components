@@ -4,7 +4,7 @@ import { NavLink as RSNavLink, UncontrolledDropdown } from 'reactstrap'
 class NavLink extends Component {
   _navLink = React.createRef()
   clickLink = (e) => {
-    const { useRouter, onClickItem, item, history, hideDropDown } = this.props
+    const { useRouter, onClickItem, item, history, hideDropDown, append } = this.props
 
     e.stopPropagation()
 
@@ -14,7 +14,7 @@ class NavLink extends Component {
 
     if(useRouter && history) {
       e.preventDefault()
-      const url = item.url[0] === '/' ? item.url : `/${item.url}`
+      const url = item.url[0] === '/' || !append ? item.url : `/${item.url}`
       history.push(url)
     }
     if(onClickItem) {
@@ -36,6 +36,7 @@ NavLink.defaultProps = {
   onClickItem: null,
   useRouter: false,
   item: null,
+  append: true,
 }
 
 export default NavLink
