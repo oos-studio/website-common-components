@@ -19,6 +19,7 @@ class FullScreenIntroDesktop extends Component {
         <div style={styles.content}>
           <div style={styles.text}>{text}</div>
           <div style={styles.sliderWrapper}>
+            <div style={styles.gradient} />
             <div style={styles.scrollIcon}>SCROLL</div>
             <ImageSlider
               settings={settings}
@@ -99,6 +100,7 @@ const defaultStyles = {
   },
   sliderWrapper: {
     width: 800,
+    position: 'relative',
   },
   imageSlider: {
     container: {
@@ -119,6 +121,12 @@ const defaultStyles = {
     fontSize: 22,
     zIndex: 20,
     left: 50,
+  },
+  gradient: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    top: 0,
   },
 }
 
