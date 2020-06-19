@@ -230,11 +230,11 @@ class NavBarAnimated extends Component {
   }
 
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl } = this.props
+    const { styles, icon, scrolledDropdownIcon, xl, darkMode } = this.props
     const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
-    const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : styles
+    const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : darkMode ? deepmerge(styles, styles.darkMode) : styles
 
     let navItem = null
     let id = `item${index}`
@@ -305,20 +305,22 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed } = this.props
+    const { items, brand, styles, fixed, darkMode } = this.props
     const { toggle, renderNavigationItems } = this
+
+    const _styles = darkMode ? deepmerge(styles, styles.darkMode) : styles
 
     return(
       <div style={{
         position: fixed ? 'fixed' : 'absolute',
-        ...styles.container,
+        ..._styles.container,
       }}>
         <Navbar
           id='navbar'
           expand="md"
-          color={styles.navbar.backgroundColor}
-          style={styles.navbar}>
-          <NavbarBrand href="#" style={styles.brand}>
+          color={_styles.navbar.backgroundColor}
+          style={_styles.navbar}>
+          <NavbarBrand href="#" style={_styles.brand}>
             <div id={'navBrand'}>
               <img
                 src={activeNavImage}
@@ -328,19 +330,19 @@ class NavBarAnimated extends Component {
           </NavbarBrand>
           <div id='divider' style={{
             display: showScrolledNav ? 'flex' : 'none',
-            ...styles.divider,
+            ..._styles.divider,
           }}>
           </div>
-          <NavbarToggler onClick={toggle} style={styles.toggler} />
+          <NavbarToggler onClick={toggle} style={_styles.toggler} />
           <Collapse
             id='collapse'
             navbar
             isOpen={open}
-            style={styles.collapse}>
-            <Nav id='nav' navbar style={styles.nav}>
+            style={_styles.collapse}>
+            <Nav id='nav' navbar style={_styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index, false))}
             </Nav>
-            <div id='imageItems' style={styles.imageItems}>
+            <div id='imageItems' style={_styles.imageItems}>
               {items.map((item, index) => renderNavigationItems(item, index, true))}
             </div>
           </Collapse>
