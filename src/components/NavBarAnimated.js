@@ -166,11 +166,13 @@ class NavBarAnimated extends Component {
     })
   }
 
-  hideDropdownMenu(item, index){
+  hideDropdownMenu(item, index, didClick = false){
     const { activeNavIndex } = this.state
     const { _navRefs } = this
 
-    if(activeNavIndex !== null && _navRefs[index] !== undefined) {
+    if(didClick) {
+      _navRefs[activeNavIndex].toggle()
+    } else if(activeNavIndex !== null && _navRefs[index] !== undefined) {
       _navRefs[index].toggle()
     }
 
