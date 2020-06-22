@@ -10,6 +10,12 @@ class DropdownSearch extends Component {
     }, 0)
   }
 
+  handleKeyPress = (key) => {
+    if (key.charCode === 13) {
+
+    }
+  }
+
   render() {
     const { styles } = this.props
     return(
@@ -20,7 +26,9 @@ class DropdownSearch extends Component {
         <div style={styles.search.container}>
           <Form style={styles.search.form}>
             <FormGroup style={styles.search.formGroup}>
-              <Input type='text' name='search' id='ddSearch' placeholder='Search' style={styles.search.input}/>
+              <Input type='text'
+                     onChange={(e) => this.handleKeyPress(e)}
+                     name='search' id='ddSearch' placeholder='Search' style={styles.search.input}/>
             </FormGroup>
           </Form>
         </div>

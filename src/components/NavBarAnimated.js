@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import { Collapse, DropdownMenu, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, NavItem,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
 import mergeStyles from '../utils/StyleMerge'
+import NavLink from '../components/NavLink'
 import deepmerge from 'deepmerge'
 import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 import './commonCSS.css'
@@ -128,7 +129,7 @@ class NavBarAnimated extends Component {
     }
   }
 
-  handleScroll = (trigger = 0.2) => {
+  handleScroll = () => {
     const { changeOnScroll } = this.props
 
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop
@@ -139,7 +140,7 @@ class NavBarAnimated extends Component {
 
     let showScrolled = false
 
-    if(scrollY >= trigger && changeOnScroll) {
+    if(scrollY >= 0.2 && changeOnScroll) {
       showScrolled = true
     }
 
@@ -237,7 +238,7 @@ class NavBarAnimated extends Component {
   }
 
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl, darkMode } = this.props
+    const { styles, icon, scrolledDropdownIcon, xl, darkMode, history, useRouter } = this.props
     const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, hideDropdownMenu } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
@@ -263,7 +264,9 @@ class NavBarAnimated extends Component {
             onMouseEnter={() => hoverNavItem(item, index)}
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
-              href={item.url}
+              item={{url: item.url}}
+              history={history}
+              useRouter={useRouter}
               style={{
                 ..._styles.navLink,
                 color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
