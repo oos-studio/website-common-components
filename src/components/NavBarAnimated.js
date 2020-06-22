@@ -328,7 +328,7 @@ class NavBarAnimated extends Component {
             </DropdownToggle>
             <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
+              {typeof(item.render) === 'function' ? item.render(activeNavIndex === index, hideDropdownMenu) : item.render}
             </DropdownMenu>
           </NavLink>)
         break
