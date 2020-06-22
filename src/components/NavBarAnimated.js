@@ -238,7 +238,7 @@ class NavBarAnimated extends Component {
   }
 
   renderNavigationItems(item, index, renderImages) {
-    const { styles, icon, scrolledDropdownIcon, xl, darkMode, history, useRouter } = this.props
+    const { styles, icon, scrolledDropdownIcon, xl, darkMode, history, useRouter, onClickItem } = this.props
     const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, hideDropdownMenu } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
@@ -264,9 +264,11 @@ class NavBarAnimated extends Component {
             onMouseEnter={() => hoverNavItem(item, index)}
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
-              item={{url: item.url}}
-              history={history}
+              href={item.url}
+              item={item}
+              onClickItem={onClickItem}
               useRouter={useRouter}
+              history={history}
               style={{
                 ..._styles.navLink,
                 color: showScrolledNav ? _styles.navLink.color : (activeNavIndex === index ? _styles.navLink.hover.color : _styles.navLink.color),
@@ -280,12 +282,14 @@ class NavBarAnimated extends Component {
         break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown nav inNavbar
-                                onMouseLeave={() => leaveHoverNavItem(item, index)}
-                                ref={_r => {_navRefs[index] = _r}}
-                                key={index}
-                                id={xl ? id : ''}
-                                onClick={() => clickDropdown(index)}>
+            <NavLink dropdown
+            history={history}
+            item={item}
+            onMouseLeave={() => leaveHoverNavItem(item, index)}
+            ref={_r => {_navRefs[index] = _r}}
+            useRouter={useRouter}
+            hideDropDown={() => hideDropdownMenu(item, index)}
+            onClickItem={onClickItem}>
             <DropdownToggle style={_styles.toggle} nav onMouseEnter={() => hoverNavItem(item, index)}>
               <div style={{
                 ..._styles.dropdownItem,
@@ -305,7 +309,7 @@ class NavBarAnimated extends Component {
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
               {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
             </DropdownMenu>
-          </UncontrolledDropdown>)
+          </NavLink>)
         break
       default:
         break
