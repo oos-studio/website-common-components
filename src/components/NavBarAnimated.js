@@ -128,7 +128,7 @@ class NavBarAnimated extends Component {
     }
   }
 
-  handleScroll = () => {
+  handleScroll = (trigger = 0.2) => {
     const { changeOnScroll } = this.props
 
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop
@@ -139,7 +139,7 @@ class NavBarAnimated extends Component {
 
     let showScrolled = false
 
-    if(scrollY >= 0.2 && changeOnScroll) {
+    if(scrollY >= trigger && changeOnScroll) {
       showScrolled = true
     }
 
@@ -236,7 +236,7 @@ class NavBarAnimated extends Component {
 
   renderNavigationItems(item, index, renderImages) {
     const { styles, icon, scrolledDropdownIcon, xl, darkMode } = this.props
-    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown } = this
+    const { hoverNavItem, leaveHoverNavItem, _navRefs, clickDropdown, hideDropdownMenu } = this
     const { activeNavIndex, showScrolledNav } = this.state
 
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : darkMode ? deepmerge(styles, styles.darkMode) : styles
@@ -298,7 +298,7 @@ class NavBarAnimated extends Component {
             </DropdownToggle>
             <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {typeof(item.render) === 'function' ? item.render() : item.render}
+              {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
             </DropdownMenu>
           </UncontrolledDropdown>)
         break
