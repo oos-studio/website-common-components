@@ -130,7 +130,7 @@ class NavBarAnimated extends Component {
   }
 
   handleScroll = () => {
-    const { changeOnScroll } = this.props
+    const { changeOnScroll, scrollTrigger } = this.props
 
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop
 
@@ -140,7 +140,7 @@ class NavBarAnimated extends Component {
 
     let showScrolled = false
 
-    if(scrollY >= 0.2 && changeOnScroll) {
+    if(winScroll >= scrollTrigger && changeOnScroll) {
       showScrolled = true
     }
 
@@ -408,6 +408,7 @@ NavBarAnimated.defaultProps = {
   },
   fixed: false,
   changeOnScroll: false,
+  scrollTrigger: 700,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))
