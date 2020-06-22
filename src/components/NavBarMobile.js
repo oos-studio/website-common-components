@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem, NavLink,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavItem,UncontrolledDropdown, DropdownToggle } from 'reactstrap'
+import {NavLink} from './index'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import withSizes from '../utils/Sizes'
