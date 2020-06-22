@@ -96,7 +96,7 @@ class NavBarMobile extends Component {
 
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
-    const { styles, icon, items } = this.props
+    const { styles, icon, items, useRouter, history } = this.props
     const { toggleDropdownMenu, menus, toggle } = this
     let navItem = null
     console.log(activeDropdownIndex)
@@ -105,7 +105,7 @@ class NavBarMobile extends Component {
       case 'link':
         navItem = (
             <NavItem key={index} style={styles.navItem}>
-              <NavLink href={item.url} style={{
+              <NavLink history={history} useRouter={useRouter} onClickItem={() => toggle()}  item={item} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
@@ -116,7 +116,7 @@ class NavBarMobile extends Component {
           break
       case 'dropdown':
         navItem = (
-          <UncontrolledDropdown style={styles.ucDropdown} nav inNavbar>
+          <UncontrolledDropdown key={index} nav inNavbar style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
