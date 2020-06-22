@@ -53,7 +53,7 @@ class NavBarAnimated extends Component {
 
   componentDidMount() {
     const { handleScroll, runAnimations } = this
-    const { brand } = this.props
+    const { brand, useGradient } = this.props
 
     window.addEventListener('scroll', handleScroll)
 
@@ -62,6 +62,10 @@ class NavBarAnimated extends Component {
       scrollNavImage: brand.image.scrolled.src,
       activeNavImage: brand.image.src,
     })
+
+    if(useGradient) {
+      document.getElementById('gradientOverlay').style.display = 'flex'
+    }
 
     handleScroll()
   }
@@ -75,6 +79,13 @@ class NavBarAnimated extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { showScrolledNav } = this.state
     const { runAnimations } = this
+    const { useGradient } = this.props
+
+    const gradientOverlay = document.getElementById('gradientOverlay')
+
+    if(gradientOverlay) {
+      gradientOverlay.style.display = useGradient ? 'flex' : 'none'
+    }
 
     if(prevState.showScrolledNav !== showScrolledNav) {
       runAnimations()
@@ -83,11 +94,14 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles } = this.props
+    const { styles, useGradient } = this.props
     const duration = 0.25
 
 
     if(showScrolledNav) {
+      if(useGradient) {
+        document.getElementById('gradientOverlay').style.display = 'none'
+      }
       TweenLite.to('#navbar', duration, { height: styles.scrolled.navbar.height, backgroundColor: styles.scrolled.navbar.backgroundColor, ease: Power2.easeOut }).then(() => {
         TweenLite.to('#navBrand', duration, {
           transform: 'translateX(-510px)',
@@ -110,6 +124,9 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
+      if(useGradient) {
+        document.getElementById('gradientOverlay').style.display = 'flex'
+      }
       const tl = gsap.timeline({ smoothChildTiming: true, defaults: {duration: duration, ease: Power2.easeOut}})
 
       TweenLite.to('#divider', 0, {opacity: 0,})
@@ -334,6 +351,7 @@ class NavBarAnimated extends Component {
         position: fixed ? 'fixed' : 'absolute',
         ..._styles.container,
       }}>
+        <div id={'gradientOverlay'} style={{...styles.gradient, opacity: showScrolledNav ? 0 : styles.gradient.opacity}}></div>
         <Navbar
           id='navbar'
           expand="md"
@@ -397,6 +415,17 @@ const defaultStyles = {
   dropdownMenuContainer: {},
   dropdownContainer: {},
   scrolled: {},
+  gradient: {
+    background: 'linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%)',
+    opacity: 0.5,
+    position: 'absolute',
+    display: 'none',
+    top: 0,
+    left: 0,
+    height: '125%',
+    width: '100%',
+    zIndex: 0,
+  },
 }
 
 NavBarAnimated.defaultProps = {
@@ -409,6 +438,7 @@ NavBarAnimated.defaultProps = {
   fixed: false,
   changeOnScroll: false,
   scrollTrigger: 700,
+  useGradient: false,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))
