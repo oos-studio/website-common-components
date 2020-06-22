@@ -208,7 +208,7 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    
+
     if(index < tmpStyles.length) {
       tmpStyles[index].borderBottomStyle = 'none'
       tmpStyles[index].borderBottomWidth = 0

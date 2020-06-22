@@ -97,7 +97,7 @@ class NavBarMobile extends Component {
   renderNavigationItems = (item, index) => {
     const { activeDropdownIndex } = this.state
     const { styles, icon, items } = this.props
-    const { toggleDropdownMenu, menus } = this
+    const { toggleDropdownMenu, menus, toggle } = this
     let navItem = null
     console.log(activeDropdownIndex)
 
@@ -121,7 +121,7 @@ class NavBarMobile extends Component {
                 {item.text}
                 <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
               </DropdownToggle>
-              {activeDropdownIndex === index ? item.menu(true) : item.menu(false)}
+              {activeDropdownIndex === index ? item.menu(true, toggle) : item.menu(false, toggle)}
             </UncontrolledDropdown>
       )
         break
