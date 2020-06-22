@@ -184,9 +184,11 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    tmpStyles[index].borderBottomStyle = 'solid'
-    tmpStyles[index].borderBottomWidth = 2
 
+    if(index < tmpStyles.length) {
+      tmpStyles[index].borderBottomStyle = 'solid'
+      tmpStyles[index].borderBottomWidth = 2
+    }
     this.setState({
       navItemStyles: tmpStyles,
     })
@@ -206,8 +208,11 @@ class NavBarAnimated extends Component {
     const { navItemStyles } = this.state
 
     let tmpStyles = navItemStyles
-    tmpStyles[index].borderBottomStyle = '0'
-    tmpStyles[index].borderBottomWidth = 0
+    
+    if(index < tmpStyles.length) {
+      tmpStyles[index].borderBottomStyle = 'none'
+      tmpStyles[index].borderBottomWidth = 0
+    }
 
     this.setState({
       navItemStyles: tmpStyles,
