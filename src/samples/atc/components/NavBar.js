@@ -17,7 +17,7 @@ class NavBar extends Component {
   render() {
     const { getStyle } = this.props
     return (
-      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} fixed={true} changeOnScroll={true} useRouter={false}/>
+      <NavBarComp items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true}/>
     )
   }
 }
@@ -199,6 +199,7 @@ const styles = {
       paddingRight: 0,
     }
   },
+  darkMode: {}
 }
 
 const dropdownMenuStyles = {
@@ -275,6 +276,7 @@ const dropdownMenuStyles = {
       left: 12,
     },
   },
+  darkMode: {}
 }
 
 const data = {
@@ -284,6 +286,7 @@ const data = {
       image: {
         title: 'ATC Logo',
         src: require('../assets/ATCLogo.png'),
+        darkModeImg: require('../assets/Twitter.png'),
         scrolled: {
           title: 'ATC Logo Small',
           src: require('../assets/ATCLogo_Small.png')
@@ -473,6 +476,9 @@ const data = {
           hover: {
             filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
           },
+          darkMode: {
+            filter: 'invert(100%)',
+          },
         },
       },
       {
@@ -488,6 +494,9 @@ const data = {
           hover: {
             filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
           },
+          darkMode: {
+            filter: 'invert(100%)',
+          }
         },
         render: <DropdownSearch styles={styles} />
       },

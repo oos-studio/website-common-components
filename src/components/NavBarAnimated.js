@@ -243,6 +243,10 @@ class NavBarAnimated extends Component {
     const { activeNavIndex, showScrolledNav } = this.state
 
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : darkMode ? deepmerge(styles, styles.darkMode) : styles
+    let _imageStyles
+    if(item.imageStyles) {
+       _imageStyles = darkMode ? deepmerge(item.imageStyles, item.imageStyles.darkMode) : item.imageStyles
+    }
 
     let navItem = null
     let id = `item${index}`
@@ -275,7 +279,7 @@ class NavBarAnimated extends Component {
                 borderBottomColor: activeNavIndex === index && !item.image ? _styles.navLink.hover.borderBottomColor : _styles.navLink.borderBottomColor,
               }}>
               {item.image ?
-                <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
+                <Media object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hover) : _imageStyles}/>
                 : item.text}
             </NavLink>
           </NavItem>)
@@ -297,7 +301,7 @@ class NavBarAnimated extends Component {
                 borderBottomColor: activeNavIndex === index && !item.image ? _styles.dropdownItem.hover.borderBottomColor : _styles.dropdownItem.borderBottomColor,
               }}>
                 {item.image ?
-                  <Media object src={item.image} style={activeNavIndex === index ? deepmerge(item.imageStyles, item.imageStyles.hover) : item.imageStyles}/>
+                  <Media object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hover) : _imageStyles}/>
                   : item.text}
               </div>
               {!item.image &&
@@ -319,10 +323,11 @@ class NavBarAnimated extends Component {
 
   render() {
     const { open, showScrolledNav, activeNavImage, brandImageStyles } = this.state
-    const { items, brand, styles, fixed, darkMode } = this.props
+    const { items, brand, styles, fixed, darkMode, darkModeImg } = this.props
     const { toggle, renderNavigationItems } = this
 
     const _styles = darkMode ? deepmerge(styles, styles.darkMode) : styles
+    const navImage = darkMode && !showScrolledNav && darkModeImg ? darkModeImg : activeNavImage
 
     return(
       <div style={{
@@ -337,7 +342,7 @@ class NavBarAnimated extends Component {
           <NavbarBrand href="#" style={_styles.brand}>
             <div id={'navBrand'}>
               <img
-                src={activeNavImage}
+                src={navImage}
                 alt={showScrolledNav ? brand.image.scrolled.title : brand.image.title}
                 style={brandImageStyles} />
             </div>
