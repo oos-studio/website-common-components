@@ -318,7 +318,7 @@ class NavBarAnimated extends Component {
                 borderBottomColor: activeNavIndex === index && !item.image ? _styles.dropdownItem.hover.borderBottomColor : _styles.dropdownItem.borderBottomColor,
               }}>
                 {item.image ?
-                  <Media object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hover) : _imageStyles}/>
+                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hover) : _imageStyles}/>
                   : item.text}
               </div>
               {!item.image &&
@@ -328,7 +328,7 @@ class NavBarAnimated extends Component {
             </DropdownToggle>
             <DropdownMenu id='ddMenu' onMouseLeave={() => leaveHoverNavItem(item, index)}
                           style={{borderWidth: 0, backgroundColor: 'rgba(0,0,0,0)'}}>
-              {typeof(item.render) === 'function' ? item.render(activeNavIndex === index, hideDropdownMenu) : item.render}
+              {typeof(item.render) === 'function' ? item.render(hideDropdownMenu) : item.render}
             </DropdownMenu>
           </NavLink>)
         break

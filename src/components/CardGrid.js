@@ -18,9 +18,9 @@ class CardGrid extends Component {
   render() {
     const { styles, cards, useRouter, history, item } = this.props
 
-    const cardGrid = cards.map(card => {
+    const cardGrid = cards.map((card, index) => {
       return(
-        <Col xs={12} sm={6} md={4} style={styles.column}>
+        <Col key={index} xs={12} sm={6} md={4} style={styles.column}>
           <Card style={styles.card}>
             <div style={styles.header}>
               {card.header}

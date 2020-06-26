@@ -24,10 +24,11 @@ class FloatingParallax extends Component {
     window.removeEventListener('resize', this.resize)
   }
 
-  renderLayer = layer => {
+  renderLayer = (layer, index) => {
     const { styles } = this.props
     return (
       <div
+        key={index}
       style={styles.imageLayer}>
         <Parallax y={this.getY(layer)}>
           <img
@@ -95,8 +96,8 @@ class FloatingParallax extends Component {
             ...this.getFloatingContainerStyle(),
             transform: `translateY(${this.getFloatOffset()}px)`,
           }}>
-            {layers.map(layer => {
-              return this.renderLayer(layer)
+            {layers.map((layer, index) => {
+              return this.renderLayer(layer, index)
             })}
           </div>
         </Parallax>

@@ -13,10 +13,10 @@ class ImageAlignedText extends Component {
     }
   }
 
-  renderLayer = layer => {
+  renderLayer = (layer, index) => {
     const { styles } = this.props
     return (
-      <div style={styles.parallaxContainer}>
+      <div key={index} style={styles.parallaxContainer}>
         <Parallax x={this.getX(layer)}>
           <img
             alt={layer.title ? layer.title : 'img'}
@@ -46,7 +46,7 @@ class ImageAlignedText extends Component {
     return (
       <div style={styles.container}>
         <Media object alt={image.title ? image.title : 'img'} src={image.src} style={styles.image}/>
-        {parallaxLayers.map(layer => this.renderLayer(layer))}
+        {parallaxLayers.map((layer, index) => this.renderLayer(layer, index))}
         <div style={styles.content}>
         <div style={{
           justifyContent: contentSide,

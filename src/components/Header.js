@@ -30,12 +30,12 @@ class Header extends Component {
               <img style={styles.titleImage} src={titleImageUrl} alt={''}/>
               :
               Array.isArray(title) ?
-                title.map(t => {
+                title.map((t, index) => {
                   return (<span style={getStyle(styles.title)}>{t}</span>)
                 })
                 :
                 <React.Fragment>
-                  <div style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
+                  <div key={index} style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
                     <div style={getStyle(styles.titleShadow)}>{title}</div>
                   </div>
                   <div style={getStyle(styles.title)}>{title}</div>

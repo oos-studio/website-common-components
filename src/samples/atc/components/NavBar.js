@@ -498,7 +498,7 @@ const data = {
             filter: 'invert(100%)',
           }
         },
-        render: <DropdownSearch styles={styles} />
+        render: (display) => <DropdownSearch display={display} styles={styles} />
       },
     ],
   }

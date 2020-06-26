@@ -80,19 +80,19 @@ class Footer extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.text.map(txt => <div style={textStyle}>{txt}</div>)}
+            {column.text.map((txt, index) => <div key={index} style={textStyle}>{txt}</div>)}
           </React.Fragment>
         )
       case 'links':
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map(link => {
+            {column.links.map((link, index) => {
               return(
               <React.Fragment>
                 {
                   link.url.length > 0 &&
-                <a href={link.url} style={linkStyle}>{link.title}</a>
+                <a key={index} href={link.url} style={linkStyle}>{link.title}</a>
                 }
                 {
                   link.url.length <= 0 &&

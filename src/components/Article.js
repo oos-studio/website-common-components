@@ -15,7 +15,7 @@ class Article extends Component {
   buildArticle = () => {
     const { md, data, styles } = this.props
     const { addTagClass } = this
-    return data.newsPostBody.map((b) => {
+    return data.newsPostBody.map((b, index) => {
       let section = null
 
       if (b.typeHandle === 'text') {
@@ -30,6 +30,7 @@ class Article extends Component {
         let content = b.typeHandle === 'quote' ? b.text : b
         section = (
           <Supplement
+            key={index}
             content={content}
             float={md ? 'center' : b.position}
             type={b.typeHandle}

@@ -7,9 +7,9 @@ class TileGrid extends Component {
     const { tiles, styles, getStyle } = this.props
     return (
       <div style={getStyle(styles.container)}>
-        {tiles.map(t => {
+        {tiles.map((t, index) => {
           return (
-            <div style={getStyle(styles.tileWrapper)}>
+            <div key={index} style={getStyle(styles.tileWrapper)}>
               <div id='tileWrapper'  style={getStyle(styles.tileBodyWrapper)}>
                 {t.renderBody()}
               </div>
