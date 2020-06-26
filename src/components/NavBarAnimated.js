@@ -304,6 +304,7 @@ class NavBarAnimated extends Component {
       case 'dropdown':
         navItem = (
             <NavLink dropdown
+                     key={index}
             history={history}
             item={item}
             onMouseLeave={() => leaveHoverNavItem(item, index)}

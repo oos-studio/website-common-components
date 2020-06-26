@@ -89,7 +89,7 @@ class Footer extends Component {
             {this.renderHeader(column, index)}
             {column.links.map((link, index) => {
               return(
-              <React.Fragment>
+              <React.Fragment key={index}>
                 {
                   link.url.length > 0 &&
                 <a key={index} href={link.url} style={linkStyle}>{link.title}</a>
