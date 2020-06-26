@@ -14,8 +14,11 @@ class NavLink extends Component {
 
     if(useRouter && history) {
       e.preventDefault()
-      const url = item.url[0] === '/' || !append ? item.url : `/${item.url}`
-      history.push(url)
+      let url
+      if(item.url) {
+        url = item.url[0] === '/' || !append ? item.url : `/${item.url}`
+        history.push(url)
+      }
     }
     if(onClickItem) {
       onClickItem(e, item.url)

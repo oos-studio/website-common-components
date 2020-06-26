@@ -31,7 +31,7 @@ class NavBarMobile extends Component {
     })
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     this.menus = []
   }
 

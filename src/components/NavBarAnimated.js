@@ -35,8 +35,11 @@ class NavBarAnimated extends Component {
     this._navRefs = []
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    const { handleScroll, runAnimations } = this
+    const { brand, useGradient } = this.props
     const { items, styles } = this.props
+
     const navItemStyles = []
     items.forEach(i => {
       navItemStyles.push({
@@ -49,11 +52,6 @@ class NavBarAnimated extends Component {
       navItemStyles: navItemStyles,
       brandImageStyles: styles.brandImage.large
     })
-  }
-
-  componentDidMount() {
-    const { handleScroll, runAnimations } = this
-    const { brand, useGradient } = this.props
 
     window.addEventListener('scroll', handleScroll)
 
@@ -120,7 +118,6 @@ class NavBarAnimated extends Component {
         })
         TweenLite.to('#nav', 0, {...styles.scrolled.nav})
         TweenLite.to('#navbar', duration, {...styles.scrolled.navbar, ease: Power2.easeOut})
-        TweenLite.to('#navSpacer', duration, {width: '60%', ease: Power2.easeOut})
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
