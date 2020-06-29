@@ -27,6 +27,7 @@ import Slideshow from './Slideshow'
 import ImageSlider from './ImageSlider'
 import withSizes from '../utils/Sizes'
 import { getSizes, sizes } from '../utils/Sizes'
+import Paragraph from './Paragraph'
 
 export {
   CardGrid,
@@ -59,4 +60,5 @@ export {
   withSizes,
   getSizes,
   sizes,
+  Paragraph,
 }

@@ -31,11 +31,11 @@ class Header extends Component {
               :
               Array.isArray(title) ?
                 title.map((t, index) => {
-                  return (<span style={getStyle(styles.title)}>{t}</span>)
+                  return (<span key={index} style={getStyle(styles.title)}>{t}</span>)
                 })
                 :
                 <React.Fragment>
-                  <div key={index} style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
+                  <div style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
                     <div style={getStyle(styles.titleShadow)}>{title}</div>
                   </div>
                   <div style={getStyle(styles.title)}>{title}</div>
