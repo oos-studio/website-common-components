@@ -259,7 +259,7 @@ class NavBarAnimated extends Component {
     const _styles = showScrolledNav ? deepmerge(styles, styles.scrolled) : darkMode ? deepmerge(styles, styles.darkMode) : styles
     let _imageStyles
     if(item.imageStyles) {
-       _imageStyles = darkMode ? deepmerge(item.imageStyles, item.imageStyles.darkMode) : item.imageStyles
+       _imageStyles = darkMode && !showScrolledNav ? deepmerge(item.imageStyles, item.imageStyles.darkMode) : item.imageStyles
     }
 
     let navItem = null
