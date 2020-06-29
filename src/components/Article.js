@@ -8,7 +8,10 @@ class Article extends Component {
   addTagClass = (text, tag, _class) => {
     let tmpText = text
 
-    tmpText = tmpText.replace(`<${tag}`, `<${tag} class='${_class}'`)
+    const fullTag = `<${tag}`
+    const reTag = new RegExp(fullTag, "g")
+
+    tmpText = tmpText.replace(reTag, `<${tag} class='${_class}'`)
 
     return tmpText
   }
