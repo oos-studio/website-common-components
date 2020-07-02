@@ -24,6 +24,10 @@ class NavBar extends Component {
   render() {
     const { getStyle } = this.props
 
+    if(this._navRef.testAlert) {
+      this._navRef.testAlert()
+    }
+
     return (
       <NavBarComp navBarRef={r => this._navRef = r} items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true} scrollTrigger={1000}/>
     )
