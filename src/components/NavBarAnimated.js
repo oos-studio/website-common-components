@@ -33,6 +33,10 @@ class NavBarAnimated extends Component {
     this.runAnimations = this.runAnimations.bind(this)
 
     this._navRefs = []
+
+    if(props.navBarRef) {
+      props.navBarRef(this)
+    }
   }
 
   componentDidMount() {
@@ -88,6 +92,10 @@ class NavBarAnimated extends Component {
     if(prevState.showScrolledNav !== showScrolledNav) {
       runAnimations()
     }
+  }
+
+  testAlert = () => {
+    alert('it freakin worked')
   }
 
   runAnimations() {
