@@ -86,7 +86,7 @@ class MegaMenu extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map((link, linkIndex) => <NavLink key={linkIndex} history={link.history || history} useRouter={link.useRouter || useRouter} onClickItem={onClickItem} onMouseEnter={() => hoverLink(linkIndex, index)} onMouseLeave={() => leaveHoverLink(linkIndex, index)} item={{url: link.url}}  style={{
+            {column.links.map((link, linkIndex) => <NavLink key={linkIndex} history={history} useRouter={link.useRouter !== undefined && link.useRouter !== null ? link.useRouter : useRouter} onClickItem={onClickItem} onMouseEnter={() => hoverLink(linkIndex, index)} onMouseLeave={() => leaveHoverLink(linkIndex, index)} item={{url: link.url}}  style={{
               ...linkStyle,
               color: activeLink === linkIndex && activeColumn === index && linkHover && linkStyle.hover ? linkStyle.hover.color : linkStyle.color,
             }}>{link.title}</NavLink>)}
@@ -97,7 +97,7 @@ class MegaMenu extends Component {
           <React.Fragment>
             {this.renderHeader(column, index)}
             {column.overlayText ?
-              <NavLink history={column.history || history} useRouter={column.useRouter || useRouter} onClickItem={onClickItem} item={{url: column.url}}>
+              <NavLink history={history} useRouter={column.useRouter !== undefined && column.useRouter !== null ? column.useRouter : useRouter} onClickItem={onClickItem} item={{url: column.url}}>
                 <div style={imageStyle.overlay}>{column.overlayText}</div>
                 <Media object src={column.src} alt={column.title} style={imageStyle}/>
               </NavLink>
