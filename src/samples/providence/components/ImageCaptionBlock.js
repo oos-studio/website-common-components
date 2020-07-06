@@ -14,11 +14,20 @@ const styles = {
   //   backgroundColor: '#65A3BE',
   //   color: '#F8F5EE',
   // },
+  bottomWrapper: {
+    marginLeft: 75,
+    marginRight: 75,
+    sm: {
+      marginLeft: 30,
+      marginRight: 30,
+    },
+  }
+
 }
 
 
 const props = {
-  text: 'One sentence about the importance of small groups at Providence.',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   image: {
     image: require('../assets/SmallGroupsBackground.png'),
     title: 'Picture'

@@ -59,46 +59,41 @@ const defaultStyles = {
     objectFit: 'cover',
   },
   bottomWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    overflow: 'visible',
     maxWidth: 1200,
-    marginLeft: 35,
-    marginRight: 35,
-    paddingTop: 0,
   },
   logoWrapper: {
+    float: 'left',
     width: 400,
+    height: 120,
     position: 'relative',
     sm: {
       width: 250,
+      height: 80,
     },
     xs: {
-      width: 50,
+      width: 200,
+      height: 30,
     },
   },
   logo: {
-    position: 'absolute',
-    top: -275,
+    marginTop: -285,
     width: 400,
     height: 400,
     sm: {
+      marginTop: -175,
       width: 250,
       height: 250,
-      top: -175,
     },
     xs: {
       width: 200,
       height: 200,
-      top: -150,
     },
-
+    position: 'absolute',
   },
   text: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     fontSize: 45,
     textAlign: 'right',
     color: '#F8F5EE',
@@ -106,11 +101,11 @@ const defaultStyles = {
     paddingBottom: 25,
     sm: {
       fontSize: 40,
-      paddingTop: 25,
+     // paddingTop: 25,
     },
     xs: {
       fontSize: 30,
-      paddingTop: 50,
+     // paddingTop: 50,
     },
   },
 }
