@@ -25,6 +25,7 @@ import Article from './Article'
 import PathIndicator from './PathIndicator'
 import Slideshow from './Slideshow'
 import ImageSlider from './ImageSlider'
+import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 import { getSizes, sizes } from '../utils/Sizes'
 import Paragraph from './Paragraph'
@@ -57,6 +58,7 @@ export {
   PathIndicator,
   ImageSlider,
   Slideshow,
+  mergeStyles,
   withSizes,
   getSizes,
   sizes,
