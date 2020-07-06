@@ -86,7 +86,7 @@ class MegaMenu extends Component {
         return (
           <React.Fragment>
             {this.renderHeader(column, index)}
-            {column.links.map((link, linkIndex) => <NavLink key={linkIndex} history={history} useRouter={useRouter} onClickItem={onClickItem} onMouseEnter={() => hoverLink(linkIndex, index)} onMouseLeave={() => leaveHoverLink(linkIndex, index)} item={{url: link.url}}  style={{
+            {column.links.map((link, linkIndex) => <NavLink key={linkIndex} history={link.history || history} useRouter={link.useRouter || useRouter} onClickItem={onClickItem} onMouseEnter={() => hoverLink(linkIndex, index)} onMouseLeave={() => leaveHoverLink(linkIndex, index)} item={{url: link.url}}  style={{
               ...linkStyle,
               color: activeLink === linkIndex && activeColumn === index && linkHover && linkStyle.hover ? linkStyle.hover.color : linkStyle.color,
             }}>{link.title}</NavLink>)}
