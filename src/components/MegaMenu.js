@@ -97,7 +97,7 @@ class MegaMenu extends Component {
           <React.Fragment>
             {this.renderHeader(column, index)}
             {column.overlayText ?
-              <NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={{url: column.url}}>
+              <NavLink history={column.history || history} useRouter={column.useRouter || useRouter} onClickItem={onClickItem} item={{url: column.url}}>
                 <div style={imageStyle.overlay}>{column.overlayText}</div>
                 <Media object src={column.src} alt={column.title} style={imageStyle}/>
               </NavLink>
