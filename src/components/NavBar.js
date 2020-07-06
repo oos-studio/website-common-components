@@ -25,6 +25,10 @@ class NavBar extends Component {
 
         this.menus = []
         this.dropdownCounter = 0
+
+        if(props.navBarRef) {
+            props.navBarRef(this)
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
