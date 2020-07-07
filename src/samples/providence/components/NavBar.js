@@ -245,6 +245,7 @@ const styles = {
     opacity: 0,
     position: 'absolute',
     top: 0,
+    // height: 0,
     width: '100vw',
     zIndex: 3,
     backgroundColor: 'rgba(0,0,0,0)',
