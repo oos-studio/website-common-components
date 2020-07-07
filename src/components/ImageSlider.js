@@ -18,7 +18,7 @@ class ImageSlider extends Component {
               const item = {
                 url: entry.imageSliderItemUrl,
               }
-              if(entry.isEntry) {
+              if(entry.isEntry || item.url !== null) {
                 return <div key={index} className='sliderWrapper'><NavLink style={styles.navLink} history={history} useRouter={entry.isEntry} item={item}><img
                   src={entry.imageSliderItemImage[0].url} alt={'img'}/></NavLink></div>
               } else {
