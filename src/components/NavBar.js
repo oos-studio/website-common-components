@@ -35,6 +35,16 @@ class NavBar extends Component {
         this.dropdownCounter = 0
     }
 
+    componentDidMount() {
+        this.unlisten = this.props.history.listen((location, action) => {
+            console.log("NAVBAR DETECTED ROUTE CHANGE")
+        })
+    }
+
+    componentWillUnmount() {
+        this.unlisten()
+    }
+
     toggle() {
         const { open } = this.state
         this.setState({ open: !open })
