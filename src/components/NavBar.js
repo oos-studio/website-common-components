@@ -36,13 +36,13 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-        // this.unlisten = this.props.history.listen((location, action) => {
-        //     this.hideMegaMenu()
-        // })
+        this.unlisten = this.props.history.listen((location, action) => {
+            this.hideMegaMenu()
+        })
     }
 
     componentWillUnmount() {
-        //this.unlisten()
+        this.unlisten()
     }
 
     toggle() {
