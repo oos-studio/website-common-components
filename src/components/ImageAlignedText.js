@@ -52,7 +52,7 @@ class ImageAlignedText extends Component {
           justifyContent: contentSide,
           ...styles.overlay,
         }}>
-          <div style={{
+          <div className={'aligned-text-and-button'} style={{
             float: textAlign,
             alignItems: contentSide,
             ...styles.subContainer,
