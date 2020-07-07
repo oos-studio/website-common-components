@@ -47,7 +47,7 @@ class ImageAlignedText extends Component {
       <div style={styles.container}>
         <Media object alt={image.title ? image.title : 'img'} src={image.src} style={styles.image}/>
         {parallaxLayers.map((layer, index) => this.renderLayer(layer, index))}
-        <div style={styles.content}>
+        <div style={styles.content} className={'image-aligned-text-top-padding'}>
         <div style={{
           justifyContent: contentSide,
           ...styles.overlay,
