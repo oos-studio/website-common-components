@@ -15,7 +15,7 @@ class NavBar extends Component {
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
             activeHoveredLink: null,
-            aciveHoveredDropdown: null,
+            activeHoveredDropdown: null,
         }
 
         this.toggle = this.toggle.bind(this)
@@ -36,13 +36,13 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-        this.unlisten = this.props.history.listen((location, action) => {
-            this.hideMegaMenu()
-        })
+        // this.unlisten = this.props.history.listen((location, action) => {
+        //     this.hideMegaMenu()
+        // })
     }
 
     componentWillUnmount() {
-        this.unlisten()
+        //this.unlisten()
     }
 
     toggle() {

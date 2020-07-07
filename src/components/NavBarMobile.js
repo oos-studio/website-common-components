@@ -32,6 +32,9 @@ class NavBarMobile extends Component {
     })
 
     this.unlisten = this.props.history.listen((location, action) => {
+      this.setState({
+        open: true,
+      })
       this.toggle()
     })
   }
