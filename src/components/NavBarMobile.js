@@ -20,9 +20,6 @@ class NavBarMobile extends Component {
 
     this.menus = []
 
-    if(props.navBarRef) {
-      props.navBarRef(this)
-    }
   }
 
   componentDidMount() {
@@ -33,6 +30,14 @@ class NavBarMobile extends Component {
         touchscreen: true,
       })
     })
+
+    this.unlisten = this.props.history.listen((location, action) => {
+      this.toggle()
+    })
+  }
+
+  componentWillUnmount() {
+    this.unlisten()
   }
 
   componentDidUpdate() {

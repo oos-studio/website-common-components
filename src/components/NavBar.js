@@ -37,7 +37,7 @@ class NavBar extends Component {
 
     componentDidMount() {
         this.unlisten = this.props.history.listen((location, action) => {
-            console.log("NAVBAR DETECTED ROUTE CHANGE")
+            this.hideMegaMenu()
         })
     }
 
