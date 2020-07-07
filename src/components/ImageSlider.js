@@ -15,12 +15,11 @@ class ImageSlider extends Component {
         <div style={getStyle(styles.container)}>
           <Slider arrows={!sm}{...settings}>
             {data.map((entry, index) => {
-              const useRouter = entry.linkToPage.length > 0
               const item = {
-                url: useRouter ? entry.linkToPage[0].slug : entry.imageSliderItemUrl,
+                url: entry.imageSliderItemUrl,
               }
-              if(entry.imageSliderItemUrl !== null || entry.linkToPage.length > 0) {
-                return <div key={index} className='sliderWrapper'><NavLink style={styles.navLink} history={history} useRouter={useRouter} item={item}><img
+              if(entry.isEntry) {
+                return <div key={index} className='sliderWrapper'><NavLink style={styles.navLink} history={history} useRouter={entry.isEntry} item={item}><img
                   src={entry.imageSliderItemImage[0].url} alt={'img'}/></NavLink></div>
               } else {
                 return <div key={index} className='sliderWrapper'><img
