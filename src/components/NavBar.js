@@ -15,7 +15,7 @@ class NavBar extends Component {
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
             activeHoveredLink: null,
-            aciveHoveredDropdown: null,
+            activeHoveredDropdown: null,
         }
 
         this.toggle = this.toggle.bind(this)
