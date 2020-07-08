@@ -1,6 +1,6 @@
 {
   "name": "@oos-studio/website-common-components",
-  "version": "0.7.9-alpha",
+  "version": "0.7.10-alpha",
   "description": "A directory of commonly used components for building websites with react",
   "main": "dist/components/index.js",
   "private": false,
@@ -32,6 +32,7 @@
     "react-slick": "^0.26.1",
     "react-slideshow-image": "^1.4.0",
     "reactstrap": "^8.4.1",
+    "slick-carousel": "^1.8.1",
     "what-input": "^5.2.7"
   },
   "scripts": {

@@ -204,7 +204,20 @@ const data = {
               {
                 heading: '',
                 type: 'image',
-                src: 'https://picsum.photos/400/200',
+                styles: {
+                  image: {
+                    display: 'block',
+                    width: 300,
+                    height: 190,
+                    overlay: {
+                      backgroundImage: 'url(https://s3.us-east-2.amazonaws.com/cdn.www.oos-studio.com/prod/colin_bw.jpg)',
+                      backgroundColor: 'rgba(106,91,93,0.5)',
+                      backgroundBlendMode: 'multiply',
+                      color: 'white',
+                    },
+                  },
+                },
+                //src: 'https://picsum.photos/400/200',
                 title: 'Image',
                 overlayText: 'TEST',
                 url: 'https://www.oos-studio.com',
