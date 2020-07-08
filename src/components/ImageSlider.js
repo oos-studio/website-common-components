@@ -19,11 +19,11 @@ class ImageSlider extends Component {
                 url: entry.imageSliderItemUrl,
               }
               if(entry.isEntry || item.url !== null) {
-                return <div key={index} className='sliderWrapper' style={styles.item}><NavLink style={styles.navLink} history={history} useRouter={entry.isEntry} item={item}><img
+                return <div key={index} className='sliderWrapper'><NavLink style={getStyle(styles.navLink)} history={history} useRouter={entry.isEntry} item={item}><img
                   src={entry.imageSliderItemImage[0].url} alt={'img'}/></NavLink></div>
               } else {
-                return <div key={index} className='sliderWrapper' style={styles.item}><img
-                  src={entry.imageSliderItemImage[0].url} alt={'img'}/></div>
+                return <div key={index} className='sliderWrapper'><div style={getStyle(styles.item)}><img
+                  src={entry.imageSliderItemImage[0].url} alt={'img'}/></div></div>
               }
             })}
           </Slider>
