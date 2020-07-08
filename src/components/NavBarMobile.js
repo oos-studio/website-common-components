@@ -41,8 +41,9 @@ class NavBarMobile extends Component {
   }
 
   componentWillUnmount() {
-    this.unlisten()
-  }
+    if(this.unlisten) {
+      this.unlisten()
+    }  }
 
   componentDidUpdate() {
     this.menus = []

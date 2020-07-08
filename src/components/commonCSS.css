@@ -17,7 +17,6 @@ li {
     backface-visibility: hidden;
     -moz-backface-visibility: hidden;
 }
-
 #name::placeholder {
     color: white;
     opacity: 1;

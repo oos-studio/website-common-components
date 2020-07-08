@@ -36,13 +36,15 @@ class NavBar extends Component {
     }
 
     componentDidMount() {
-        this.unlisten = this.props.history.listen((location, action) => {
+        this.unlisten = this.props.history?.listen((location, action) => {
             this.hideMegaMenu()
         })
     }
 
     componentWillUnmount() {
-        this.unlisten()
+        if(this.unlisten) {
+            this.unlisten()
+        }
     }
 
     toggle() {
@@ -72,6 +74,8 @@ class NavBar extends Component {
             navBorderStyle: borderStyle,
             activeHoveredDropdown: key,
         })
+
+
     }
     unHoverLink = () => {
         this.setState({
@@ -88,6 +92,7 @@ class NavBar extends Component {
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
         })
+
     }
     renderNavigationItems(item, index) {
         const { styles, icon, useRouter, onClickItem, history } = this.props
@@ -133,7 +138,7 @@ class NavBar extends Component {
 
         return(
           <div style={styles.container} onMouseLeave={() => hideMegaMenu()}>
-              <div style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
+              <div className={'mmBackground'} style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
               <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
                   <NavbarBrand href="/" style={styles.brand}>
                       <Media object src={brand.image.src} alt={brand.image.title} style={styles.brandImage} />
@@ -145,13 +150,15 @@ class NavBar extends Component {
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
-                          <div style={styles.megaMenu}>
+                          <div style={{
+                              ...styles.megaMenu,
+                          }}>
                               {aside !== null && aside !== undefined &&
                               <React.Fragment>
                                   <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
-                                  <div style={styles.asideWrapper}>
-                                      <div style={styles.asideHeader}>{aside.header}</div>
-                                      <div style={styles.asideBody}>{aside.text}</div>
+                                  <div className={'asideContainer'} style={styles.asideWrapper}>
+                                      <div className={'asideHeader'} style={styles.asideHeader}>{aside.header}</div>
+                                      <div className={'asideBody'} style={styles.asideBody}>{aside.text}</div>
                                   </div>
                               </React.Fragment>
                               }
@@ -176,9 +183,11 @@ const defaultStyles = {
         nav:{},
         navbar: {},
         itemWrapper: {},
-        mmBackground: {},
+        mmBackground: {
+        },
     },
-    mmBackground: {},
+    mmBackground: {
+    },
     navbar: {},
     brand: {},
     brandImage: {},
@@ -195,12 +204,16 @@ const defaultStyles = {
     megaMenu: {
         padding: 0,
     },
-    asideWrapper: {},
-    asideImage: {},
+    asideWrapper: {
+    },
+    asideImage: {
+    },
     asideHeader: {
+        opacity: 0,
         fontSize: 25,
     },
     asideBody: {
+        opacity: 0,
         fontSize: 18,
         color: 'tan',
         padding: 10,

@@ -3,12 +3,16 @@ import {Container, Col, Media} from 'reactstrap'
 import NavLink from './NavLink'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
+import './commonCSS.css'
+import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
+
 
 class MegaMenu extends Component {
   state = {
     linkHover: false,
     activeColumn: null,
     activeLink: null,
+    opacity: 0,
   }
   hoverLink = (index, colIndex) => {
     this.setState({
@@ -68,6 +72,13 @@ class MegaMenu extends Component {
     return headerStyle
   }
 
+  componentDidMount() {
+    const { animationParams } = this.props
+    TweenLite.to('.megaMenuContainer', 0.35, animationParams)
+    TweenLite.to('.asideHeader', 0.35, animationParams)
+    TweenLite.to('.asideBody', 0.35, animationParams)
+  }
+
   renderHeader = (column, index) => {
     const headerStyle = this.getHeaderStyle(index)
     return column.heading.length > 0 ? <div style={headerStyle}>{column.heading}</div> : null
@@ -119,8 +130,7 @@ class MegaMenu extends Component {
   render() {
     const { styles, columns } = this.props
     return (
-      <div style={{
-        ...styles.container}}>
+      <div className="megaMenuContainer" style={styles.container}>
         {columns.map((column, index) => {
           const columnStyle = this.getColumnStyle(index)
           return (
@@ -140,6 +150,7 @@ const defaultStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    opacity: 0,
   },
   defaultColumn: {
     display: 'flex',
@@ -170,6 +181,7 @@ const defaultStyles = {
 MegaMenu.defaultProps = {
   columns: [],
   useRouter: false,
+  animationParams: { opacity: 1 },
 }
 
 export default mergeStyles(defaultStyles)(MegaMenu)
