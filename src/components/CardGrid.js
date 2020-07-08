@@ -20,7 +20,7 @@ class CardGrid extends Component {
 
     const cardGrid = cards.map((card, index) => {
       return(
-        <Col key={index} xs={12} sm={6} md={4} style={styles.column}>
+        <Col key={index} sm={12} md={6} lg={4} style={styles.column}>
           <Card style={styles.card}>
             <div style={styles.header}>
               {card.header}
