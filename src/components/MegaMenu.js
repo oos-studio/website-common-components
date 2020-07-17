@@ -28,45 +28,45 @@ class MegaMenu extends Component {
       activeColumn: null,
     })
   }
-  getColumnStyle = index => {
+  getColumnStyle = column => {
     const { styles } = this.props
     let columnStyle = styles.defaultColumn
-    if (styles.columns[index]) {
-      if ('column' in styles.columns[index]) {
-        columnStyle = deepmerge(styles.defaultColumn, styles.columns[index].column)
+    if ('styles' in column) {
+      if ('column' in column.styles) {
+        columnStyle = deepmerge(styles.defaultColumn, column.styles.column)
       }
     }
     return columnStyle
   }
 
-  getLinkStyle = index => {
+  getLinkStyle = column => {
     const { styles } = this.props
     let linkStyle = styles.defaultLink
-    if (styles.columns[index]) {
-      if ('link' in styles.columns[index]) {
-        linkStyle = deepmerge(styles.defaultLink, styles.columns[index].link)
+    if ('styles' in column) {
+      if ('link' in column.styles) {
+        linkStyle = deepmerge(styles.defaultLink, column.styles.link)
       }
     }
     return linkStyle
   }
 
-  getImageStyle = index => {
+  getImageStyle = column => {
     const { styles } = this.props
     let imageStyle = styles.defaultImage
-    if (styles.columns[index]) {
-      if ('image' in styles.columns[index]) {
-        imageStyle = deepmerge(styles.defaultImage, styles.columns[index].image)
+    if ('styles' in column) {
+      if ('image' in column.styles) {
+        imageStyle = deepmerge(styles.defaultImage, column.styles.image)
       }
     }
     return imageStyle
   }
 
-  getHeaderStyle = index => {
+  getHeaderStyle = column => {
     const { styles } = this.props
     let headerStyle = styles.defaultHeader
-    if (styles.columns[index]) {
-      if ('header' in styles.columns[index]) {
-        headerStyle = deepmerge(styles.defaultHeader, styles.columns[index].header)
+    if ('styles' in column) {
+      if ('header' in column.styles) {
+        headerStyle = deepmerge(styles.defaultHeader, column.styles.header)
       }
     }
     return headerStyle
@@ -80,7 +80,7 @@ class MegaMenu extends Component {
   }
 
   renderHeader = (column, index) => {
-    const headerStyle = this.getHeaderStyle(index)
+    const headerStyle = this.getHeaderStyle(column)
     return column.heading.length > 0 ? <div style={headerStyle}>{column.heading}</div> : null
   }
 
@@ -89,8 +89,8 @@ class MegaMenu extends Component {
     const { hoverLink, leaveHoverLink } = this
     const { useRouter, history, onClickItem } = this.props
 
-    const linkStyle = this.getLinkStyle(index)
-    const imageStyle = this.getImageStyle(index)
+    const linkStyle = this.getLinkStyle(column)
+    const imageStyle = this.getImageStyle(column)
 
     switch(column.type) {
       case 'links':
@@ -132,7 +132,7 @@ class MegaMenu extends Component {
     return (
       <div className="megaMenuContainer" style={styles.container}>
         {columns.map((column, index) => {
-          const columnStyle = this.getColumnStyle(index)
+          const columnStyle = this.getColumnStyle(column)
           return (
             <div key={index} style={{
               ...columnStyle}}>
