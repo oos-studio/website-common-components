@@ -22,6 +22,10 @@ class CardGrid extends Component {
       return(
         <Col key={index} xs={12} sm={6} md={4} style={styles.column}>
           <Card style={styles.card}>
+            <div style={{
+              ...styles.flippedText,
+              display: card.isFlipped ? 'flex' : 'none',
+            }}>{card.flippedText}</div>
             <div style={styles.header}>
               {card.header}
             </div>
@@ -67,6 +71,7 @@ class CardGrid extends Component {
 }
 
 const defaultStyles = {
+  flippedText: {},
   container: {
   },
   wrapper: {
