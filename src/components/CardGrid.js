@@ -30,7 +30,7 @@ class CardGrid extends Component {
               <div
                 style={styles.arrow}
               />
-              {card.flippedText}
+              <div>{card.flippedText}</div>
             </div>
             <div style={styles.header}>
               {card.header}
