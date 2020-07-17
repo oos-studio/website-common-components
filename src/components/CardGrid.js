@@ -16,15 +16,16 @@ class CardGrid extends Component {
   }
 
   render() {
-    const { styles, cards, useRouter, history, item, onClick } = this.props
+    const { styles, cards, useRouter, history, item } = this.props
 
     const cardGrid = cards.map((card, index) => {
       return(
         <Col key={index} sm={12} md={6} lg={4} style={styles.column}>
           <Card style={styles.card}>
-            <div onClick={() => onClick()} style={{
+            <div onClick={() => card.onClick()} style={{
               ...styles.flippedText,
               height: card.isFlipped ? card.flippedHeight : 0,
+              opacity: card.isFlipped ? 1 : 0,
             }}>{card.flippedText}</div>
             <div style={styles.header}>
               {card.header}
