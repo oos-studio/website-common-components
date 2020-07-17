@@ -26,7 +26,12 @@ class CardGrid extends Component {
               ...styles.flippedText,
               height: card.isFlipped ? card.flippedHeight : 0,
               opacity: card.isFlipped ? 1 : 0,
-            }}>{card.flippedText}</div>
+            }}>
+              <div
+                style={styles.arrow}
+              />
+              {card.flippedText}
+            </div>
             <div style={styles.header}>
               {card.header}
             </div>
