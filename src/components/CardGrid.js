@@ -5,6 +5,10 @@ import Button from './Button'
 import renderHTML from 'react-render-html'
 
 class CardGrid extends Component {
+  state = {
+    hoveredArrow: -1,
+  }
+
   renderSubtitles = subtitle => {
     const { styles } = this.props
 
@@ -15,8 +19,22 @@ class CardGrid extends Component {
     )
   }
 
+  onHoverArrow = (index) => {
+    this.setState({
+      hoveredArrow: index,
+    })
+  }
+
+  leaveHoverArrow = () => {
+    this.setState({
+      hoveredArrow: -1,
+    })
+  }
+
   render() {
     const { styles, cards, useRouter, history, item } = this.props
+    const { onHoverArrow, leaveHoverArrow } = this
+    const { hoveredArrow } = this.state
 
     const cardGrid = cards.map((card, index) => {
       return(
@@ -28,7 +46,13 @@ class CardGrid extends Component {
               opacity: card.isFlipped ? 1 : 0,
             }}>
               <div
-                style={styles.arrow}
+                onMouseEnter={() => onHoverArrow(index)}
+                onMouseLeave={() => leaveHoverArrow()}
+                style={{
+                  ...styles.arrow,
+                  borderColor: hoveredArrow === index ? styles.arrow.hovered.borderColor : styles.arrow.borderColor,
+                }}
+
               />
               <div>{card.flippedText}</div>
             </div>
