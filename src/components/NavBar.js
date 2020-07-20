@@ -103,7 +103,7 @@ class NavBar extends Component {
 
         switch(item.type) {
             case 'link':
-                navItem = (<NavItem key={index} onMouseEnter={() => this.hideMegaMenu(index)} onMouseLeave={() => this.unHoverLink()} key={index} style={styles.navItem}><NavLink history={history} useRouter={useRouter} onClickItem={onClickItem} item={item} href={item.url} style={{
+                navItem = (<NavItem key={index} onMouseEnter={() => this.hideMegaMenu(index)} onMouseLeave={() => this.unHoverLink()} key={index} style={styles.navItem}><NavLink history={history} useRouter={item.useRouter ? item.useRouter : false} onClickItem={onClickItem} item={item} href={item.url} style={{
                     ...styles.navLink,
                     color: activeHoveredLink === index ? styles.navLink.hovered.color : styles.navLink.color,
                 }}>{item.text}</NavLink></NavItem>)
