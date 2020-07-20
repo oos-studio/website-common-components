@@ -39,15 +39,15 @@ class CardGrid extends Component {
     const cardGrid = cards.map((card, index) => {
       return(
         <Col key={index} sm={12} md={6} lg={4} style={styles.column}>
-          <Card style={styles.card}>
-            <div onClick={() => card.onClick()} style={{
+          <Card  style={styles.card}>
+            <div onMouseEnter={() => onHoverArrow(index)}
+                 onMouseLeave={() => leaveHoverArrow()}
+                 onClick={() => card.onClick()} style={{
               ...styles.flippedText,
               height: card.isFlipped ? card.flippedHeight : 0,
               opacity: card.isFlipped ? 1 : 0,
             }}>
               <div
-                onMouseEnter={() => onHoverArrow(index)}
-                onMouseLeave={() => leaveHoverArrow()}
                 style={{
                   ...styles.arrow,
                   borderColor: hoveredArrow === index ? styles.arrow.hovered.borderColor : styles.arrow.borderColor,
