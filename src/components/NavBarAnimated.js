@@ -21,6 +21,7 @@ class NavBarAnimated extends Component {
       activeNavImage: null,
       brandImageStyles: null,
       isAnimating: false,
+      openImageItem: null,
     }
 
     this.toggle = this.toggle.bind(this)
@@ -95,7 +96,7 @@ class NavBarAnimated extends Component {
   }
 
   testAlert = () => {
-    alert('it freakin worked')
+    //alert('it freakin worked')
   }
 
   runAnimations() {
@@ -204,6 +205,16 @@ class NavBarAnimated extends Component {
     })
   }
 
+  hideImageItem = () => {
+    const { openImageItem } = this.state
+
+    this._navRefs[openImageItem].toggle()
+
+    this.setState({
+      openImageItem: null,
+    })
+  }
+
   hoverNavItem(item, index) {
     const { showDropdownMenu } = this
     const { navItemStyles } = this.state
@@ -224,6 +235,7 @@ class NavBarAnimated extends Component {
     } else {
       this.setState({
         activeNavIndex: index,
+        openImageItem: item.image ? index : null,
       })
     }
   }

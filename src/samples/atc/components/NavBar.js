@@ -7,6 +7,8 @@ import MegaMenu from '../../../components/MegaMenu'
 import '../index.css'
 import withSizes from '../../../utils/Sizes'
 
+let _navRef = React.createRef()
+
 class NavBar extends Component {
   constructor(props) {
     super(props)
@@ -29,7 +31,7 @@ class NavBar extends Component {
     }
 
     return (
-      <NavBarComp navBarRef={r => this._navRef = r} items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true} scrollTrigger={1000}/>
+      <NavBarComp navBarRef={r => _navRef = r} items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true} scrollTrigger={1000}/>
     )
   }
 }
@@ -510,7 +512,7 @@ const data = {
             filter: 'invert(100%)',
           }
         },
-        render: (display) => <DropdownSearch display={display} styles={styles} />
+        render: (display) => <DropdownSearch display={display} styles={styles} navRef={_navRef}/>
       },
     ],
   }
