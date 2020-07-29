@@ -11,9 +11,10 @@ class DropdownSearch extends Component {
   }
 
   handleKeyPress = (key) => {
-    if (key.charCode === 13) {
-
-    }
+    //if (key.charCode === 13) {
+  //    key.preventDefault()
+      this.props.navRef.hideImageItem()
+   // }
   }
 
   render() {
