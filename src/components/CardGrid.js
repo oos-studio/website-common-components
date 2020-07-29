@@ -71,7 +71,7 @@ class CardGrid extends Component {
                 </div>
                 : null
               }
-              <div style={styles.text}>
+              <div className={'card-text-wrapper'} style={styles.text}>
                 {renderHTML(card.text)}
               </div>
               <div style={styles.footer}>
