@@ -74,10 +74,10 @@ class SplitWrappedLines extends Component {
 
     return (
       <div style={{position: 'relative'}}>
-        <span ref={this.splitWrappedLinesRef} className={'split-wrapped-lines'}
-              style={{...getStyle(styles.line), position: 'absolute', whiteSpace: 'wrap', opacity: 0}}>{text}</span>
+        <div ref={this.splitWrappedLinesRef} className={'split-wrapped-lines'}
+              style={{...getStyle(styles.line), position: 'absolute', whiteSpace: 'wrap', opacity: 0}}>{text}</div>
         {lines.map((line, subIndex) =>
-          <span key={subIndex} style={getStyle(styles.line)}>{line}</span>
+          <div key={subIndex} style={getStyle(styles.line)}>{line}</div>
         )}
       </div>
     )
