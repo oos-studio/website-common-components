@@ -58,7 +58,7 @@ class Header extends Component {
         {
           slideshow && slideshow !== {} ?
             <div style={styles.slideshow}>
-              <Slideshow {...slideshow} />
+              <Slideshow {...slideshow} styles={styles.slideshow} />
             </div>
             :
             null

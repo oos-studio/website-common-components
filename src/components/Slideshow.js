@@ -3,6 +3,8 @@ import { Fade, Slide, Zoom } from 'react-slideshow-image'
 import mergeStyles from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 import deepmerge from 'deepmerge'
+import SplitWrappedLines from './SplitWrappedLines'
+import Radium from 'radium'
 
 class Slideshow extends Component {
   renderSlide = () => {
@@ -37,17 +39,27 @@ class Slideshow extends Component {
     return (
       <Fade {...options} className="slideshowWrapper">
         {slides.map((slide, index) => {
+          console.log(slide)
           return(
-          <div key={index} style={_styles.slide}>
-            <div style={_styles.imageWrapper}>
-              {slide.source && <img src={slide.source} style={_styles.image} alt={`img${index}`}/>}
+          <div key={index} style={getStyle(_styles.slide)}>
+            <div style={getStyle(_styles.imageWrapper)}>
+              {slide.source && <img src={slide.source} style={getStyle(_styles.image)} alt={`img${index}`}/>}
             </div>
-            <div style={_styles.titleWrapper}>
-              {slide.title.map((title, subIndex) => {
+            <div style={getStyle(_styles.titleWrapper)}>
+              {options.splitWrappedLines ?
+                <SplitWrappedLines text={slide.title} styles={{ line: styles.titleLine }} />
+                : slide.title.map((title, subIndex) => {
                   return (
-                    <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
+                    <span key={subIndex} style={getStyle(title.style)}>{title.text}</span>
                   )
               })}
+              {
+                slide.button ?
+                  <div style={getStyle(styles.buttonWrapper)}>
+                    <div onClick={slide.button.onClick} key={`button-${index}`} style={getStyle(styles.button)}>{slide.button.text}</div>
+                  </div>
+                  : null
+              }
             </div>
           </div>
           )
@@ -92,6 +104,15 @@ const slideStyles = {
 }
 
 const defaultStyles = {
+  button: {
+    display: 'inline-block',
+    cursor: 'pointer',
+  },
+  buttonWrapper: {
+  },
+  titleLine: {
+
+  },
   container: {
     width: '100%',
     height: '100%',
@@ -123,4 +144,4 @@ const defaultStyles = {
   },
 }
 
-export default mergeStyles(defaultStyles)(withSizes(Slideshow))
+export default mergeStyles(defaultStyles)(withSizes(Radium(Slideshow)))
