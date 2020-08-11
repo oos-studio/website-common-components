@@ -134,7 +134,12 @@ class NavBarMobile extends Component {
           <UncontrolledDropdown key={index} nav inNavbar style={styles.ucDropdown}>
               <DropdownToggle id='dropdown' style={styles.dropdownItem} onClick={() => toggleDropdownMenu(index)}>
                 {item.text}
-                <Media object src={icon} style={activeDropdownIndex === index ? deepmerge(styles.dropdownIcon, styles.dropdownIcon.click) : styles.dropdownIcon}/>
+                <i
+                  style={
+                    activeDropdownIndex === index
+                      ? deepmerge(styles.dropdownArrow, styles.dropdownArrow.clicked)
+                      : styles.dropdownArrow
+                  } />
               </DropdownToggle>
               {activeDropdownIndex === index ? item.menu(true, toggle) : item.menu(false, toggle)}
             </UncontrolledDropdown>
@@ -195,6 +200,9 @@ const defaultStyles = {
   dropdownItem: {},
   ucDropdown: {},
   dropdownIcon: {},
+  dropdownArrow: {
+    clicked: {},
+  },
 }
 
 NavBarMobile.defaultProps = {

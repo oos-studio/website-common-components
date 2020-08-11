@@ -357,6 +357,19 @@ const styles = {
     zIndex: 4,
     position: 'absolute',
   },
+  dropdownArrow: {
+    borderColor: '#6A5B5D',
+    borderStyle: 'solid',
+    borderWidth: '0 2px 2px 0',
+    display: 'inline-block',
+    padding: 5,
+    transform: 'rotate(45deg)',
+    marginBottom: 1,
+    marginLeft: 5,
+    hovered: {
+      borderColor: '#CD7D43',
+    },
+  },
 }
 
 const megaMenuStyles = {
