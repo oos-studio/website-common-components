@@ -1,6 +1,6 @@
 {
   "name": "@oos-studio/website-common-components",
-  "version": "0.7.30-alpha",
+  "version": "0.7.31-alpha",
   "description": "A directory of commonly used components for building websites with react",
   "main": "dist/components/index.js",
   "private": false,

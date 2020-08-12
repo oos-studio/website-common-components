@@ -20,6 +20,9 @@ class NavBarMobile extends Component {
 
     this.menus = []
 
+    if(props.navBarRef) {
+      props.navBarRef(this)
+    }
   }
 
   componentDidMount() {
