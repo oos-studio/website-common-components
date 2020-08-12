@@ -163,7 +163,7 @@ class NavBarMobile extends Component {
         ...styles.container,
       }}>
         <Navbar id='navbar' style={styles.navbar}>
-          <NavbarBrand onClick={() => onBrandClick()} style={styles.brand} href="/" className="mr-auto">
+          <NavbarBrand onClick={(e) => onBrandClick(e)} style={styles.brand} href="/" className="mr-auto">
             <Media object src={brand.image.src} alt={brand.image.title} style={getStyle(styles.brandImage)}/>
             <NavbarText style={styles.brandTitle}>
               {brand.title ? brand.title : ''}
