@@ -3,6 +3,7 @@ import { Collapse, Media, Nav, Navbar, NavbarBrand, NavbarText, NavbarToggler, N
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import NavLink from './NavLink'
+import gsap, { TweenLite, Power2, TimelineLite } from 'gsap'
 
 class NavBar extends Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class NavBar extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         this.dropdownCounter = 0
+
     }
 
     componentDidMount() {
@@ -66,15 +68,14 @@ class NavBar extends Component {
 
         this.dropdownCounter = 0
 
-        this.setState({
-            aside: item[0].item.aside,
-            megaMenu: item[0].item.render(),
-            megaMenuOpen: true,
-            navBorderWidth: borderWidth,
-            navBorderStyle: borderStyle,
-            activeHoveredDropdown: key,
-        })
-
+            this.setState({
+                aside: item[0].item.aside,
+                megaMenu: item[0].item.render(),
+                megaMenuOpen: true,
+                navBorderWidth: borderWidth,
+                navBorderStyle: borderStyle,
+                activeHoveredDropdown: key,
+            })
 
     }
     unHoverLink = () => {
@@ -91,7 +92,7 @@ class NavBar extends Component {
             megaMenuOpen: false,
             navBorderWidth: [0,0,0],
             navBorderStyle: ['','',''],
-        })
+    })
 
     }
     renderNavigationItems(item, index) {
@@ -155,15 +156,16 @@ class NavBar extends Component {
                           <div style={megaMenuOpen ? deepmerge(styles.itemWrapper, styles.mmOpen.itemWrapper) : styles.itemWrapper}>
                               {items.map((item, index) => renderNavigationItems(item, index))}
                           </div>
-                          <div style={{
-                              ...styles.megaMenu,
-                          }}>
+                          <div style={ megaMenuOpen ? deepmerge(styles.megaMenu, styles.mmOpen.megaMenu) : styles.megaMenu}>
                               {aside !== null && aside !== undefined &&
                               <React.Fragment>
                                   <Media style={styles.asideImage} object src={aside.brand.image.src} alt={aside.brand.image.title}/>
                                   <div className={'asideContainer'} style={styles.asideWrapper}>
-                                      <div className={'asideHeader'} style={styles.asideHeader}>{aside.header}</div>
+                                      <div className={'asideHeader'} style={styles.asideHeader}>
+                                          {aside.header}
+                                      </div>
                                       <div className={'asideBody'} style={styles.asideBody}>{aside.text}</div>
+                                      <div style={styles.asideDivider} />
                                   </div>
                               </React.Fragment>
                               }
@@ -190,6 +192,9 @@ const defaultStyles = {
         itemWrapper: {},
         mmBackground: {
         },
+        megaMenu: {
+            opacity: 1,
+        },
     },
     mmBackground: {
     },
@@ -208,8 +213,11 @@ const defaultStyles = {
     dropdownContainer: {},
     megaMenu: {
         padding: 0,
+        opacity: 0,
+        transition: 'opacity 0.25s'
     },
     asideWrapper: {
+        position: 'relative',
     },
     asideImage: {
     },
@@ -227,6 +235,13 @@ const defaultStyles = {
 
         hovered: {
         },
+    },
+    asideDivider: {
+      width: '100%',
+      height: 1,
+      backgroundColor: 'blue',
+        position: 'absolute',
+        top: 25,
     },
 }
 
