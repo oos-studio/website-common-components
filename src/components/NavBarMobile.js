@@ -120,7 +120,7 @@ class NavBarMobile extends Component {
       case 'link':
         navItem = (
             <NavItem key={index} style={styles.navItem}>
-              <NavLink history={history} useRouter={item.useRouter ? item.useRouter : false} onClickItem={() => toggle()}  item={item} style={{
+              <NavLink history={history} useRouter={item.useRouter ? item.useRouter : false} item={item} style={{
                 ...styles.navLink,
                 borderBottomWidth: index === (items.length - 1) ? 0 : styles.dropdownItem.borderBottomWidth,
               }}>
