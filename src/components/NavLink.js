@@ -8,6 +8,14 @@ class NavLink extends Component {
 
     e.stopPropagation()
 
+    if(window.isNativeApp) {
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(window.location)
+      }
+
+      return
+    }
+
     if(hideDropDown !== undefined) {
       hideDropDown()
     }
