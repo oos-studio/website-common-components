@@ -10,7 +10,7 @@ class NavLink extends Component {
 
     if(isNativeApp) {
       if (webViewRef) {
-        webViewRef.postMessage(item.url)
+        webViewRef.postMessage(window.location)
       }
       return
     }
