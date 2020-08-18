@@ -4,15 +4,14 @@ import { NavLink as RSNavLink, UncontrolledDropdown } from 'reactstrap'
 class NavLink extends Component {
   _navLink = React.createRef()
   clickLink = (e) => {
-    const { useRouter, onClickItem, item, history, hideDropDown, append } = this.props
+    const { useRouter, onClickItem, item, history, hideDropDown, append, isNativeApp, webViewRef } = this.props
 
     e.stopPropagation()
 
-    if(window.isNativeApp) {
-      if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(window.location)
+    if(isNativeApp) {
+      if (webViewRef) {
+        webViewRef.postMessage(item.url)
       }
-
       return
     }
 
