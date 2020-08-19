@@ -53,6 +53,10 @@ const defaultStyles = {
   borderWidth: 2,
   backgroundColor: 'transparent',
   fontSize: 20,
+  paddingTop: 9,
+  paddingBottom: 9,
+  paddingLeft: 20,
+  paddingRight: 20,
   hovered: {
     backgroundColor: 'white',
     color: 'tan',
