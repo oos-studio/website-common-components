@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import { Parallax, withController } from 'react-scroll-parallax'
-import NavLink from './index'
+import NavLink from './NavLink'
 
 class FloatingParallax extends Component {
   constructor(props) {
