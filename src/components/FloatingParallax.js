@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import mergeStyles from '../utils/StyleMerge'
 import deepmerge from 'deepmerge'
 import { Parallax, withController } from 'react-scroll-parallax'
+import NavLink from './index'
 
 class FloatingParallax extends Component {
   constructor(props) {
@@ -25,21 +26,24 @@ class FloatingParallax extends Component {
   }
 
   renderLayer = (layer, index) => {
-    const { styles } = this.props
+    const { styles, url, useRouter, history } = this.props
+
     return (
       <div
         key={index}
       style={styles.imageLayer}>
         <Parallax y={this.getY(layer)}>
-          <img
-            src={layer.image}
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: this.getFloatingContainerStyle().height,
-              objectFit: 'cover',
-            }}
-          />
+          <NavLink item={{url: url}} useRouter={useRouter} history={history} style={styles.navLink}>
+            <img
+              src={layer.image}
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: this.getFloatingContainerStyle().height,
+                objectFit: 'cover',
+              }}
+            />
+          </NavLink>
         </Parallax>
       </div>
     )
