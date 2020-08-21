@@ -90,6 +90,7 @@ NavLink.defaultProps = {
   useRouter: false,
   item: null,
   append: true,
+  nativeNavigation: true,
 }
 
 export default NavLink
