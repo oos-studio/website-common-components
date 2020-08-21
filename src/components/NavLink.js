@@ -11,15 +11,14 @@ class NavLink extends Component {
       history,
       hideDropDown,
       append,
+      nativeNavigation,
     } = this.props
 
     e.stopPropagation()
 
-    if (window.isNativeApp) {
-      if (window.ReactNativeWebView) {
-        e.preventDefault()
-        window.ReactNativeWebView.postMessage(item.url)
-      }
+    if (window.ReactNativeWebView && nativeNavigation && window.isNativeApp) {
+      e.preventDefault()
+      window.ReactNativeWebView.postMessage(item.url)
       return
     }
 
