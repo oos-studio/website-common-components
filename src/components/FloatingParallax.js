@@ -26,24 +26,22 @@ class FloatingParallax extends Component {
   }
 
   renderLayer = (layer, index) => {
-    const { styles, url, useRouter, history } = this.props
+    const { styles } = this.props
 
     return (
       <div
         key={index}
       style={styles.imageLayer}>
         <Parallax y={this.getY(layer)}>
-          <NavLink item={{url: url}} useRouter={useRouter} history={history} style={styles.navLink}>
-            <img
-              src={layer.image}
-              style={{
-                position: 'relative',
-                width: '100%',
-                height: this.getFloatingContainerStyle().height,
-                objectFit: 'cover',
-              }}
-            />
-          </NavLink>
+          <img
+            src={layer.image}
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: this.getFloatingContainerStyle().height,
+              objectFit: 'cover',
+            }}
+          />
         </Parallax>
       </div>
     )
@@ -91,6 +89,11 @@ class FloatingParallax extends Component {
     const {
       styles,
       layers,
+      url,
+      useRouter,
+      history,
+      onHover,
+      onBlur,
     } = this.props
 
     return (
@@ -98,11 +101,13 @@ class FloatingParallax extends Component {
         <Parallax y={this.getY()}>
           <div style={{
             ...this.getFloatingContainerStyle(),
-            transform: `translateY(${this.getFloatOffset()}px)`,
+            transform: `translateY(${this.getFloatOffset()}px) ` + this.getFloatingContainerStyle().transform,
           }}>
-            {layers.map((layer, index) => {
-              return this.renderLayer(layer, index)
-            })}
+            <NavLink onMouseEnter={onHover} onMouseLeave={onBlur} item={{url: url}} useRouter={useRouter} history={history} style={styles.navLink}>
+              {layers.map((layer, index) => {
+                return this.renderLayer(layer, index)
+              })}
+            </NavLink>
           </div>
         </Parallax>
       </div>
