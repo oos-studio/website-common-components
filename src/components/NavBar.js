@@ -41,11 +41,23 @@ class NavBar extends Component {
         this.unlisten = this.props.history?.listen((location, action) => {
             this.hideMegaMenu()
         })
+
+        window.addEventListener('click', this.handleOutsideClick)
+
     }
 
     componentWillUnmount() {
         if(this.unlisten) {
             this.unlisten()
+        }
+    }
+
+    handleOutsideClick = (e) => {
+        const { open } = this.state
+        const { hideMegaMenu } = this
+
+        if (!document.getElementById('navbarContainer')?.contains(e.target) && open) {
+            hideMegaMenu()
         }
     }
 
@@ -149,7 +161,7 @@ class NavBar extends Component {
         const { toggle, renderNavigationItems, hideMegaMenu } = this
 
         return(
-          <div style={styles.container} onMouseLeave={() => hideMegaMenu()}>
+          <div id={'navbarContainer'} style={styles.container} onMouseLeave={() => hideMegaMenu()}>
               <div className={'mmBackground'} style={ megaMenuOpen ? deepmerge(styles.mmBackground, styles.mmOpen.mmBackground) : styles.mmBackground} />
               <Navbar expand="md" color={megaMenuOpen ? styles.mmOpen.navbar.backgroundColor : styles.navbar.backgroundColor} style={ megaMenuOpen ? deepmerge(styles.navbar, styles.mmOpen.navbar) : styles.navbar}>
                   <NavbarBrand onClick={(e) => onBrandClick(e)} href="/" style={styles.brand}>
