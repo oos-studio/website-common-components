@@ -55,6 +55,12 @@ class NavBar extends Component {
     }
 
     async showMegaMenu(key) {
+        const { activeHoveredDropdown } = this.state
+
+        if(activeHoveredDropdown === key) {
+            return
+        }
+
         await this.hideMegaMenu()
         const item = this.menus.filter(obj => {
             return obj.index === key
