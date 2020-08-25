@@ -178,7 +178,7 @@ class NavBarMobile extends Component {
       }}>
         <Navbar id='navbar' style={{
           ...styles.navbar,
-          boxShadow: open ? '0px 1px 2px #6A5B5D' : 'none',
+          boxShadow: open ? styles.navbar.boxShadow : 'none',
         }}>
           <NavbarBrand onClick={(e) => onBrandClick(e)} style={styles.brand} href="/" className="mr-auto">
             <Media object src={brand.image.src} alt={brand.image.title} style={getStyle(styles.brandImage)}/>
