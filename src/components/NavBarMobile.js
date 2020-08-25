@@ -34,13 +34,24 @@ class NavBarMobile extends Component {
       })
     })
 
-    this.unlisten = this.props.history.listen((location, action) => {
+    window.addEventListener('click', this.handleOutsideClick)
+
+    this.unlisten = this.props.history?.listen((location, action) => {
       this.setState({
         open: true,
       }, () => {
         this.toggle()
       })
     })
+  }
+
+  handleOutsideClick = (e) => {
+    const { open } = this.state
+    const { toggle } = this
+
+    if (!document.getElementById('mobileNavContainer')?.contains(e.target) && open) {
+      toggle()
+    }
   }
 
   componentWillUnmount() {
@@ -161,11 +172,14 @@ class NavBarMobile extends Component {
     const { toggle, renderNavigationItems } = this
 
     return(
-      <div id='container' style={{
+      <div id='mobileNavContainer' style={{
         position: fixed ? 'fixed' : 'absolute',
         ...styles.container,
       }}>
-        <Navbar id='navbar' style={styles.navbar}>
+        <Navbar id='navbar' style={{
+          ...styles.navbar,
+          boxShadow: open ? '0px 1px 2px #6A5B5D' : 'none',
+        }}>
           <NavbarBrand onClick={(e) => onBrandClick(e)} style={styles.brand} href="/" className="mr-auto">
             <Media object src={brand.image.src} alt={brand.image.title} style={getStyle(styles.brandImage)}/>
             <NavbarText style={styles.brandTitle}>
