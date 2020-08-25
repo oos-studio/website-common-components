@@ -186,7 +186,9 @@ class NavBarMobile extends Component {
               {brand.title ? brand.title : ''}
             </NavbarText>
           </NavbarBrand>
-          <Media object style={getStyle(styles.toggler)} onClick={toggle} src={open ? closeToggleIcon : openToggleIcon}/>
+          <div style={styles.toggleContainer} onClick={toggle}>
+            <Media object style={getStyle(styles.toggler)} src={open ? closeToggleIcon : openToggleIcon}/>
+          </div>
           <div id='mobileCollapse' style={styles.collapse}>
             <Nav id='nav' navbar style={styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index))}
@@ -219,6 +221,9 @@ const defaultStyles = {
   dropdownIcon: {},
   dropdownArrow: {
     clicked: {},
+  },
+  toggleContainer: {
+    cursor: 'pointer',
   },
 }
 
