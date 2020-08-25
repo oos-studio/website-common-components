@@ -40,6 +40,7 @@ class FloatingParallax extends Component {
               width: '100%',
               height: this.getFloatingContainerStyle().height,
               objectFit: 'cover',
+              ...layer.imageStyle,
             }}
           />
         </Parallax>
@@ -136,6 +137,7 @@ const defaultStyles = {
     height: 500,
     marginLeft: 75,
     marginRight: 75,
+    transform: '',
   },
   imageLayer: {
     position: 'absolute',
@@ -150,6 +152,7 @@ const defaultStyles = {
     height: 300,
     marginLeft: 30,
     marginRight: 30,
+    transform: '',
   }
 }
 
