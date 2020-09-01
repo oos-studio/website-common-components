@@ -14,14 +14,12 @@ class ListItemBody extends Component {
     this.setState({
       hovered: true,
     })
-    console.log('hover')
   }
   leaveHoverButton = () => {
     this.setState({
       hovered: false,
     })
 
-    console.log('leave hover')
   }
   render() {
     const {

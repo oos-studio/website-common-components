@@ -64,7 +64,6 @@ class SplitWrappedLines extends Component {
         lines
       })
 
-      console.log(lines)
     }, 10)
   }
 

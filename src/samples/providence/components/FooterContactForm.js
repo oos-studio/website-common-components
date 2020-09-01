@@ -12,7 +12,6 @@ class FooterContactForm extends Component {
   }
 
   onSubmit() {
-    console.log('test')
   }
 
   render() {

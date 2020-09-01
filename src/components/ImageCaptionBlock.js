@@ -5,7 +5,6 @@ import withSizes from '../utils/Sizes'
 class ImageCaptionBlock extends Component {
   render() {
     const { getStyle, styles, image, text, logo } = this.props
-    console.log(styles)
 
     const imageWrapperStyles = {
       ...styles.imageWrapper,

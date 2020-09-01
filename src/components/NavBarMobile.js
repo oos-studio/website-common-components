@@ -128,7 +128,6 @@ class NavBarMobile extends Component {
     const { styles, icon, items, history } = this.props
     const { toggleDropdownMenu, menus, toggle } = this
     let navItem = null
-    console.log(activeDropdownIndex)
 
     switch(item.type) {
       case 'link':
