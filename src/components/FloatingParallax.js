@@ -16,7 +16,6 @@ class FloatingParallax extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.resize)
     setTimeout(() => {
-      console.log('mount')
       this.props.parallaxController.update()
     }, 100)
   }

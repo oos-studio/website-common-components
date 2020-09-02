@@ -101,7 +101,6 @@ const styles = {
   toggler: {
     height: 25,
     width: 25,
-    marginRight: 30,
   },
   collapse: {
     overflow: 'scroll',

@@ -128,7 +128,6 @@ class NavBarMobile extends Component {
     const { styles, icon, items, history } = this.props
     const { toggleDropdownMenu, menus, toggle } = this
     let navItem = null
-    console.log(activeDropdownIndex)
 
     switch(item.type) {
       case 'link':
@@ -178,7 +177,7 @@ class NavBarMobile extends Component {
       }}>
         <Navbar id='navbar' style={{
           ...styles.navbar,
-          boxShadow: open ? '0px 1px 2px #6A5B5D' : 'none',
+          boxShadow: open ? styles.navbar.boxShadow : 'none',
         }}>
           <NavbarBrand onClick={(e) => onBrandClick(e)} style={styles.brand} href="/" className="mr-auto">
             <Media object src={brand.image.src} alt={brand.image.title} style={getStyle(styles.brandImage)}/>
@@ -186,7 +185,9 @@ class NavBarMobile extends Component {
               {brand.title ? brand.title : ''}
             </NavbarText>
           </NavbarBrand>
-          <Media object style={getStyle(styles.toggler)} onClick={toggle} src={open ? closeToggleIcon : openToggleIcon}/>
+          <div style={styles.toggleContainer} onClick={toggle}>
+            <Media object style={getStyle(styles.toggler)} src={open ? closeToggleIcon : openToggleIcon}/>
+          </div>
           <div id='mobileCollapse' style={styles.collapse}>
             <Nav id='nav' navbar style={styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index))}
@@ -219,6 +220,9 @@ const defaultStyles = {
   dropdownIcon: {},
   dropdownArrow: {
     clicked: {},
+  },
+  toggleContainer: {
+    cursor: 'pointer',
   },
 }
 

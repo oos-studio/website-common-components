@@ -39,7 +39,6 @@ class Slideshow extends Component {
     return (
       <Fade {...options} className="slideshowWrapper">
         {slides.map((slide, index) => {
-          console.log(slide)
           return(
           <div key={index} style={getStyle(_styles.slide)}>
             <div style={getStyle(_styles.imageWrapper)}>

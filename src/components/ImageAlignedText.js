@@ -42,7 +42,6 @@ class ImageAlignedText extends Component {
     const { styles, image, text, button, textAlign, parallaxLayers, useRouter, history, item } = this.props
     const contentSide = textAlign === 'right' ? 'flex-end' : 'flex-start'
 
-    console.log(styles)
     return (
       <div style={styles.container}>
         <Media object alt={image.title ? image.title : 'img'} src={image.src} style={styles.image}/>
