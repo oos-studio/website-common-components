@@ -59,7 +59,7 @@ class CardGrid extends Component {
             <div style={styles.header}>
               {card.header}
             </div>
-            <CardImg src={card.image.src} style={styles.image}/>
+            <CardImg src={card.image.src} tag={card.image.tag} style={styles.image}/>
             <CardBody style={styles.body}>
               <div style={styles.title}>
                 {card.title}
