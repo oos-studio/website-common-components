@@ -337,8 +337,8 @@ class NavBarAnimated extends Component {
               }}>
                 {item.image ?
                   <>
-                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hoverLower) : _imageStyles}/>
-                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hoverUpper) : _imageStyles}/>
+                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles.lower, _imageStyles.hoverLower) : _imageStyles.lower}/>
+                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles.upper, _imageStyles.hoverUpper) : _imageStyles.upper}/>
                   </>
                   : item.text}
               </div>
