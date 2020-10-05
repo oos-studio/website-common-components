@@ -336,7 +336,10 @@ class NavBarAnimated extends Component {
                 borderBottomColor: activeNavIndex === index && !item.image ? _styles.dropdownItem.hover.borderBottomColor : _styles.dropdownItem.borderBottomColor,
               }}>
                 {item.image ?
-                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hover) : _imageStyles}/>
+                  <>
+                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hoverLower) : _imageStyles}/>
+                  <Media onClick={() => hoverNavItem(item, index)} object src={item.image} style={activeNavIndex === index ? deepmerge(_imageStyles, _imageStyles.hoverUpper) : _imageStyles}/>
+                  </>
                   : item.text}
               </div>
               {!item.image &&
