@@ -82,7 +82,7 @@ class NavBarAnimated extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { showScrolledNav } = this.state
     const { runAnimations } = this
-    const { useGradient } = this.props
+    const { useGradient, transitionWaitTime } = this.props
 
     const gradientOverlay = document.getElementById('gradientOverlay')
 
@@ -91,7 +91,7 @@ class NavBarAnimated extends Component {
     }
 
     if(prevState.showScrolledNav !== showScrolledNav) {
-      runAnimations()
+      setTimeout(runAnimations, transitionWaitTime)
     }
   }
 
@@ -101,7 +101,7 @@ class NavBarAnimated extends Component {
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles, useGradient } = this.props
+    const { styles, useGradient, transitionWaitTime } = this.props
     const duration = 0.25
 
 
@@ -130,7 +130,6 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
-      setTimeout(() => {
       if(useGradient) {
         document.getElementById('gradientOverlay').style.display = 'flex'
       }
@@ -149,7 +148,7 @@ class NavBarAnimated extends Component {
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
         tl.to('#navBrand', {width: styles.brandImage.large.width,}, 0)
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
-      })}, 250)
+      })
 
     }
   }
@@ -462,6 +461,7 @@ NavBarAnimated.defaultProps = {
   changeOnScroll: false,
   scrollTrigger: 700,
   useGradient: false,
+  transitionWaitTime: 250,
 }
 
 export default mergeStyles(defaultStyles)(withSizes(NavBarAnimated))
