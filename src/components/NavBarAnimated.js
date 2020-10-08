@@ -93,6 +93,10 @@ class NavBarAnimated extends Component {
     if(prevState.showScrolledNav !== showScrolledNav) {
       runAnimations()
     }
+
+    if(this.state.activeNavImage === this.state.scrollNavImage && !showScrolledNav) {
+      runAnimations()
+    }
   }
 
   runAnimations() {
@@ -150,7 +154,7 @@ class NavBarAnimated extends Component {
   }
 
   handleScroll = () => {
-    const {changeOnScroll, scrollTrigger, transitionWaitTime} = this.props
+    const { changeOnScroll, scrollTrigger } = this.props
 
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop
 
@@ -160,17 +164,16 @@ class NavBarAnimated extends Component {
 
     let showScrolled = false
 
-    if (winScroll >= scrollTrigger && changeOnScroll) {
+    if(winScroll >= scrollTrigger && changeOnScroll) {
       showScrolled = true
     }
 
-    setTimeout(() => {
-      this.setState({
-        scrollY: scrollY,
-        showScrolledNav: showScrolled,
-      })
-    }, transitionWaitTime)
+    this.setState({
+      scrollY: scrollY,
+      showScrolledNav: showScrolled,
+    })
   }
+
   toggle() {
     const { open } = this.state
     this.setState({ open: !open })

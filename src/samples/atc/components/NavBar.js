@@ -478,42 +478,6 @@ const data = {
         "url": "#/4",
         "type": "link",
       },
-      {
-        "text": '',
-        "url": "#/TEST",
-        "type": 'link',
-        image: require('../assets/ShoppingCart.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-          darkMode: {
-            filter: 'invert(100%)',
-          },
-        },
-      },
-      {
-        "text": '',
-        "url": "#",
-        "type": "dropdown",
-        align: 'right',
-        image: require('../assets/Search.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-          darkMode: {
-            filter: 'invert(100%)',
-          }
-        },
-        render: (display) => <DropdownSearch display={display} styles={styles} navRef={_navRef}/>
-      },
     ],
   }
 }
