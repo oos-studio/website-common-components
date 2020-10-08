@@ -130,6 +130,7 @@ class NavBarAnimated extends Component {
         TweenLite.to('#divider', duration, {opacity: 1,})
       })
     } else {
+      setTimeout(() => {
       if(useGradient) {
         document.getElementById('gradientOverlay').style.display = 'flex'
       }
@@ -148,7 +149,8 @@ class NavBarAnimated extends Component {
         tl.to('#navBrand', {transform: 'translateX(0px)', opacity: 1, }, duration / 3)
         tl.to('#navBrand', {width: styles.brandImage.large.width,}, 0)
         TweenLite.to('#navbar', duration, {...styles.navbar, backdropFilter: 'none', ease: Power2.easeOut})
-      })
+      })}, 250)
+
     }
   }
 
