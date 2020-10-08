@@ -82,7 +82,7 @@ class NavBarAnimated extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { showScrolledNav } = this.state
     const { runAnimations } = this
-    const { useGradient, transitionWaitTime } = this.props
+    const { useGradient } = this.props
 
     const gradientOverlay = document.getElementById('gradientOverlay')
 
@@ -91,17 +91,13 @@ class NavBarAnimated extends Component {
     }
 
     if(prevState.showScrolledNav !== showScrolledNav) {
-      setTimeout(runAnimations, transitionWaitTime)
+      runAnimations()
     }
-  }
-
-  testAlert = () => {
-    //alert('it freakin worked')
   }
 
   runAnimations() {
     const { scrollNavImage, defaultNavImage, showScrolledNav } = this.state
-    const { styles, useGradient, transitionWaitTime } = this.props
+    const { styles, useGradient } = this.props
     const duration = 0.25
 
 
@@ -154,7 +150,7 @@ class NavBarAnimated extends Component {
   }
 
   handleScroll = () => {
-    const { changeOnScroll, scrollTrigger } = this.props
+    const {changeOnScroll, scrollTrigger, transitionWaitTime} = this.props
 
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop
 
@@ -164,16 +160,17 @@ class NavBarAnimated extends Component {
 
     let showScrolled = false
 
-    if(winScroll >= scrollTrigger && changeOnScroll) {
+    if (winScroll >= scrollTrigger && changeOnScroll) {
       showScrolled = true
     }
 
-    this.setState({
-      scrollY: scrollY,
-      showScrolledNav: showScrolled,
-    })
+    setTimeout(() => {
+      this.setState({
+        scrollY: scrollY,
+        showScrolledNav: showScrolled,
+      })
+    }, transitionWaitTime)
   }
-
   toggle() {
     const { open } = this.state
     this.setState({ open: !open })
