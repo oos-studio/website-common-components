@@ -401,7 +401,7 @@ class NavBarAnimated extends Component {
             <Nav id='nav' navbar style={_styles.nav}>
               {items.map((item, index) => renderNavigationItems(item, index, false))}
             </Nav>
-            <div id='imageItems' style={_styles.imageItems}>
+            <div id='imageItems' style={showScrolledNav ? deepmerge(_styles.imageItems, _styles.imageItems.scrolled) : _styles.imageItems}>
               {items.map((item, index) => renderNavigationItems(item, index, true))}
             </div>
           </Collapse>
