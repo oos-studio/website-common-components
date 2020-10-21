@@ -1,7 +1,7 @@
 @keyframes fadeInUp-Header {
     from {
         opacity: 0;
-        transform: translateY(35px);
+        transform: translateY(30px);
     }
 
     to {
