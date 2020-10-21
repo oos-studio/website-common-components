@@ -1,0 +1,31 @@
+@keyframes fadeInUp-Header {
+    from {
+        opacity: 0;
+        transform: translateY(75px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeInUp-Header {
+    -webkit-animation-name: fadeInUp-Header;
+    animation-name: fadeInUp-Header;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
