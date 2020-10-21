@@ -92,7 +92,7 @@ class Footer extends Component {
               <React.Fragment key={index}>
                 {
                   link.url.length > 0 && link.type === 'phone' &&
-                 <><span style={linkStyle}>{link.title}</span> <a key={index} href={link.url} style={linkStyle}>{`tel:${link.url}`}</a></>
+                 <><span style={linkStyle}>{link.title}</span> <a key={index} href={`tel:${link.url}`} style={linkStyle}>{link.url}</a></>
                 }
                 {
                   link.url.length > 0 &&
