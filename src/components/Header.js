@@ -43,7 +43,7 @@ class Header extends Component {
                   <div style={getStyle(styles.title)}>{title}</div>
                 </Reveal>
             }
-            <Reveal effect="fadeInOut-Header" duration={1000} delay={500}>
+            <Reveal effect="fadeInOut-Header" duration={1000}>
               <div style={styles.subTitle}>
                 <span>{subTitle}</span>
               </div>
