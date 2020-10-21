@@ -36,16 +36,18 @@ class Header extends Component {
                   return (<span key={index} style={getStyle(styles.title)}>{t}</span>)
                 })
                 :
-                <Reveal effect="fadeInOut-Header" duration={500}>
+                <Reveal effect="fadeInOut-Header" duration={1000}>
                   <div style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
                     <div style={getStyle(styles.titleShadow)}>{title}</div>
                   </div>
                   <div style={getStyle(styles.title)}>{title}</div>
                 </Reveal>
             }
-            <div style={styles.subTitle}>
-              <span>{subTitle}</span>
-            </div>
+            <Reveal effect="fadeInOut-Header" duration={1000} delay={500}>
+              <div style={styles.subTitle}>
+                <span>{subTitle}</span>
+              </div>
+            </Reveal>
           </div>
         }
         {!slideshow && backgroundAsset && backgroundAsset !== {} ?

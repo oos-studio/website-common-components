@@ -89,7 +89,7 @@ class ImageRowItem extends Component {
 
     return (
       <Col style={getStyle(styles.imageColumn)} xs={xs} sm={sm} md={md}>
-        <Reveal effect="fadeIn" duration={500}>
+        <Reveal effect="fadeIn" duration={1000}>
           <div onClick={onClick} style={getStyle(imageWrapper)}>
             <img
               {...imageProps}
@@ -183,4 +183,4 @@ ImageRowItem.defaultProps = {
   imageWrapperStyles: {},
 }
 
-export default mergeStyles(defaultStyles)(withSizes(withRouter(ImageRowItem)))
+export default mergeStyles(defaultStyles)(withSizes(ImageRowItem))
