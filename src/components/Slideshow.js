@@ -55,7 +55,7 @@ class Slideshow extends Component {
                 <SplitWrappedLines text={slide.title} styles={{ line: styles.titleLine }} />
                 : slide.title.map((title, subIndex) => {
                   return (( index === 0 ? (
-                        <Reveal effect="fadeInUp-Header" duration={1000}>
+                        <Reveal effect="fadeInUp-Header" duration={1000} delay={index * 500}>
                           <span key={subIndex} style={getStyle(title.style)}>{title.text}</span>
                         </Reveal>
                       ) :
