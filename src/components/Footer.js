@@ -95,7 +95,7 @@ class Footer extends Component {
                  <><span style={{...linkStyle, display: 'unset',}}>{link.title}</span> <a key={index} style={linkStyle} href={`tel:${link.url}`}>{link.url}</a></>
                 }
                 {
-                  link.url.length > 0 &&
+                  link.url.length > 0 && link.type !== 'phone' &&
                 <a key={index} href={link.url} style={linkStyle}>{link.title}</a>
                 }
                 {
