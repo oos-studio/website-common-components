@@ -104,7 +104,7 @@ class Footer extends Component {
                 }
                 {
                   link.url.length > 0 && link.type !== 'phone' &&
-                <a key={index} href={link.url} onClick={useRouter && history ? (e, history, link) => onClickRouterLink(e, history, link) : null} style={linkStyle}>{link.title}</a>
+                <a key={index} href={link.url} onClick={useRouter && history ? (e) => onClickRouterLink(e, history, link.url) : null} style={linkStyle}>{link.title}</a>
                 }
                 {
                   link.url.length <= 0 &&
