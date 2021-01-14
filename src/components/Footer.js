@@ -71,6 +71,7 @@ class Footer extends Component {
   }
 
   renderColumn = (column, index) => {
+    const { history, useRouter } = this.props;
     const linkStyle = this.getLinkStyle(index)
     const imageStyle = this.getImageStyle(index)
     const textStyle = this.getTextStyle(index)
@@ -93,6 +94,9 @@ class Footer extends Component {
                 {
                   link.url.length > 0 && link.type === 'phone' &&
                  <div style={{display: 'flex'}}><span style={{...linkStyle, display: 'unset', marginRight: 5}}>{link.title}</span> <a key={index} style={linkStyle} href={`tel:${link.url.replace('+', '').replace('.', '').replace('.', '').replace('-', '').replace('-', '')}`}>{link.url}</a></div>
+                }
+                {link.url.length > 0 && link.type !== 'phone' && useRouter && history &&
+                <div onClick={() => history.push(link.url)} style={linkStyle}>{link.title}</div>
                 }
                 {
                   link.url.length > 0 && link.type !== 'phone' &&
