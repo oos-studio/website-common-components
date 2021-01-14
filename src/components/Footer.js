@@ -5,6 +5,11 @@ import deepmerge from 'deepmerge'
 
 class Footer extends Component {
 
+  onClickRouterLink = (e, history, link) => {
+    e.preventDefault()
+    history.push(link)
+  }
+
   getColumnStyle = index => {
     const { styles } = this.props
     let columnStyle = styles.defaultColumn
@@ -71,7 +76,9 @@ class Footer extends Component {
   }
 
   renderColumn = (column, index) => {
-    const { history, useRouter } = this.props;
+    const { history, useRouter } = this.props
+    const { onClickRouterLink } = this
+
     const linkStyle = this.getLinkStyle(index)
     const imageStyle = this.getImageStyle(index)
     const textStyle = this.getTextStyle(index)
@@ -97,7 +104,7 @@ class Footer extends Component {
                 }
                 {
                   link.url.length > 0 && link.type !== 'phone' &&
-                <a key={index} href={useRouter && history ? null : link.url} onClick={useRouter && history ? () => history.push(link.url) : null} style={linkStyle}>{link.title}</a>
+                <a key={index} href={link.url} onClick={useRouter && history ? (e, history, link) => onClickRouterLink(e, history, link) : null} style={linkStyle}>{link.title}</a>
                 }
                 {
                   link.url.length <= 0 &&
