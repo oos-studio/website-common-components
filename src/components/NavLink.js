@@ -50,6 +50,7 @@ class NavLink extends Component {
       item,
       children,
       useRouter,
+      useNavLinkClass,
     } = this.props
     const { clickLink } = this
 
@@ -76,6 +77,8 @@ class NavLink extends Component {
     ) : (
       <a
         href={item.url}
+        target={"_blank"}
+        className={useNavLinkClass ? "nav-link" : ""}
         style={{ paddingLeft: 0, paddingRight: 0, ...style }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}>
@@ -91,6 +94,7 @@ NavLink.defaultProps = {
   item: null,
   append: true,
   nativeNavigation: true,
+  useNavLinkClass: false,
 }
 
 export default NavLink

@@ -365,6 +365,7 @@ class NavBarAnimated extends Component {
             onMouseEnter={() => hoverNavItem(item, index)}
             onMouseLeave={() => leaveHoverNavItem(item, index)}>
             <NavLink
+              useNavLinkClass
               href={item.url}
               item={item}
               onClickItem={onClickItem}
@@ -402,6 +403,7 @@ class NavBarAnimated extends Component {
       case 'dropdown':
         navItem = (
           <NavLink
+            useNavLinkClass
             dropdown
             key={index}
             history={history}
