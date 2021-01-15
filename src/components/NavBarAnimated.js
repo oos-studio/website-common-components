@@ -368,7 +368,7 @@ class NavBarAnimated extends Component {
               href={item.url}
               item={item}
               onClickItem={onClickItem}
-              useRouter={useRouter}
+              useRouter={item.useRouter}
               history={history}
               style={{
                 ..._styles.navLink,
@@ -410,7 +410,7 @@ class NavBarAnimated extends Component {
             ref={(_r) => {
               _navRefs[index] = _r
             }}
-            useRouter={useRouter}
+            useRouter={item.useRouter}
             hideDropDown={() => hideDropdownMenu(item, index)}
             onClickItem={onClickItem}>
             <DropdownToggle
