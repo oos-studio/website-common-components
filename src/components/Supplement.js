@@ -85,11 +85,11 @@ class Supplement extends Component {
             src={content.asset[0].url}
             alt="img"
           />}
-          {content.asset[0].mimeType.includes('video/') && <img
-            style={_styles.content.img}
-            src={content.asset[0].url}
-            alt="img"
-          />}
+          {content.asset[0].mimeType.includes('video/') && (
+            <video style={_styles.content.img} controls autoPlay={content.autoplay} loop={content.loop}>
+              <source src={content.asset[0].url} type={content.asset[0].mimeType}/>
+            </video>
+              )}
           <div style={_styles.content.imgCaption}>
             {content.caption !== null &&
               content.caption !== undefined &&
