@@ -80,11 +80,16 @@ class Supplement extends Component {
     if (type === 'asset') {
       return (
         <div style={_styles.content.imgWrapper}>
-          <img
+          {content.asset[0].mimeType.includes('image/') && <img
             style={_styles.content.img}
             src={content.asset[0].url}
             alt="img"
-          />
+          />}
+          {content.asset[0].mimeType.includes('video/') && <img
+            style={_styles.content.img}
+            src={content.asset[0].url}
+            alt="img"
+          />}
           <div style={_styles.content.imgCaption}>
             {content.caption !== null &&
               content.caption !== undefined &&
