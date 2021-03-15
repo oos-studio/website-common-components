@@ -92,6 +92,7 @@ class Supplement extends Component {
               source={content.asset[0].url}
               type={content.asset[0].mimeType}
               autoplay={content.autoplay}
+              controls={content.controls}
               loop={content.loop}/>
               )}
           <div style={_styles.content.imgCaption}>
