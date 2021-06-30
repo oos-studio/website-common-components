@@ -115,7 +115,7 @@ class NavBar extends Component {
     }
     renderNavigationItems(item, index) {
         const { styles, icon, useRouter, onClickItem, history } = this.props
-        const { activeHoveredLink, activeHoveredDropdown } = this.state
+        const { activeHoveredLink, activeHoveredDropdown, megaMenuOpen } = this.state
 
         let navItem = null
         let key = 0
@@ -124,7 +124,7 @@ class NavBar extends Component {
             case 'link':
                 navItem = (<NavItem key={index} key={index} style={styles.navItem}><NavLink onMouseEnter={() => this.hideMegaMenu(index)} onMouseLeave={() => this.unHoverLink()} history={history} useRouter={item.useRouter ? item.useRouter : false} onClickItem={onClickItem} item={item} href={item.url} style={{
                     ...styles.navLink,
-                    color: activeHoveredLink === index ? styles.navLink.hovered.color : styles.navLink.color,
+                    color: activeHoveredLink === index ? styles.navLink.hovered.color : megaMenuOpen ? styles.mmOpen.navLink.color : styles.navLink.color,
                 }}>{item.text}</NavLink></NavItem>)
                 break
             case 'dropdown':
@@ -136,7 +136,7 @@ class NavBar extends Component {
                         borderBottomWidth: this.state.navBorderWidth[key],
                         borderBottomStyle: this.state.navBorderStyle[key],
                         ...styles.dropdownItem,
-                        color: activeHoveredDropdown === key ? styles.dropdownItem.hovered.color : styles.dropdownItem.color,
+                        color: activeHoveredDropdown === key ? styles.dropdownItem.hovered.color : megaMenuOpen ? styles.mmOpen.dropdownItem.color : styles.dropdownItem.color,
                     }} onMouseEnter={() => this.showMegaMenu(key)} onMouseLeave={() => this.unHoverLink()} nav>
                         {item.text}
                         <i
