@@ -62,12 +62,14 @@ class NavLink extends Component {
         nav
         inNavbar
         onMouseLeave={onMouseLeave}
+        onTouchEnd={clickLink}
         onClick={clickLink}>
         {children}
       </UncontrolledDropdown>
     ) : useRouter ? (
       <RSNavLink
         onClick={clickLink}
+        onTouchEnd={clickLink}
         href={item.url}
         style={{ paddingLeft: 0, paddingRight: 0, ...style }}
         onMouseEnter={onMouseEnter}
