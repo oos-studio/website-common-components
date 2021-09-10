@@ -51,7 +51,6 @@ class NavLink extends Component {
       children,
       useRouter,
       useNavLinkClass,
-      blockTouchOnScroll,
       useTouchEnd,
     } = this.props
     const { clickLink } = this
@@ -99,7 +98,6 @@ NavLink.defaultProps = {
   append: true,
   nativeNavigation: true,
   useNavLinkClass: false,
-  blockTouchOnScroll: false,
   useTouchEnd: true,
 }
 

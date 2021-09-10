@@ -30,14 +30,14 @@ class Button extends Component {
   }
 
   render() {
-    const { styles, onClick, history, useRouter, item } = this.props
+    const { styles, onClick, history, useRouter, item, useTouchEnd } = this.props
     const { hovered } = this.state
 
     const activeStyles = hovered ? deepmerge(styles, styles.hovered) : styles
 
     return (
       <BasicButton onClick={onClick} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} style={activeStyles}>
-        {item ? (<NavLink useRouter={useRouter} history={history} item={item} style={activeStyles.navLink}>
+        {item ? (<NavLink useTouchEnd={useTouchEnd} useRouter={useRouter} history={history} item={item} style={activeStyles.navLink}>
             {this.props.children}
           </NavLink>)
           :
@@ -71,7 +71,7 @@ const defaultStyles = {
 }
 
 Button.defaultProps = {
-
+  useTouchEnd: true,
 }
 
 export default mergeStyles(defaultStyles)(Button)
