@@ -1,6 +1,6 @@
 {
   "name": "@oos-studio/website-common-components",
-  "version": "0.7.51-alpha",
+  "version": "0.7.92-alpha",
   "description": "A directory of commonly used components for building websites with react",
   "main": "dist/components/index.js",
   "private": false,
@@ -28,6 +28,7 @@
     "react-crossfade-image": "^1.2.0",
     "react-parallax": "^3.0.3",
     "react-render-html": "^0.6.0",
+    "react-reveal": "^1.2.2",
     "react-router-dom": "^5.1.2",
     "react-scroll-parallax": "^2.3.1",
     "react-slick": "^0.26.1",

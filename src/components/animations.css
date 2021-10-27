@@ -1,0 +1,35 @@
+@keyframes fadeInUp-Header {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeInUp-Header {
+    -webkit-animation-name: fadeInUp-Header;
+    animation-name: fadeInUp-Header;
+    animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
+    -webkit-animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1);
+}

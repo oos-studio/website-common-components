@@ -3,6 +3,8 @@ import { Container  } from 'reactstrap'
 import mergeStyle from '../utils/StyleMerge'
 import withSizes from '../utils/Sizes'
 import Slideshow from './Slideshow'
+import Reveal from 'react-reveal'
+import './animations.css'
 
 class Header extends Component {
   render() {
@@ -34,16 +36,18 @@ class Header extends Component {
                   return (<span key={index} style={getStyle(styles.title)}>{t}</span>)
                 })
                 :
-                <React.Fragment>
+                <Reveal effect="fadeInOut-Header" duration={1000}>
                   <div style={{...getStyle(styles.title), ...getStyle(styles.titleShadowWrapper)}}>
                     <div style={getStyle(styles.titleShadow)}>{title}</div>
                   </div>
                   <div style={getStyle(styles.title)}>{title}</div>
-                </React.Fragment>
+                </Reveal>
             }
-            <div style={styles.subTitle}>
-              <span>{subTitle}</span>
-            </div>
+            <Reveal effect="fadeInOut-Header" duration={1000}>
+              <div style={styles.subTitle}>
+                <span>{subTitle}</span>
+              </div>
+            </Reveal>
           </div>
         }
         {!slideshow && backgroundAsset && backgroundAsset !== {} ?

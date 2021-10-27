@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import mergeStyle from '../utils/StyleMerge'
-import { Row, Col, Container } from 'reactstrap'
 import withSizes from '../utils/Sizes'
+import mergeStyles from '../utils/StyleMerge'
+import { Row, Col, Container } from 'reactstrap'
 import deepmerge from 'deepmerge'
+import { withRouter } from 'react-router-dom'
+import Reveal from 'react-reveal'
+import './animations.css'
 
 class ImageRowItem extends Component {
   constructor(props) {
@@ -25,6 +28,15 @@ class ImageRowItem extends Component {
     })
   }
 
+  onClick = () => {
+    const { itemUrl, pageEntry, history } = this.props
+    if (pageEntry) {
+      history.push(pageEntry)
+    } else if (itemUrl) {
+      window.open(itemUrl, '_blank')
+    }
+  }
+
   imageColumn = () => {
     const {
       styles,
@@ -34,14 +46,18 @@ class ImageRowItem extends Component {
       imageProps,
       imageHoverStyles,
       imageWrapperHoverStyles,
+      itemUrl,
+      uri,
+      pageEntry,
     } = this.props
+    const { onClick } = this
     const { overImage } = this.state
 
     let xs = 'auto'
     let sm = 'auto'
     let md = 'auto'
 
-    switch(stack) {
+    switch (stack) {
       case 'xs':
         xs = '12'
         break
@@ -59,8 +75,8 @@ class ImageRowItem extends Component {
         break
     }
 
-    const imageStyles = overImage ? imageHoverStyles : {}
-    const imageWrapperStyles = overImage ? imageWrapperHoverStyles : {}
+    const imageStyles = overImage && (itemUrl || pageEntry || uri) ? imageHoverStyles : {}
+    const imageWrapperStyles = overImage && (itemUrl || pageEntry || uri) ? imageWrapperHoverStyles : {}
 
     const image = {
       ...styles.image,
@@ -73,39 +89,38 @@ class ImageRowItem extends Component {
 
     return (
       <Col style={getStyle(styles.imageColumn)} xs={xs} sm={sm} md={md}>
-        <div style={getStyle(imageWrapper)}>
-          <img {...imageProps} onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave} style={getStyle(image)} src={imageUrl} alt={''}/>
-        </div>
+        <Reveal effect="fadeIn" duration={1000}>
+          <div onClick={onClick} style={getStyle(imageWrapper)}>
+            <img
+              {...imageProps}
+              onMouseOver={this.onMouseOver}
+              onMouseLeave={this.onMouseLeave}
+              style={{
+                ...getStyle(image),
+                cursor: pageEntry || itemUrl ? 'pointer' : 'default',
+              }}
+              src={imageUrl}
+              alt={''}
+            />
+          </div>
+        </Reveal>
       </Col>
     )
   }
 
   bodyColumn = () => {
-    const {
-      styles,
-      renderBody,
-    } = this.props
+    const { styles, renderBody } = this.props
 
-    return <Col style={styles.bodyColumn} >{renderBody(this.props.xs)}</Col>
+    return <Col style={styles.bodyColumn}>{renderBody(this.props.xs)}</Col>
   }
 
   render() {
-    const {
-      styles,
-      alignImage,
-      sm,
-      xs,
-      md,
-      stack,
-    } = this.props
-    const {
-      bodyColumn,
-      imageColumn
-    } = this
+    const { styles, alignImage, sm, xs, md, stack } = this.props
+    const { bodyColumn, imageColumn } = this
 
     let _alignImage = ''
 
-    switch(stack) {
+    switch (stack) {
       case 'xs':
         _alignImage = xs ? 'left' : alignImage
         break
@@ -123,14 +138,8 @@ class ImageRowItem extends Component {
     return (
       <Container fluid style={styles.container}>
         <Row style={styles.row}>
-          {_alignImage === 'right' ?
-            bodyColumn():
-            imageColumn()
-          }
-          {_alignImage === 'right' ?
-            imageColumn() :
-            bodyColumn()
-          }
+          {_alignImage === 'right' ? bodyColumn() : imageColumn()}
+          {_alignImage === 'right' ? imageColumn() : bodyColumn()}
         </Row>
       </Container>
     )
@@ -138,11 +147,8 @@ class ImageRowItem extends Component {
 }
 
 const defaultStyles = {
-  container: {
-  },
-  row: {
-
-  },
+  container: {},
+  row: {},
   image: {
     width: '100%',
     height: '100%',
@@ -151,7 +157,7 @@ const defaultStyles = {
     xs: {
       height: 'auto',
       maxHeight: 300,
-    }
+    },
   },
   imageColumn: {
     width: '48%',
@@ -159,7 +165,7 @@ const defaultStyles = {
     padding: 10,
     xs: {
       height: 'auto',
-    }
+    },
   },
   imageWrapper: {
     overflow: 'hidden',
@@ -177,4 +183,4 @@ ImageRowItem.defaultProps = {
   imageWrapperStyles: {},
 }
 
-export default mergeStyle(defaultStyles)(withSizes(ImageRowItem))
+export default mergeStyles(defaultStyles)(withSizes(ImageRowItem))

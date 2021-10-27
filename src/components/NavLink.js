@@ -50,6 +50,8 @@ class NavLink extends Component {
       item,
       children,
       useRouter,
+      useNavLinkClass,
+      useTouchEnd,
     } = this.props
     const { clickLink } = this
 
@@ -61,12 +63,14 @@ class NavLink extends Component {
         nav
         inNavbar
         onMouseLeave={onMouseLeave}
+        onTouchEnd={useTouchEnd ? clickLink : null}
         onClick={clickLink}>
         {children}
       </UncontrolledDropdown>
     ) : useRouter ? (
       <RSNavLink
         onClick={clickLink}
+        onTouchEnd={useTouchEnd ? clickLink : null}
         href={item.url}
         style={{ paddingLeft: 0, paddingRight: 0, ...style }}
         onMouseEnter={onMouseEnter}
@@ -76,6 +80,8 @@ class NavLink extends Component {
     ) : (
       <a
         href={item.url}
+        target={"_blank"}
+        className={useNavLinkClass ? "nav-link" : ""}
         style={{ paddingLeft: 0, paddingRight: 0, ...style }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}>
@@ -91,6 +97,8 @@ NavLink.defaultProps = {
   item: null,
   append: true,
   nativeNavigation: true,
+  useNavLinkClass: false,
+  useTouchEnd: true,
 }
 
 export default NavLink

@@ -31,7 +31,7 @@ class NavBar extends Component {
     }
 
     return (
-      <NavBarComp navBarRef={r => _navRef = r} items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true} scrollTrigger={1000}/>
+      <NavBarComp navBarRef={r => _navRef = r} items={data.navigation.items} brand={data.navigation.brand} styles={getStyle(styles)} icon={data.navigation.dropdownIcon} useCustomMegaMenu={false} scrolledDropdownIcon={data.navigation.dropdownScrolledIcon} darkModeImg={data.navigation.brand.image.darkModeImg} fixed={true} changeOnScroll={true} useRouter={false} darkMode={true} scrollTrigger={400}/>
     )
   }
 }
@@ -300,7 +300,7 @@ const data = {
       image: {
         title: 'ATC Logo',
         src: require('../assets/ATCLogo.png'),
-        darkModeImg: require('../assets/Twitter.png'),
+        darkModeImg: require('../assets/ATCLogo.png'),
         scrolled: {
           title: 'ATC Logo Small',
           src: require('../assets/ATCLogo_Small.png')
@@ -477,42 +477,6 @@ const data = {
         "text": "CONTACT",
         "url": "#/4",
         "type": "link",
-      },
-      {
-        "text": '',
-        "url": "#/TEST",
-        "type": 'link',
-        image: require('../assets/ShoppingCart.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-          darkMode: {
-            filter: 'invert(100%)',
-          },
-        },
-      },
-      {
-        "text": '',
-        "url": "#",
-        "type": "dropdown",
-        align: 'right',
-        image: require('../assets/Search.png'),
-        imageStyles: {
-          height: 25,
-          width: 25,
-          filter: '',
-          hover: {
-            filter: 'invert(62%) sepia(14%) saturate(3362%) hue-rotate(320deg) brightness(90%) contrast(104%)',
-          },
-          darkMode: {
-            filter: 'invert(100%)',
-          }
-        },
-        render: (display) => <DropdownSearch display={display} styles={styles} navRef={_navRef}/>
       },
     ],
   }

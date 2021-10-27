@@ -5,6 +5,8 @@ import withSizes from '../utils/Sizes'
 import deepmerge from 'deepmerge'
 import SplitWrappedLines from './SplitWrappedLines'
 import Radium from 'radium'
+import Reveal from 'react-reveal'
+import './animations.css'
 
 class Slideshow extends Component {
   renderSlide = () => {
@@ -21,8 +23,12 @@ class Slideshow extends Component {
               </div>
               <div style={_styles.titleWrapper}>
                 {slide.title.map((title, subIndex) => {
-                  return (
-                    <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
+                  return ( index === 0 ? (
+                    <Reveal effect="fadeInUp-Header" duration={1000}>
+                      <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
+                    </Reveal>
+                    ) :
+                      <div key={subIndex} style={getStyle(title.style)}>{title.text}</div>
                   )
                 })}
               </div>
@@ -48,9 +54,13 @@ class Slideshow extends Component {
               {options.splitWrappedLines ?
                 <SplitWrappedLines text={slide.title} styles={{ line: styles.titleLine }} />
                 : slide.title.map((title, subIndex) => {
-                  return (
-                    <span key={subIndex} style={getStyle(title.style)}>{title.text}</span>
-                  )
+                  return (( index === 0 ? (
+                        <Reveal effect="fadeInUp-Header" duration={1000}>
+                          <span key={subIndex} style={getStyle(title.style)}>{title.text}</span>
+                        </Reveal>
+                      ) :
+                      <span key={subIndex} style={getStyle(title.style)}>{title.text}</span>
+                  ))
               })}
               {
                 slide.button ?

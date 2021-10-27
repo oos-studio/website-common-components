@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import deepmerge from 'deepmerge'
 import mergeStyles from '../utils/StyleMerge'
+import Video from './Video'
 
 class Supplement extends Component {
   getDynamicStyles = () => {
@@ -80,11 +81,20 @@ class Supplement extends Component {
     if (type === 'asset') {
       return (
         <div style={_styles.content.imgWrapper}>
-          <img
+          {content.asset[0].mimeType.includes('image/') && <img
             style={_styles.content.img}
             src={content.asset[0].url}
             alt="img"
-          />
+          />}
+          {content.asset[0].mimeType.includes('video/') && (
+            <Video
+              styles={_styles.content.img}
+              source={content.asset[0].url}
+              type={content.asset[0].mimeType}
+              autoplay={content.autoplay}
+              controls={content.controls}
+              loop={content.loop}/>
+              )}
           <div style={_styles.content.imgCaption}>
             {content.caption !== null &&
               content.caption !== undefined &&

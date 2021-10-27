@@ -5,6 +5,11 @@ import deepmerge from 'deepmerge'
 
 class Footer extends Component {
 
+  onClickRouterLink = (e, history, link) => {
+    e.preventDefault()
+    history.push(link)
+  }
+
   getColumnStyle = index => {
     const { styles } = this.props
     let columnStyle = styles.defaultColumn
@@ -71,6 +76,9 @@ class Footer extends Component {
   }
 
   renderColumn = (column, index) => {
+    const { history, useRouter } = this.props
+    const { onClickRouterLink } = this
+
     const linkStyle = this.getLinkStyle(index)
     const imageStyle = this.getImageStyle(index)
     const textStyle = this.getTextStyle(index)
@@ -91,8 +99,12 @@ class Footer extends Component {
               return(
               <React.Fragment key={index}>
                 {
-                  link.url.length > 0 &&
-                <a key={index} href={link.url} style={linkStyle}>{link.title}</a>
+                  link.url.length > 0 && link.type === 'phone' &&
+                 <div style={{display: 'flex'}}><span style={{...linkStyle, display: 'unset', marginRight: 5}}>{link.title}</span> <a key={index} style={linkStyle} href={`tel:${link.url.replace('+', '').replace('.', '').replace('.', '').replace('-', '').replace('-', '')}`}>{link.url}</a></div>
+                }
+                {
+                  link.url.length > 0 && link.type !== 'phone' &&
+                <a key={index} href={link.url} onClick={useRouter && history ? (e) => onClickRouterLink(e, history, link.url) : null} style={linkStyle}>{link.title}</a>
                 }
                 {
                   link.url.length <= 0 &&
