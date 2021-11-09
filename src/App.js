@@ -7,10 +7,10 @@ import './App.css'
 
 function App() {
 
-  return <ATCHomepage />
+  //return <ATCHomepage />
   // return <ProvidenceHomepage/>
-  //return <BlogListPage/>
-  // return <Homepage/>
+  // return <BlogListPage/>
+  return <Homepage/>
 }
 
 export default App
