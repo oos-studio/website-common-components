@@ -18,7 +18,7 @@ Available components can be found under `src/components`
 
 ## Samples
 
-Some sample projects can be found under `src/samples`. Please note that these samples where taken from troubleshooting projects use in building three production ready websites. As a result, they may not appear complete or could contain bugs.
+Some sample projects can be found under `src/samples`. Please note that these samples where taken from troubleshooting projects used for building three production ready websites. As a result, they may not appear complete or could contain bugs.
 
 You can view the websites built with Website Common Components below:
 
