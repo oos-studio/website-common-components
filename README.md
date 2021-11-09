@@ -32,3 +32,4 @@ To run a sample project, toggle the commented code under `src/App.js` and run th
 - The atc sample crashes when starting to scroll down
 - The providence sample crashes
 - Documentation is minimal
+- Lacks automated tests
