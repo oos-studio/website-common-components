@@ -31,5 +31,6 @@ To run a sample project, toggle the commented code under `src/App.js` and run th
 ## Known Issues
 - The atc sample crashes when starting to scroll down
 - The providence sample crashes
+- Samples can be more complete
 - Documentation is minimal
 - Lacks automated tests
