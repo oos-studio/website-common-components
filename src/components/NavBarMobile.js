@@ -49,7 +49,7 @@ class NavBarMobile extends Component {
     const { open } = this.state
     const { toggle } = this
 
-    if (!document.getElementById('mobileNavContainer')?.contains(e.target) && open) {
+    if (!document.getElementById('navbar')?.contains(e.target) && open) {
       toggle()
     }
   }
